@@ -1,0 +1,307 @@
+defaults: &defaults
+  working_directory: /nerves/build
+  docker:
+    - image: nervesproject/nerves_system_br:1.15.0
+  environment:
+    MIX_ENV: prod
+
+elixir_version: &elixir_version
+  ELIXIR_VERSION: 1.11.4-otp-23
+
+install_elixir: &install_elixir
+  run:
+    name: Install Elixir
+    command: |
+      wget https://repo.hex.pm/builds/elixir/v$ELIXIR_VERSION.zip
+      unzip -d /usr/local/elixir v$ELIXIR_VERSION.zip
+      echo 'export PATH=/usr/local/elixir/bin:$PATH' >> $BASH_ENV
+
+install_hex_rebar: &install_hex_rebar
+  run:
+    name: Install hex and rebar
+    command: |
+      mix local.hex --force
+      mix local.rebar --force
+
+install_nerves_bootstrap: &install_nerves_bootstrap
+  run:
+    name: Install nerves_bootstrap
+    command: |
+      mix archive.install hex nerves_bootstrap --force
+
+install_ghr: &install_ghr
+  run:
+    name: Install ghr (Github Releases)
+    command: |
+      wget https://github.com/tcnksm/ghr/releases/download/v0.9.0/ghr_v0.9.0_linux_amd64.tar.gz
+      tar xf ghr_v0.9.0_linux_amd64.tar.gz
+      ln -sf ghr_v0.9.0_linux_amd64/ghr .
+
+install_system_deps: &install_system_deps
+  run:
+    name: Install system dependencies
+    command: |
+      apt update
+      apt install -y zip
+
+build: &build
+  steps:
+    - checkout
+    - <<: *install_system_deps
+    - <<: *install_elixir
+    - <<: *install_hex_rebar
+    - <<: *install_nerves_bootstrap
+    - run: echo "$MIX_TARGET" > .target
+    - run:
+        name: Fetch Deps
+        command: |
+          n=0
+          until [ $n -ge 5 ]; do
+            mix deps.get && break
+            n=$((n+1))
+            echo "Error while fetching deps. Retrying in 5 seconds"
+            sleep 5
+          done
+    - run:
+        name: Check formatting
+        command: mix format --check-formatted
+    - run:
+        name: Build
+        command: mix compile
+    - run:
+        name: Create firmware
+        command: |
+          mix firmware
+          mix firmware.image
+    - run:
+          name: Create artifacts dir
+          command: mkdir -p /home/nerves/deploy/artifacts
+    - run:
+        name: Copy firmware file
+        command: |
+          cp _build/*/nerves/images/*.fw /home/nerves/deploy/artifacts/nerves_livebook_${MIX_TARGET}.fw
+          zip nerves_livebook_${MIX_TARGET}.zip nerves_livebook.img
+          cp nerves_livebook_${MIX_TARGET}.zip /home/nerves/deploy/artifacts
+          cp ./CHANGELOG.md /home/nerves/deploy/CHANGELOG.md
+    - store_artifacts:
+        path: /home/nerves/deploy
+        destination: images
+    - save_cache:
+        key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
+        paths:
+          - /home/nerves/deploy
+
+version: 2.0
+
+jobs:
+  build_osd32mp1:
+    <<: *defaults
+    environment:
+      <<: *elixir_version
+      MIX_TARGET: osd32mp1
+    <<: *build
+
+  build_rpi4:
+    <<: *defaults
+    environment:
+      <<: *elixir_version
+      MIX_TARGET: rpi4
+    <<: *build
+
+  build_rpi3a:
+    <<: *defaults
+    environment:
+      <<: *elixir_version
+      MIX_TARGET: rpi3a
+    <<: *build
+
+  build_rpi3:
+    <<: *defaults
+    environment:
+      <<: *elixir_version
+      MIX_TARGET: rpi3
+    <<: *build
+
+  build_rpi2:
+    <<: *defaults
+    environment:
+      <<: *elixir_version
+      MIX_TARGET: rpi2
+    <<: *build
+
+  build_rpi:
+    <<: *defaults
+    environment:
+      <<: *elixir_version
+      MIX_TARGET: rpi
+    <<: *build
+
+  build_rpi0:
+    <<: *defaults
+    environment:
+      <<: *elixir_version
+      MIX_TARGET: rpi0
+    <<: *build
+
+  build_bbb:
+    <<: *defaults
+    environment:
+      <<: *elixir_version
+      MIX_TARGET: bbb
+    <<: *build
+
+  build_npi_imx6ull:
+    <<: *defaults
+    environment:
+      <<: *elixir_version
+      MIX_TARGET: npi_imx6ull
+    <<: *build
+
+  build_x86_64:
+    <<: *defaults
+    environment:
+      <<: *elixir_version
+      MIX_TARGET: x86_64
+    <<: *build
+
+  deploy:
+    <<: *defaults
+    steps:
+      - checkout
+      - <<: *install_ghr
+      - run:
+          name: Create Artifacts Dir
+          command: mkdir -p /home/nerves/deploy
+      - run:
+          name: osd32mp1
+          command: echo "osd32mp1" > .target
+      - restore_cache:
+          key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
+      - run:
+          name: rpi4
+          command: echo "rpi4" > .target
+      - restore_cache:
+          key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
+      - run:
+          name: rpi3a
+          command: echo "rpi3a" > .target
+      - restore_cache:
+          key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
+      - run:
+          name: rpi3
+          command: echo "rpi3" > .target
+      - restore_cache:
+          key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
+      - run:
+          name: rpi2
+          command: echo "rpi2" > .target
+      - restore_cache:
+          key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
+      - run:
+          name: rpi
+          command: echo "rpi" > .target
+      - restore_cache:
+          key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
+      - run:
+          name: rpi0
+          command: echo "rpi0" > .target
+      - restore_cache:
+          key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
+      - run:
+          name: bbb
+          command: echo "bbb" > .target
+      - restore_cache:
+          key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
+      - run:
+          name: npi_imx6ull
+          command: echo "npi_imx6ull" > .target
+      - restore_cache:
+          key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
+      - run:
+          name: x86_64
+          command: echo "x86_64" > .target
+      - restore_cache:
+          key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
+      - run:
+          name: Create release notes
+          command: grep -Pazo "(?s)(?<=## ${CIRCLE_TAG})[^#]+" /home/nerves/deploy/CHANGELOG.md | sed '/./,$!d' > /home/nerves/deploy/RELEASE_NOTES
+      - store_artifacts:
+          path: /home/nerves/deploy
+          destination: images
+      - run:
+          name: Deploy artifacts to Github
+          command: ./ghr -draft -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME -b "$(cat /home/nerves/deploy/RELEASE_NOTES)" -replace $CIRCLE_TAG /home/nerves/deploy/artifacts
+
+
+workflows:
+  version: 2
+  build_deploy:
+    jobs:
+      - build_osd32mp1:
+          context: org-global
+          filters:
+            tags:
+              only: /.*/
+      - build_rpi4:
+          context: org-global
+          filters:
+            tags:
+              only: /.*/
+      - build_rpi3a:
+          context: org-global
+          filters:
+            tags:
+              only: /.*/
+      - build_rpi3:
+          context: org-global
+          filters:
+            tags:
+              only: /.*/
+      - build_rpi2:
+          context: org-global
+          filters:
+            tags:
+              only: /.*/
+      - build_rpi:
+          context: org-global
+          filters:
+            tags:
+              only: /.*/
+      - build_rpi0:
+          context: org-global
+          filters:
+            tags:
+              only: /.*/
+      - build_bbb:
+          context: org-global
+          filters:
+            tags:
+              only: /.*/
+      - build_npi_imx6ull:
+          context: org-global
+          filters:
+            tags:
+              only: /.*/
+      # - build_x86_64:
+      #     context: org-global
+      #     filters:
+      #       tags:
+      #         only: /.*/
+      - deploy:
+          context: org-global
+          requires:
+            - build_osd32mp1
+            - build_rpi4
+            - build_rpi3a
+            - build_rpi3
+            - build_rpi2
+            - build_rpi
+            - build_rpi0
+            - build_bbb
+            - build_npi_imx6ull
+            # - build_x86_64
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /v.*/
