@@ -29,11 +29,11 @@ config :nerves,
 # * See https://hexdocs.pm/ssh_subsystem_fwup/readme.html for firmware updates
 
 config :nerves_ssh,
-  user_passwords: [{"circuits", "circuits"}, {"root", "circuits"}],
+  user_passwords: [{"livebook", "nerves"}, {"root", "nerves"}],
   daemon_option_overrides: [
     {:auth_method_kb_interactive_data,
      {'Nerves Livebook',
-      'https://github.com/elixir-circuits/nerves_livebook\n\nssh circuits@nerves.local # Use password "circuits"\n',
+      'https://github.com/fhunleth/nerves_livebook\n\nssh livebook@nerves.local # Use password "nerves"\n',
       'Password: ', false}}
   ]
 

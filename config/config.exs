@@ -33,22 +33,20 @@ config :livebook, LivebookWeb.Endpoint,
     port: "80",
     transport_options: [socket_opts: [:inet6]]
   ],
-  cache_static_manifest: "priv/static/cache_manifest.json",
   code_reloader: false,
   server: true,
   secret_key_base: "9hHHeOiAA8wrivUfuS//jQMurHxoMYUtF788BQMx2KO7mYUE8rVrGGG09djBNQq7",
   pubsub_server: Livebook.PubSub,
   live_view: [signing_salt: "livebook"]
 
-# Configures Elixir's Logger
-config :logger, :console,
-  format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+config :livebook,
+  authentication_mode: :password,
+  token_authentication: false,
+  password: System.get_env("LIVEBOOK_PASSWORD", "nerves"),
+  root_path: "/data"
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
-
-config :livebook, :token_authentication, false
 
 if Mix.target() != :host do
   import_config "target.exs"
