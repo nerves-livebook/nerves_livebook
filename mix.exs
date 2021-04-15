@@ -52,8 +52,8 @@ defmodule NervesLivebook.MixProject do
       {:circuits_spi, "~> 0.1"},
       {:power_control, github: "cjfreeze/power_control"},
       {:ramoops_logger, "~> 0.1"},
-      {:vintage_net_wifi, path: "~/git/nerves-networking/vintage_net_wifi", override: true},
-      {:vintage_net, "~> 0.10.0", override: true},
+      {:vintage_net_wifi, "~> 0.10.0"},
+      {:vintage_net, "~> 0.10.0"},
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.11.3", targets: @all_targets},
