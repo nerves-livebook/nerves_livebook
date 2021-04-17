@@ -43,7 +43,7 @@ defmodule NervesLivebook.MixProject do
       {:shoehorn, "~> 0.7.0"},
       {:ring_logger, "~> 0.8.1"},
       {:toolshed, "~> 0.2.13"},
-      {:livebook, github: "elixir-nx/livebook", branch: "main"},
+      {:livebook, github: "fhunleth/livebook", branch: "local-runtime"},
 
       # Circuits projects
       {:circuits_uart, "~> 1.3"},
