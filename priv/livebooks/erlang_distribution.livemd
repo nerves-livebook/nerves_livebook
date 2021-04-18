@@ -1,0 +1,62 @@
+# Distributed Erlang
+
+## Introduction
+
+[Distributed Erlang](http://erlang.org/doc/reference_manual/distributed.html)
+lets you join multiple Erlang instances (nodes) together to enable
+near-transparent message passing in programs, debugging, and remote code
+updates. This Livebook shows a couple ways of using it with the Nerves Livebook
+image.
+
+## Setup
+
+First, you'll need to know the name of this node and the cookie.
+
+```elixir
+"My name is '#{node()}' and my cookie is '#{Node.get_cookie()}'."
+```
+
+Now try connecting to this node by running the following command in a shell on
+your computer:
+
+```elixir
+"iex --cookie '#{Node.get_cookie()}' --sname me --remsh #{node()}"
+```
+
+You should get an IEx prompt. Everything you type at that prompt will run on
+the device and not your computer.  To verify this, try running the following:
+
+```text
+iex> use Toolshed
+iex> uname
+Nerves nerves-2e6d nerves_livebook 0.1.0 (9e61db44-bbfd-5430-ab73-daedf5ebce81) arm
+```
+
+Use CTRL-C to exit when you're done. If you run `:init.stop()`, you'll end up
+rebooting the device (probably not what you want).
+
+## Remove Livebooks
+
+You can run Livebook on your laptop and connect to the device! This is useful
+if you want to save your Livebooks locally. To do this,
+
+1. Follow the [Livebook usage
+   instructions](https://github.com/elixir-nx/livebook) and start Livebook running
+   on your laptop.
+2. Open or create a new Livebook
+3. Go to **Settings -> Runtime** and select **Attached Node**
+4. Paste in this node's name and **Connect**
+
+## Observer
+
+Observer is a graphical tool for exploring an Erlang runtime. Connect to this
+device by first starting IEx on your laptop with the same cookie we're using
+here. For example:
+
+```elixir
+"iex --cookie '#{Node.get_cookie()}' --sname me"
+```
+
+Then at the IEx prompt, run `:observer.start()`. Go to the **Nodes** menu and
+**Connect node**. Copy in this device's node name like we found above and the
+UI should quickly update to reflect what's running here.
