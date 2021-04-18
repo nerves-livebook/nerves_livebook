@@ -1,0 +1,71 @@
+# Sys Class LEDs
+
+## Introduction
+
+Depending on which board you're using, one or more LEDs are controllable using
+special files. In this exercise, you'll learn how to turn them on and off and
+then how to tell Linux to make them blink on their own.
+
+## Try it out
+#
+All of the LEDs are found in the `/sys/class/leds` directory, so lets set a
+variable so that we don't have to type that all the time.
+
+First, find out what LEDs you have on your board:
+
+```elixir
+led_base_path = "/sys/class/leds"
+File.ls!(led_base_path)
+```
+
+Now, pick one by setting the variable below. We'll pick `"led0"`, but you'll
+need to replace that if you don't have it.
+
+```elixir
+led = Path.join(led_base_path, "led0")
+```
+
+Reset the LED to a known state for this tutorial. Don't worry about this yet.
+If the LED was on, then it will be off after this runs.
+
+```elixir
+File.write(Path.join(led, "trigger"), "none")
+File.write(Path.join(led, "brightness"), "0")
+```
+
+Let's see what files are in the LED directory:
+
+```elixir
+File.ls!(led)
+```
+
+The `brightness` file let's you turn it on and off by writing a `"1"` or `"0"`
+to it. Try it out:
+
+```elixir
+File.write(Path.join(led, "brightness"), "1")
+```
+
+```elixir
+File.write(Path.join(led, "brightness"), "0")
+```
+
+Linux is happy controlling the LED on its own through the use of **triggers**.
+Triggers are quite flexible and can blink the LED on a timers, CPU activity,
+disk activity and more. Here's how to make it blink at 2 Hz (250 ms on and then
+250 ms off) using the timer trigger:
+
+```elixir
+File.write(Path.join(led, "trigger"), "timer")
+File.write(Path.join(led, "delay_on"), "250")
+File.write(Path.join(led, "delay_off"), "250")
+```
+
+Set the trigger back to `"none"` to control the LED again using the
+`brightness` file. To see what other triggers are available, read the `trigger`
+file and try them out.
+
+```elixir
+File.write(Path.join(led, "trigger"), "none")
+File.read!(Path.join(led, "trigger"))
+```
