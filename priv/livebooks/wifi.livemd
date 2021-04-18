@@ -1,0 +1,27 @@
+# WiFi
+
+## Networking
+
+Run this to check the current configuration:
+
+```elixir
+VintageNet.info()
+```
+
+## Configure WiFi
+
+To configure WiFi, edit the following:
+
+```elixir
+ssid = "fill_in"
+password = "secret"
+```
+
+And then evaluate this:
+
+```elixir
+if ssid != "fill_in" do
+  VintageNetWiFi.quick_configure(ssid, password)
+end
+```
+

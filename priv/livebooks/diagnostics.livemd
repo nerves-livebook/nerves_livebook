@@ -1,0 +1,21 @@
+# Diagnostics
+
+## CPU
+
+```elixir
+File.read!("/proc/cpuinfo") |> IO.puts()
+```
+
+## Networking
+
+```elixir
+VintageNet.info()
+```
+
+## Erlang
+
+```elixir
+import IEx.Helpers
+runtime_info()
+```
+

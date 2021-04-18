@@ -43,11 +43,13 @@ config :livebook,
   authentication_mode: :password,
   token_authentication: false,
   password: System.get_env("LIVEBOOK_PASSWORD", "nerves"),
-  root_path: "/data"
+  root_path: "/data/livebooks"
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-if Mix.target() != :host do
+if Mix.target() == :host or Mix.target() == :"" do
+  import_config "host.exs"
+else
   import_config "target.exs"
 end
