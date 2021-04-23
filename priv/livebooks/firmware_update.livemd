@@ -1,0 +1,35 @@
+# Firmware Updates
+
+## Introduction
+
+Nerves comes with a tool for handling firmware updates called
+[fwup](https://github.com/fhunleth/fwup). It allows for archival and application
+of firmware updates, however it does not handle distribution of updates.
+This Livebook comes with a module that can fetch a firmware update from
+[Github releases](https://github.com/fhunleth/nerves_livebook/releases).
+
+## Apply a Firmware Update
+
+First we fetch the latest release
+
+```elixir
+{:ok, %{status: 200, body: %{"assets" => assets}}} = NervesLivebook.GithubRelease.latest_release()
+```
+
+Then get the download url for this device target
+
+```elixir
+{:ok, url} = NervesLivebook.GithubRelease.get_asset_url(assets, NervesLivebook.Application.target())
+```
+
+Download the firmware
+
+```elixir
+{:ok, path} = NervesLivebook.GithubRelease.download_firmware(url)
+```
+
+And finally apply the firmware update. This will reboot your device
+
+```elixir
+NervesLivebook.GithubRelease.apply_firmware_update(path)
+```
