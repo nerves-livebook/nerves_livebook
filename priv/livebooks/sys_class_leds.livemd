@@ -7,7 +7,7 @@ special files. In this exercise, you'll learn how to turn them on and off and
 then how to tell Linux to make them blink on their own.
 
 ## Try it out
-#
+
 All of the LEDs are found in the `/sys/class/leds` directory, so lets set a
 variable so that we don't have to type that all the time.
 
