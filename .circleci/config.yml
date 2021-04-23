@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: /nerves/build
   docker:
-    - image: nervesproject/nerves_system_br:1.15.0
+    - image: nervesproject/nerves_system_br:1.15.1
   environment:
     MIX_ENV: prod
 
