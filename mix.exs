@@ -47,20 +47,16 @@ defmodule NervesLivebook.MixProject do
       {:tesla, "~> 1.4"},
       {:jason, "~> 1.2"},
       {:livebook, github: "fhunleth/livebook", branch: "local-runtime"},
-
-      # Circuits projects
       {:circuits_uart, "~> 1.3"},
       {:circuits_gpio, "~> 0.4"},
       {:circuits_i2c, "~> 0.3"},
       {:circuits_spi, "~> 0.1"},
-      {:power_control, github: "cjfreeze/power_control"},
-      {:ramoops_logger, "~> 0.1"},
-      {:vintage_net_wifi, "~> 0.10.0"},
-      {:vintage_net, "~> 0.10.0"},
 
       # Dependencies for all targets except :host
       {:nerves_runtime, "~> 0.11.3", targets: @all_targets},
       {:nerves_pack, "~> 0.4.0", targets: @all_targets},
+      {:power_control, github: "cjfreeze/power_control", targets: @all_targets},
+      {:ramoops_logger, "~> 0.1", targets: @all_targets},
 
       # Dependencies for specific targets
       {:nerves_system_rpi, "~> 1.15", runtime: false, targets: :rpi},
