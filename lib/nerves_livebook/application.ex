@@ -22,17 +22,13 @@ defmodule NervesLivebook.Application do
 
   defp initialize_data_directory() do
     livebook_path = "/data/livebooks"
-    starters = Application.app_dir(:nerves_livebook, ["priv", "livebooks"])
-
-    unless File.exists?(livebook_path) do
-      _ = File.mkdir_p(livebook_path)
-      _ = File.cp_r(starters, livebook_path)
-      :ok
-    end
-
+    samples = Application.app_dir(:nerves_livebook, ["priv", "samples"])
     samples_path = Path.join(livebook_path, "samples")
+
+    # Best effort create everything
+    _ = File.mkdir_p(livebook_path)
     _ = File.rm(samples_path)
-    _ = File.ln_s(starters, samples_path)
+    _ = File.ln_s(samples, samples_path)
 
     :ok
   end
