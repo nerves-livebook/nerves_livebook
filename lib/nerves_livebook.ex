@@ -21,9 +21,7 @@ defmodule NervesLivebook do
   """
   @spec version() :: String.t()
   def version() do
-    Application.loaded_applications()
-    |> (fn apps -> :lists.keyfind(:nerves_livebook, 1, apps) end).()
-    |> elem(2)
+    Application.spec(:nerves_livebook, :vsn)
     |> to_string()
   end
 
