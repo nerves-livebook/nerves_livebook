@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.2.1
+
+* Bug fixes
+  * Clean up /data/livebooks. This may be worth a complete re-flash to clean up
+    the MicroSD card.
+
+* Updates
+  * Update Livebooks to try import feature
+
 ## v0.2.0
 
 This release no longer copies the built-in Livebooks to the data partition.
