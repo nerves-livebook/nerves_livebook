@@ -18,10 +18,9 @@ config :nerves_runtime, :kernel, use_system_registry: false
 # https://github.com/nerves-project/erlinit/ for more information on
 # configuring erlinit.
 
-config :nerves,
-  erlinit: [
-    hostname_pattern: "nerves-%s"
-  ]
+config :nerves, :erlinit,
+  hostname_pattern: "nerves-%s",
+  shutdown_report: "/data/last_shutdown.txt"
 
 # Configure the device for SSH IEx prompt access and firmware updates
 #
