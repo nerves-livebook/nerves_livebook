@@ -19,33 +19,68 @@ defmodule NervesLivebook.GithubRelease do
 
   """
 
+  @default_repository "fhunleth/nerves_livebook"
   @app "nerves_livebook"
-  @username "fhunleth"
-  @repo "nerves_livebook"
+
   @base_url "https://api.github.com"
-  @download_dir "/tmp"
 
   use Tesla
 
-  @doc "applies a fwupdate to the running system"
-  def apply_firmware_update(path) do
-    extra_args = ["-d", "/tmp/testfw.img"]
+  @type t() :: map()
 
-    System.cmd("fwup", ["-t", "complete", "-i", path, "-a" | extra_args],
-      into: IO.stream(:stdio, :line)
-    )
+  @doc """
+  Request the latest release information from GitHub
+  """
+  @spec get_latest(String.t()) :: {:ok, t()} | {:error, atom()}
+  def get_latest(repository \\ @default_repository) do
+    client()
+    |> get("/repos/#{repository}/releases/latest")
   end
 
   @doc """
-  Downloads an asset to the temporary directory
+  Return the release version as a string
   """
-  def download_firmware(url) do
+  @spec version(t()) :: String.t() | :error
+  def version(release) do
+    case release.body["tag_name"] do
+      # Release version tags have a 'v', so if this doesn't follow the convention then
+      # something is wrong.
+      "v" <> version -> version
+      _ -> :error
+    end
+  end
+
+  @doc """
+  Helper function for getting the firmware filename
+  """
+  @spec firmware_filename(String.t()) :: String.t()
+  def firmware_filename(target) do
+    @app <> "_" <> target <> ".fw"
+  end
+
+  @doc """
+  Return the URL for downloading the firmware for a target
+
+  If the target firmware isn't available, it returns an error
+  """
+  @spec firmware_url(t(), String.t()) :: {:ok, String.t()} | {:error, :not_found}
+  def firmware_url(release, target) do
+    filename = firmware_filename(target)
+
+    case Enum.find(release.body["assets"], fn m -> m["name"] == filename end) do
+      %{"browser_download_url" => url} -> {:ok, url}
+      _ -> {:error, :not_found}
+    end
+  end
+
+  @doc """
+  Download a URL to the specified location
+  """
+  @spec download(String.t(), Path.t()) :: :ok | {:error, any()}
+  def download(url, path) do
     middleware = [
       {Tesla.Middleware.FollowRedirects, max_redirects: 5},
-      {Tesla.Middleware.Headers,
-       [
-         {"user-agent", "Nerves-Livebook-#{version()}"}
-       ]}
+      {Tesla.Middleware.Headers, [{"user-agent", user_agent()}]}
     ]
 
     result =
@@ -53,71 +88,23 @@ defmodule NervesLivebook.GithubRelease do
       |> Tesla.client()
       |> Tesla.get(url)
 
-    with {:ok, %{status: 200, headers: headers, body: body}} <- result,
-         {:ok, filename} <- extract_filename(headers),
-         :ok <- File.write(Path.join(@download_dir, filename), body) do
-      {:ok, Path.join(@download_dir, filename)}
+    with {:ok, %{status: 200, body: body}} <- result,
+         :ok <- File.write(path, body) do
+      :ok
     end
   end
-
-  @doc "looks for the content-disposition header and extracts the filename from it"
-  @spec extract_filename([{String.t(), String.t()}]) :: {:ok, Path.t()} | nil
-  def extract_filename([{"content-disposition", cd} | _]) do
-    case Regex.named_captures(~r/filename=(?<filename>.+)/, cd) do
-      %{"filename" => filename} -> {:ok, filename}
-      _ -> nil
-    end
-  end
-
-  def extract_filename([_ | rest]) do
-    extract_filename(rest)
-  end
-
-  def extract_filename([]), do: nil
-
-  @doc "Returns the latest release json for the repo"
-  @spec latest_release :: {:ok, %{body: map()}} | any()
-  def latest_release do
-    client()
-    |> get("/repos/#{@username}/#{@repo}/releases/latest")
-  end
-
-  @doc """
-  Checks the release assets for a valid firmware url
-  """
-  @spec get_asset_url([map()], String.t()) :: {:ok, String.t()} | nil
-  def get_asset_url([%{"browser_download_url" => url} | rest], target) do
-    # "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.0/nerves_livebook_rpi0.fw"
-    path = Path.split(URI.parse(url).path)
-    ["/", @username, @repo, "releases", "download", _version, fw] = path
-    @app <> "_" <> asset_target = Path.rootname(fw)
-
-    case asset_target do
-      ^target -> {:ok, url}
-      _ -> get_asset_url(rest, target)
-    end
-  end
-
-  def get_asset_url([], _target), do: nil
 
   def client() do
     middleware = [
       {Tesla.Middleware.BaseUrl, @base_url},
       Tesla.Middleware.JSON,
-      {Tesla.Middleware.Headers,
-       [
-         {"user-agent", "Nerves-Livebook-#{version()}"}
-       ]}
+      {Tesla.Middleware.Headers, [{"user-agent", user_agent()}]}
     ]
 
     Tesla.client(middleware)
   end
 
-  defp version do
-    Application.loaded_applications()
-    |> (fn apps -> :lists.keyfind(:nerves_livebook, 1, apps) end).()
-    |> elem(2)
-    |> to_string()
-    |> Version.parse!()
+  defp user_agent() do
+    "NervesLivebook/#{NervesLivebook.version()}"
   end
 end
