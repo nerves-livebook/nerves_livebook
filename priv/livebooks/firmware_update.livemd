@@ -3,35 +3,76 @@
 ## Introduction
 
 Nerves comes with a tool for handling firmware updates called
-[fwup](https://github.com/fhunleth/fwup). It allows for archival and application
-of firmware updates, however it does not handle distribution of updates.
-This Livebook comes with a module that can fetch a firmware update from
-[Github releases](https://github.com/fhunleth/nerves_livebook/releases).
+[fwup](https://github.com/fhunleth/fwup). It allows for archival and
+application of firmware updates, however it does not handle distribution of
+updates.  This Livebook comes with a module that can fetch a firmware update
+from [Github releases](https://github.com/fhunleth/nerves_livebook/releases).
 
-## Apply a Firmware Update
+## Walk through
 
-First we fetch the latest release
+Evaluate the following to see what you're currently running:
+
+```elixir
+IO.puts("You're currently running Nerves Livebook #{NervesLivebook.version()} on the target \"#{NervesLivebook.target()}\".")
+```
+
+Nerves Livebook firmware images are hosted on GitHub under the [releases
+tab](https://github.com/fhunleth/nerves_livebook/releases). Let's query GitHub
+to see what the latest release is:
 
 ```elixir
 NervesLivebook.check_internet!()
 
-{:ok, %{status: 200, body: %{"assets" => assets}}} = NervesLivebook.GithubRelease.latest_release()
+alias NervesLivebook.GithubRelease
+
+{:ok, latest} = GithubRelease.get_latest("fhunleth/nerves_livebook")
+IO.puts("The latest release is version #{GithubRelease.version(latest)}.")
 ```
 
-Then get the download url for this device target
+Still interested in updating? It's ok to update to the same release if you just
+want to try this out.
+
+The next step is to download the firmware. This might take some time if you're
+on a slow connection. Watch the evaluating circle pulse to know that it's working.
 
 ```elixir
-{:ok, url} = NervesLivebook.GithubRelease.get_asset_url(assets, NervesLivebook.Application.target())
+{:ok, firmware_url} =
+  GithubRelease.firmware_url(latest, "nerves_livebook", NervesLivebook.target())
+
+IO.puts("Downloading #{firmware_url}...")
+
+firmware_path = "/data/update.fw"
+
+{:ok, :saved_to_file} =
+  :httpc.request(:get, {firmware_url, []}, [], stream: to_charlist(firmware_path))
 ```
 
-Download the firmware
+The firmware is now stored locally in `"/data/update.fw"`. We're ready to
+install it, but first, let's check out its metadata and make sure it's valid:
 
 ```elixir
-{:ok, path} = NervesLivebook.GithubRelease.download_firmware(url)
+{output, 0} = System.cmd("fwup", ["--metadata", "-i", firmware_path])
+IO.puts("Firmware metadata:\n" <> output)
+
+# Validation isn't needed since the upgrade step also validates, but it's
+# informative.
+IO.puts("Validating archive...")
+{output, _} = System.cmd("fwup", ["--verify", "-i", firmware_path])
+IO.write(output)
 ```
 
-And finally apply the firmware update. This will reboot your device
+The UUID metadata field is important. All firmware archives have a unique UUID,
+so if someone makes a change and doesn't update the version number, you'll know.
+
+Ok, now we're ready for the big step. This won't erase any of your livebooks or
+settings. It just updates the Nerves Livebook firmware. After this completes
+successfully, your device will reboot.
 
 ```elixir
-NervesLivebook.GithubRelease.apply_firmware_update(path)
+NervesLivebook.Fwup.upgrade(firmware_path)
 ```
+
+## TODO: Other ways of updating firmware
+
+Fill in `ssh` updates and mention NervesHub. Should we sign the firmware
+updates on CI? That would be cool to show as well.
