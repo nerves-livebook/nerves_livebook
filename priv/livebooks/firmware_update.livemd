@@ -13,6 +13,8 @@ This Livebook comes with a module that can fetch a firmware update from
 First we fetch the latest release
 
 ```elixir
+NervesLivebook.check_internet!()
+
 {:ok, %{status: 200, body: %{"assets" => assets}}} = NervesLivebook.GithubRelease.latest_release()
 ```
 

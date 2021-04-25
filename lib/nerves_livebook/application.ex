@@ -11,35 +11,13 @@ defmodule NervesLivebook.Application do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: NervesLivebook.Supervisor]
 
-    children =
-      [
-        # Children for all targets
-        # Starts a worker by calling: NervesLivebook.Worker.start_link(arg)
-        # {NervesLivebook.Worker, arg},
-      ] ++ children(target())
+    children = [
+      # Children for all targets
+      # Starts a worker by calling: NervesLivebook.Worker.start_link(arg)
+      # {NervesLivebook.Worker, arg},
+    ]
 
     Supervisor.start_link(children, opts)
-  end
-
-  # List all child processes to be supervised
-  def children(:host) do
-    [
-      # Children that only run on the host
-      # Starts a worker by calling: NervesLivebook.Worker.start_link(arg)
-      # {NervesLivebook.Worker, arg},
-    ]
-  end
-
-  def children(_target) do
-    [
-      # Children for all targets except host
-      # Starts a worker by calling: NervesLivebook.Worker.start_link(arg)
-      # {NervesLivebook.Worker, arg},
-    ]
-  end
-
-  def target() do
-    Application.get_env(:nerves_livebook, :target)
   end
 
   defp initialize_data_directory() do
