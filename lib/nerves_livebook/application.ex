@@ -26,7 +26,14 @@ defmodule NervesLivebook.Application do
 
     unless File.exists?(livebook_path) do
       _ = File.mkdir_p(livebook_path)
-      File.cp_r(starters, livebook_path)
+      _ = File.cp_r(starters, livebook_path)
+      :ok
     end
+
+    samples_path = Path.join(livebook_path, "samples")
+    _ = File.rm(samples_path)
+    _ = File.ln_s(starters, samples_path)
+
+    :ok
   end
 end
