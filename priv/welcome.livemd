@@ -1,0 +1,54 @@
+# Welcome!
+
+## Introduction
+
+Thanks for trying out Nerves Livebook!
+
+With this [Livebook](https://github.com/elixir-nx/livebook) image, you can work
+through tutorials, create your own livebooks and save them on device, and
+import livebooks from others. We're just getting started and are super excited
+with what livebooks can already do. We hope that you'll enjoy this as much as
+we do and write your own livebooks and share them with the Elixir and Nerves
+community.
+
+## Getting started
+
+You've already figured out how to install the Nerves Livebook to your device
+and how to open this file, so you're well on your way!
+
+The next steps are to try out some of the livebooks in the samples directory.
+They're all read-only so you'll need to *fork* them just like you did to open
+this file. At the moment, quite a few livebooks are works-in-progress. We
+recommend trying the following:
+
+* `sys_class_leds.livemd` - learn about the built-in LEDs on your device
+* `wifi.livemd` - connect to the Internet over WiFi
+* `firmware_update.livemd` - download the latest Nerves Livebook firmware
+
+## Saving and copying files
+
+This file and the samples are read-only since they're built into Nerves
+Livebook. Your files can be saved anywhere in `/data` which is writable
+like a drive on your computer. Firmware updates using the `firmware_update.livemd`
+won't erase your files. Be careful, though, if you remove the MicroSD card
+and re-initialize it in your computer. That will erase them.
+
+If you want to copy a file off the Nerves Livebook image, open up a shell
+on your computer and run `sftp livebook@nerves.local`. The password is `nerves`.
+Once you're logged in, navigate to `/data/livebooks` or where ever you stored
+your files and run `get` to copy them off.
+
+## Limitations
+
+If you've used Livebooks before, the Nerves Livebook image has a few
+differences:
+
+1. All code gets evaluated in one Erlang VM. This is convenient for Nerves
+   devices, but you may be surprised when a module defined in one livebook is
+   then accessible in another.
+2. Installing hex dependencies is not supported. The Nerves Livebook contains
+   may useful libraries for Nerves. For the time being, if useful one is
+   missing please file an [issue](https://github.com/fhunleth/nerves_livebook/issues)
+   so it can be considered for inclusion.
+
+
