@@ -20,6 +20,10 @@ config :livebook,
   token_authentication: false,
   password: System.get_env("LIVEBOOK_PASSWORD", "nerves")
 
+config :livebook,
+       :cookie,
+       :nerves_livebook_cookie
+
 # Customize non-Elixir parts of the firmware. See
 # https://hexdocs.pm/nerves/advanced-configuration.html for details.
 
