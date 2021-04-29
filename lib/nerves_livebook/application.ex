@@ -21,12 +21,12 @@ defmodule NervesLivebook.Application do
   end
 
   defp initialize_data_directory() do
-    destination_path = "/data/livebooks"
-    source_path = Application.app_dir(:nerves_livebook, "priv")
+    destination_dir = "/data/livebooks"
+    source_dir = Application.app_dir(:nerves_livebook, "priv")
 
     # Best effort create everything
-    _ = File.mkdir_p(destination_path)
-    Enum.each(["welcome.livemd", "samples"], &symlink(source_path, destination_path, &1))
+    _ = File.mkdir_p(destination_dir)
+    Enum.each(["welcome.livemd", "samples"], &symlink(source_dir, destination_dir, &1))
   end
 
   defp symlink(source_dir, destination_dir, filename) do

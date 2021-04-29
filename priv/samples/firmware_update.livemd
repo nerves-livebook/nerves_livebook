@@ -10,10 +10,17 @@ from [Github releases](https://github.com/fhunleth/nerves_livebook/releases).
 
 ## Walk through
 
-Evaluate the following to see what you're currently running:
+Evaluate the following to see what firmware version you're running:
 
 ```elixir
-IO.puts("You're currently running Nerves Livebook #{NervesLivebook.version()} on the target \"#{NervesLivebook.target()}\".")
+IO.write("""
+You're running Nerves Livebook #{NervesLivebook.version()}.
+
+More details:
+Target: #{NervesLivebook.target()}
+Firmware UUID: #{Nerves.Runtime.KV.get_active("nerves_fw_uuid")}
+Firmware partition: #{Nerves.Runtime.KV.get("nerves_fw_active")}
+""")
 ```
 
 Nerves Livebook firmware images are hosted on GitHub under the [releases
@@ -42,6 +49,7 @@ on a slow connection. Watch the evaluating circle pulse to know that it's workin
 IO.puts("Downloading #{firmware_url}...")
 
 firmware_path = "/data/update.fw"
+File.rm_rf!(firmware_path)
 
 {:ok, :saved_to_file} =
   :httpc.request(:get, {firmware_url, []}, [], stream: to_charlist(firmware_path))
@@ -61,8 +69,10 @@ IO.puts("Validating archive...")
 IO.write(output)
 ```
 
-The UUID metadata field is important. All firmware archives have a unique UUID,
-so if someone makes a change and doesn't update the version number, you'll know.
+The UUID metadata field is important. The UUID is computed from the contents
+of the firmware archive and uniquely identifies what's running. If you're
+ever unsure if you're running the exact same bits that you verified in QA,
+check the UUID.
 
 Ok, now we're ready for the big step. This won't erase any of your livebooks or
 settings. It just updates the Nerves Livebook firmware. After this completes
