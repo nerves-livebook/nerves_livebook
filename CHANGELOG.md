@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.2
+
+* Updates
+  * Add welcome
+  * Update Livebooks to latest
+
 ## v0.2.1
 
 * Bug fixes
