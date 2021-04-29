@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.2.3
+
+* Updates
+  * Minor firmware update livebook improvements
+
 ## v0.2.2
 
 * Updates
