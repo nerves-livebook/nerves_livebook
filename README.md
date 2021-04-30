@@ -3,11 +3,12 @@
 [![CircleCI](https://circleci.com/gh/elixir-circuits/nerves_livebook.svg?style=svg)](https://circleci.com/gh/elixir-circuits/nerves_livebook)
 
 The Nerves Livebook firmware lets you try out the Nerves projects on real
-hardware without needing to build anything. Within minutes, you'll
-have a Raspberry Pi or Beaglebone running Nerves. You'll be able to run code
-in [Livebooks](https://github.com/elixir-nx/livebook) and work through Nerves
-tutorials from the comfort of your browser. When you're ready, you'll be able to
-build your own firmware whether it be for hobby or work.
+hardware without needing to build anything. Within minutes, you'll have a
+Raspberry Pi or Beaglebone running Nerves. You'll be able to run code in
+[Livebooks](https://github.com/elixir-nx/livebook) and work through Nerves
+tutorials from the comfort of your browser.
+
+*This is a work in progress. Most of our testing is on the Raspberry Pi Zero W*
 
 ## Prerequisites
 
@@ -31,10 +32,11 @@ require an Ethernet or WiFi connection.
 ## Downloading the Firmware
 
 Find the appropriate firmware or zip file
-[here](https://github.com/fhunleth/nerves_livebook/releases). If
-you're using `fwup` to write images to MicroSD cards, download the `.fw`
-extension and if you're using `etcher`, get the `zip` file. Releases are named
-by the boards they support:
+[here](https://github.com/fhunleth/nerves_livebook/releases). If you're using
+`fwup` to write images to MicroSD cards, download the `.fw` extension and if
+you're using `etcher`, get the `zip` file. If you don't have a preference,
+download the appropriate `.fw` file and follow the `fwup` instructions since
+those will come in handy if you start using Nerves more.
 
 Once that's done, you're ready to burn the firmware to the MicroSD card.
 
@@ -47,6 +49,10 @@ To be clear, this formats your SD card, and you will *lose all data on the SD
 card*. Make sure you're OK with that.
 
 ### `fwup`
+
+You'll need to install `fwup` if you don't have it. On Mac, run `brew install
+fwup`. For Linux and Windows, see the [fwup installation
+instructions])https://github.com/fwup-home/fwup#installing).
 
 ```console
 λ ~/fwup nerves_livebook_rpi0.fw
