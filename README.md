@@ -42,8 +42,8 @@ Once that's done, you're ready to burn the firmware to the MicroSD card.
 
 ## Burning the Firmware
 
-Navigate to the directory where you downloaded the firmware. We'll go through
-both `fwup` and `etcher` methods.
+Navigate to the directory where you downloaded the firmware. Either `fwup` or
+`etcher` can be used to burn the firmware.
 
 To be clear, this formats your SD card, and you will *lose all data on the SD
 card*. Make sure you're OK with that.
@@ -52,10 +52,10 @@ card*. Make sure you're OK with that.
 
 You'll need to install `fwup` if you don't have it. On Mac, run `brew install
 fwup`. For Linux and Windows, see the [fwup installation
-instructions])https://github.com/fwup-home/fwup#installing).
+instructions](https://github.com/fwup-home/fwup#installing).
 
-```console
-λ ~/fwup nerves_livebook_rpi0.fw
+```sh
+$ fwup nerves_livebook_rpi0.fw
 Use 15.84 GB memory card found at /dev/rdisk2? [y/N] y
 ```
 
@@ -73,7 +73,8 @@ section.
 
 ### `etcher`
 
-Start `etcher`, point it to the zip file, and follow the prompts:
+Start [`etcher`](https://www.etcher.net/), point it to the zip file, and follow
+the prompts:
 
 ![etcher screenshot](assets/etcher.png)
 
