@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.4
+
+* Updates
+  * Start signing firmware updates and add info on how. This doesn't check
+    firmware signatures yet. That will be the next release.
+
 ## v0.2.3
 
 * Updates
