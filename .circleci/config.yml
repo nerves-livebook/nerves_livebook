@@ -77,9 +77,10 @@ build: &build
           name: Create artifacts dir
           command: mkdir -p /home/nerves/deploy/artifacts
     - run:
-        name: Copy firmware file
+        name: Copy and sign firmware file
         command: |
           cp _build/*/nerves/images/*.fw /home/nerves/deploy/artifacts/nerves_livebook_${MIX_TARGET}.fw
+          if [[ -n "$FW_SIGNING_KEY" ]]; then fwup -S --private-key "$FW_SIGNING_KEY" -i /home/nerves/deploy/artifacts/nerves_livebook_${MIX_TARGET}.fw -o /home/nerves/deploy/artifacts/nerves_livebook_${MIX_TARGET}.fw; fi
           zip nerves_livebook_${MIX_TARGET}.zip nerves_livebook.img
           cp nerves_livebook_${MIX_TARGET}.zip /home/nerves/deploy/artifacts
           cp ./CHANGELOG.md /home/nerves/deploy/CHANGELOG.md
