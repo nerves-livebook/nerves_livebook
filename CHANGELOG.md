@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.2.5
+
+* Updates
+  * Verify firmware signatures in `firmware_update.livemd`
+
 ## v0.2.4
 
 * Updates
