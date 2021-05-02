@@ -30,10 +30,15 @@ to see what the latest release is:
 ```elixir
 NervesLivebook.check_internet!()
 
+# Setup for below
 alias NervesLivebook.GithubRelease
+repo = "fhunleth/nerves_livebook"
+firmware_path = "/data/update.fw"
+firmware_public_key = "IyCnjyE1rrV+W5HFrovC+ZyxrBh9fF7Na4S+7dcGAPw="
 
-{:ok, latest} = GithubRelease.get_latest("fhunleth/nerves_livebook")
-IO.puts("The latest release is version #{GithubRelease.version(latest)}.")
+# Get the release metadata
+{:ok, latest} = GithubRelease.get_latest(repo)
+IO.puts("The latest GitHub release for #{repo} is version #{GithubRelease.version(latest)}.")
 ```
 
 Still interested in updating? It's ok to update to the same release if you just
@@ -46,11 +51,10 @@ on a slow connection. Watch the evaluating circle pulse to know that it's workin
 {:ok, firmware_url} =
   GithubRelease.firmware_url(latest, "nerves_livebook", NervesLivebook.target())
 
-IO.puts("Downloading #{firmware_url}...")
+IO.puts("Downloading #{firmware_url} to #{firmware_path}...")
 
-firmware_path = "/data/update.fw"
+# httpc doesn't overwrite, so erase an old file
 File.rm_rf!(firmware_path)
-
 {:ok, :saved_to_file} =
   :httpc.request(:get, {firmware_url, []}, [], stream: to_charlist(firmware_path))
 ```
@@ -82,7 +86,43 @@ successfully, your device will reboot.
 NervesLivebook.Fwup.upgrade(firmware_path)
 ```
 
-## TODO: Other ways of updating firmware
+## Notes
 
-Fill in `ssh` updates and mention NervesHub. Should we sign the firmware
-updates on CI? That would be cool to show as well.
+### Firmware signatures
+
+Nerves Livebook is cryptographically signed as part of the CI script.  If you
+request that `fwup` checks signatures (as we will do soon), you can have high
+confidence that the firmware came from someone who possesses the corresponding
+private key.
+
+To replicate this, do the following:
+
+1. Use `fwup` to generate a public/private key pair by running `fwup -g`.
+2. Copy the contents of the public key file to someplace convenient in your
+   application. `fwup` supports more than one public key to allow for multiple
+   publishers and key rotation. If this interests you, make it a list.
+3. In your build pipeline, add a call to `fwup` to sign the firmware. In other
+   words, when your build completes, you should have a `.fw` file.
+   Call `fwup -S --private-key "$SIGNING_KEY" -i <input.fw> -o <output.fw>`
+4. Then, make sure every call to `fwup` in your application has `--public-key <key>`
+   in the arguments.
+
+### SSH firmware updates
+
+If you've cloned the
+[`nerves_livebook`](https://github.com/fhunleth/nerves_livebook/) repository
+and are building your own version of it, it's going to be easier to update your
+device via SSH. The firmware signatures aren't checked on SSH updates, so you
+can do what you want. 🚀
+
+Here's the script:
+
+```sh
+$ cd nerves_livebook
+$ export MIX_ENV=rpi0
+$ mix deps.get
+$ mix firmware
+$ mix firmware.gen.script
+$ ./upload.sh livebook@nerves.local
+```
+
