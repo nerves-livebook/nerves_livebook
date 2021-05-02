@@ -55,6 +55,7 @@ IO.puts("Downloading #{firmware_url} to #{firmware_path}...")
 
 # httpc doesn't overwrite, so erase an old file
 File.rm_rf!(firmware_path)
+
 {:ok, :saved_to_file} =
   :httpc.request(:get, {firmware_url, []}, [], stream: to_charlist(firmware_path))
 ```
@@ -63,13 +64,16 @@ The firmware is now stored locally in `"/data/update.fw"`. We're ready to
 install it, but first, let's check out its metadata and make sure it's valid:
 
 ```elixir
-{output, 0} = System.cmd("fwup", ["--metadata", "-i", firmware_path])
+# Check signatures if firmware_public_key is specified
+extra_fwup_arguments = if firmware_public_key, do: ["--public-key", firmware_public_key], else: []
+
+{output, 0} = System.cmd("fwup", ["--metadata", "-i", firmware_path] ++ extra_fwup_arguments)
 IO.puts("Firmware metadata:\n" <> output)
 
 # Validation isn't needed since the upgrade step also validates, but it's
 # informative.
 IO.puts("Validating archive...")
-{output, _} = System.cmd("fwup", ["--verify", "-i", firmware_path])
+{output, _} = System.cmd("fwup", ["--verify", "-i", firmware_path] ++ extra_fwup_arguments)
 IO.write(output)
 ```
 
@@ -83,7 +87,7 @@ settings. It just updates the Nerves Livebook firmware. After this completes
 successfully, your device will reboot.
 
 ```elixir
-NervesLivebook.Fwup.upgrade(firmware_path)
+NervesLivebook.Fwup.upgrade(firmware_path, extra_fwup_arguments)
 ```
 
 ## Notes
@@ -103,7 +107,7 @@ To replicate this, do the following:
    publishers and key rotation. If this interests you, make it a list.
 3. In your build pipeline, add a call to `fwup` to sign the firmware. In other
    words, when your build completes, you should have a `.fw` file.
-   Call `fwup -S --private-key "$SIGNING_KEY" -i <input.fw> -o <output.fw>`
+   Call `fwup -S --private-key "key" -i input.fw -o output.fw`
 4. Then, make sure every call to `fwup` in your application has `--public-key <key>`
    in the arguments.
 
@@ -118,11 +122,26 @@ can do what you want. 🚀
 Here's the script:
 
 ```sh
-$ cd nerves_livebook
-$ export MIX_ENV=rpi0
-$ mix deps.get
-$ mix firmware
-$ mix firmware.gen.script
-$ ./upload.sh livebook@nerves.local
+cd nerves_livebook
+export MIX_ENV=rpi0
+mix deps.get
+mix firmware
+mix firmware.gen.script
+./upload.sh livebook@nerves.local
+Path: ./_build/rpi0_dev/nerves/images/nerves_livebook.fw
+Product: nerves_livebook 0.2.4
+UUID: 0989e4e1-55e4-51ca-ba39-5c677cc7395c
+Platform: rpi0
+
+Uploading to livebook@nerves.local...
+Warning: Permanently added 'nerves.local,172.31.112.97' (RSA) to the list of known hosts.
+Nerves Livebook
+https://github.com/fhunleth/nerves_livebook
+
+ssh livebook@nerves.local # Use password "nerves"
+
+Password:
+fwup: Upgrading partition B
+ 48% [=================                   ] 19.17 MB in / 21.17 MB out
 ```
 
