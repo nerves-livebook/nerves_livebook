@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.2.6
+
+* Updates
+  * Use Elixir 1.12.0-rc.1. This enables some Livebook features that I haven't
+    tested yet, but look cool.
+  * Update Livebook to the latest to pull in user profiles
+
 ## v0.2.5
 
 * Updates
@@ -20,7 +27,7 @@
 
 * Updates
   * Add welcome
-  * Update Livebooks to latest
+  * Update Livebook to latest
 
 ## v0.2.1
 
@@ -29,7 +36,7 @@
     the MicroSD card.
 
 * Updates
-  * Update Livebooks to try import feature
+  * Update Livebook to try import feature
 
 ## v0.2.0
 
