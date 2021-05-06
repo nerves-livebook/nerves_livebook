@@ -1,0 +1,52 @@
+# Elixir Circuits GPIO Blink an LED
+
+## Introduction
+
+GPIO are one of the many features that make embedded boards great.
+In this exercise, we will use the [circuits_gpio] library to control 
+a GPIO as an output, and blink an LED.
+
+## Try it out
+
+All the gpio pins on your raspberry pi are available under `circuits_gpio`. 
+So lets set a variable so that we dont have to choose the GPIO pin every time.
+
+First, refer to the GPIO ports for your nerves device.
+
+[rpi_pins]
+
+```elixir
+led_pin = 20
+```
+
+Alright! Now that we've selected a pin, lets make sure that we connect
+the to our `led_pin` and `ground` through a 220Ω resistor. The long leg
+can be connected to our `led_pin` and the short pin can connect from 
+the shorter leg to a 220Ω resistor, then to our ground.
+
+(Ctrl + Click)[for an example wiring diagram].
+
+Now we will create a connection to that GPIO pin and set it as an :output.
+
+```elixir
+{:ok, line_handle} = Circuits.GPIO.Chip.request_line("gpiochip0", led_pin, :output)
+```
+
+After our led is wired to our GPIO pin, lets toggle it on:
+
+```elixir
+Circuits.GPIO.Chip.set_value(line_handle, 1)
+```
+
+Then off:
+
+```elixir
+Circuits.GPIO.Chip.set_value(line_handle, 0)
+```
+
+And just like that we can control the GPIO though livebook!
+
+[circuits_gpio]: https://github.com/elixir-circuits/circuits_gpio
+[nerves_examples]: https://github.com/nerves-project/nerves_examples/tree/main/hello_gpio
+[for an example wiring diagram]: https://github.com/elixir-circuits/circuits_gpio/blob/main/assets/images/schematic-gpio-led.png
+[rpi_pins]: https://www.raspberrypi.org/documentation/usage/gpio/
