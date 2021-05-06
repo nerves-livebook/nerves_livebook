@@ -1,6 +1,6 @@
 # Nerves Livebook Firmware
 
-[![CircleCI](https://circleci.com/gh/elixir-circuits/nerves_livebook.svg?style=svg)](https://circleci.com/gh/elixir-circuits/nerves_livebook)
+[![CircleCI](https://circleci.com/gh/fhunleth/nerves_livebook.svg?style=svg)](https://circleci.com/gh/fhunleth/nerves_livebook)
 
 The Nerves Livebook firmware lets you try out the Nerves projects on real
 hardware without needing to build anything. Within minutes, you'll have a
