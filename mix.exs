@@ -56,6 +56,7 @@ defmodule NervesLivebook.MixProject do
       {:circuits_spi, "~> 0.1", targets: @all_targets},
       {:power_control, github: "cjfreeze/power_control", targets: @all_targets},
       {:ramoops_logger, "~> 0.1", targets: @all_targets},
+      {:bmp280, "~> 0.2", targets: @all_targets},
 
       # Dependencies for specific targets
       {:nerves_system_rpi, "~> 1.15", runtime: false, targets: :rpi},
