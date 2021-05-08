@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.7
+
+* Updates
+  * Add Circuits.GPIO example from DJ Carpenter
+  * Add BMP280 example from Masatoshi Nishiguchi
+
 ## v0.2.6
 
 * Updates
