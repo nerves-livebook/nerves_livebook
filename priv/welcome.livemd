@@ -47,18 +47,20 @@ differences:
 1. All code gets evaluated in one Erlang VM. This is convenient for Nerves
    devices, but you may be surprised when a module defined in one notebook is
    then accessible in another.
-2. Installing hex dependencies is not supported. Nerves Livebook includes many
+2. Installing hex dependencies is experimental. Nerves Livebook includes many
    libraries as a convenience, though. We still recommend using `Mix.install/1`
    to document what dependencies your notebook requires, but if the dependency
-   is not already loaded, it will raise an error.
+   is not already loaded, it may raise an error.
 
 ## Pre-installed libraries
 
-Since you cannot install libraries through hex, we include the libraries listed below.
+Since installing libraries through hex is experimental, we include the
+libraries listed below.
 
-If there is a dependency you want to see included in the `nerves_livebook` distribution,
-please file an [issue](https://github.com/livebook-dev/nerves_livebook/issues)
-or make a PR to include new libraries in the main image.
+If there is a dependency you want to see included in the `nerves_livebook`
+distribution, please file an
+[issue](https://github.com/livebook-dev/nerves_livebook/issues) or make a PR to
+include new libraries in the main image.
 
 - **[`Kino`](https://hex.pm/packages/kino)**, interactive widgets for Livebook
 - **[`VegaLite`](https://hex.pm/packages/vega_lite)**, Elixir bindings for the interactive graphic library [Vega-Lite](https://vega.github.io/vega-lite) (supported by `Kino`)
