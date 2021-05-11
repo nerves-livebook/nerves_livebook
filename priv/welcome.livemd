@@ -51,4 +51,10 @@ differences:
    missing please file an [issue](https://github.com/fhunleth/nerves_livebook/issues)
    so it can be considered for inclusion.
 
+## Learn more
 
+- Official docs: https://hexdocs.pm/nerves/getting-started.html
+- Official website: https://nerves-project.org/
+- Forum: https://elixirforum.com/c/nerves-forum
+- Discussion Slack elixir-lang #nerves ([Invite](https://elixir-slackin.herokuapp.com/))
+- Source: https://github.com/nerves-project/nerves
