@@ -239,57 +239,46 @@ workflows:
   build_deploy:
     jobs:
       - build_osd32mp1:
-          context: org-global
           filters:
             tags:
               only: /.*/
       - build_rpi4:
-          context: org-global
           filters:
             tags:
               only: /.*/
       - build_rpi3a:
-          context: org-global
           filters:
             tags:
               only: /.*/
       - build_rpi3:
-          context: org-global
           filters:
             tags:
               only: /.*/
       - build_rpi2:
-          context: org-global
           filters:
             tags:
               only: /.*/
       - build_rpi:
-          context: org-global
           filters:
             tags:
               only: /.*/
       - build_rpi0:
-          context: org-global
           filters:
             tags:
               only: /.*/
       - build_bbb:
-          context: org-global
           filters:
             tags:
               only: /.*/
       - build_npi_imx6ull:
-          context: org-global
           filters:
             tags:
               only: /.*/
       # - build_x86_64:
-      #     context: org-global
       #     filters:
       #       tags:
       #         only: /.*/
       - deploy:
-          context: org-global
           requires:
             - build_osd32mp1
             - build_rpi4
