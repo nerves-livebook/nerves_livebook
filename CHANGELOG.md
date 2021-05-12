@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.2.8
+
+Community update release!
+
+* Updates
+  * Thanks to Jonatan Klosko, upstream Livebook now supports embedded mode so we
+    can use it on Nerves without patching it. This release has zero custom
+    Livebook patches for Nerves.
+  * DJ Carpenter has started reorganizing the samples directory to make it
+    easier to find examples. He also added a GPIO button example.
+  * Masatoshi Nishiguchi has updates to the BMP280
+    temperature/humidity/barometric sensor example too
+
 ## v0.2.7
 
 * Updates
