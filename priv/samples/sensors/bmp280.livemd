@@ -2,21 +2,19 @@
 
 ## Introduction
 
-This sample demonstrates how to read temperature data from the BMP280 temperature sensor board.
-We will use [I2C](https://en.wikipedia.org/wiki/I%C2%B2C) protocol to connect a sensor board to our Nerves target device (e.g., Raspbery Pi).
+This sample demonstrates how to read temperature data from the BMP280 temperature sensor board. We will use [I2C](https://en.wikipedia.org/wiki/I%C2%B2C) protocol to connect a sensor board to our Nerves target device (e.g., Raspbery Pi).
 
 ## Nerves target
 
 The explanation below assumes a [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) as a target device but other [Nerves targets](https://hexdocs.pm/nerves/targets.html) should work as well.
 
-[![](https://www.raspberrypi.org/homepage-9df4b/static/7ee0b4ceafeccddd8aef917cc818990d/ae23f/9371b539-77d4-47f1-b89b-aa65b23c9833_RPI%2BZERO%2BW%2BANGLE%2B2%2BREFRESH_.jpg)](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)
+![](https://raw.githubusercontent.com/fhunleth/nerves_livebook/main/assets/bmp280/rpi0.jpg)
 
 ## Sensor board
 
 The [Bosch BMP280 sensor](https://www.bosch-sensortec.com/products/environmental-sensors/pressure-sensors/) itself is so tiny that it might be difficult to handle but some electronics components manufactureres mount it on a [breakout board](https://en.wikipedia.org/wiki/Printed_circuit_board) for our convenience, which is what we look for. Do [Google search by "BMP280 breakout board"](https://www.google.com/search?q=bmp280+breakout+board) and you will find something like [Adafruit BMP280 Sensor board](https://www.adafruit.com/product/2651).
 
-[![](https://cdn-shop.adafruit.com/970x728/2651-07.jpg)](https://www.adafruit.com/product/2651)
-
+![](https://raw.githubusercontent.com/fhunleth/nerves_livebook/main/assets/bmp280/bme280_breakout.jpg)
 
 You can alternatively use [BME280](https://www.bosch-sensortec.com/products/environmental-sensors/humidity-sensors-bme280/) or [BME680](https://www.bosch-sensortec.com/products/environmental-sensors/gas-sensors-bme680/) since the [elixir-sensors/bmp280](https://github.com/elixir-sensors/bmp280) library supports them.
 
@@ -28,9 +26,7 @@ Roughly speaking, there are typically two ways to hook up a sensor to our Nerves
 
 If you already have a [soldering iron](https://en.wikipedia.org/wiki/Soldering_iron) and enjoy using it, this is the go-to option. Even if you have not already, soldering can be fun. This option only requires a [pin header](https://en.wikipedia.org/wiki/Pin_header) and 4 [jumper wires](https://en.wikipedia.org/wiki/Jump_wire)
 
-[![](https://cdn-learn.adafruit.com/assets/assets/000/026/855/large1024/sensors_2651_kit_ORIG.jpg?1438369482)](https://learn.adafruit.com/adafruit-bmp280-barometric-pressure-plus-temperature-sensor-breakout/assembly)
-
-[![](https://cdn-shop.adafruit.com/970x728/1950-02.jpg)](https://www.adafruit.com/product/1950)
+![](https://raw.githubusercontent.com/fhunleth/nerves_livebook/main/assets/bmp280/rpi0_pin_header_bme280.jpg)
 
 [I2C](https://en.wikipedia.org/wiki/I%C2%B2C) protocol uses 4 pins. It is confusing but different products may name the  pins differently.
 
@@ -47,9 +43,7 @@ If you already have a [soldering iron](https://en.wikipedia.org/wiki/Soldering_i
 
 Taking advantage of [Qwiic Connect System](https://www.sparkfun.com/qwiic) or similar system, we can remove the need for the soldering. One tradeoff is that we need to get an extra board like [Qwiic HAT for Raspberry Pi](https://www.adafruit.com/product/4688) and special wires.
 
-[![](https://cdn-shop.adafruit.com/970x728/4688-00.jpg)](https://www.adafruit.com/product/4688)
-
-[![](https://cdn-shop.adafruit.com/970x728/4399-00.jpg)](https://www.adafruit.com/product/4399)
+![](https://raw.githubusercontent.com/fhunleth/nerves_livebook/main/assets/bmp280/rpi0_qwiic_bme280.jpg)
 
 ## Elixir libraries
 
