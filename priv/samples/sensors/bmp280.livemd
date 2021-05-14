@@ -63,7 +63,10 @@ Circuits.I2C.detect_devices()
 ## Initializing BMP280 server
 
 ```elixir
-{:ok, bmp} = BMP280.start_link(bus_name: "i2c-1", bus_address: 0x77)
+bus_name = "i2c-1"
+bus_address = 0x77
+
+{:ok, bmp} = BMP280.start_link(bus_name: bus_name, bus_address: bus_address)
 ```
 
 ## Checking sensor type
@@ -94,3 +97,34 @@ Subsequent altitude reports should be more accurate until the weather changes.
 ```elixir
 {:ok, measurement} = BMP280.measure(bmp)
 ```
+
+## Directly using the Circuits I2C library
+
+So far we have interacted with the sensor using the BMP280 library's functions. Under the hood, the BMP280 library uses the Circuits I2C library that does low-level I2C read/write operations between the Nerves target board and the sensor board. We could directly use the Circuits I2C library if we wish.
+
+First we get a reference to our I2C bus.
+
+```elixir
+{:ok, i2c_ref} = Circuits.I2C.open(bus_name)
+```
+
+As an example, let's get the sensor type information from the sensor. For the BMP280, BME280 or BME680 sensors, the sensor type information is stored at register `0xD0` and it is one byte long. We can get that byte using `Circuits.I2C.write_read/4`.
+
+```elixir
+chip_id_register = 0xD0
+{:ok, <<chip_id_byte>>} = Circuits.I2C.write_read(i2c_ref, bus_address, <<chip_id_register>>, 1)
+inspect(chip_id_byte, base: :hex)
+```
+
+Here is what the byte means.
+
+```elixir
+case chip_id_byte do
+  0x58 -> :bmp280
+  0x60 -> :bme280
+  0x61 -> :bme680
+  error -> error
+end
+```
+
+For more details about the BMP280 sensor, you can refer to the [BMP280 data sheet](https://cdn-shop.adafruit.com/datasheets/BST-BMP280-DS001-11.pdf).
