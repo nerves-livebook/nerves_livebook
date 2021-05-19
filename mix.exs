@@ -45,7 +45,7 @@ defmodule NervesLivebook.MixProject do
       {:ring_logger, "~> 0.8.1"},
       {:toolshed, "~> 0.2.13"},
       {:jason, "~> 1.2"},
-      {:livebook, github: "elixir-nx/livebook", branch: "main", only: [:dev, :prod]},
+      {:livebook, "~> 0.1.0", only: [:dev, :prod]},
       {:nerves_runtime, "~> 0.11.3"},
       {:nerves_pack, "~> 0.4.0"},
 
