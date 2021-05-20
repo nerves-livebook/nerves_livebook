@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.9
+
+* Updates
+  * Update to Elixir 1.12.0 and Livebook 0.1.0
+  * Various BMP280 Livebook and library updates
+
 ## v0.2.8
 
 Community update release!
