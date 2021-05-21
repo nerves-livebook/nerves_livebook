@@ -54,6 +54,7 @@ defmodule NervesLivebook.MixProject do
       {:circuits_gpio, "~> 0.4", targets: @all_targets},
       {:circuits_i2c, "~> 0.3", targets: @all_targets},
       {:circuits_spi, "~> 0.1", targets: @all_targets},
+      {:pigpiox, "~>0.1"},
       {:power_control, github: "cjfreeze/power_control", targets: @all_targets},
       {:ramoops_logger, "~> 0.1", targets: @all_targets},
       {:bmp280, "~> 0.2", targets: @all_targets},
