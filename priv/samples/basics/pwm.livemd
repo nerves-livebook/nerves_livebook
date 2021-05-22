@@ -1,5 +1,11 @@
 # Pulse Width Modulation Using Pigpiox
 
+## Prerequisites
+
+*  Raspberry Pi - This example uses `pigpiox` which won't work on other boards
+*  LED
+*  220 Ohm resister
+
 ## Introduction
 
 In this exercise, we will leverage the [pigpiox][pigpiox_github] library to brighten and dim an LED through software [PWM][pwm_wiki] (pulse width modulation).
