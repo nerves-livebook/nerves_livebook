@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.2.10
+
+* Updates
+  * Update to Livebook 0.1.1
+  * Add PWM example using Pigpiox for Raspberry Pis. Thanks to DJ Carpenter for
+    contributing this.
+
 ## v0.2.9
 
 * Updates
