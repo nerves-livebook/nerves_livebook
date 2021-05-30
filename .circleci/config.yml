@@ -42,7 +42,7 @@ install_system_deps: &install_system_deps
     name: Install system dependencies
     command: |
       apt update
-      apt install -y zip
+      apt install -y zip xdelta3
 
 build: &build
   steps:
@@ -74,15 +74,20 @@ build: &build
           mix firmware
           mix firmware.image
     - run:
-          name: Create artifacts dir
-          command: mkdir -p /home/nerves/deploy/artifacts
+        name: Create artifacts dir
+        command: mkdir -p /home/nerves/deploy/artifacts
     - run:
-        name: Copy and sign firmware file
+        name: Compress and copy over the raw image
         command: |
-          cp _build/*/nerves/images/*.fw /home/nerves/deploy/artifacts/nerves_livebook_${MIX_TARGET}.fw
-          if [[ -n "$FW_SIGNING_KEY" ]]; then fwup -S --private-key "$FW_SIGNING_KEY" -i /home/nerves/deploy/artifacts/nerves_livebook_${MIX_TARGET}.fw -o /home/nerves/deploy/artifacts/nerves_livebook_${MIX_TARGET}.fw; fi
           zip nerves_livebook_${MIX_TARGET}.zip nerves_livebook.img
           cp nerves_livebook_${MIX_TARGET}.zip /home/nerves/deploy/artifacts
+    - run:
+        name: Create full and delta firmware images
+        command: |
+          DEPLOY_PATH=/home/nerves/deploy/artifacts ./scripts/ci_create_firmware.sh
+    - run:
+        name: Copy changelog
+        command: |
           cp ./CHANGELOG.md /home/nerves/deploy/CHANGELOG.md
     - store_artifacts:
         path: /home/nerves/deploy
