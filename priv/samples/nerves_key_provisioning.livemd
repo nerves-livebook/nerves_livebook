@@ -1,0 +1,96 @@
+# NervesKey Provisioning
+
+## Overview
+
+This Livebook provides a concise way to provision a NervesKey. It is expected
+that the NervesKey is connected to the embedded device hosting this Livebook.
+
+For the complete set of documentation, see [nerves_key](https://github.com/nerves-hub/nerves_key).
+
+## Preparation
+
+Ensure the NervesKey (ATECC508A / ATECC608A / ATECC608B) is connected correctly
+by evaluating the following cell. It should appear at address `96 (0x60)`.
+
+```elixir
+if System.find_executable("config-pin") do
+  # Configure i2c-1 pins for bbb target.
+  :os.cmd('config-pin -a P9.17 i2c')
+  :os.cmd('config-pin -a P9.18 i2c')
+end
+
+Circuits.I2C.detect_devices()
+```
+
+The system clock must be set correctly for provisioning to succeed. If your
+firmware contains [nerves_pack](https://hex.pm/packages/nerves_pack), which is
+included in `mix.exs` by default, then [nerves_time](https://hex.pm/packages/nerves_time)
+will automatically set the time via NTP if the network interface is configured.
+
+To set the time manually, uncomment line 1 below and enter the current time.
+Evaluate the following cell and confirm the system time is correct.
+
+```elixir
+# NervesTime.set_system_time(NaiveDateTime.from_iso8601!("2021-01-01 00:00:00Z"))
+:os.cmd('date') |> to_string() |> String.trim()
+```
+
+Get a handle to the I2C bus by executing the following cell. If the NervesKey
+was detected on a different bus, set `bus_name` accordingly.
+
+```elixir
+{:ok, i2c} = ATECC508A.Transport.I2C.init(bus_name: "i2c-1")
+```
+
+Check if the NervesKey has already been provisioned by executing the following
+cell. The `primary` slot is ***one-time-programmable***, and includes the
+product info and primary key. The `aux` slot is read/write and can hold an
+additional key. The primary slot must be provisioned; the aux slot is optional.
+
+```elixir
+NervesKey.provisioned?(i2c)
+```
+
+## Provisioning
+
+If you would like to set a name for your board (product) or override the ATECC's
+serial number, uncomment and set the `board_name` and `manufacturer_sn`
+properties, respectively. Otherwise, the default board name `NervesKey` and
+default serial number containing the electronic serial number of the ATECC chip
+will be used.
+
+Paste the signer cert and signer keys in PEM format in the respective variables.
+
+Execute this cell and validate the provisioning info is correct.
+
+```elixir
+product_info =
+  %{
+    # board_name: "",
+    # manufacturer_sn: ""
+  }
+
+signer_cert_pem = """
+-----BEGIN CERTIFICATE-----
+-----END CERTIFICATE-----
+"""
+
+signer_key_pem = """
+-----BEGIN EC PRIVATE KEY-----
+-----END EC PRIVATE KEY-----
+"""
+
+signer_cert = X509.Certificate.from_pem!(signer_cert_pem)
+signer_key = X509.PrivateKey.from_pem!(signer_key_pem)
+default_info = NervesKey.default_info(i2c)
+provisioning_info = Map.merge(default_info, product_info)
+```
+
+Execute the following cell to provision the NervesKey. It will return `:ok`
+after a little delay when it succeeds. If you wish to configure the `aux` slot,
+comment out the first line and uncomment the second.
+
+```elixir
+NervesKey.provision(i2c, provisioning_info, signer_cert, signer_key)
+# NervesKey.provision_aux_certificates(i2c, signer_cert, signer_key)
+```
