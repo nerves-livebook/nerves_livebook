@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.2.11
+
+* Updates
+  * Add NervesKey (ATECC508A/608) provisioning example. Thanks to Alex McLain
+    for contributing this.
+  * Building delta firmware updates on CI. This lays the groundwork for future
+    livebooks.
+
 ## v0.2.10
 
 * Updates
