@@ -1,5 +1,18 @@
 # Blink using Circuits GPIO
 
+## Prerequisites
+
+### Targets
+
+`all_targets`
+
+### Bill of Materials
+
+| Component | Description | Vendor(s) |
+|:---------:|:-----------:|:---------:|
+| LED       |  semiconductor diode which glows when a voltage is applied | [adafruit](https://www.adafruit.com/product/4202) |
+| 220Ω resistor | a device having a designed resistance to the passage of an electric current. | [adafruit](https://www.adafruit.com/product/2780) |
+
 ## Introduction
 
 In this exercise, we will use the [circuits_gpio] library to control 
@@ -63,7 +76,7 @@ defmodule Blink do
   end
   # Or provide a delay to blink faster or slower
   def pin(output_gpio, delay, times) when times <= 0  do
-    # Do nothing after the count completes
+    {:ok, "finished blinking"}
   end
 
   def pin(output_gpio, delay, times) do

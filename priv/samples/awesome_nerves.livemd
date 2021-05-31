@@ -1,0 +1,37 @@
+# Awesome Nerves Livebook
+
+## Introduction
+
+The Awesome Nevrves Livebook is a curated list of community livebooks.
+
+**Topics** include `basics`, `sensor`, `networking`, `library`.
+
+**Targets** include `rpi`, `rpi0`, `rpi2`, `rpi3`, `rpi3a`, `rpi4`, `bbb`, `osd32mp1`, `x86_64`, `npi_imx6ull`, `all_targets`.
+
+###### Targets should be aligned with your `mix.exs`
+
+## Usage
+
+Copy the link or raw `.livemd` file from the `Livebook Link` and import it using the `Import` option from home path of the livebook.
+
+## Livebooks
+
+| Topic(s) | Target(s) | Description | Livebook Link | Author | 
+|:--------:|:---------:|:-----------:|:-------------:|:------:|
+|`networking`| `all_targets` |An example URL Livebook. Blinks an onboard system LED.|[Example Gist](https://gist.githubusercontent.com/djcarpe/60681b5d69c61c35ff46d1da7ae89579/raw/abfee560f21435a3de9e13197a59cd7e62e01e72/test.livemd) | [djcarpe][DJ] |
+
+## Third Party Stand Alone Livebooks
+
+These livebooks are separate while working on integrating more out-of-the-box features into the Nerves livebook. 
+
+| Topic(s) | Target(s) | Description | Livebook Link | Author | 
+|:--------:|:---------:|:-----------:|:-------------:|:------:|
+| sensor   | `rpi3`    | Govee H6001 Bluetooth LED bulb. See [#40][issue50]. | [axelson/nerves_livebook] | [axelson][Jason Axelson] |
+
+<!-- Livebook links -->
+[issue50]: https://github.com/fhunleth/nerves_livebook/issues/50
+[axelson/nerves_livebook]: https://github.com/axelson/nerves_livebook
+
+<!-- Author markdown links -->
+[DJ]: https://github.com/djcarpe
+[Jason Axelson]: https://github.com/axelson

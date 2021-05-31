@@ -1,0 +1,27 @@
+# Getting Started
+
+## Introduction
+
+Welcome to Nerves Livebook! 
+
+This [Livebook][livebook] is a collection of examples for learning the capabilities of [Nerves][nerves], both with hardware and software.
+
+## How To Use This Livebook
+
+This book ships with a small set of Nerves capabilites. You have to fork each `livebook` since Nerves by default is `read only`.
+
+You can then run through the examples, change them, and save them locally for future testing.
+
+Another workflow is importing livebooks from other contributors. 
+This is a great way to quickly build, share, and consume livebooks without being tied to a mono-repo.
+You can follow the `awesome_nerves` livebook for more details.
+###### One caviat being that you have to add any potential dependencies consumed by livebooks to your `mix.exs`. 
+
+## Contributing
+
+You can either create a PR into this repository for the small subset of Nerves exercises, 
+or feel free to add an entry to the `awesome_nerves.livemd` so you can manage the livebook
+independently of the `nerves_livebook`.
+
+[livebook]: https://github.com/elixir-nx/livebook
+[nerves]: https://www.nerves-project.org/

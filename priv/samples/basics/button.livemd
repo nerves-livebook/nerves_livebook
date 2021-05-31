@@ -1,5 +1,20 @@
 # Button Input using Circuits GPIO
 
+## Prerequisites
+
+### Targets
+
+`all_targets`
+
+### Bill of Materials
+
+| Component | Description | Vendor(s) |
+|:---------:|:-----------:|:---------:|
+| LED       |  semiconductor diode which glows when a voltage is applied | [adafruit](https://www.adafruit.com/product/4202) |
+| 220Ω resistor | a device having a designed resistance to the passage of an electric current. | [adafruit](https://www.adafruit.com/product/2780) |
+| Push Button | actuator-button with underlying switch | [adafruit](https://www.adafruit.com/product/4183) |
+
+
 ## Introduction
 
 In this exercise, we will use the [circuits_gpio] library to control 

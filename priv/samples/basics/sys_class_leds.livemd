@@ -1,5 +1,11 @@
 # Sys Class LEDs
 
+## Prerequisites
+
+### Targets
+
+`all_targets`
+
 ## Introduction
 
 Depending on which board you're using, one or more LEDs are controllable using

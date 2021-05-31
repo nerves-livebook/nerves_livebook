@@ -2,9 +2,17 @@
 
 ## Prerequisites
 
-*  Raspberry Pi - This example uses `pigpiox` which won't work on other boards
-*  LED
-*  220 Ohm resister
+### Targets
+
+`rpi`, `rpi0`, `rpi2`, `rpi3`, `rpi3a`, `rpi4`
+
+### Bill of Materials
+
+| Component | Description | Vendor(s) |
+|:---------:|:-----------:|:---------:|
+| LED       |  semiconductor diode which glows when a voltage is applied | [adafruit](https://www.adafruit.com/product/4202) |
+| 220Ω resistor | a device having a designed resistance to the passage of an electric current. | [adafruit](https://www.adafruit.com/product/2780) |
+
 
 ## Introduction
 

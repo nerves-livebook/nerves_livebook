@@ -1,0 +1,17 @@
+# Frequently Asked Questions
+
+## About Nerves Livebook, Nerves, and Livebook
+
+<details>
+<summary>Why can't I run <strong>Mix.install</strong> inside my Livebooks on Nerves?</summary>
+
+Nerves ships on a minimal linux kernel and does not come with a compiler by default.
+
+</details> &nbsp;
+
+<details>
+<summary>Why do I have to <strong>fork</strong> livebooks instead of <strong>opening</strong> them?</summary>
+
+The default firmware deployed is <strong>read only</strong> by default. So <strong>forking</strong> a livebook moves it into <strong>user</strong> space.
+
+</details> &nbsp;
