@@ -1,0 +1,120 @@
+# Delta Firmware Updates
+
+## Introduction
+
+Delta firmware updates are a feature that let you download only the differences
+between the firmware that you're running and the one that you want to install.
+The advantage is to reduce the transfer cost and time. If you distribute
+updates to lots of devices over cellular links, this feature either lets you
+save cost or increase your firmware update cadence.
+
+The drawback of delta firmware updates are increased complexity and creating
+the firmware deltas can be processor intensive.
+
+This Livebook shows how to use delta firmware updates with the Nerves Livebook
+image. It is highly recommended that you read the `firmware_update.livemd`
+notebook for full firmware updates first.
+
+## Walk through
+
+Evaluate the following to see what firmware version you're running:
+
+```elixir
+IO.write("""
+You're running Nerves Livebook #{NervesLivebook.version()}.
+
+More details:
+Target: #{NervesLivebook.target()}
+Firmware UUID: #{Nerves.Runtime.KV.get_active("nerves_fw_uuid")}
+Firmware partition: #{Nerves.Runtime.KV.get("nerves_fw_active")}
+""")
+```
+
+Nerves Livebook delta firmware images are hosted on GitHub under the [releases
+tab](https://github.com/fhunleth/nerves_livebook/releases). They start with the
+letter `z` and then have the firmware UUID that they can update. The Nerves
+Livebook CI scripts only build delta updates for upgrading the previous
+release, so if you don't see your UUID, load the previous release's firmware on
+your device first.
+
+> IMPORTANT: Some devices are more helpful in making firmware updates small. The
+> general idea is to first reduce size of the full firmware by removing unneeded
+> dependencies, removing debug info, optimizing images, etc. The Nerves Livebook
+> firmware doesn't even try so take the firmware sizes that you see with a grain
+> of salt for now. Nonetheless, the delta firmware updates should be much smaller.
+
+Let's query GitHub to see what the latest release is:
+
+```elixir
+NervesLivebook.check_internet!()
+
+# Setup for below
+alias NervesLivebook.GithubRelease
+repo = "fhunleth/nerves_livebook"
+firmware_path = "/data/delta.fw"
+firmware_public_key = "IyCnjyE1rrV+W5HFrovC+ZyxrBh9fF7Na4S+7dcGAPw="
+
+# Get the release metadata
+{:ok, latest} = GithubRelease.get_latest(repo)
+IO.puts("The latest GitHub release for #{repo} is version #{GithubRelease.version(latest)}.")
+```
+
+The next step is to download the firmware. This will fail if a delta firmware
+update was not made for the firmware that you're running. Watch the evaluating
+circle pulse to know that it's working.
+
+```elixir
+firmware_name = "z#{Nerves.Runtime.KV.get_active("nerves_fw_uuid")}_#{NervesLivebook.target()}.fw"
+{:ok, firmware_url} = GithubRelease.firmware_url(latest, firmware_name)
+
+IO.puts("Downloading #{firmware_url} to #{firmware_path}...")
+
+# httpc doesn't overwrite, so erase an old file
+File.rm_rf!(firmware_path)
+
+{:ok, :saved_to_file} =
+  :httpc.request(:get, {firmware_url, []}, [], stream: to_charlist(firmware_path))
+```
+
+The firmware is now stored locally in `"/data/delta.fw"`. We're ready to
+install it, but first, let's check out its metadata and make sure it's valid:
+
+```elixir
+# Check signatures if firmware_public_key was specified above (it is by default)
+extra_fwup_arguments = if firmware_public_key, do: ["--public-key", firmware_public_key], else: []
+
+{output, 0} = System.cmd("fwup", ["--metadata", "-i", firmware_path] ++ extra_fwup_arguments)
+IO.puts("Firmware metadata:\n" <> output)
+
+# Validation isn't needed since the upgrade step also validates, but it's
+# informative.
+IO.puts("Validating archive...")
+{output, _} = System.cmd("fwup", ["--verify", "-i", firmware_path] ++ extra_fwup_arguments)
+IO.write(output)
+```
+
+Ok, now we're ready for the big step. This won't erase any of your livebooks or
+settings. It just updates the Nerves Livebook firmware. After this completes
+successfully, your device will reboot.
+
+```elixir
+NervesLivebook.Fwup.upgrade(firmware_path, extra_fwup_arguments)
+```
+
+## Notes
+
+### Creating delta firmware images
+
+The current process for creating delta firmware images uses
+[`xdelta3`](http://xdelta.org/) to compute the difference between the root
+filesystem of one firmware with that of the next one. The process is simple,
+but manual. It consists of unzipping the firmware files (they're just ZIP
+files), running `xdelta3`, and then putting the compressed output back in the
+ZIP file. See
+[`create_delta_fw.sh`](https://github.com/fhunleth/nerves_livebook/blob/main/scripts/create_delta_fw.sh).
+
+The cryptographic checksums and signatures that `fwup` uses will still pass so
+long as the expansion on the `xdelta3`-compressed binary outputs the exact same
+bytes and the original. This is important since a common use case is to
+cryptographically sign the firmware on one computer and then have another one
+generate all of the necessary firmware deltas.

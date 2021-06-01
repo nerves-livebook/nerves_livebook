@@ -49,7 +49,7 @@ on a slow connection. Watch the evaluating circle pulse to know that it's workin
 
 ```elixir
 {:ok, firmware_url} =
-  GithubRelease.firmware_url(latest, "nerves_livebook", NervesLivebook.target())
+  GithubRelease.firmware_url(latest, "nerves_livebook_#{NervesLivebook.target()}.fw")
 
 IO.puts("Downloading #{firmware_url} to #{firmware_path}...")
 

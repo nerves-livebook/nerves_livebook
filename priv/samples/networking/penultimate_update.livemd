@@ -1,0 +1,66 @@
+# Penultimate Firmware Update
+
+## Introduction
+
+This Livebook updates the firmware to the second to latest release from GitHub.
+Use it if you want to try out delta firmware updates and whatever you're
+running now isn't right.
+
+## Walk through
+
+Evaluate the following to see what firmware version you're running:
+
+```elixir
+IO.write("""
+You're running Nerves Livebook #{NervesLivebook.version()}.
+
+More details:
+Target: #{NervesLivebook.target()}
+Firmware UUID: #{Nerves.Runtime.KV.get_active("nerves_fw_uuid")}
+Firmware partition: #{Nerves.Runtime.KV.get("nerves_fw_active")}
+""")
+```
+
+Let's query GitHub to see what the penultimate release is:
+
+```elixir
+NervesLivebook.check_internet!()
+
+# Setup for below
+alias NervesLivebook.GithubRelease
+repo = "fhunleth/nerves_livebook"
+firmware_path = "/data/update.fw"
+firmware_public_key = "IyCnjyE1rrV+W5HFrovC+ZyxrBh9fF7Na4S+7dcGAPw="
+
+# Get the release metadata
+{:ok, release} = GithubRelease.get_penultimate(repo)
+IO.puts("The penultimate GitHub release for #{repo} is version #{GithubRelease.version(release)}.")
+```
+
+The next step is to download the firmware. This might take some time if you're
+on a slow connection. Watch the evaluating circle pulse to know that it's
+working.
+
+```elixir
+{:ok, firmware_url} =
+  GithubRelease.firmware_url(release, "nerves_livebook_#{NervesLivebook.target()}.fw")
+
+IO.puts("Downloading #{firmware_url} to #{firmware_path}...")
+
+# httpc doesn't overwrite, so erase an old file
+File.rm_rf!(firmware_path)
+
+{:ok, :saved_to_file} =
+  :httpc.request(:get, {firmware_url, []}, [], stream: to_charlist(firmware_path))
+```
+
+Ok, now we're ready for the big step. This won't erase any of your livebooks or
+settings. It just updates the Nerves Livebook firmware. After this completes
+successfully, your device will reboot.
+
+```elixir
+# Check signatures if firmware_public_key is specified
+extra_fwup_arguments = if firmware_public_key, do: ["--public-key", firmware_public_key], else: []
+
+NervesLivebook.Fwup.upgrade(firmware_path, extra_fwup_arguments)
+```

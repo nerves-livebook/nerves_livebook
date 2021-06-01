@@ -9,12 +9,39 @@ defmodule NervesLivebook.GithubRelease do
   @type t() :: map()
 
   @doc """
-  Request the latest release information from GitHub
+  Return the latest release information from GitHub
   """
   @spec get_latest(String.t()) :: {:ok, t()} | {:error, any()}
   def get_latest(repository) do
-    url = "#{@github_api_url}/repos/#{repository}/releases/latest"
-    headers = [{'user-agent', user_agent()}]
+    req("#{@github_api_url}/repos/#{repository}/releases/latest")
+  end
+
+  @doc """
+  Return the penultimate release information from GitHub
+
+  This is useful for going back and forth for delta updates.
+  """
+  @spec get_penultimate(String.t()) :: {:ok, t()} | {:error, any()}
+  def get_penultimate(repository) do
+    with {:ok, [_, penultimate | _]} <- get_all(repository) do
+      {:ok, penultimate}
+    else
+      {:ok, _other} -> {:error, :no_penultimate}
+      error -> error
+    end
+  end
+
+  @doc """
+  Return a list of all release information
+  """
+  @spec get_all(String.t()) :: {:ok, [t()]} | {:error, any()}
+  def get_all(repository) do
+    req("#{@github_api_url}/repos/#{repository}/releases")
+  end
+
+  @spec req(String.t()) :: {:error, any} | {:ok, any()}
+  def req(url) do
+    headers = [{'user-agent', user_agent()}, {'Accept', 'application/vnd.github.v3+json'}]
     request = {String.to_charlist(url), headers}
     http_options = []
     options = [body_format: :binary]
@@ -42,23 +69,13 @@ defmodule NervesLivebook.GithubRelease do
   end
 
   @doc """
-  Helper function for getting the firmware filename
-  """
-  @spec firmware_filename(String.t() | atom(), String.t() | atom()) :: String.t()
-  def firmware_filename(app_name, target) do
-    "#{app_name}_#{target}.fw"
-  end
-
-  @doc """
   Return the URL for downloading the firmware for a target
 
   If the target firmware isn't available, it returns an error
   """
-  @spec firmware_url(t(), String.t() | atom(), String.t() | atom()) ::
+  @spec firmware_url(t(), String.t()) ::
           {:ok, String.t()} | {:error, :not_found}
-  def firmware_url(release, app_name, target) do
-    filename = firmware_filename(app_name, target)
-
+  def firmware_url(release, filename) do
     case Enum.find(release["assets"], fn m -> m["name"] == filename end) do
       %{"browser_download_url" => url} -> {:ok, url}
       _ -> {:error, :not_found}

@@ -6,29 +6,23 @@ defmodule NervesLivebook.GithubReleaseTest do
     assert "0.1.1" == GithubRelease.version(example_response())
   end
 
-  test "firmware_filename/1" do
-    assert "nerves_livebook_rpi0.fw" == GithubRelease.firmware_filename("nerves_livebook", "rpi0")
-    assert "nerves_livebook_rpi0.fw" == GithubRelease.firmware_filename("nerves_livebook", :rpi0)
-    assert "nerves_livebook_rpi0.fw" == GithubRelease.firmware_filename(:nerves_livebook, :rpi0)
-  end
-
   test "firmware_url/2" do
     response = example_response()
 
     assert {:ok,
             "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi0.fw"} ==
-             GithubRelease.firmware_url(response, "nerves_livebook", "rpi0")
+             GithubRelease.firmware_url(response, "nerves_livebook_rpi0.fw")
 
     assert {:ok,
             "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_bbb.fw"} ==
-             GithubRelease.firmware_url(response, "nerves_livebook", "bbb")
+             GithubRelease.firmware_url(response, "nerves_livebook_bbb.fw")
 
     assert {:ok,
             "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi4.fw"} ==
-             GithubRelease.firmware_url(response, "nerves_livebook", "rpi4")
+             GithubRelease.firmware_url(response, "nerves_livebook_rpi4.fw")
 
     assert {:error, :not_found} ==
-             NervesLivebook.GithubRelease.firmware_url(response, "nerves_livebook", "host")
+             NervesLivebook.GithubRelease.firmware_url(response, "nerves_livebook_host.fw")
   end
 
   defp example_response() do
