@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.2.12
+
+* Updates
+  * Organize sample livebooks into directories so that they're easier to find.
+    More changes are coming. Thanks to DJ Carpenter for spearheading the effort
+    better organize this project.
+  * Add a delta firmware update livebook. This livebook can't be used just yet.
+    It needs a release to update to. Once v0.2.13 is available, it will work.
+
 ## v0.2.11
 
 * Updates
