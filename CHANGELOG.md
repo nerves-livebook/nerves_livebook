@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.2.13
+
+* Updates
+  * Update Livebook to 0.1.2
+  * The `vega_lite` and `kino` packages are available without `Mix.install` so
+    it's not possible to experiment with plotting sensor data.
+
 ## v0.2.12
 
 * Updates
