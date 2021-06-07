@@ -4,8 +4,10 @@
 
 * Updates
   * Update Livebook to 0.1.2
-  * The `vega_lite` and `kino` packages are available without `Mix.install` so
-    it's not possible to experiment with plotting sensor data.
+  * The `vega_lite` and `kino` packages are available so it's now possible to
+    experiment with plotting sensor data. Note that `Mix.install` doesn't work
+    yet so if you're trying out a notebook that uses `vega_lite`, just uncomment
+    the `Mix.install` parts for now.
 
 ## v0.2.12
 
