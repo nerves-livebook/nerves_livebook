@@ -16,7 +16,7 @@ config :livebook, LivebookWeb.Endpoint,
   live_view: [signing_salt: "livebook"]
 
 config :livebook,
-  default_runtime: Livebook.Runtime.Embedded,
+  default_runtime: {Livebook.Runtime.Embedded, []},
   authentication_mode: :password,
   token_authentication: false,
   password: System.get_env("LIVEBOOK_PASSWORD", "nerves")
