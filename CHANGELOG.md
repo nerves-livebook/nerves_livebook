@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.14
+
+* Updates
+  * Update to OTP 24-based Nerves systems
+  * Livebook 0.2.2
+
 ## v0.2.13
 
 * Updates

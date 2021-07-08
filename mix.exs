@@ -2,7 +2,7 @@ defmodule NervesLivebook.MixProject do
   use Mix.Project
 
   @app :nerves_livebook
-  @version "0.2.13"
+  @version "0.2.14"
   @all_targets [
     :rpi,
     :rpi0,
