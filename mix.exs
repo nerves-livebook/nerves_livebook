@@ -51,7 +51,7 @@ defmodule NervesLivebook.MixProject do
 
       # Extra Livebook dependencies since Mix.install doesn't work yet
       {:vega_lite, "~> 0.1.0"},
-      {:kino, "~> 0.1.0"},
+      {:kino, "~> 0.2.1"},
 
       # Dependencies for all targets except :host
       {:circuits_uart, "~> 1.3", targets: @all_targets},
