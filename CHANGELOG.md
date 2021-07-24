@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.2.15
+
+* Updates
+  * Minor version bumps on many dependencies - no new features
+
 ## v0.2.14
 
 * Updates
