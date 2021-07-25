@@ -8,6 +8,7 @@ defmodule NervesLivebook.Application do
   def start(_type, _args) do
     initialize_data_directory()
     setup_wifi()
+    add_mix_install()
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
@@ -53,4 +54,16 @@ defmodule NervesLivebook.Application do
   defp true?("false"), do: false
   defp true?("FALSE"), do: false
   defp true?(_), do: true
+
+  defp add_mix_install() do
+    # This needs to be done this way since redefining Mix at compile time
+    # doesn't make anyone happy.
+    Code.eval_string("""
+    defmodule Mix do
+      def install(deps, opts \\\\ []) when is_list(deps) and is_list(opts) do
+        NervesLivebook.MixInstall.install(deps, opts)
+      end
+    end
+    """)
+  end
 end
