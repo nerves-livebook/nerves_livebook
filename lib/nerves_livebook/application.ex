@@ -7,8 +7,11 @@ defmodule NervesLivebook.Application do
 
   def start(_type, _args) do
     initialize_data_directory()
-    setup_wifi()
-    add_mix_install()
+
+    if target() != :host do
+      setup_wifi()
+      add_mix_install()
+    end
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
@@ -43,10 +46,15 @@ defmodule NervesLivebook.Application do
   defp setup_wifi() do
     kv = Nerves.Runtime.KV.get_all()
 
-    if true?(kv["wifi_force"]) or VintageNet.get_configuration("wlan0") == %{type: VintageNetWiFi} do
+    if true?(kv["wifi_force"]) or wlan0_unconfigured?() do
       _ = VintageNetWiFi.quick_configure(kv["wifi_ssid"], kv["wifi_passphrase"])
       :ok
     end
+  end
+
+  defp wlan0_unconfigured?() do
+    "wlan0" in VintageNet.configured_interfaces() and
+      VintageNet.get_configuration("wlan0") == %{type: VintageNetWiFi}
   end
 
   defp true?(""), do: false
@@ -54,6 +62,10 @@ defmodule NervesLivebook.Application do
   defp true?("false"), do: false
   defp true?("FALSE"), do: false
   defp true?(_), do: true
+
+  defp empty?(""), do: true
+  defp empty?(nil), do: true
+  defp empty?(_), do: false
 
   defp add_mix_install() do
     # This needs to be done this way since redefining Mix at compile time
@@ -65,5 +77,9 @@ defmodule NervesLivebook.Application do
       end
     end
     """)
+  end
+
+  defp target() do
+    Application.get_env(:nerves_livebook, :target)
   end
 end
