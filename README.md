@@ -68,7 +68,18 @@ Success!
 Elapsed time: 3.595 s
 ```
 
-Now you have Nerves ready to run on your device. Skip ahead to the next
+If you're using a WiFi-enabled device and want the WiFi credentials to be
+written to the MicroSD card, initialize the MicroSD card like this instead:
+
+```sh
+sudo NERVES_WIFI_SSID='access_point' NERVES_WIFI_PASSPHRASE='passphrase' fwup nerves_livebook_rpi0.fw
+```
+
+You can still change the WiFi credentials at runtime using
+`VintageNetWiFi.quick_configure/2`, but this helps you don't have an easy
+alternative way of accessing the device to configure WiFi.
+
+Now you have Nerves Livebook ready to run on your device. Skip ahead to the next
 section.
 
 ### `etcher`
@@ -77,6 +88,10 @@ Start [`etcher`](https://www.etcher.net/), point it to the zip file, and follow
 the prompts:
 
 ![etcher screenshot](assets/etcher.png)
+
+IMPORTANT: There's no way to configure the initial WiFi credentials with
+`etcher`. If you have a device that you can only access via WiFi (so no way of
+setting credentials), then check out the `fwup` instructions above.
 
 ## Running the Firmware
 
@@ -91,7 +106,7 @@ is "nerves".
 
 ## Going further
 
-At some point you'll want to create your own firmware. See the [Nerves
+At some point you may want to customize Nerves Livebook. See the [Nerves
 Installation](https://hexdocs.pm/nerves/installation.html) and [Getting
 Started](https://hexdocs.pm/nerves/getting-started.html) guides for details.
 
@@ -111,7 +126,28 @@ $ mix firmware
 # Option 1: Insert a MicroSD card
 $ mix burn
 
-# Options 2: Upload to an existing Nerves Livebook device
+# Option 2: Upload to an existing Nerves Livebook device
 $ mix firmware.gen.script
 $ ./upload.sh nerves.local
 ```
+
+## Firmware provisioning options
+
+Nerves Livebook supports some device-specific customization after the firmware
+has been created. This means that you don't need to rebuild the firmware to set
+any of the options in this section. Instead, they are set when you use `fwup` to
+initialize a MicroSD card. Here's an example invocation of `fwup` to show what
+to do:
+
+```sh
+sudo NERVES_WIFI_SSID='access_point' NERVES_WIFI_PASSPHRASE='passphrase' fwup nerves_livebook_rpi0.fw
+```
+
+See the `config/provisioning.conf` for details. Here is a summary of the options:
+
+Environment variable | Nerves.Runtime.KV key | Description
+ ------------------- | --------------------- | -----------
+NERVES_SERIAL_NUMBER | nerves_serial_number  | Set the device serial number to the specified text (default is to use device-specific unique ID)
+NERVES_WIFI_FORCE    | wifi_force            | Set to `true` to always set WiFi credentials on boot even if other ones were previously set
+NERVES_WIFI_PASSPHRASE | wifi_passphrase     | A WiFi passphrase to use if WiFi hasn't been configured
+NERVES_WIFI_SSID     | wifi_ssid             | A WiFi SSID to use if WiFi hasn't been configured

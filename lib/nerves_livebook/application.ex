@@ -7,6 +7,8 @@ defmodule NervesLivebook.Application do
 
   def start(_type, _args) do
     initialize_data_directory()
+    setup_wifi()
+
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: NervesLivebook.Supervisor]
@@ -36,4 +38,19 @@ defmodule NervesLivebook.Application do
     _ = File.rm(dest)
     _ = File.ln_s(source, dest)
   end
+
+  defp setup_wifi() do
+    kv = Nerves.Runtime.KV.get_all()
+
+    if true?(kv["wifi_force"]) or VintageNet.get_configuration("wlan0") == %{type: VintageNetWiFi} do
+      _ = VintageNetWiFi.quick_configure(kv["wifi_ssid"], kv["wifi_passphrase"])
+      :ok
+    end
+  end
+
+  defp true?(""), do: false
+  defp true?(nil), do: false
+  defp true?("false"), do: false
+  defp true?("FALSE"), do: false
+  defp true?(_), do: true
 end
