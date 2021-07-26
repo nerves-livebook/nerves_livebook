@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.2.16
+
+* Updates
+  * Support provisioning WiFi when creating the MicroSD card. See `README.md`
+    for how to pass parameters when calling `fwup`.
+  * Check that dependencies passed to `Mix.install/1` are compatible with what's
+    included in Nerves Livebook. Installation isn't supported yet, but this
+    update makes it possible to include `Mix.install/1` calls in your livebooks
+    for when it does work.
+
 ## v0.2.15
 
 * Updates
