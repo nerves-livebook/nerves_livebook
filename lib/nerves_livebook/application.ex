@@ -47,8 +47,13 @@ defmodule NervesLivebook.Application do
     kv = Nerves.Runtime.KV.get_all()
 
     if true?(kv["wifi_force"]) or wlan0_unconfigured?() do
-      _ = VintageNetWiFi.quick_configure(kv["wifi_ssid"], kv["wifi_passphrase"])
-      :ok
+      ssid = kv["wifi_ssid"]
+      passphrase = kv["wifi_passphrase"]
+
+      unless empty?(ssid) do
+        _ = VintageNetWiFi.quick_configure(ssid, passphrase)
+        :ok
+      end
     end
   end
 
