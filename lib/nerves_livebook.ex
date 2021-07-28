@@ -3,6 +3,8 @@ defmodule NervesLivebook do
   Nerves Livebook firmware
   """
 
+  require Logger
+
   @doc """
   Return the mix target that was used to build this firmware
 
@@ -34,5 +36,22 @@ defmodule NervesLivebook do
       do: raise("Please check that at least one network interface can reach the internet")
 
     :ok
+  end
+
+  @doc """
+  Setup Erlang distribution
+
+  This is called by Shoehorn. See `config/target.exs`.
+  """
+  @spec setup_distribution() :: :ok
+  def setup_distribution() do
+    with {_, 0} <- System.cmd("epmd", ["-daemon"]),
+         {:ok, hostname} <- :inet.gethostname(),
+         {:ok, _pid} <- Node.start(:"livebook@#{hostname}.local") do
+      # Livebook always sets the cookie, so let it set it. See the Livebook application config.
+      :ok
+    else
+      _ -> Logger.error("Unexpected error setting up Erlang distribution")
+    end
   end
 end
