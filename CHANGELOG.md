@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.2.17
+
+* Updates
+  * Make Erlang distribution predictable. It's now
+    `livebook@nerves-<device id>.local`. From within Livebook, you can see the
+    name by going to the settings tab. This is an mDNS name and will work even
+    if the IP address to the device changes. It only requires an mDNS client on
+    your computer which is included by default on MacOS and usually on Linux.
+
 ## v0.2.16
 
 * Updates
