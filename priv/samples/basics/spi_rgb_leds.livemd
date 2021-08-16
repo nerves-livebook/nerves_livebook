@@ -3,21 +3,21 @@
 ## Table of Contents
 1. [Prerequisites](#prerequisites)
 1. [Introduction](#introduction)
-1. [Wiring and discovering your SPI bus](#wiring-and-discovering-your-spi-bus)
-1. [Formatting our SPI payload](#formatting-our-spi-serial-data-structure)
+1. [Wiring and discovering your SPI bus](#wiring-and-discovering-your-SPI-bus)
+1. [Formatting our SPI payload](#formatting-our-SPI-serial-data-structure)
 1. [Blinking a single LED](#blinking-a-single-led)
 1. [Managing all the LEDs on a strip](#managing-all-the-leds-on-a-strip)
-1. [Simple larson scanner](#simple-larson-scanner)
+1. [Simple Larson scanner](#simple-larson-scanner)
 1. [Simple rainbow](#simple-rainbow)
 1. [What next](#what-next)
 1. [Acronyms](#acronyms)
 
 ## Prerequisites
 
-* A Raspberry Pi or BeagleBone board.
-* SK9822 or APA102 RGB LED strip.
-* (Recommended) A 5 volt 3 amp external power supply.
-* (Recommended) A general understanding of the [SPI bus][sparkfun.SPI].
+* A Raspberry Pi, BeagleBone, or other board with a SPI bus
+* SK9822 or APA102 RGB LED strip
+* (Recommended) A 5 volt 3 amp external power supply
+* (Recommended) A general understanding of the [SPI bus][sparkfun.SPI]
 
 ## Introduction
 
@@ -31,7 +31,11 @@ It should help you build a general understanding on how data is transferred betw
 First and foremost, we need to wire up the board and LED strip. 
 Using your boards documentation find the pins for MISO and MOSI.  
 
+You will see two schemas for the signal naming convention. Please see the 
+[Open Source Hardware Association's resolution][A Resolution to Redefine SPI Signal Names].
+
 <pre>
+Deprecated signal names:
  __________________       __________________ 
 |             SCLK |---->| SCLK             |
 |  SPI        MOSI |---->| MOSI        SPI  |
@@ -41,6 +45,18 @@ Using your boards documentation find the pins for MISO and MOSI.
 </pre>
 
 ###### Single master to single slave: basic SPI bus example
+
+<pre>
+New signal names:
+ ___________________       ____________________ 
+|              SCLK |---->| SCLK               |
+|    SPI       COPI |---->| COPI       SPI     |
+| Controller   CIPO |<----| CIPO    Peripheral |
+|              CS   |---->| CS                 |
+ -------------------       -------------------- 
+</pre>
+
+###### Single controller to single peripheral: basic SPI bus example
 
 <details closed>
 
@@ -69,7 +85,7 @@ External Power 5v ------>|  5v              |
 <summary>Example Beaglebone Wiring Diagram</summary>
 <br>
 
-Using the BeagleBone Green Gateway's SPI0.
+Using the BeagleBone's SPI0.
 
 <pre>
  BeagleBone GateWay             SK9822
@@ -96,6 +112,12 @@ Lets match on your bus.
 
 ```elixir
 {:ok, ref} = Circuits.SPI.open("spidev0.0")
+```
+
+As well as alias `Circuits.SPI`.
+
+```elixir
+alias Circuits.SPI
 ```
 
 [return to top](#table-of-contents)
@@ -152,22 +174,20 @@ We will only have one LED frame, to blink the first LED on the strip.
 However, our end frame depends on the number of LEDs we have, 
 so lets calculate the number of bytes we will end with.
 
-The `Kernel.<>/2` operator concatinates our binaries.
+The `Kernel.<>/2` operator concatenates our binaries.
 
 ```elixir
 led_count = 1
 start_frame = << 0::32 >>
-# The end frame is 8 '0' bits * (leds - 1) / 16 (rounded up)
+# The end frame is 8 '0' bits * (leds - 1) / 16 (rounded)
 # These are clock edges to ensure the LED's respond immediately and is borrowed from the FASTLed library.
-end_frame = 
-  Enum.map(1..round((led_count - 1) / 16), fn _ -> <<0::8>> end)
-  |> Enum.map_join(& &1)
+end_frame = :binary.copy(<<0>>, round((led_count - 1) / 16))
 
 # Creating a List of frames with each LED on white
 led_frame = <<7::3, 1::5, 0xff, 0xff, 0xff>>
 
-# Transfer the frames over spi
-Circuits.SPI.transfer(ref, start_frame <> led_frame <> end_frame)
+# Transfer the frames over SPI
+SPI.transfer(ref, start_frame <> led_frame <> end_frame)
 ```
 
 Your first LED should bet lit up white now.
@@ -181,8 +201,8 @@ off_frame = <<7::3, 1::5, 0x00, 0x00, 0x00>>
 
 Enum.map(0..blink_times, fn x ->
     case rem(x, 2) do
-        0 -> Circuits.SPI.transfer(ref, start_frame <> led_frame <> end_frame)
-        _ -> Circuits.SPI.transfer(ref, start_frame <> off_frame <> end_frame)
+        0 -> SPI.transfer(ref, start_frame <> led_frame <> end_frame)
+        _ -> SPI.transfer(ref, start_frame <> off_frame <> end_frame)
     end
     Process.sleep(delay)
 end)
@@ -202,29 +222,27 @@ led_count = 144
 
 # The end frame is 8 '0' bits * (leds - 1) / 16 (rounded up)
 # These are clock edges to ensure the LED's respond immediately and is borrowed from the FASTLed library.
-end_frame =
-  Enum.map(1..round((led_count - 1) / 16), fn _ -> <<0::8>> end)
-  |> Enum.map_join(& &1)
+end_frame = :binary.copy(<<0>>, round((led_count - 1) / 16))
 
 # Creating a List of frames with each LED on white
 led_frames = Enum.map(1..led_count, fn _ -> led_frame end)
 off_frames = Enum.map(1..led_count, fn _ -> off_frame end)
 
-# Transfer the frames over spi
-Circuits.SPI.transfer(ref, start_frame <> Enum.join(led_frames) <> end_frame)
+# Transfer the frames over SPI
+SPI.transfer(ref, start_frame <> Enum.join(led_frames) <> end_frame)
 
 # Wait for a prespecified duration of time.
 Process.sleep(delay)
 
 # Turn them off
-Circuits.SPI.transfer(ref, start_frame <> Enum.join(off_frames) <> end_frame)
+SPI.transfer(ref, start_frame <> Enum.join(off_frames) <> end_frame)
 ```
 
 [return to top](#table-of-contents)
 
 ## Simple larson scanner
 
-A larson scanner, named after Glen A. Larson, is a back and forth scanning red light.
+A Larson scanner, named after Glen A. Larson, is a back and forth scanning red light.
 
 We are going to create a map the length of our LED strip for addressing.
 
@@ -245,7 +263,7 @@ Enum.map(1..scans, fn _ ->
       |> Enum.sort 
       |> Enum.map(fn {_, v} -> v end) 
       |> Enum.join
-    Circuits.SPI.transfer(ref, start_frame <> bytes <> end_frame)
+    SPI.transfer(ref, start_frame <> bytes <> end_frame)
     Process.sleep(delay)
   end)
 
@@ -257,13 +275,13 @@ Enum.map(1..scans, fn _ ->
       |> Enum.sort 
       |> Enum.map(fn {_, v} -> v end) 
       |> Enum.join
-    Circuits.SPI.transfer(ref, start_frame <> bytes <> end_frame)
+    SPI.transfer(ref, start_frame <> bytes <> end_frame)
     Process.sleep(delay)
   end)
 end)
 
 # Turn them off
-Circuits.SPI.transfer(ref, start_frame <> Enum.join(off_frames) <> end_frame)
+SPI.transfer(ref, start_frame <> Enum.join(off_frames) <> end_frame)
 ```
 
 [return to top](#table-of-contents)
@@ -288,16 +306,16 @@ from_hsv = fn(h, s, v) ->
     v = min_max.(0, 100, v)
 
     h = h / 60
-    i = Float.floor(h) |> trunc()
+    i = floor(h)
     f = h - i
     sat_dec = s / 100
     p = v * (1 - sat_dec)
     q = v * (1 - sat_dec * f)
     t = v * (1 - sat_dec * (1 - f))
-    p_rgb = (p * 255 / 100) |> trunc()
-    v_rgb = (v * 255 / 100) |> trunc()
-    t_rgb = (t * 255 / 100) |> trunc()
-    q_rgb = (q * 255 / 100) |> trunc()
+    p_rgb = floor(p * 255 / 100)
+    v_rgb = floor(v * 255 / 100)
+    t_rgb = floor(t * 255 / 100)
+    q_rgb = floor(q * 255 / 100)
 
     case i do
       0 -> << 7::3, 1::5, p_rgb, t_rgb, v_rgb >>
@@ -331,13 +349,13 @@ Enum.map(1..scans, fn _ ->
       |> Enum.sort 
       |> Enum.map(fn {_, v} -> v end) 
       |> Enum.join
-    Circuits.SPI.transfer(ref, start_frame <> bytes <> end_frame)
+    SPI.transfer(ref, start_frame <> bytes <> end_frame)
     Process.sleep(delay)
   end
 end)
 
 # Turn them off
-Circuits.SPI.transfer(ref, start_frame <> Enum.join(off_frames) <> end_frame)
+SPI.transfer(ref, start_frame <> Enum.join(off_frames) <> end_frame)
 ```
 
 [return to top](#table-of-contents)
@@ -346,6 +364,7 @@ Circuits.SPI.transfer(ref, start_frame <> Enum.join(off_frames) <> end_frame)
 
 Want to keep going with these exercises? Here is a list of suggestions!
 
+1. Add a faded trail to the Larson scanner.
 1. Make Frame and Color modules with guards for the led_frame values.
 1. Managing state and rendering using GenServer.
 
@@ -355,17 +374,25 @@ Want to keep going with these exercises? Here is a list of suggestions!
 
 | Acronym | Definition |
 | ------: | ---------- |
-| LED     | Light Emitting Diode. |
+| LED     | Light Emitting Diode |
 | RGB     | Red, Green, Blue. |
-| SPI     | Serial Peripheral Interface. |
-| MISO    | Master input, slave output |
-| CIPO    | Controller input, peripheral output |
-| MOSI    | Master output, slave input |
-| COPI    | Controller output, peripheral input |
+| SPI     | Serial Peripheral Interface |
+| MOSI    | Master Out Slave In |
+| MISO    | Master In Slave Out |
+| SS      | Slave Select |
+| MOMI    | Master Out Master In |
+| SOSI    | Slave Out Slave In |
+| SDO     | Serial Data Out. An output signal on a device where data is sent out to another SPI device |
+| SDI     | Serial Data In. An input signal on a device where data is received from another SPI device |
+| CS      | Chip Select. Activated by the controller to initiate communication with a given peripheral |
+| COPI    | controller out / peripheral in). For devices that can be either a controller or a peripheral; the signal on which the device sends output when acting as the controller, and receives input when acting as the peripheral |
+| CIPO    | controller in / peripheral out). For devices that can be either a controller or a peripheral; the signal on which the device receives input when acting as the controller, and sends output when acting as the peripheral |
+| SDIO    | Serial Data In/Out. A bi-directional serial signal |
 
 [return to top](#table-of-contents)
 
-[sparkfun.SPI]: https://learn.sparkfun.com/tutorials/serial-peripheral-interface-spi/all
-[circuits.SPI]: https://hexdocs.pm/circuits_spi/readme.html
+[sparkfun.SPI]: https://learn.sparkfun.com/tutorials/serial-peripheral-interface-SPI/all
+[circuits.SPI]: https://hexdocs.pm/circuits_SPI/readme.html
 [SK9822-a-clone-of-the-apa102]: https://cpldcpu.wordpress.com/2016/12/13/SK9822-a-clone-of-the-apa102/
 [fastLED]: https://github.com/FastLED/FastLED
+[A Resolution to Redefine SPI Signal Names]: https://www.oshwa.org/a-resolution-to-redefine-SPI-signal-names/
