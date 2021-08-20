@@ -23,31 +23,17 @@
 
 In this exercise, we will be lighting up an RGB LED strip using the `circuits.SPI` library. 
 
-If you are unfamiliar with the SPI bus, please take a moment to review the [circuits.SPI][circuits.SPI] online documentation.
-It should help you build a general understanding on how data is transferred between a controller and peripheral.
+If you are unfamiliar with the SPI bus, please take a moment to review the [circuits.SPI][circuits.SPI] 
+online documentation and the [Open Source Hardware Association's resolution.][A Resolution to Redefine SPI Signal Names].
+It should help you build a general understanding of naming convention, and how data is transferred between a controller and peripheral.
 
 ## Wiring and discovering your SPI bus
 
 First and foremost, we need to wire up the board and LED strip. 
-Using your boards documentation find the pins for MISO and MOSI.  
-
-You will see two schemas for the signal naming convention. Please see the 
-[Open Source Hardware Association's resolution][A Resolution to Redefine SPI Signal Names].
+Using your boards documentation find the pins for `SCLK`, `GND`, and `COPI`. 
 
 <pre>
-Deprecated signal names:
- __________________       __________________ 
-|             SCLK |---->| SCLK             |
-|  SPI        MOSI |---->| MOSI        SPI  |
-| Master      MISO |<----| MISO       Slave |
-|             SS   |---->| SS               |
- ------------------       ------------------ 
-</pre>
-
-###### Single master to single slave: basic SPI bus example
-
-<pre>
-New signal names:
+Example SPI Diagram:
  ___________________       ____________________ 
 |              SCLK |---->| SCLK               |
 |    SPI       COPI |---->| COPI       SPI     |
@@ -70,7 +56,7 @@ Using the Raspberry Pi's SPI0.
  __________________       __________________ 
 |  Ground      GND |<----| GND              |
 |  GPIO 11    SCLK |---->|  CI              |
-|  GPIO 10    MOSI |---->|  DI              |
+|  GPIO 10    COPI |---->|  DI              |
  ------------------      |                  |
 External Power 5v ------>|  5v              |
                           ------------------ 
@@ -92,7 +78,7 @@ Using the BeagleBone's SPI0.
  __________________       __________________ 
 |  Ground      GND |<----|  GND             |
 |  GPIO 22    SCLK |---->|   CI             |
-|  GPIO 21    MOSI |---->|   DI             |
+|  GPIO 21    COPI |---->|   DI             |
  ------------------      |                  |
 External Power 5v ------>|   5v             |
                           ------------------ 
@@ -377,11 +363,6 @@ Want to keep going with these exercises? Here is a list of suggestions!
 | LED     | Light Emitting Diode |
 | RGB     | Red, Green, Blue. |
 | SPI     | Serial Peripheral Interface |
-| MOSI    | Master Out Slave In |
-| MISO    | Master In Slave Out |
-| SS      | Slave Select |
-| MOMI    | Master Out Master In |
-| SOSI    | Slave Out Slave In |
 | SDO     | Serial Data Out. An output signal on a device where data is sent out to another SPI device |
 | SDI     | Serial Data In. An input signal on a device where data is received from another SPI device |
 | CS      | Chip Select. Activated by the controller to initiate communication with a given peripheral |
