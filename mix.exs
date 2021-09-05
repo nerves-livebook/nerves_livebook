@@ -47,13 +47,13 @@ defmodule NervesLivebook.MixProject do
       {:ring_logger, "~> 0.8.1"},
       {:toolshed, "~> 0.2.13"},
       {:jason, "~> 1.2"},
-      {:livebook, "~> 0.2.0", only: [:dev, :prod]},
       {:nerves_runtime, "~> 0.11.3"},
       {:nerves_pack, "~> 0.4.0"},
+      {:livebook, "~> 0.2.3", only: [:dev, :prod]},
 
       # Extra Livebook dependencies since Mix.install doesn't work yet
-      {:vega_lite, "~> 0.1.0"},
-      {:kino, "~> 0.2.3"},
+      {:vega_lite, "~> 0.1"},
+      {:kino, "~> 0.3"},
 
       # Dependencies for all targets except :host
       {:circuits_uart, "~> 1.3", targets: @all_targets},
