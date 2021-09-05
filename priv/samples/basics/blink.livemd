@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this exercise, we will use the [circuits_gpio] library to control 
+In this exercise, we will use the [circuits_gpio] library to control
 a GPIO as an output, and blink an LED.
 
 ## Try it out
@@ -20,7 +20,7 @@ led_pin = 20
 
 Alright! Now that we've selected a pin, make sure that we connect
 the to our `led_pin` and `ground` through a 220Ω resistor. The long leg
-can be connected to our `led_pin` and the short pin can connect from 
+can be connected to our `led_pin` and the short pin can connect from
 the shorter leg to a 220Ω resistor, then to our ground.
 
 ![Fritzing Diagram](https://raw.githubusercontent.com/fhunleth/nerves_livebook/main/assets/gpio/led_rpi4_rpi0.svg)
@@ -62,7 +62,7 @@ defmodule Blink do
     pin(output_gpio, 500, 3)
   end
   # Or provide a delay to blink faster or slower
-  def pin(output_gpio, delay, times) when times <= 0  do
+  def pin(_output_gpio, _delay, times) when times <= 0  do
     # Do nothing after the count completes
   end
 
