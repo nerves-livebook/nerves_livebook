@@ -57,36 +57,36 @@ config :nerves_ssh,
   ]
 
 config :mdns_lite,
-  # The `host` key specifies what hostnames mdns_lite advertises.  `:hostname`
-  # advertises the device's hostname.local. For the official Nerves systems, this
-  # is "nerves-<4 digit serial#>.local".  mdns_lite also advertises
-  # "nerves.local" for convenience. If more than one Nerves device is on the
-  # network, delete "nerves" from the list.
-
+  # Use MdnsLite's DNS bridge feature to support mDNS resolution in Erlang
+  dns_bridge_enabled: true,
+  dns_bridge_port: 53,
+  dns_bridge_recursive: true,
+  # Respond to "nerves-1234.local` and "nerves.local"
   host: [:hostname, "nerves"],
   ttl: 120,
 
   # Advertise the following services over mDNS.
   services: [
     %{
-      name: "SSH Remote Login Protocol",
       protocol: "ssh",
       transport: "tcp",
       port: 22
     },
     %{
-      name: "Secure File Transfer Protocol over SSH",
       protocol: "sftp-ssh",
       transport: "tcp",
       port: 22
     },
     %{
-      name: "Erlang Port Mapper Daemon",
       protocol: "epmd",
       transport: "tcp",
       port: 4369
     }
   ]
+
+config :vintage_net,
+  regulatory_domain: "US",
+  additional_name_servers: [{127, 0, 0, 53}]
 
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
