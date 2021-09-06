@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.2.18
+
+* Updates
+  * Livebook 0.2.3
+  * Update to MdnsLite 0.8.0 and enable support for using mDNS (.local)
+    addresses with Erlang distribution and more
+  * Update various other Nerves dependencies
+
 ## v0.2.17
 
 * Updates
