@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.2.19
+
+* Updates
+  * Use new Nerves MOTD for ssh logins
+
 ## v0.2.18
 
 * Updates
