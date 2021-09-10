@@ -128,7 +128,7 @@ $ mix burn
 
 # Option 2: Upload to an existing Nerves Livebook device
 $ mix firmware.gen.script
-$ ./upload.sh nerves.local
+$ ./upload.sh livebook@nerves.local
 ```
 
 ## Firmware provisioning options
