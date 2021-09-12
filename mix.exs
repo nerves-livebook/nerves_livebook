@@ -65,6 +65,8 @@ defmodule NervesLivebook.MixProject do
       {:pigpiox, "~>0.1", targets: [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4]},
       {:ramoops_logger, "~> 0.1", targets: @all_targets},
       {:bmp280, "~> 0.2", targets: @all_targets},
+      {:scroll_hat,
+       github: "jjcarstens/scroll_hat", targets: [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4]},
 
       # Temporary: help hex resolve dependencies. Hex incorrectly downgrades
       # without these hints.
