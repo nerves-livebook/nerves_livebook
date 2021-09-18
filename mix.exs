@@ -3,18 +3,8 @@ defmodule NervesLivebook.MixProject do
 
   @app :nerves_livebook
   @version "0.2.19"
-  @all_targets [
-    :rpi,
-    :rpi0,
-    :rpi2,
-    :rpi3,
-    :rpi3a,
-    :rpi4,
-    :bbb,
-    :osd32mp1,
-    :x86_64,
-    :npi_imx6ull
-  ]
+  @rpi_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4]
+  @all_targets @rpi_targets ++ [:bbb, :osd32mp1, :x86_64, :npi_imx6ull]
 
   def project do
     [
@@ -62,11 +52,10 @@ defmodule NervesLivebook.MixProject do
       {:circuits_i2c, "~> 0.3", targets: @all_targets},
       {:circuits_spi, "~> 0.1", targets: @all_targets},
       {:nerves_key, "~> 0.5.5", targets: @all_targets},
-      {:pigpiox, "~>0.1", targets: [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4]},
+      {:pigpiox, "~>0.1", targets: @rpi_targets},
       {:ramoops_logger, "~> 0.1", targets: @all_targets},
       {:bmp280, "~> 0.2", targets: @all_targets},
-      {:scroll_hat,
-       github: "jjcarstens/scroll_hat", targets: [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4]},
+      {:scroll_hat, "~> 0.1", targets: @rpi_targets},
 
       # Dependencies for specific targets
       {:nerves_system_rpi, "~> 1.15", runtime: false, targets: :rpi},
