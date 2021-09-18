@@ -68,12 +68,6 @@ defmodule NervesLivebook.MixProject do
       {:scroll_hat,
        github: "jjcarstens/scroll_hat", targets: [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4]},
 
-      # Temporary: help hex resolve dependencies. Hex incorrectly downgrades
-      # without these hints.
-      {:telemetry, "~> 0.4.3 or ~> 1.0"},
-      {:telemetry_metrics, "~> 0.6.1 or ~> 1.0"},
-      {:telemetry_poller, "~> 0.5.1 or ~> 1.0"},
-
       # Dependencies for specific targets
       {:nerves_system_rpi, "~> 1.15", runtime: false, targets: :rpi},
       {:nerves_system_rpi0, "~> 1.15", runtime: false, targets: :rpi0},
