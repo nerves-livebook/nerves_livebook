@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.2.20
+
+* Updates
+  * The Raspberry Pi 4 USB-C port can now be used for power and data. This is
+    similar to the Raspberry Pi Zero, 3A and BBB.
+  * Minor updates to a variety of packages
+
 ## v0.2.19
 
 * Updates
