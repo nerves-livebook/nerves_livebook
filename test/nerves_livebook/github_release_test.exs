@@ -10,15 +10,15 @@ defmodule NervesLivebook.GithubReleaseTest do
     response = example_response()
 
     assert {:ok,
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi0.fw"} ==
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi0.fw"} ==
              GithubRelease.firmware_url(response, "nerves_livebook_rpi0.fw")
 
     assert {:ok,
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_bbb.fw"} ==
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_bbb.fw"} ==
              GithubRelease.firmware_url(response, "nerves_livebook_bbb.fw")
 
     assert {:ok,
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi4.fw"} ==
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi4.fw"} ==
              GithubRelease.firmware_url(response, "nerves_livebook_rpi4.fw")
 
     assert {:error, :not_found} ==
@@ -30,7 +30,7 @@ defmodule NervesLivebook.GithubReleaseTest do
       "assets" => [
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_bbb.fw",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_bbb.fw",
           "content_type" => "application/octet-stream",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -43,30 +43,30 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:44Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708235"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708235"
         },
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_bbb.zip",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_bbb.zip",
           "content_type" => "application/zip",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -79,30 +79,30 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:44Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708230"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708230"
         },
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_npi_imx6ull.fw",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_npi_imx6ull.fw",
           "content_type" => "application/octet-stream",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -115,30 +115,30 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:44Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708226"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708226"
         },
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_npi_imx6ull.zip",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_npi_imx6ull.zip",
           "content_type" => "application/zip",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -151,30 +151,30 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:44Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708231"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708231"
         },
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_osd32mp1.fw",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_osd32mp1.fw",
           "content_type" => "application/octet-stream",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -187,30 +187,30 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708221"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708221"
         },
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_osd32mp1.zip",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_osd32mp1.zip",
           "content_type" => "application/zip",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -223,30 +223,30 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:44Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708223"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708223"
         },
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi.fw",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi.fw",
           "content_type" => "application/octet-stream",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -259,30 +259,30 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708224"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708224"
         },
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi.zip",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi.zip",
           "content_type" => "application/zip",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -295,30 +295,30 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708219"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708219"
         },
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi0.fw",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi0.fw",
           "content_type" => "application/octet-stream",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -331,30 +331,30 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708227"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708227"
         },
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi0.zip",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi0.zip",
           "content_type" => "application/zip",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -367,30 +367,30 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708222"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708222"
         },
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi2.fw",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi2.fw",
           "content_type" => "application/octet-stream",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -403,30 +403,30 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:44Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708232"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708232"
         },
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi2.zip",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi2.zip",
           "content_type" => "application/zip",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -439,30 +439,30 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:44Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708229"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708229"
         },
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi3.fw",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi3.fw",
           "content_type" => "application/octet-stream",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -475,30 +475,30 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708228"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708228"
         },
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi3.zip",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi3.zip",
           "content_type" => "application/zip",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -511,30 +511,30 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708225"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708225"
         },
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi3a.fw",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi3a.fw",
           "content_type" => "application/octet-stream",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -547,30 +547,30 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708233"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708233"
         },
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi3a.zip",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi3a.zip",
           "content_type" => "application/zip",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -583,30 +583,30 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708220"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708220"
         },
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi4.fw",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi4.fw",
           "content_type" => "application/octet-stream",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -619,30 +619,30 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708218"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708218"
         },
         %{
           "browser_download_url" =>
-            "https://github.com/fhunleth/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi4.zip",
+            "https://github.com/livebook-dev/nerves_livebook/releases/download/v0.1.1/nerves_livebook_rpi4.zip",
           "content_type" => "application/zip",
           "created_at" => "2021-04-23T20:18:42Z",
           "download_count" => 0,
@@ -655,66 +655,66 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/fhunleth/followers",
-            "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/fhunleth",
+            "html_url" => "https://github.com/livebook-dev",
             "id" => 64669,
-            "login" => "fhunleth",
+            "login" => "livebook-dev",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-            "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-            "repos_url" => "https://api.github.com/users/fhunleth/repos",
+            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/fhunleth"
+            "url" => "https://api.github.com/users/livebook-dev"
           },
           "url" =>
-            "https://api.github.com/repos/fhunleth/nerves_livebook/releases/assets/35708234"
+            "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/assets/35708234"
         }
       ],
       "assets_url" =>
-        "https://api.github.com/repos/fhunleth/nerves_livebook/releases/41924363/assets",
+        "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/41924363/assets",
       "author" => %{
         "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-        "events_url" => "https://api.github.com/users/fhunleth/events{/privacy}",
-        "followers_url" => "https://api.github.com/users/fhunleth/followers",
-        "following_url" => "https://api.github.com/users/fhunleth/following{/other_user}",
-        "gists_url" => "https://api.github.com/users/fhunleth/gists{/gist_id}",
+        "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
+        "followers_url" => "https://api.github.com/users/livebook-dev/followers",
+        "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
+        "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
         "gravatar_id" => "",
-        "html_url" => "https://github.com/fhunleth",
+        "html_url" => "https://github.com/livebook-dev",
         "id" => 64669,
-        "login" => "fhunleth",
+        "login" => "livebook-dev",
         "node_id" => "MDQ6VXNlcjY0NjY5",
-        "organizations_url" => "https://api.github.com/users/fhunleth/orgs",
-        "received_events_url" => "https://api.github.com/users/fhunleth/received_events",
-        "repos_url" => "https://api.github.com/users/fhunleth/repos",
+        "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
+        "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
+        "repos_url" => "https://api.github.com/users/livebook-dev/repos",
         "site_admin" => false,
-        "starred_url" => "https://api.github.com/users/fhunleth/starred{/owner}{/repo}",
-        "subscriptions_url" => "https://api.github.com/users/fhunleth/subscriptions",
+        "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
+        "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
         "type" => "User",
-        "url" => "https://api.github.com/users/fhunleth"
+        "url" => "https://api.github.com/users/livebook-dev"
       },
       "body" => "Initial CI-built release",
       "created_at" => "2021-04-23T18:36:35Z",
       "draft" => false,
-      "html_url" => "https://github.com/fhunleth/nerves_livebook/releases/tag/v0.1.1",
+      "html_url" => "https://github.com/livebook-dev/nerves_livebook/releases/tag/v0.1.1",
       "id" => 41_924_363,
       "name" => "v0.1.1",
       "node_id" => "MDc6UmVsZWFzZTQxOTI0MzYz",
       "prerelease" => false,
       "published_at" => "2021-04-23T20:19:57Z",
       "tag_name" => "v0.1.1",
-      "tarball_url" => "https://api.github.com/repos/fhunleth/nerves_livebook/tarball/v0.1.1",
+      "tarball_url" => "https://api.github.com/repos/livebook-dev/nerves_livebook/tarball/v0.1.1",
       "target_commitish" => "main",
       "upload_url" =>
-        "https://uploads.github.com/repos/fhunleth/nerves_livebook/releases/41924363/assets{?name,label}",
-      "url" => "https://api.github.com/repos/fhunleth/nerves_livebook/releases/41924363",
-      "zipball_url" => "https://api.github.com/repos/fhunleth/nerves_livebook/zipball/v0.1.1"
+        "https://uploads.github.com/repos/livebook-dev/nerves_livebook/releases/41924363/assets{?name,label}",
+      "url" => "https://api.github.com/repos/livebook-dev/nerves_livebook/releases/41924363",
+      "zipball_url" => "https://api.github.com/repos/livebook-dev/nerves_livebook/zipball/v0.1.1"
     }
   end
 end

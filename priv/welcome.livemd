@@ -48,7 +48,7 @@ differences:
    then accessible in another.
 2. Installing hex dependencies is not supported. The Nerves Livebook contains
    may useful libraries for Nerves. For the time being, if useful one is
-   missing please file an [issue](https://github.com/fhunleth/nerves_livebook/issues)
+   missing please file an [issue](https://github.com/livebook-dev/nerves_livebook/issues)
    so it can be considered for inclusion.
 
 ## Learn more

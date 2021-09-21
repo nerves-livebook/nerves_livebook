@@ -1,6 +1,6 @@
 # Nerves Livebook Firmware
 
-[![CircleCI](https://circleci.com/gh/fhunleth/nerves_livebook.svg?style=svg)](https://circleci.com/gh/fhunleth/nerves_livebook)
+[![CircleCI](https://circleci.com/gh/livebook-dev/nerves_livebook.svg?style=svg)](https://circleci.com/gh/livebook-dev/nerves_livebook)
 
 The Nerves Livebook firmware lets you try out the Nerves projects on real
 hardware without needing to build anything. Within minutes, you'll have a
@@ -32,7 +32,7 @@ require an Ethernet or WiFi connection.
 ## Downloading the Firmware
 
 Find the appropriate firmware or zip file
-[here](https://github.com/fhunleth/nerves_livebook/releases). If you're using
+[here](https://github.com/livebook-dev/nerves_livebook/releases). If you're using
 `fwup` to write images to MicroSD cards, download the `.fw` extension and if
 you're using `etcher`, get the `zip` file. If you don't have a preference,
 download the appropriate `.fw` file and follow the `fwup` instructions since
@@ -115,7 +115,7 @@ through the Nerves installation steps. Then open a terminal window and run the
 following:
 
 ```sh
-$ git clone https://github.com/fhunleth/nerves_livebook.git
+$ git clone https://github.com/livebook-dev/nerves_livebook.git
 $ cd nerves_livebook
 
 # Set the MIX_TARGET to the desired platform (rpi0, bbb, rpi3, etc.)

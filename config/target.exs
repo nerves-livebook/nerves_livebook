@@ -52,7 +52,7 @@ config :nerves_ssh,
   daemon_option_overrides: [
     {:auth_method_kb_interactive_data,
      {'Nerves Livebook',
-      'https://github.com/fhunleth/nerves_livebook\n\nssh livebook@nerves.local # Use password "nerves"\n',
+      'https://github.com/livebook-dev/nerves_livebook\n\nssh livebook@nerves.local # Use password "nerves"\n',
       'Password: ', false}}
   ]
 

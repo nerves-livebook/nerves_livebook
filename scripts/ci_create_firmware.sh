@@ -18,7 +18,7 @@ set -e
 FULL_FIRMWARE_FILENAME="nerves_livebook_${MIX_TARGET}.fw"
 FULL_FIRMWARE_PATH="$DEPLOY_PATH/$FULL_FIRMWARE_FILENAME"
 PREVIOUS_FIRMWARE_FILENAME="previous_${MIX_TARGET}.fw"
-PREVIOUS_FIRMWARE_URL=https://github.com/fhunleth/nerves_livebook/releases/latest/download/nerves_livebook_${MIX_TARGET}.fw
+PREVIOUS_FIRMWARE_URL=https://github.com/livebook-dev/nerves_livebook/releases/latest/download/nerves_livebook_${MIX_TARGET}.fw
 SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
 
 # Copy the firmware out of the build directory

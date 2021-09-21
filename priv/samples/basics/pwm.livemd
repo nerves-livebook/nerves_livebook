@@ -16,7 +16,7 @@ Lets set a variable so that we dont have to choose the GPIO pin every time.
 
 First, refer to the GPIO ports for your Nerves device. In this example, we will be using pin 20 on the Raspberry Pi platform.
 
-![](https://raw.githubusercontent.com/fhunleth/nerves_livebook/main/assets/gpio/rpi_pinout.png)
+![](https://raw.githubusercontent.com/livebook-dev/nerves_livebook/main/assets/gpio/rpi_pinout.png)
 
 ```elixir
 led_pin = 20
@@ -24,10 +24,10 @@ led_pin = 20
 
 Alright! Now that we've selected a pin, make sure that we connect
 the to our `led_pin` and `ground` through a 220Ω resistor. The long leg
-can be connected to our `led_pin` and the short pin can connect from 
+can be connected to our `led_pin` and the short pin can connect from
 the shorter leg to a 220Ω resistor, then to our ground.
 
-![Fritzing Diagram](https://raw.githubusercontent.com/fhunleth/nerves_livebook/main/assets/gpio/led_rpi4_rpi0.svg)
+![Fritzing Diagram](https://raw.githubusercontent.com/livebook-dev/nerves_livebook/main/assets/gpio/led_rpi4_rpi0.svg)
 
 Now we will create a connection to that GPIO pin and set it as an :output.
 

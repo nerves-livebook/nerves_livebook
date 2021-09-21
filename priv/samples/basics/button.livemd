@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this exercise, we will use the [circuits_gpio] library to control 
+In this exercise, we will use the [circuits_gpio] library to control
 a GPIO as an input and output, turning an LED on and off with a button press.
 
 ## Try it out
@@ -11,7 +11,7 @@ Lets set a variable for the LED and button so that we dont have to choose the GP
 
 First, refer to the GPIO ports for your Nerves device.
 
-![](https://raw.githubusercontent.com/fhunleth/nerves_livebook/main/assets/gpio/rpi_pinout.png)
+![](https://raw.githubusercontent.com/livebook-dev/nerves_livebook/main/assets/gpio/rpi_pinout.png)
 
 ```elixir
 led_pin = 20
@@ -20,21 +20,21 @@ button_pin = 17
 
 Alright! Now that we've selected our pins, make sure that we connect
 the to our `led_pin` and `ground` through a 220Ω resistor. The long leg
-can be connected to our `led_pin` and the short pin can connect from 
+can be connected to our `led_pin` and the short pin can connect from
 the shorter leg to a 220Ω resistor, then to our ground.
 
 Connect one of the legs of the button to a 10kΩ resistor to 5v, and the diagonal leg to your `button_pin`.
 
-![Fritzing Diagram](https://raw.githubusercontent.com/fhunleth/nerves_livebook/main/assets/gpio/button_and_led_rpi4_rpi0.svg)
+![Fritzing Diagram](https://raw.githubusercontent.com/livebook-dev/nerves_livebook/main/assets/gpio/button_and_led_rpi4_rpi0.svg)
 
-The following code will configure the `led_pin` as an `:output` and the `button_pin` as an `input`. 
+The following code will configure the `led_pin` as an `:output` and the `button_pin` as an `input`.
 
 ```elixir
 {:ok, led_output} = Circuits.GPIO.open(led_pin, :output)
 {:ok, button_input} = Circuits.GPIO.open(button_pin, :input)
 ```
 
-Whenever you run the following code, it will read whether your button is pressed or not, and set the `led_output` to match. 
+Whenever you run the following code, it will read whether your button is pressed or not, and set the `led_output` to match.
 
 ```elixir
 button_state = Circuits.GPIO.read(button_input)

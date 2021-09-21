@@ -8,13 +8,13 @@ This sample demonstrates how to read temperature data from the BMP280 temperatur
 
 The explanation below assumes a [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) as a target device but other [Nerves targets](https://hexdocs.pm/nerves/targets.html) should work as well.
 
-![](https://raw.githubusercontent.com/fhunleth/nerves_livebook/main/assets/bmp280/rpi0.jpg)
+![](https://raw.githubusercontent.com/livebook-dev/nerves_livebook/main/assets/bmp280/rpi0.jpg)
 
 ## Sensor board
 
 The [Bosch BMP280 sensor](https://www.bosch-sensortec.com/products/environmental-sensors/pressure-sensors/) itself is so tiny that it might be difficult to handle but some electronics components manufactureres mount it on a [breakout board](https://en.wikipedia.org/wiki/Printed_circuit_board) for our convenience, which is what we look for. Do [Google search by "BMP280 breakout board"](https://www.google.com/search?q=bmp280+breakout+board) and you will find something like [Adafruit BMP280 Sensor board](https://www.adafruit.com/product/2651).
 
-![](https://raw.githubusercontent.com/fhunleth/nerves_livebook/main/assets/bmp280/bme280_breakout.jpg)
+![](https://raw.githubusercontent.com/livebook-dev/nerves_livebook/main/assets/bmp280/bme280_breakout.jpg)
 
 You can alternatively use [BME280](https://www.bosch-sensortec.com/products/environmental-sensors/humidity-sensors-bme280/) or [BME680](https://www.bosch-sensortec.com/products/environmental-sensors/gas-sensors-bme680/) since the [elixir-sensors/bmp280](https://github.com/elixir-sensors/bmp280) library supports them.
 
@@ -26,7 +26,7 @@ Roughly speaking, there are typically two ways to hook up a sensor to our Nerves
 
 If you already have a [soldering iron](https://en.wikipedia.org/wiki/Soldering_iron) and enjoy using it, this is the go-to option. Even if you have not already, soldering can be fun. This option only requires a [pin header](https://en.wikipedia.org/wiki/Pin_header) and 4 [jumper wires](https://en.wikipedia.org/wiki/Jump_wire)
 
-![](https://raw.githubusercontent.com/fhunleth/nerves_livebook/main/assets/bmp280/rpi0_pin_header_bme280.jpg)
+![](https://raw.githubusercontent.com/livebook-dev/nerves_livebook/main/assets/bmp280/rpi0_pin_header_bme280.jpg)
 
 [I2C](https://en.wikipedia.org/wiki/I%C2%B2C) protocol uses 4 pins. It is confusing but different products may name the  pins differently.
 
@@ -43,7 +43,7 @@ If you already have a [soldering iron](https://en.wikipedia.org/wiki/Soldering_i
 
 Taking advantage of [Qwiic Connect System](https://www.sparkfun.com/qwiic) or similar system, we can remove the need for the soldering. One tradeoff is that we need to get an extra board like [Qwiic HAT for Raspberry Pi](https://www.adafruit.com/product/4688) and special wires.
 
-![](https://raw.githubusercontent.com/fhunleth/nerves_livebook/main/assets/bmp280/rpi0_qwiic_bme280.jpg)
+![](https://raw.githubusercontent.com/livebook-dev/nerves_livebook/main/assets/bmp280/rpi0_qwiic_bme280.jpg)
 
 ## Elixir libraries
 
