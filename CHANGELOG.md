@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.21
+
+* Updates
+  * Update all URLs to point to the `nerves_livebook` home on the `livebook-dev`
+    GitHub repository
+
 ## v0.2.20
 
 * Updates
