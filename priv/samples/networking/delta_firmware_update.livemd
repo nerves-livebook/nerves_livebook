@@ -31,7 +31,7 @@ Firmware partition: #{Nerves.Runtime.KV.get("nerves_fw_active")}
 ```
 
 Nerves Livebook delta firmware images are hosted on GitHub under the [releases
-tab](https://github.com/fhunleth/nerves_livebook/releases). They start with the
+tab](https://github.com/livebook-dev/nerves_livebook/releases). They start with the
 letter `z` and then have the firmware UUID that they can update. The Nerves
 Livebook CI scripts only build delta updates for upgrading the previous
 release, so if you don't see your UUID, load the previous release's firmware on
@@ -50,7 +50,7 @@ NervesLivebook.check_internet!()
 
 # Setup for below
 alias NervesLivebook.GithubRelease
-repo = "fhunleth/nerves_livebook"
+repo = "livebook-dev/nerves_livebook"
 firmware_path = "/data/delta.fw"
 firmware_public_key = "IyCnjyE1rrV+W5HFrovC+ZyxrBh9fF7Na4S+7dcGAPw="
 
@@ -111,7 +111,7 @@ filesystem of one firmware with that of the next one. The process is simple,
 but manual. It consists of unzipping the firmware files (they're just ZIP
 files), running `xdelta3`, and then putting the compressed output back in the
 ZIP file. See
-[`create_delta_fw.sh`](https://github.com/fhunleth/nerves_livebook/blob/main/scripts/create_delta_fw.sh).
+[`create_delta_fw.sh`](https://github.com/livebook-dev/nerves_livebook/blob/main/scripts/create_delta_fw.sh).
 
 The cryptographic checksums and signatures that `fwup` uses will still pass so
 long as the expansion on the `xdelta3`-compressed binary outputs the exact same
