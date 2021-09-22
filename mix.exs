@@ -71,7 +71,7 @@ defmodule NervesLivebook.MixProject do
       {:nerves_system_npi_imx6ull, "~> 0.3", runtime: false, targets: :npi_imx6ull},
 
       # This is solely needed as an artifact of the nerves_system_* dependencies and a rpi4 release.
-      {:nerves_system_br, "1.16.5", runtime: false, targets: @all_targets, override: true}
+      {:nerves_system_br, "1.17.0", runtime: false, targets: @all_targets, override: true}
     ]
   end
 
