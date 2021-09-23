@@ -8,11 +8,10 @@ Raspberry Pi or Beaglebone running Nerves. You'll be able to run code in
 [Livebooks](https://github.com/elixir-nx/livebook) and work through Nerves
 tutorials from the comfort of your browser.
 
-*This is a work in progress. Most of our testing is on the Raspberry Pi Zero W*
-
 ## Prerequisites
 
-To work through this tutorial, you'll need one of the following boards:
+First, you'll need to get some hardware. Nerves Livebook supports the following
+devices:
 
 * `bbb` - BeagleBone Black, BeagleBone Green, PocketBeagle, etc.
 * `rpi0` - Raspberry Pi Zero or Zero W
@@ -22,23 +21,29 @@ To work through this tutorial, you'll need one of the following boards:
 * `rpi3a` - Raspberry Pi 3 Model A+
 * `rpi4` - Raspberry Pi 4 Model B
 * `osd32mp1` - Octavo OSD32MP1-BRK
-* `npi_imx6ull` - Seeed Studio imx6ull (select MicroSD boot mode)
+* `npi_imx6ull` - Seeed Studio imx6ull (select the MicroSD boot mode switches)
 
 Some of these are easier than others to use. If you have a choice, the Raspberry
-Pi Zero and BeagleBones are nice since you can connect them to your laptop or
-computer by one USB cable that supplies power and networking. The other boards
-require an Ethernet or WiFi connection.
+Pi Zero, Raspberry Pi 4 and BeagleBones are good ones to try first. These boards
+have a lot of functionality and connecting them to a network is a little easier
+than the others.
 
 ## Downloading the Firmware
 
-Find the appropriate firmware or zip file
-[here](https://github.com/livebook-dev/nerves_livebook/releases). If you're using
-`fwup` to write images to MicroSD cards, download the `.fw` extension and if
-you're using `etcher`, get the `zip` file. If you don't have a preference,
-download the appropriate `.fw` file and follow the `fwup` instructions since
-those will come in handy if you start using Nerves more.
+Next, find the appropriate firmware or zip'd image file for your hardware in the
+[releases](https://github.com/livebook-dev/nerves_livebook/releases). This is a
+one time step. There's a Livebook notebook for upgrading the firmware for when
+we make releases!
 
-Once that's done, you're ready to burn the firmware to the MicroSD card.
+You have two firmware packaging options. The first is to use the
+[`fwup`](https://github.com/fwup-home/fwup) commandline application and the
+other is to use a program like [Etcher](https://www.balena.io/etcher/). Download
+the file with the `.fw` extension for `fwup` and the `zip` file for Etcher. If
+you ok with the commandline, using `fwup` will come in handy if you start using
+Nerves more.
+
+Once the download completes, you're ready to burn the firmware to the MicroSD
+card.
 
 ## Burning the Firmware
 
@@ -76,16 +81,16 @@ sudo NERVES_WIFI_SSID='access_point' NERVES_WIFI_PASSPHRASE='passphrase' fwup ne
 ```
 
 You can still change the WiFi credentials at runtime using
-`VintageNetWiFi.quick_configure/2`, but this helps you don't have an easy
-alternative way of accessing the device to configure WiFi.
+`VintageNetWiFi.quick_configure/2`, but this helps you don't have an easy way of
+accessing the device to configure WiFi.
 
 Now you have Nerves Livebook ready to run on your device. Skip ahead to the next
 section.
 
 ### `etcher`
 
-Start [`etcher`](https://www.etcher.net/), point it to the zip file, and follow
-the prompts:
+Start [`etcher`](https://www.balena.io/etcher/), point it to the zip file, and
+follow the prompts:
 
 ![etcher screenshot](assets/etcher.png)
 
@@ -95,9 +100,13 @@ setting credentials), then check out the `fwup` instructions above.
 
 ## Running the Firmware
 
-Eject the SD card and insert it into the device that you're using. Power up and
-connect the device with a USB cable. In the case of the `rpi0`, the MicroUSB
-does both.
+Eject the SD card and insert it into the device that you're using. Power up the
+device and connect a network cable. If you're using a Raspberry Pi Zero,
+Beaglebone or Raspberry Pi 4, a USB cable can provide both power and network.
+Many devices have more than one way to get to the network. You can switch
+between them. For example, you could start with setting up a Raspberry Pi Zero
+using the USB cable, then configure WiFi and use a USB power adapter to run it
+some place else.
 
 After the device boots, point your browser at http://nerves.local. The password
 is "nerves".
@@ -110,9 +119,8 @@ At some point you may want to customize Nerves Livebook. See the [Nerves
 Installation](https://hexdocs.pm/nerves/installation.html) and [Getting
 Started](https://hexdocs.pm/nerves/getting-started.html) guides for details.
 
-To build the Nerves Livebook firmware, make sure that you have run
-through the Nerves installation steps. Then open a terminal window and run the
-following:
+To build the Nerves Livebook firmware, make sure that you have run through the
+Nerves installation steps. Then open a terminal window and run the following:
 
 ```sh
 $ git clone https://github.com/livebook-dev/nerves_livebook.git
@@ -143,7 +151,8 @@ to do:
 sudo NERVES_WIFI_SSID='access_point' NERVES_WIFI_PASSPHRASE='passphrase' fwup nerves_livebook_rpi0.fw
 ```
 
-See the `config/provisioning.conf` for details. Here is a summary of the options:
+See the `config/provisioning.conf` for details. Here is a summary of the
+options:
 
 Environment variable | Nerves.Runtime.KV key | Description
  ------------------- | --------------------- | -----------
