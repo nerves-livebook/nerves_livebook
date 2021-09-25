@@ -41,12 +41,10 @@ defmodule NervesLivebook.MixProject do
       {:nerves_pack, "~> 0.5.0"},
       {:livebook, "~> 0.2.3", only: [:dev, :prod]},
 
-      # Extra Livebook dependencies since Mix.install doesn't work yet
+      # Pull in commonly used libraries as a convenience to users.
       {:vega_lite, "~> 0.1"},
       {:kino, "~> 0.3"},
       {:phoenix_pubsub, "~> 2.0"},
-
-      # Dependencies for all targets except :host
       {:circuits_uart, "~> 1.3", targets: @all_targets},
       {:circuits_gpio, "~> 0.4", targets: @all_targets},
       {:circuits_i2c, "~> 0.3", targets: @all_targets},
@@ -58,7 +56,7 @@ defmodule NervesLivebook.MixProject do
       {:scroll_hat, "~> 0.1", targets: @rpi_targets},
       {:input_event, "~> 0.4", targets: @all_targets},
 
-      # Dependencies for specific targets
+      # Nerves system dependencies
       {:nerves_system_rpi, "~> 1.16", runtime: false, targets: :rpi},
       {:nerves_system_rpi0, "~> 1.16", runtime: false, targets: :rpi0},
       {:nerves_system_rpi2, "~> 1.16", runtime: false, targets: :rpi2},
