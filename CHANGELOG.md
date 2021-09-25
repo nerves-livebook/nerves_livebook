@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.22
+
+* Updates
+  * Upgrade to `nerves_system_br` `1.17.0`-based systems. These include Erlang
+    24.1 and Buildroot 2021.08.
+
 ## v0.2.21
 
 * Updates
