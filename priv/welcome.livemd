@@ -23,6 +23,7 @@ work-in-progress. We recommend starting with the following:
 
 * [Configure WiFi](samples/networking/configure_wifi.livemd) - connect to a WiFi access point
 * [LEDs](samples/basics/sys_class_leds.livemd) - learn about the built-in LEDs on your device
+* [VintageNet](samples/networking/vintage_net.livemd) - learn about networking on Nerves devices
 * [Firmware Update](samples/networking/firmware_update.livemd) - download the latest Nerves Livebook firmware
 
 ## Saving and copying files
