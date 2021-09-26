@@ -1,0 +1,138 @@
+# VintageNet
+
+## Overview
+
+The default networking setup in Nerves uses [VintageNet](https://hexdocs.pm/vintage_net) which takes a different approach to networking from other libraries, such as the deprecated `nerves_networking`.
+
+It takes human-readable network configuration descriptions and transforms them into low level commands to run, supervisors to start, and routes to add. It supports calling traditional Linux utilities like `ip` and `udhcpc` to configure networks. This can be a timesaver for migrating complicated, but known working Linux setups to Nerves. Linux daemons are supervised by `VintageNet` so they’re restarted if they crash and stopped when no longer needed. Of course, implementing services in pure Elixir also has advantages and you can replace the C implementations when and if you desire.
+
+
+## Technologies
+
+`VintageNet` serves as the configuration tooling for various networking technologies, such as Ethernet and WiFi, which must be included as a dependency in your project alongside `:vintage_net`
+
+There are many officially supported technologies, or you can implement your own with the `VintageNet.Technology` behavior:
+
+* [VintageNetWiFi](https://hexdocs.pm/vintage_net_wifi)
+* [VintageNetEthernet](https://hexdocs.pm/vintage_net_ethernet)
+* [VintageNetDirect](https://hexdocs.pm/vintage_net_direct) (most typically USB)
+* [VintageNetQMI](https://hexdocs.pm/vintage_net_qmi) (cellular)
+
+
+## Connecting WiFi
+
+Some technologies, such as `VintageNetWiFi` provide convenience functions for quick configurations at runtime. Use the inputs below to specify your SSID and password.
+
+If you haven't connected already, checkout [Configure WiFi](configure_wifi.livemd)
+
+
+## Properties
+
+`VintageNet` maintains a key/value store for retrieving information on networking information (see [VintageNet#Properties](https://hexdocs.pm/vintage_net/readme.html#properties))
+
+These are stored in an `:ets` table and can be fetched at any time by querying property values:
+
+```elixir
+VintageNet.get(["available_interfaces"])
+```
+
+Property keys for technologies are scoped to the interfaces they are configured for, formatted as `["interface", ifname, ..]`:
+
+```elixir
+VintageNet.get(["interface", "wlan0", "wifi", "access_points"])
+```
+
+```elixir
+VintageNet.get(["interface", "wlan0", "config"])
+```
+
+Technology specific keys are typically determined by the technology implementation and you should review it's documentation to know what is available.
+
+You can also use patterns for matching property keys to a wildcard value:
+
+```elixir
+VintageNet.match(["interface", "wlan0", :_])
+```
+
+### Bonus
+
+Because VintageNet uses `:ets` under the hood, we can quickly see all values in the property table rendered nicely in Livebook
+
+```elixir
+Kino.ETS.new(VintageNet)
+```
+
+## Network Event Subscriptions
+
+`VintageNet` also supports subscribing to events to be notified as they happen
+
+```elixir
+key = ["interface", "wlan0", "wifi", "access_points"]
+VintageNet.subscribe(key)
+
+VintageNet.scan("wlan0")
+
+receive do
+  {VintageNet, ^key, _old_value, aps, meta} ->
+    IO.inspect(aps, label: "Access Points from Scan")
+    IO.inspect(meta, label: "Event meta")
+end
+
+VintageNet.unsubscribe(key)
+```
+
+### Bonus
+
+Graph the available WiFi networks around you based on their frequency band and signal percentage 👇
+
+```elixir
+alias VegaLite, as: Vl
+
+aps = Enum.map(VintageNetWiFi.quick_scan(), &Map.from_struct/1)
+
+widget =
+  Vl.new(config: [view: [stroke: nil], axis: [grid: false]])
+  |> Vl.data_from_values(aps)
+  |> Vl.concat(
+    [
+      Vl.new(title: "2.4 GHz", width: 300)
+      |> Vl.encode_field(:x, "signal_percent", sort: :descending)
+      |> Vl.encode_field(:y, "ssid", sort: :descending, axis: nil)
+      # Don't display 5 GHz on this side
+      |> Vl.encode_field(:color, "band",
+        legend: nil,
+        condition: [test: [not: [field: "band", equal: :wifi_2_4_ghz]], value: nil]
+      )
+      |> Vl.mark(:circle, tooltip: [:signal_percent]),
+
+      # Centered Y-axis label
+      Vl.new()
+      |> Vl.mark(:text, align: :center)
+      |> Vl.encode_field(:y, "ssid",
+        type: :ordinal,
+        title: nil,
+        axis: [grid: false],
+        sort: :descending
+      ),
+      Vl.new(title: "5 GHz", width: 300)
+      |> Vl.encode_field(:x, "signal_percent")
+      |> Vl.encode_field(:y, "ssid", sort: :descending, axis: nil)
+      # Don't display 5 GHz on this side
+      |> Vl.encode_field(:color, "band",
+        legend: nil,
+        condition: [test: [not: [field: "band", equal: :wifi_5_ghz]], value: nil]
+      )
+      |> Vl.mark(:circle, tooltip: true)
+    ],
+    :horizontal
+  )
+  |> Kino.VegaLite.new()
+  |> tap(&Kino.render/1)
+
+Kino.VegaLite.periodically(widget, 30000, 0, fn i ->
+  aps = Enum.map(VintageNetWiFi.quick_scan(), &Map.from_struct/1)
+
+  Kino.VegaLite.push_many(widget, aps)
+  {:cont, i + 1}
+end)
+```

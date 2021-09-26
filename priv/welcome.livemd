@@ -22,6 +22,7 @@ file. Livebook and Nerves Livebook are rapidly evolving so some notebooks are a
 work-in-progress. We recommend starting with the following:
 
 * [Configure WiFi](samples/networking/configure_wifi.livemd) - connect to a WiFi access point
+* [VintageNet](samples/networking/vintage_net.livemd) - Learn about networking on Nerves devices
 * [LEDs](samples/basics/sys_class_leds.livemd) - learn about the built-in LEDs on your device
 * [Firmware Update](samples/networking/firmware_update.livemd) - download the latest Nerves Livebook firmware
 
