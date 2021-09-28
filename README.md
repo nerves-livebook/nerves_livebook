@@ -5,7 +5,7 @@
 The Nerves Livebook firmware lets you try out the Nerves projects on real
 hardware without needing to build anything. Within minutes, you'll have a
 Raspberry Pi or Beaglebone running Nerves. You'll be able to run code in
-[Livebooks](https://github.com/elixir-nx/livebook) and work through Nerves
+[Livebooks](https://github.com/livebook-dev/livebook) and work through Nerves
 tutorials from the comfort of your browser.
 
 ## Prerequisites

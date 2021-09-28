@@ -4,7 +4,7 @@
 
 Thanks for trying out Nerves Livebook!
 
-With this [Livebook](https://github.com/elixir-nx/livebook) image, you can work
+With this [Livebook](https://github.com/livebook-dev/livebook) image, you can work
 through tutorials, create your own livebooks and save them on device, and
 import livebooks from others. We're just getting started and are super excited
 with what livebooks can already do. We hope that you'll enjoy this as much as
