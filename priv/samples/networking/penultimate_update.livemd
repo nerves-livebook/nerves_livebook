@@ -54,7 +54,7 @@ File.rm_rf!(firmware_path)
   :httpc.request(:get, {firmware_url, []}, [], stream: to_charlist(firmware_path))
 ```
 
-Ok, now we're ready for the big step. This won't erase any of your livebooks or
+Ok, now we're ready for the big step. This won't erase any of your notebooks or
 settings. It just updates the Nerves Livebook firmware. After this completes
 successfully, your device will reboot.
 
