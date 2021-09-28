@@ -19,11 +19,11 @@ and how to open this file, so you're well on your way!
 The next steps are to try out the notebooks in the samples directory.  They're
 all read-only so you'll need to *fork* them just like you did to open this
 file. Livebook and Nerves Livebook are rapidly evolving so some notebooks are a
-work-in-progress. We recommend trying the following:
+work-in-progress. We recommend starting with the following:
 
-* `sys_class_leds.livemd` - learn about the built-in LEDs on your device
-* `wifi.livemd` - connect to the Internet over WiFi
-* `firmware_update.livemd` - download the latest Nerves Livebook firmware
+* [Configure WiFi](samples/networking/configure_wifi.livemd) - connect to a WiFi access point
+* [LEDs](samples/basics/sys_class_leds.livemd) - learn about the built-in LEDs on your device
+* [Firmware Update](samples/networking/firmware_update.livemd) - download the latest Nerves Livebook firmware
 
 ## Saving and copying files
 

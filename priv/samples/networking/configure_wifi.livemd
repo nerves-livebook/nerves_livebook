@@ -1,0 +1,49 @@
+# Configure WiFi
+
+## Finding access points
+
+Nerves uses [vintage_net_wifi](https://hexdocs.pm/vintage_net_wifi/) to
+configure WiFi networking. This notebook uses the `quick_` functions to
+simplify common tasks. If you're trying to connect to an enterprise network,
+this may not work for you.
+
+Step 1 is to see what WiFi networks are available.
+`VintageNetWiFi.quick_scan/0` returns a lot of information, so lets filter it
+to get a list of SSIDs:
+
+```elixir
+VintageNetWiFi.quick_scan()
+|> Enum.map(fn %{ssid: ssid} -> ssid end)
+|> Enum.sort()
+|> Enum.uniq()
+```
+
+## Connect to a network
+
+Next, lets connect to one of the WiFi networks. Enter in its SSID and password
+and then evaluate the code block to set it.
+
+<!-- livebook:{"livebook_object":"cell_input","name":"SSID","type":"text","value":""} -->
+<!-- livebook:{"livebook_object":"cell_input","name":"PSK","type":"password","value":""} -->
+
+```elixir
+ssid = IO.gets("SSID") |> String.trim()
+psk = IO.gets("PSK") |> String.trim()
+
+if ssid != "" do
+  VintageNetWiFi.quick_configure(ssid, psk)
+else
+  IO.puts("Skipping WiFi configuration.")
+end
+```
+
+## Check the connection
+
+The final step is to check whether everything worked. `VintageNet.info/0` is an
+easy way of checking overall network connectivity on a device, so run it.
+Hopefully, you'll see a section for `"wlan0"` and a connection status of
+`:internet`. You may need to scroll down.
+
+```elixir
+VintageNet.info()
+```
