@@ -4,22 +4,22 @@
 
 Thanks for trying out Nerves Livebook!
 
-With this [Livebook](https://github.com/livebook-dev/livebook) image, you can work
-through tutorials, create your own livebooks and save them on device, and
-import livebooks from others. We're just getting started and are super excited
-with what livebooks can already do. We hope that you'll enjoy this as much as
-we do and write your own livebooks and share them with the Elixir and Nerves
-community.
+With this [Livebook](https://github.com/livebook-dev/livebook) image, you can
+work through tutorials, create your own code notebooks and save them on device,
+and import notebooks from others. We're just getting started and are super
+excited with what Livebook can already do. We hope that you'll enjoy learning
+about embedded systems and working with hardware in the notebook environment
+too!
 
 ## Getting started
 
 You've already figured out how to install the Nerves Livebook to your device
 and how to open this file, so you're well on your way!
 
-The next steps are to try out some of the livebooks in the samples directory.
-They're all read-only so you'll need to *fork* them just like you did to open
-this file. At the moment, quite a few livebooks are works-in-progress. We
-recommend trying the following:
+The next steps are to try out the notebooks in the samples directory.  They're
+all read-only so you'll need to *fork* them just like you did to open this
+file. Livebook and Nerves Livebook are rapidly evolving so some notebooks are a
+work-in-progress. We recommend trying the following:
 
 * `sys_class_leds.livemd` - learn about the built-in LEDs on your device
 * `wifi.livemd` - connect to the Internet over WiFi
@@ -28,33 +28,35 @@ recommend trying the following:
 ## Saving and copying files
 
 This file and the samples are read-only since they're built into Nerves
-Livebook. Your files can be saved anywhere in `/data` which is writable
-like a drive on your computer. Firmware updates using the `firmware_update.livemd`
-won't erase your files. Be careful, though, if you remove the MicroSD card
-and re-initialize it in your computer. That will erase them.
+Livebook. Your files can be saved anywhere in `/data` which is writable like a
+drive on your computer. Firmware updates using the `firmware_update.livemd`
+won't erase your files. Be careful, though, if you remove the MicroSD card and
+re-initialize it in your computer. That will erase them.
 
-If you want to copy a file off the Nerves Livebook image, open up a shell
-on your computer and run `sftp livebook@nerves.local`. The password is `nerves`.
+If you want to copy a file off the Nerves Livebook image, open up a shell on
+your computer and run `sftp livebook@nerves.local`. The password is `nerves`.
 Once you're logged in, navigate to `/data/livebooks` or where ever you stored
 your files and run `get` to copy them off.
 
 ## Limitations
 
-If you've used Livebooks before, the Nerves Livebook image has a few
+If you've used Livebook before, the Nerves Livebook image has a few
 differences:
 
 1. All code gets evaluated in one Erlang VM. This is convenient for Nerves
-   devices, but you may be surprised when a module defined in one livebook is
+   devices, but you may be surprised when a module defined in one notebook is
    then accessible in another.
-2. Installing hex dependencies is not supported. The Nerves Livebook contains
-   may useful libraries for Nerves. For the time being, if useful one is
-   missing please file an [issue](https://github.com/livebook-dev/nerves_livebook/issues)
-   so it can be considered for inclusion.
+2. Installing hex dependencies is not supported. Nerves Livebook includes many
+   libraries as a convenience, though. We still recommend using `Mix.install/1`
+   to document what dependencies your notebook requires, but if the dependency
+   is not already loaded, it will raise an error. For the time being, please
+   file an [issue](https://github.com/livebook-dev/nerves_livebook/issues)
+   or make a PR to include new libraries in the main image.
 
 ## Learn more
 
-- Official docs: https://hexdocs.pm/nerves/getting-started.html
-- Official website: https://nerves-project.org/
-- Forum: https://elixirforum.com/c/nerves-forum
-- Discussion Slack elixir-lang #nerves ([Invite](https://elixir-slackin.herokuapp.com/))
-- Source: https://github.com/nerves-project/nerves
+* Official docs: https://hexdocs.pm/nerves/getting-started.html
+* Official website: https://nerves-project.org/
+* Forum: https://elixirforum.com/c/nerves-forum
+* Discussion Slack elixir-lang #nerves ([Invite](https://elixir-slackin.herokuapp.com/))
+* Source: https://github.com/nerves-project/nerves

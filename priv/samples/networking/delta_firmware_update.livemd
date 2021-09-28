@@ -11,7 +11,7 @@ save cost or increase your firmware update cadence.
 The drawback of delta firmware updates are increased complexity and creating
 the firmware deltas can be processor intensive.
 
-This Livebook shows how to use delta firmware updates with the Nerves Livebook
+This notebook shows how to use delta firmware updates with the Nerves Livebook
 image. It is highly recommended that you read the `firmware_update.livemd`
 notebook for full firmware updates first.
 
@@ -93,7 +93,7 @@ IO.puts("Validating archive...")
 IO.write(output)
 ```
 
-Ok, now we're ready for the big step. This won't erase any of your livebooks or
+Ok, now we're ready for the big step. This won't erase any of your notebooks or
 settings. It just updates the Nerves Livebook firmware. After this completes
 successfully, your device will reboot.
 

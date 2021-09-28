@@ -82,7 +82,7 @@ of the firmware archive and uniquely identifies what's running. If you're
 ever unsure if you're running the exact same bits that you verified in QA,
 check the UUID.
 
-Ok, now we're ready for the big step. This won't erase any of your livebooks or
+Ok, now we're ready for the big step. This won't erase any of your notebooks or
 settings. It just updates the Nerves Livebook firmware. After this completes
 successfully, your device will reboot.
 
