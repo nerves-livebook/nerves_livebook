@@ -2,69 +2,90 @@
 
 ## Overview
 
-The default networking setup in Nerves uses [VintageNet](https://hexdocs.pm/vintage_net) which takes a different approach to networking from other libraries, such as the deprecated `nerves_networking`.
+Nerves uses [VintageNet](https://hexdocs.pm/vintage_net) to manage network
+interfaces. VintageNet takes human-readable network configuration descriptions
+and transforms them into instructions for the Linux kernel, network daemons and
+other IP networking code whether it's in Elixir, Erlang, or C.
 
-It takes human-readable network configuration descriptions and transforms them into low level commands to run, supervisors to start, and routes to add. It supports calling traditional Linux utilities like `ip` and `udhcpc` to configure networks. This can be a timesaver for migrating complicated, but known working Linux setups to Nerves. Linux daemons are supervised by `VintageNet` so they’re restarted if they crash and stopped when no longer needed. Of course, implementing services in pure Elixir also has advantages and you can replace the C implementations when and if you desire.
-
+A second important feature of VintageNet is to monitor network interfaces for
+internet-connectivity and failures. It automatically switches between network
+interfaces to prioritize fast and inexpensive interfaces like wired Ethernet,
+but fall back to slower interfaces like cellular connections when necessary.
 
 ## Technologies
 
-`VintageNet` serves as the configuration tooling for various networking technologies, such as Ethernet and WiFi, which must be included as a dependency in your project alongside `:vintage_net`
+`VintageNet` serves as the configuration tooling for various networking
+technologies, such as Ethernet and WiFi, which must be included as a dependency
+in your project alongside `:vintage_net`
 
-There are many officially supported technologies, or you can implement your own with the `VintageNet.Technology` behavior:
+There are many officially supported technologies, or you can implement your own
+with the `VintageNet.Technology` behavior:
 
 * [VintageNetWiFi](https://hexdocs.pm/vintage_net_wifi)
 * [VintageNetEthernet](https://hexdocs.pm/vintage_net_ethernet)
 * [VintageNetDirect](https://hexdocs.pm/vintage_net_direct) (most typically USB)
 * [VintageNetQMI](https://hexdocs.pm/vintage_net_qmi) (cellular)
 
-
 ## Connecting WiFi
 
-Some technologies, such as `VintageNetWiFi` provide convenience functions for quick configurations at runtime. Use the inputs below to specify your SSID and password.
+Some technologies, such as `VintageNetWiFi` provide convenience functions for
+quick configurations at runtime. Use the inputs below to specify your SSID and
+password.
 
 If you haven't connected already, checkout [Configure WiFi](configure_wifi.livemd)
 
-
 ## Properties
 
-`VintageNet` maintains a key/value store for retrieving information on networking information (see [VintageNet#Properties](https://hexdocs.pm/vintage_net/readme.html#properties))
-
-These are stored in an `:ets` table and can be fetched at any time by querying property values:
+`VintageNet` maintains a key/value store for networking information. This can
+be queried and subscribed to for changes. For example, the overall network
+connection (internet-connected, lan-connected or disconnected) is stored under
+the `"connection"` key:
 
 ```elixir
-VintageNet.get(["available_interfaces"])
+VintageNet.get(["connection"])
 ```
 
-Property keys for technologies are scoped to the interfaces they are configured for, formatted as `["interface", ifname, ..]`:
+This notebook only shows a fraction of properties. For a more complete
+reference, see
+[VintageNet#Properties](https://hexdocs.pm/vintage_net/readme.html#properties)).
+
+Network interface-specific keys are scoped by interface name. I.e.,
+`["interface", interface_name, ..]`.  This shows the IP addresses on an
+interface. If you're connected via a USB cable, replace `"wlan0"` with
+`"usb0"`.  For wired Ethernet, use `"eth0"`. The addresses are all on Erlang
+tuple form and can be converted to familiar strings using `:inet.ntoa/1`.
 
 ```elixir
-VintageNet.get(["interface", "wlan0", "wifi", "access_points"])
+VintageNet.get(["interface", "wlan0", "addresses"])
 ```
 
+Each VintageNet technology has its own set of properties and these are
+documented in the corresponding library. For Wifi, see [VintageNetWiFi's
+property
+documentation](https://hexdocs.pm/vintage_net_wifi/readme.html#properties).
+
+Sometimes it's helpful to browse all keys using `VintageNet.get_by_prefix/1`:
+
 ```elixir
-VintageNet.get(["interface", "wlan0", "config"])
-```
-
-Technology specific keys are typically determined by the technology implementation and you should review it's documentation to know what is available.
-
-You can also use patterns for matching property keys to a wildcard value:
-
-```elixir
-VintageNet.match(["interface", "wlan0", :_])
+VintageNet.get_by_prefix(["interface", "wlan0"])
 ```
 
 ### Bonus
 
-Because VintageNet uses `:ets` under the hood, we can quickly see all values in the property table rendered nicely in Livebook
+Since VintageNet uses `:ets` under the hood to store properties, Livebook can
+render them as a nice table:
 
 ```elixir
 Kino.ETS.new(VintageNet)
 ```
 
-## Network Event Subscriptions
+## Property subscriptions
 
-`VintageNet` also supports subscribing to events to be notified as they happen
+Polling these properties for changes is not ideal so `VintageNet` supports
+property subscriptions.
+
+If your device supports WiFi, the following subscribes to the known list of
+access points, starts a scan going and then waits for the first update.
 
 ```elixir
 key = ["interface", "wlan0", "wifi", "access_points"]
@@ -88,51 +109,28 @@ Graph the available WiFi networks around you based on their frequency band and s
 ```elixir
 alias VegaLite, as: Vl
 
-aps = Enum.map(VintageNetWiFi.quick_scan(), &Map.from_struct/1)
+VintageNet.scan("wlan0")
 
 widget =
-  Vl.new(config: [view: [stroke: nil], axis: [grid: false]])
-  |> Vl.data_from_values(aps)
-  |> Vl.concat(
-    [
-      Vl.new(title: "2.4 GHz", width: 300)
-      |> Vl.encode_field(:x, "signal_percent", sort: :descending)
-      |> Vl.encode_field(:y, "ssid", sort: :descending, axis: nil)
-      # Don't display 5 GHz on this side
-      |> Vl.encode_field(:color, "band",
-        legend: nil,
-        condition: [test: [not: [field: "band", equal: :wifi_2_4_ghz]], value: nil]
-      )
-      |> Vl.mark(:circle, tooltip: [:signal_percent]),
-
-      # Centered Y-axis label
-      Vl.new()
-      |> Vl.mark(:text, align: :center)
-      |> Vl.encode_field(:y, "ssid",
-        type: :ordinal,
-        title: nil,
-        axis: [grid: false],
-        sort: :descending
-      ),
-      Vl.new(title: "5 GHz", width: 300)
-      |> Vl.encode_field(:x, "signal_percent")
-      |> Vl.encode_field(:y, "ssid", sort: :descending, axis: nil)
-      # Don't display 5 GHz on this side
-      |> Vl.encode_field(:color, "band",
-        legend: nil,
-        condition: [test: [not: [field: "band", equal: :wifi_5_ghz]], value: nil]
-      )
-      |> Vl.mark(:circle, tooltip: true)
-    ],
-    :horizontal
-  )
+  Vl.new(title: "2.4 GHz", width: 300)
+  |> Vl.encode_field(:x, "channel", title: "Channel")
+  |> Vl.encode_field(:y, "signal_percent", title: "Signal Percent", sort: :descending)
+  |> Vl.encode_field(:color, "ssid", title: "SSID")
+  |> Vl.mark(:circle, tooltip: [:signal_percent])
   |> Kino.VegaLite.new()
   |> tap(&Kino.render/1)
 
 Kino.VegaLite.periodically(widget, 30000, 0, fn i ->
-  aps = Enum.map(VintageNetWiFi.quick_scan(), &Map.from_struct/1)
+  aps =
+    VintageNet.get(["interface", "wlan0", "wifi", "access_points"])
+    |> Enum.filter(fn %{band: band} -> band == :wifi_2_4_ghz end)
+    |> Enum.map(&Map.from_struct/1)
 
+  Kino.VegaLite.clear(widget)
   Kino.VegaLite.push_many(widget, aps)
+
+  # Initiate scan for next time
+  VintageNet.scan("wlan0")
   {:cont, i + 1}
 end)
 ```
