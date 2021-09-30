@@ -60,7 +60,7 @@ config :mdns_lite,
   # Use MdnsLite's DNS bridge feature to support mDNS resolution in Erlang
   dns_bridge_enabled: true,
   dns_bridge_port: 53,
-  dns_bridge_recursive: true,
+  dns_bridge_recursive: false,
   # Respond to "nerves-1234.local` and "nerves.local"
   host: [:hostname, "nerves"],
   ttl: 120,
