@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.2.23
+
+* Updates
+  * Several networking notebook additions and improvements. Thanks to Jon
+    Carstens for these.
+  * Pull in a subtle mDNS/DNS issue lookup issue that affected using .local
+    addresses on some networks
+  * Pull in Bluetooth support fixes. BLE works on Raspberry Pi Zeros and
+    Raspberry Pi 3s now, but it's not convenient and there aren't any sample
+    notebooks. We hope to change that soon.
+  * You can transfer files using `scp` in addition to `sftp` from Nerves
+    Livebook devices now.
+
 ## v0.2.22
 
 * Updates
