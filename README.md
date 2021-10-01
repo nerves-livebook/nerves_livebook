@@ -39,7 +39,7 @@ You have two firmware packaging options. The first is to use the
 [`fwup`](https://github.com/fwup-home/fwup) commandline application and the
 other is to use a program like [Etcher](https://www.balena.io/etcher/). Download
 the file with the `.fw` extension for `fwup` and the `zip` file for Etcher. If
-you ok with the commandline, using `fwup` will come in handy if you start using
+you're ok with the commandline, using `fwup` will come in handy if you start using
 Nerves more.
 
 Once the download completes, you're ready to burn the firmware to the MicroSD
@@ -81,7 +81,7 @@ sudo NERVES_WIFI_SSID='access_point' NERVES_WIFI_PASSPHRASE='passphrase' fwup ne
 ```
 
 You can still change the WiFi credentials at runtime using
-`VintageNetWiFi.quick_configure/2`, but this helps you don't have an easy way of
+`VintageNetWiFi.quick_configure/2`, but this helps if you don't have an easy way of
 accessing the device to configure WiFi.
 
 Now you have Nerves Livebook ready to run on your device. Skip ahead to the next
