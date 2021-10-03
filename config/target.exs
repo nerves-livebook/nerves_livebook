@@ -26,7 +26,7 @@ config :livebook, LivebookWeb.Endpoint,
   secret_key_base: "9hHHeOiAA8wrivUfuS//jQMurHxoMYUtF788BQMx2KO7mYUE8rVrGGG09djBNQq7"
 
 config :livebook,
-  root_path: "/data/livebooks"
+  root_path: "/data/livebook"
 
 # Nerves Runtime can enumerate hardware devices and send notifications via
 # SystemRegistry. This slows down startup and not many programs make use of
