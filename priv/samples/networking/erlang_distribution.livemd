@@ -35,10 +35,10 @@ Nerves nerves-2e6d nerves_livebook 0.1.0 (9e61db44-bbfd-5430-ab73-daedf5ebce81) 
 Use CTRL-C to exit when you're done. If you run `:init.stop()`, you'll end up
 rebooting the device (probably not what you want).
 
-## Remove Livebooks
+## Remote Livebook
 
 You can run Livebook on your laptop and connect to the device! This is useful
-if you want to save your Livebooks locally. To do this,
+if you want to save your code notebooks locally. To do this,
 
 1. Follow the [Livebook usage
    instructions](https://github.com/livebook-dev/livebook) and start Livebook running
