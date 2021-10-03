@@ -36,7 +36,7 @@ re-initialize it in your computer. That will erase them.
 
 If you want to copy a file off the Nerves Livebook image, open up a shell on
 your computer and run `sftp livebook@nerves.local`. The password is `nerves`.
-Once you're logged in, navigate to `/data/livebooks` or where ever you stored
+Once you're logged in, navigate to `/data/livebook` or where ever you stored
 your files and run `get` to copy them off.
 
 ## Limitations

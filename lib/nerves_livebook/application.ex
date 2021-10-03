@@ -27,7 +27,7 @@ defmodule NervesLivebook.Application do
   end
 
   defp initialize_data_directory() do
-    destination_dir = "/data/livebooks"
+    destination_dir = "/data/livebook"
     source_dir = Application.app_dir(:nerves_livebook, "priv")
 
     # Best effort create everything
