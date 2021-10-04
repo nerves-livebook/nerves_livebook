@@ -37,7 +37,7 @@ config :nerves, source_date_epoch: "1603310828"
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-if Mix.target() == :host or Mix.target() == :"" do
+if Mix.target() == :host do
   import_config "host.exs"
 else
   import_config "target.exs"
