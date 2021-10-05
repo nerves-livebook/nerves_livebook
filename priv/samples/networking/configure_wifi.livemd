@@ -47,3 +47,7 @@ Hopefully, you'll see a section for `"wlan0"` and a connection status of
 ```elixir
 VintageNet.info()
 ```
+
+## Next Up...
+
+Checkout [VintageNet](vintage_net.livemd) for more information about networking in Nerves
