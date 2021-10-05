@@ -14,20 +14,6 @@ config :shoehorn,
 
 config :logger, backends: [RingLogger, RamoopsLogger]
 
-# Configure Livebook
-config :livebook, LivebookWeb.Endpoint,
-  url: [host: "nerves.local"],
-  http: [
-    port: "80",
-    transport_options: [socket_opts: [:inet6]]
-  ],
-  code_reloader: false,
-  server: true,
-  secret_key_base: "9hHHeOiAA8wrivUfuS//jQMurHxoMYUtF788BQMx2KO7mYUE8rVrGGG09djBNQq7"
-
-config :livebook,
-  root_path: "/data/livebook"
-
 # Nerves Runtime can enumerate hardware devices and send notifications via
 # SystemRegistry. This slows down startup and not many programs make use of
 # this feature.
