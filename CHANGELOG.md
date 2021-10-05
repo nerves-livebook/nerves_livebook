@@ -1,6 +1,21 @@
 # Changelog
 
-## v0.2.23
+## v0.2.24 - 2021-10-05
+
+The default location for notebooks on the device has changed from
+`/data/livebooks` to `/data/livebook` for consistency. If you're upgrading to
+this release, the old directory will be kept in case any modifications were made
+to notebooks there.
+
+* Updates
+  * Update Livebook from `v0.2.3` to
+    [`main@d8a7af62`](https://github.com/livebook-dev/livebook/blob/d8a7af62e78c664b667cb30c8430a1b56e412500/CHANGELOG.md).
+    See the unreleased items in the link for Livebook changes.
+  * Redirect to the device's specific hostname when using `nerves.local` to
+    connect. This makes it more obvious which device you're connected to when
+    multiple Nerves Livebook devices are accessible.
+
+## v0.2.23 - 2021-10-01
 
 * Updates
   * Several networking notebook additions and improvements. Thanks to Jon
