@@ -22,7 +22,7 @@ config :livebook,
 
 # Configure plugs
 config :livebook,
-  plugs: []
+  plugs: [{NervesLivebook.RedirectNervesLocal, []}]
 
 # Set the password to "nerves".
 config :livebook,

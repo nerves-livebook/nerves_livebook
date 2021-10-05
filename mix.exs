@@ -40,6 +40,7 @@ defmodule NervesLivebook.MixProject do
       {:nerves_runtime, "~> 0.11.3"},
       {:nerves_pack, "~> 0.6.0"},
       {:livebook, github: "livebook-dev/livebook", branch: "main", only: [:dev, :prod]},
+      {:plug, "~> 1.12"},
 
       # Pull in commonly used libraries as a convenience to users.
       {:vega_lite, "~> 0.1"},
