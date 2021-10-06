@@ -48,6 +48,6 @@ Hopefully, you'll see a section for `"wlan0"` and a connection status of
 VintageNet.info()
 ```
 
-## Next Up...
+## Next up...
 
-Checkout [VintageNet](vintage_net.livemd) for more information about networking in Nerves
+See [VintageNet](vintage_net.livemd) to learn more about networking in Nerves.
