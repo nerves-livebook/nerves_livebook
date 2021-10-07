@@ -43,6 +43,8 @@ config :nerves_ssh,
   ]
 
 config :mdns_lite,
+  instance_name: "Nerves Livebook",
+
   # Use MdnsLite's DNS bridge feature to support mDNS resolution in Erlang
   dns_bridge_enabled: true,
   dns_bridge_port: 53,
@@ -53,6 +55,11 @@ config :mdns_lite,
 
   # Advertise the following services over mDNS.
   services: [
+    %{
+      protocol: "http",
+      transport: "tcp",
+      port: 80
+    },
     %{
       protocol: "ssh",
       transport: "tcp",
