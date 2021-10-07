@@ -19,3 +19,24 @@ import IEx.Helpers
 runtime_info()
 ```
 
+## Nerves.Runtime.KV
+
+```elixir
+kv = Nerves.Runtime.KV.get_all()
+active = kv["nerves_fw_active"]
+
+data = Enum.group_by(kv, fn
+    {<<^active::binary-1, ".", _::binary>>, _} -> :active
+    {<<_::8, ".", _::binary>>, _} -> :inactive
+    _ -> :global
+  end)
+
+Kino.DataTable.new(data.global)
+|> Kino.render
+
+Kino.DataTable.new(data.active)
+|> Kino.render
+
+Kino.DataTable.new(data.inactive)
+|> Kino.render
+```
