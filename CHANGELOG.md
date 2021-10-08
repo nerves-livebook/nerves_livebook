@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.2.25 - 2021-10-07
+
+* Updates
+  * Initial Bluetooth support is available for the Raspberry Pi Zero W and 3B.
+    If you have either of these boards, take a look at
+    `bluetooth/ble_device_with_nerves.livemd`. Thanks to Troels Brødsgaard for
+    contributing this.
+  * Include Nx so that the the Nx tutorial works
+  * Update MdnsLite and make the advertised services look pretty on devices that
+    support mDNS. The default is to show up as "Nerves Livebook" and advertise
+    HTTP, SSH, SFTP, and Erlang distribution.
+
 ## v0.2.24 - 2021-10-05
 
 The default location for notebooks on the device has changed from
