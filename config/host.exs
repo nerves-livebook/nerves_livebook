@@ -13,3 +13,5 @@ config :vintage_net,
 
 # Turn off ntp
 config :nerves_time, servers: []
+
+config :mdns_lite, if_monitor: MdnsLite.InetMonitor
