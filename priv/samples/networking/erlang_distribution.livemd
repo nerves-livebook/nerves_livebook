@@ -20,7 +20,7 @@ Now try connecting to this node by running the following command in a shell on
 your computer:
 
 ```elixir
-"iex --cookie '#{Node.get_cookie()}' --sname me --remsh #{node()}"
+"iex --cookie '#{Node.get_cookie()}' --name me@myhost.local --remsh #{node()}"
 ```
 
 You should get an IEx prompt. Everything you type at that prompt will run on
@@ -54,7 +54,7 @@ device by first starting IEx on your laptop with the same cookie we're using
 here. For example:
 
 ```elixir
-"iex --cookie '#{Node.get_cookie()}' --sname me"
+"iex --cookie '#{Node.get_cookie()}' --name me@myhost.local"
 ```
 
 Then at the IEx prompt, run `:observer.start()`. Go to the **Nodes** menu and
