@@ -3,8 +3,12 @@ defmodule NervesLivebook.MixProject do
 
   @app :nerves_livebook
   @version "0.2.25"
+
   @rpi_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4]
   @all_targets @rpi_targets ++ [:bbb, :osd32mp1, :x86_64, :npi_imx6ull]
+
+  # See the BlueHeron repository for the boards that it supports.
+  @ble_targets [:rpi0, :rpi3, :rpi3a]
 
   def project do
     [
@@ -57,8 +61,8 @@ defmodule NervesLivebook.MixProject do
       {:scroll_hat, "~> 0.1", targets: @rpi_targets},
       {:input_event, "~> 0.4", targets: @all_targets},
       {:nx, "~> 0.1.0-dev", github: "elixir-nx/nx", sparse: "nx"},
-      {:blue_heron, "~> 0.3", override: true},
-      {:blue_heron_transport_uart, "~> 0.1.2", targets: @all_targets},
+      {:blue_heron, "~> 0.3", override: true, targets: @ble_targets},
+      {:blue_heron_transport_uart, "~> 0.1.2", targets: @ble_targets},
 
       # Nerves system dependencies
       {:nerves_system_rpi, "~> 1.16", runtime: false, targets: :rpi},
