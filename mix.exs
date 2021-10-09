@@ -13,8 +13,8 @@ defmodule NervesLivebook.MixProject do
   def project do
     [
       app: @app,
-      description: "Livebook for Nerves Devices",
-      author: "Frank Hunleth and Elixir friends",
+      description: "Develop on embedded devices with Livebook and Nerves",
+      author: "https://github.com/livebook-dev/nerves_livebook/graphs/contributors",
       version: @version,
       elixir: "~> 1.12",
       archives: [nerves_bootstrap: "~> 1.10"],
