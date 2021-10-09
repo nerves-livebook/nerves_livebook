@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.26 - 2021-10-09
+
+* Updates
+  * Fix boot issue on Seeed Studio's NPi iMX6ULL board
+  * Selectively include BlueHeron since it doesn't work on all boards
+
 ## v0.2.25 - 2021-10-07
 
 * Updates
