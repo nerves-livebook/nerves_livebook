@@ -3,12 +3,12 @@
 ## Hello, Bluetooth!
 
 You've probably interacted with a device using Bluetooth before.
-Maybe your headphones or your cars stereo uses Bluetooth.
+Maybe your headphones or your car's stereo uses Bluetooth.
 But did you know that you can use Bluetooth with your Nerves device?
 You can! [Blue Heron](https://hex.pm/packages/blue_heron) is an Elixir library
 for Bluetooth Low Energy communication.
 
-Here, we'll use Blue Heron it to build a device that lets nearby people view and update the firmware
+Here, we'll use Blue Heron to build a device that lets nearby people view and update the firmware
 configuration settings and reboot the device.
 
 ### A few basics you need to know about Bluetooth
@@ -52,7 +52,7 @@ Examples include:
 
 The protocol that governs interactions between connected devices is known as GATT (Generic Attribute Protocol).
 
-When connected, a Central and a Peripheral typically act as a GATT client and GATT server, respectively.
+When connected, a Central and a Peripheral typically act as a GATT client and a GATT server, respectively.
 You can think of them as a web browser and a web server. The Central (GATT client / web browser) will send requests
 to the Peripheral (GATT server / web server) to either read or write data.
 
@@ -74,7 +74,7 @@ and each service can have one or more characteristics.
 For example, the device battery service has a characteristic called battery level.
 Characteristics are values that the Central can read and/or write to.
 Services are a grouping of characteristics.
-The complete set if services implemented by a device is known as the device profile.
+The complete set of services implemented by a device is known as the device profile.
 
 All services and characteristics have a type, and types are identified by UUIDs.
 The standard describes a collection of official services and characteristics,
@@ -83,7 +83,7 @@ When you invent your own services and characteristics,
 you will assign your own UUIDs to them.
 
 Characteristics also have properties, which inform clients how the given characteristic can
-be accessed. Some characteristics are read-only, others may be read-write, other again may
+be accessed. Some characteristics are read-only, others may be read-write, others again may
 generate indications (notifications to the client), etc.
 The properties are defined as a byte-long bitmask.
 For example, a characteristic that is read-only has the bitmask `0b0000010`.
@@ -248,7 +248,7 @@ This will initiate the Bluetooth controller, so we can pass it to our Peripheral
   })
 ```
 
-Time to start the Peripheral. We pass in the context,
+Time to start the Peripheral. We pass in the context
 and the name of the callback module we defined above.
 
 ```elixir
@@ -307,7 +307,7 @@ BlueHeron.Peripheral.start_advertising(peripheral)
 
 Now, the Peripheral is advertising - and you should be able to connect to it!
 I can recommend the `nRF Connect` app to try the service.
-Here's a few screenshots of what it should look like:
+Here are a few screenshots of what it should look like:
 
 ### Scanning for devices
 
