@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.27 - 2021-10-16
+
+* Updates
+  * Update to Erlang 24.1.2 and Buildroot 2021.08.1
+  * Update Livebook to latest. Pulls in dynamic favicon.
+
 ## v0.2.26 - 2021-10-09
 
 * Updates
