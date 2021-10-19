@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.3.0 - 2021-10-19
+
+* Updates
+  * Update Livebook to v0.3.0
+  * Include ExUnit to support notebooks with tests
+
 ## v0.2.27 - 2021-10-16
 
 * Updates
