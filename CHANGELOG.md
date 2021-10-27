@@ -1,6 +1,11 @@
 # Changelog
 
-## v0.3.0 - 2021-10-19
+## v0.3.1 - 2021-10-27
+
+* Updates
+  * Update Livebook to v0.3.1
+
+ ## v0.3.0 - 2021-10-19
 
 * Updates
   * Update Livebook to v0.3.0
