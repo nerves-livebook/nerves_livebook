@@ -63,6 +63,7 @@ defmodule NervesLivebook.MixProject do
       {:nx, "~> 0.1.0-dev", github: "elixir-nx/nx", sparse: "nx"},
       {:blue_heron, "~> 0.3", override: true, targets: @ble_targets},
       {:blue_heron_transport_uart, "~> 0.1.2", targets: @ble_targets},
+      {:nerves_time_zones, "~> 0.1.0", targets: @all_targets},
 
       # Nerves system dependencies
       {:nerves_system_rpi, "~> 1.16", runtime: false, targets: :rpi},
