@@ -36,10 +36,8 @@ config :nerves, :erlinit,
 config :nerves_ssh,
   user_passwords: [{"livebook", "nerves"}, {"root", "nerves"}],
   daemon_option_overrides: [
-    {:auth_method_kb_interactive_data,
-     {'Nerves Livebook',
-      'https://github.com/livebook-dev/nerves_livebook\n\nssh livebook@nerves.local # Use password "nerves"\n',
-      'Password: ', false}}
+    {:pwdfun, &NervesLivebook.ssh_check_pass/2},
+    {:auth_method_kb_interactive_data, &NervesLivebook.ssh_show_prompt/3}
   ]
 
 config :mdns_lite,
@@ -50,7 +48,7 @@ config :mdns_lite,
   dns_bridge_port: 53,
   dns_bridge_recursive: false,
   # Respond to "nerves-1234.local` and "nerves.local"
-  hosts: [:hostname, "nerves"],
+  hosts: [:hostname, "livebook"],
   ttl: 120,
 
   # Advertise the following services over mDNS.
