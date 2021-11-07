@@ -34,7 +34,6 @@ config :nerves, :erlinit,
 # * See https://hexdocs.pm/ssh_subsystem_fwup/readme.html for firmware updates
 
 config :nerves_ssh,
-  user_passwords: [{"livebook", "nerves"}, {"root", "nerves"}],
   daemon_option_overrides: [
     {:pwdfun, &NervesLivebook.ssh_check_pass/2},
     {:auth_method_kb_interactive_data, &NervesLivebook.ssh_show_prompt/3}
