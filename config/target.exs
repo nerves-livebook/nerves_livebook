@@ -47,7 +47,7 @@ config :mdns_lite,
   dns_bridge_port: 53,
   dns_bridge_recursive: false,
   # Respond to "nerves-1234.local` and "nerves.local"
-  hosts: [:hostname, "livebook"],
+  hosts: [:hostname, "nerves"],
   ttl: 120,
 
   # Advertise the following services over mDNS.
