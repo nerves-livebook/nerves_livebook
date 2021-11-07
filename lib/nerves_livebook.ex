@@ -54,4 +54,20 @@ defmodule NervesLivebook do
       _ -> Logger.error("Unexpected error setting up Erlang distribution")
     end
   end
+
+  def ssh_check_pass(_provided_username, provided_password) do
+    correct_password = Application.get_env(:livebook, :password, "nerves")
+
+    provided_password == to_charlist(correct_password)
+  end
+
+  def ssh_show_prompt(_peer, _username, _service) do
+    msg = """
+    https://github.com/livebook-dev/nerves_livebook
+
+    ssh #{Node.self()} # Use password "nerves"
+    """
+
+    {'Nerves Livebook', to_charlist(msg), 'Password: ', false}
+  end
 end
