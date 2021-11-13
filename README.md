@@ -18,7 +18,7 @@ devices:
 * `rpi` - The original Raspberry Pi Model B
 * `rpi2` Raspberry Pi 2 Model B
 * `rpi3` - Raspberry Pi 3 Model B and Model B+
-* `rpi3a` - Raspberry Pi 3 Model A+
+* `rpi3a` - Raspberry Pi 3 Model A+ and Raspberry Pi Zero 2 W
 * `rpi4` - Raspberry Pi 4 Model B
 * `osd32mp1` - Octavo OSD32MP1-BRK
 * `npi_imx6ull` - Seeed Studio imx6ull (select the MicroSD boot mode switches)
