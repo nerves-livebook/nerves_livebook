@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.3.2 - 2021-11-13
+
+* Updates
+  * Update Livebook to v0.3.2
+  * Simplify ssh login to not care about the username
+  * Update Nerves systems. This brings in support for the new Raspberry Pi Zero
+    2 W. Use the `rpi3a` version for the Zero 2 W.
+
 ## v0.3.1 - 2021-10-27
 
 * Updates
