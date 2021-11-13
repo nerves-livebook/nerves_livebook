@@ -25,6 +25,9 @@ config :nerves, source_date_epoch: "1603310828"
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# Livebook's explore section is built at compile-time
+config :livebook, :explore_notebooks, []
+
 if Mix.target() == :host do
   import_config "host.exs"
 else
