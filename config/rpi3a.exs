@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # Configure the network using vintage_net
 # See https://github.com/nerves-networking/vintage_net for more information
