@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.4.0 - 2021-12-05
+
+* Updates
+  * Update Livebook to
+    [v0.4.0](https://github.com/livebook-dev/livebook/blob/main/CHANGELOG.md#v040-2021-12-05)
+  * Update Elixir to 1.13.0
+  * Update Nerves Systems to use Erlang 24.1.7, Buildroot 2021.08.2 and
+    miscellaneous platform-specific bug fixes and improvements.
+
 ## v0.3.2 - 2021-11-13
 
 * Updates
