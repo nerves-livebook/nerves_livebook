@@ -36,7 +36,7 @@ defmodule NervesLivebook.MixProject do
   defp deps do
     [
       # Dependencies for host and target
-      {:nerves, "~> 1.7.4", runtime: false},
+      {:nerves, "~> 1.7.13", runtime: false},
       {:shoehorn, "~> 0.8.0"},
       {:ring_logger, "~> 0.8.1"},
       {:toolshed, "~> 0.2.13"},
@@ -66,16 +66,16 @@ defmodule NervesLivebook.MixProject do
       {:nerves_time_zones, "~> 0.1.0", targets: @all_targets},
 
       # Nerves system dependencies
-      {:nerves_system_rpi, "~> 1.16", runtime: false, targets: :rpi},
-      {:nerves_system_rpi0, "~> 1.16", runtime: false, targets: :rpi0},
-      {:nerves_system_rpi2, "~> 1.16", runtime: false, targets: :rpi2},
-      {:nerves_system_rpi3, "~> 1.16", runtime: false, targets: :rpi3},
-      {:nerves_system_rpi3a, "~> 1.16", runtime: false, targets: :rpi3a},
-      {:nerves_system_rpi4, "~> 1.16", runtime: false, targets: :rpi4},
-      {:nerves_system_bbb, "~> 2.11", runtime: false, targets: :bbb},
-      {:nerves_system_osd32mp1, "~> 0.7", runtime: false, targets: :osd32mp1},
-      {:nerves_system_x86_64, "~> 1.16", runtime: false, targets: :x86_64},
-      {:nerves_system_npi_imx6ull, "~> 0.3", runtime: false, targets: :npi_imx6ull}
+      {:nerves_system_rpi, "~> 1.18", runtime: false, targets: :rpi},
+      {:nerves_system_rpi0, "~> 1.18", runtime: false, targets: :rpi0},
+      {:nerves_system_rpi2, "~> 1.18", runtime: false, targets: :rpi2},
+      {:nerves_system_rpi3, "~> 1.18", runtime: false, targets: :rpi3},
+      {:nerves_system_rpi3a, "~> 1.18", runtime: false, targets: :rpi3a},
+      {:nerves_system_rpi4, "~> 1.18", runtime: false, targets: :rpi4},
+      {:nerves_system_bbb, "~> 2.13", runtime: false, targets: :bbb},
+      {:nerves_system_osd32mp1, "~> 0.9", runtime: false, targets: :osd32mp1},
+      {:nerves_system_x86_64, "~> 1.18", runtime: false, targets: :x86_64},
+      {:nerves_system_npi_imx6ull, "~> 0.5", runtime: false, targets: :npi_imx6ull}
     ]
   end
 
