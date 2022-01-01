@@ -39,7 +39,7 @@ Let's see what files are in the LED directory:
 File.ls!(led)
 ```
 
-The `brightness` file let's you turn it on and off by writing a `"1"` or `"0"`
+The `brightness` file lets you turn it on and off by writing a `"1"` or `"0"`
 to it. Try it out:
 
 ```elixir
@@ -51,7 +51,7 @@ File.write(Path.join(led, "brightness"), "0")
 ```
 
 Linux is happy controlling the LED on its own through the use of **triggers**.
-Triggers are quite flexible and can blink the LED on a timers, CPU activity,
+Triggers are quite flexible and can blink the LED on timers, CPU activity,
 disk activity and more. Here's how to make it blink at 2 Hz (250 ms on and then
 250 ms off) using the timer trigger:
 
