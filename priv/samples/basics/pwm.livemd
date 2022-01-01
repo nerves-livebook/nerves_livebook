@@ -8,11 +8,11 @@
 
 ## Introduction
 
-In this exercise, we will leverage the [pigpiox][pigpiox_github] library to brighten and dim an LED through software [PWM][pwm_wiki] (pulse width modulation).
+In this exercise, we will leverage the [pigpiox](https://github.com/tokafish/pigpiox) library to brighten and dim an LED through software [PWM](https://en.wikipedia.org/wiki/Pulse-width_modulation) (pulse width modulation).
 
 ## Try it out
 
-Lets set a variable so that we dont have to choose the GPIO pin every time.
+Let's set a variable so that we don't have to choose the GPIO pin every time.
 
 First, refer to the GPIO ports for your Nerves device. In this example, we will be using pin 20 on the Raspberry Pi platform.
 
@@ -29,13 +29,13 @@ the shorter leg to a 220Ω resistor, then to our ground.
 
 ![Fritzing Diagram](https://raw.githubusercontent.com/livebook-dev/nerves_livebook/main/assets/gpio/led_rpi4_rpi0.svg)
 
-Now we will create a connection to that GPIO pin and set it as an :output.
+Now we will create a connection to that GPIO pin and set it as an `:output`.
 
 ```elixir
 Pigpiox.GPIO.set_mode(led_pin, :output)
 ```
 
-After our `led_pin` has been configured as an `:output`, lets turn it on at 10% brightness.
+After our `led_pin` has been configured as an `:output`, let's turn it on at 10% brightness.
 
 ```elixir
 #Pigpiox.Pwm.gpio_pwm(led_pin, 255) # 100%
@@ -46,7 +46,7 @@ Pigpiox.Pwm.gpio_pwm(led_pin, 25)  # 10%
 
 As you can see above, you can run the PWM cycles between `0` and `255`, or the max size of a byte.
 
-Lets go ahead and write a basic defmodule that can dim or brighten the LED using recursion.
+Let's go ahead and write a basic `defmodule` that can dim or brighten the LED using recursion.
 
 ```elixir
 defmodule PWM do
@@ -70,9 +70,4 @@ For a fun exercise, see if you can change the `PWM.forever` function to only bri
 
 ## Additional Resources
 
-If you would like to learn more, including hardware PWM, please check out the inpiration for this livebook, [Pulse Width Modulation (PWM) for LEDs][mnishiguchi_dev] by [Masatoshi Nishiguchi][mnishiguchi].
-
-[pwm_wiki]: https://en.wikipedia.org/wiki/Pulse-width_modulation
-[pigpiox_github]: https://github.com/tokafish/pigpiox
-[mnishiguchi_dev]: https://dev.to/mnishiguchi/elixir-nerves-pulse-width-modulation-pwm-for-led-mj2
-[mnishiguchi]: https://www.mnishiguchi.com/
+If you would like to learn more, including hardware PWM, please check out the inspiration for this livebook, [Pulse Width Modulation (PWM) for LEDs](https://dev.to/mnishiguchi/elixir-nerves-pulse-width-modulation-pwm-for-led-mj2) by [Masatoshi Nishiguchi](https://www.mnishiguchi.com/).
