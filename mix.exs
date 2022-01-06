@@ -49,6 +49,7 @@ defmodule NervesLivebook.MixProject do
       # Pull in commonly used libraries as a convenience to users.
       {:vega_lite, "~> 0.1"},
       {:kino, "~> 0.3"},
+      {:nx, "~> 0.1.0"},
       {:phoenix_pubsub, "~> 2.0"},
       {:circuits_uart, "~> 1.3", targets: @all_targets},
       {:circuits_gpio, "~> 1.0", targets: @all_targets},
@@ -60,7 +61,6 @@ defmodule NervesLivebook.MixProject do
       {:bmp280, "~> 0.2", targets: @all_targets},
       {:scroll_hat, "~> 0.1", targets: @rpi_targets},
       {:input_event, "~> 1.0 or ~> 0.4", targets: @all_targets},
-      {:nx, "~> 0.1.0-dev", github: "elixir-nx/nx", sparse: "nx"},
       {:blue_heron, "~> 0.3", override: true, targets: @ble_targets},
       {:blue_heron_transport_uart, "~> 0.1.2", targets: @ble_targets},
       {:nerves_time_zones, "~> 0.1.0", targets: @all_targets},
