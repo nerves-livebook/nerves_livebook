@@ -64,6 +64,7 @@ defmodule NervesLivebook.MixProject do
       {:ramoops_logger, "~> 0.1", targets: @all_targets},
       {:scroll_hat, "~> 0.1", targets: @rpi_targets},
       {:vega_lite, "~> 0.1"},
+      {:req, "~> 0.2.1"},
 
       # Nerves system dependencies
       {:nerves_system_rpi, "~> 1.18", runtime: false, targets: :rpi},
