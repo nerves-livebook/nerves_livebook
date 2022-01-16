@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.4.2 - 2022-01-16
+
+* Updates
+  * Add `req` to the built-in hex packages
+  * Update Nerves Systems to `nerves_system_br` 1.18.3 versions. This brings in
+    a `cpufreq` fix, OpenMP support, and CMake support
+  * Update Elixir to 1.13.2
+
 ## v0.4.1 - 2021-12-31
 
 * Updates
