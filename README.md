@@ -113,6 +113,23 @@ is "nerves".
 
 ![Livebook screenshot](assets/livebook.jpg)
 
+## Special Windows setup
+
+Microsoft Windows requires a device driver to be installed to support networking
+over a USB cable:
+
+1. Download the [USB Ethernet/RNDIS Gadget driver](https://www.catalog.update.microsoft.com/Search.aspx?q=usb%5Cvid_0525%26pid_a4a2)
+   from the Microsoft Update Catalog
+2. Connect your Raspberry Pi or Beaglebone that's running Nerves Livebook to
+   your computer
+3. Start Device Manager
+4. You should see a COM device show up
+   1. Right click on it and update the driver
+   2. Select "Let me pick", then "Have disk", and point it at the digitally
+      signed inf/cat files downloaded in step 1
+5. Once the COM device changes into a "USB Ethernet/RNDIS Gadget" device you'll
+   be able to visit [nerves.local](http://nerves.local) in a browser
+
 ## Going further
 
 At some point you may want to customize Nerves Livebook. See the [Nerves
