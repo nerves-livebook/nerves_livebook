@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.5.1 - 2022-01-25
+
+* Updates
+  * Fix regression in v0.5.0 with plotting graphs with VegaLite
+  * Update Circuits.SPI to pull in support for little-endian first devices
+
 ## v0.5.0 - 2022-01-20
 
 * Updates
