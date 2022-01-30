@@ -8,3 +8,6 @@ config :vintage_net,
     {"eth0", %{type: VintageNetEthernet, ipv4: %{method: :dhcp}}},
     {"eth1", %{type: VintageNetEthernet, ipv4: %{method: :dhcp}}}
   ]
+
+# The device tree overlays that expose the LEDs aren't currently enabled.
+config :nerves_livebook, :ui, led: nil

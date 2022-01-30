@@ -8,3 +8,5 @@ config :vintage_net,
     {"eth0", %{type: VintageNetEthernet, ipv4: %{method: :dhcp}}},
     {"wlan0", %{type: VintageNetWiFi}}
   ]
+
+config :nerves_livebook, :ui, led: "led0"

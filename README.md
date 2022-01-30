@@ -103,12 +103,16 @@ setting credentials), then check out the `fwup` instructions above.
 Eject the SD card and insert it into the device that you're using. Power up the
 device and connect a network cable. If you're using a Raspberry Pi Zero,
 Beaglebone or Raspberry Pi 4, a USB cable can provide both power and network.
-Many devices have more than one way to get to the network. You can switch
-between them. For example, you could start with setting up a Raspberry Pi Zero
-using the USB cable, then configure WiFi and use a USB power adapter to run it
-some place else.
 
-After the device boots, point your browser at http://nerves.local. The password
+The first boot can take longer than subsequent boots due to initializing the
+data filesystem for storing your notebooks. It is noticeable especially on large
+MicroSD cards.
+
+Most, but not all supported devices, have an LED on them. Nerves Livebook will
+make it blink when the network is disconnected and change it to solid on when
+it's possible to connect over any network interface.
+
+Once the device is ready, point your browser at http://nerves.local. The password
 is "nerves".
 
 ![Livebook screenshot](assets/livebook.jpg)

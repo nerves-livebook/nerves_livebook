@@ -7,3 +7,5 @@ config :vintage_net,
     {"usb0", %{type: VintageNetDirect}},
     {"wlan0", %{type: VintageNetWiFi}}
   ]
+
+config :nerves_livebook, :ui, led: "led0"

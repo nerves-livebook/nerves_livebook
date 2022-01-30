@@ -17,10 +17,10 @@ defmodule NervesLivebook.Application do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: NervesLivebook.Supervisor]
 
+    ui_options = Application.get_env(:nerves_livebook, :ui, [])
+
     children = [
-      # Children for all targets
-      # Starts a worker by calling: NervesLivebook.Worker.start_link(arg)
-      # {NervesLivebook.Worker, arg},
+      {NervesLivebook.UI, ui_options}
     ]
 
     Supervisor.start_link(children, opts)

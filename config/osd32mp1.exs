@@ -7,3 +7,6 @@ config :vintage_net,
     {"usb0", %{type: VintageNetDirect}},
     {"eth0", %{type: VintageNetEthernet, ipv4: %{method: :dhcp}}}
   ]
+
+# TBD
+config :nerves_livebook, :ui, led: nil
