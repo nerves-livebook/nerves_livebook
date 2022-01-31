@@ -22,7 +22,8 @@ defmodule NervesLivebook.MixProject do
       build_embedded: true,
       deps: deps(),
       releases: [{@app, release()}],
-      preferred_cli_target: [run: :host, test: :host, "phx.server": :host]
+      preferred_cli_target: [run: :host, test: :host, "phx.server": :host],
+      dialyzer: dialyzer()
     ]
   end
 
@@ -76,7 +77,11 @@ defmodule NervesLivebook.MixProject do
       {:nerves_system_bbb, "~> 2.13", runtime: false, targets: :bbb},
       {:nerves_system_osd32mp1, "~> 0.9", runtime: false, targets: :osd32mp1},
       {:nerves_system_x86_64, "~> 1.18", runtime: false, targets: :x86_64},
-      {:nerves_system_npi_imx6ull, "~> 0.5", runtime: false, targets: :npi_imx6ull}
+      {:nerves_system_npi_imx6ull, "~> 0.5", runtime: false, targets: :npi_imx6ull},
+
+      # Compile-time only
+      {:credo, "~> 1.6", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.1.0", only: :dev, runtime: false}
     ]
   end
 
@@ -86,6 +91,13 @@ defmodule NervesLivebook.MixProject do
       include_erts: &Nerves.Release.erts/0,
       steps: [&Nerves.Release.init/1, :assemble],
       strip_beams: [keep: ["Docs"]]
+    ]
+  end
+
+  defp dialyzer() do
+    [
+      flags: [:race_conditions, :unmatched_returns, :error_handling, :underspecs],
+      ignore_warnings: ".dialyzer_ignore.exs"
     ]
   end
 end

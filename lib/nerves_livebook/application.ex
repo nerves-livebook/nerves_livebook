@@ -75,13 +75,16 @@ defmodule NervesLivebook.Application do
   defp add_mix_install() do
     # This needs to be done this way since redefining Mix at compile time
     # doesn't make anyone happy.
-    Code.eval_string("""
-    defmodule Mix do
-      def install(deps, opts \\\\ []) when is_list(deps) and is_list(opts) do
-        NervesLivebook.MixInstall.install(deps, opts)
+    _ =
+      Code.eval_string("""
+      defmodule Mix do
+        def install(deps, opts \\\\ []) when is_list(deps) and is_list(opts) do
+          NervesLivebook.MixInstall.install(deps, opts)
+        end
       end
-    end
-    """)
+      """)
+
+    :ok
   end
 
   defp target() do
