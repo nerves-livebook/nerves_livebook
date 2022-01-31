@@ -44,6 +44,30 @@ install_system_deps: &install_system_deps
       apt update
       apt install -y zip xdelta3
 
+host_build: &host_build
+  steps:
+    - checkout
+    - <<: *install_system_deps
+    - <<: *install_elixir
+    - <<: *install_hex_rebar
+    - <<: *install_nerves_bootstrap
+    - run:
+        name: Install vintage_net deps
+        command: apt install -y libmnl-dev libnl-3-dev libnl-genl-3-dev
+    - run:
+        name: Fetch Deps
+        command: |
+          n=0
+          until [ $n -ge 5 ]; do
+            mix deps.get && break
+            n=$((n+1))
+            echo "Error while fetching deps. Retrying in 5 seconds"
+            sleep 5
+          done
+    - run:
+        name: Test
+        command: mix test
+
 build: &build
   steps:
     - checkout
@@ -100,6 +124,12 @@ build: &build
 version: 2.0
 
 jobs:
+  build_host:
+    <<: *defaults
+    environment:
+      <<: *elixir_version
+    <<: *host_build
+
   build_osd32mp1:
     <<: *defaults
     environment:
@@ -243,6 +273,10 @@ workflows:
   version: 2
   build_deploy:
     jobs:
+      - build_host:
+          filters:
+            tags:
+              only: /.*/
       - build_osd32mp1:
           filters:
             tags:
