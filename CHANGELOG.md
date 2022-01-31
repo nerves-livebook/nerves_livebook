@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.5.2 - 2022-01-31
+
+* Updates
+  * Update Livebook to [v0.5.2](https://github.com/livebook-dev/livebook/blob/main/CHANGELOG.md#v052-2022-01-27)
+  * Turn on an LED when networking on the device is ready. This isn't perfect
+    for showing status, but aims to be more helpful than the current lack of
+    feedback.
+
 ## v0.5.1 - 2022-01-25
 
 * Updates
