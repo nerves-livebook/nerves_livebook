@@ -46,7 +46,7 @@ defmodule NervesLivebook.UI do
   end
 
   @impl GenServer
-  def handle_info({["connection"], _old, value, _meta}, led) do
+  def handle_info({VintageNet, ["connection"], _old, value, _meta}, led) do
     update_led(led, value)
     {:noreply, led}
   end
