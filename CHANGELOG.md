@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.5.3 - 2022-02-05
+
+* Updates
+  * Pulled in a fix for scanning WiFi access points when an Eero mesh system is
+    nearby.
+
 ## v0.5.2 - 2022-01-31
 
 * Updates
