@@ -231,16 +231,16 @@ This is because I have `enable_uart=1` and `dtoverlay=miniuart-bt` in the `/boot
 
 You can put your UART in the input field below to proceed.
 
-<!-- livebook:{"livebook_object":"cell_input","name":"UART device","type":"text","value":"ttyS0"} -->
-
 ```elixir
-uart_device = IO.gets("UART device") |> String.trim()
+uart_input = Kino.Input.text("UART device")
 ```
 
 First we start a Blue Heron transport.
 This will initiate the Bluetooth controller, so we can pass it to our Peripheral next.
 
 ```elixir
+uart_device = Kino.Input.read(uart_input)
+
 {:ok, context} =
   BlueHeron.transport(%BlueHeronTransportUART{
     device: uart_device,
