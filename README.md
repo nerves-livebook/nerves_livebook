@@ -8,6 +8,10 @@ Raspberry Pi or Beaglebone running Nerves. You'll be able to run code in
 [Livebook](https://github.com/livebook-dev/livebook) and work through Nerves
 tutorials from the comfort of your browser.
 
+Looking for a quick demo first? Click below for [Underjord's](https://underjord.io/) Nerves Quickstart video.
+
+[![Install video](assets/video.jpg)](https://www.youtube.com/watch?v=-b5TPb_MwQE)
+
 ## Prerequisites
 
 First, you'll need to get some hardware. Nerves Livebook supports the following
