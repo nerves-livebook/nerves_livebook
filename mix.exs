@@ -7,6 +7,10 @@ defmodule NervesLivebook.MixProject do
   @rpi_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4]
   @all_targets @rpi_targets ++ [:bbb, :osd32mp1, :x86_64, :npi_imx6ull]
 
+  # Libraries that use MMAL on the Raspberry Pi won't work with the Raspberry
+  # Pi 4. The Raspberry Pi 4 uses DRM and libcamera.
+  @rpi_mmal_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a]
+
   # See the BlueHeron repository for the boards that it supports.
   @ble_targets [:rpi0, :rpi3, :rpi3a]
 
@@ -61,11 +65,12 @@ defmodule NervesLivebook.MixProject do
       {:nerves_time_zones, "~> 0.1.0", targets: @all_targets},
       {:nx, "~> 0.1.0"},
       {:phoenix_pubsub, "~> 2.0"},
+      {:picam, "~> 0.4.0", targets: @rpi_mmal_targets},
       {:pigpiox, "~>0.1", targets: @rpi_targets},
       {:ramoops_logger, "~> 0.1", targets: @all_targets},
+      {:req, "~> 0.2.1"},
       {:scroll_hat, "~> 0.1", targets: @rpi_targets},
       {:vega_lite, "~> 0.1"},
-      {:req, "~> 0.2.1"},
 
       # Nerves system dependencies
       {:nerves_system_rpi, "~> 1.18", runtime: false, targets: :rpi},
