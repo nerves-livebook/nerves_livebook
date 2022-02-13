@@ -16,7 +16,7 @@ defmodule NervesLivebook.MixProject do
       description: "Develop on embedded devices with Livebook and Nerves",
       author: "https://github.com/livebook-dev/nerves_livebook/graphs/contributors",
       version: @version,
-      elixir: "~> 1.12",
+      elixir: "~> 1.13",
       archives: [nerves_bootstrap: "~> 1.10"],
       start_permanent: Mix.env() == :prod,
       build_embedded: true,
