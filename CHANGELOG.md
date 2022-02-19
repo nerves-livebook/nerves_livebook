@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.5.4 - 2022-02-18
+
+* Updates
+  * Update Nerves Systems to `nerves_system_br` 1.18.4 versions. This brings in
+    Buildroot and Erlang patch releases.
+  * Add `picam` for devices that support it (Raspberry Pi Zero, A, B, 2, and 3).
+
+* Fixes
+  * Fix import via file upload
+
 ## v0.5.3 - 2022-02-05
 
 * Updates
