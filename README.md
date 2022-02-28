@@ -18,6 +18,7 @@ First, you'll need to get some hardware. Nerves Livebook supports the following
 devices:
 
 * `bbb` - BeagleBone Black, BeagleBone Green, PocketBeagle, etc.
+* `grisp2` - GRiSP2 (Experimental)
 * `rpi0` - Raspberry Pi Zero or Zero W
 * `rpi` - The original Raspberry Pi Model B
 * `rpi2` Raspberry Pi 2 Model B
@@ -46,10 +47,13 @@ the file with the `.fw` extension for `fwup` and the `zip` file for Etcher. If
 you're ok with the commandline, using `fwup` will come in handy if you start using
 Nerves more.
 
-Once the download completes, you're ready to burn the firmware to the MicroSD
-card.
+Once the download completes, you're ready to install the firmware on your device.
 
-## Burning the Firmware
+## Burning the Firmware for devices that boot from MicroSD
+
+These instructions will work for the Raspberry Pi, Beaglebones and other devices
+that either boot off MicroSD cards or can be configured to do so. If you're
+using a GRiSP 2, see the GRiSP 2 installation section.
 
 Navigate to the directory where you downloaded the firmware. Either `fwup` or
 `etcher` can be used to burn the firmware.
@@ -101,6 +105,28 @@ follow the prompts:
 IMPORTANT: There's no way to configure the initial WiFi credentials with
 `etcher`. If you have a device that you can only access via WiFi (so no way of
 setting credentials), then check out the `fwup` instructions above.
+
+## GRiSP 2 installation
+
+GRiSP 2 support is VERY new. While it should be safe, you should make sure
+you're comfortable with the GRiSP instructions for using Barebox to flash the
+original GRiSP demo image.
+
+1. Find a FAT-formatted MicroSD card and copy
+   `nerves_livebook_grisp2.img.gz` to it.
+2. Insert the MicroSD card in the GRiSP 2 and power it up
+3. Press a key on the serial console to break into Barebox.
+4. At the Barebox prompt, run:
+    ```
+    uncompress /mnt/mmc/nerves_livebook_grisp2.img.gz /dev/mmc1
+    reset
+    ```
+5. The GRiSP 2 will reboot into the Nerves Livebook firmware. The first boot
+   takes a little longer due to it initializing the application data partition.
+
+The normal Nerves firmware update methods will work. Since the GRiSP 2 port
+is so new, it may be required to perform a fresh install using the above
+instructions in the future.
 
 ## Running the Firmware
 
