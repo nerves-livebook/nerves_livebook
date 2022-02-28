@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.5.5 - 2022-02-28
+
+* Updates
+  * Add experimental support for GRiSP 2. See README.md for installation.
+
 ## v0.5.4 - 2022-02-18
 
 * Updates
