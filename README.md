@@ -18,7 +18,7 @@ First, you'll need to get some hardware. Nerves Livebook supports the following
 devices:
 
 * `bbb` - BeagleBone Black, BeagleBone Green, PocketBeagle, etc.
-* `grisp2` - GRiSP2 (Experimental)
+* `grisp2` - [GRiSP2](https://www.grisp.org/) (Experimental)
 * `rpi0` - Raspberry Pi Zero or Zero W
 * `rpi` - The original Raspberry Pi Model B
 * `rpi2` Raspberry Pi 2 Model B
@@ -114,15 +114,31 @@ original GRiSP demo image.
 
 1. Find a FAT-formatted MicroSD card and copy
    `nerves_livebook_grisp2.img.gz` to it.
-2. Insert the MicroSD card in the GRiSP 2 and power it up
-3. Press a key on the serial console to break into Barebox.
-4. At the Barebox prompt, run:
+2. Insert the MicroSD card in the GRiSP 2's MicroSD slot
+3. Connect the GRiSP 2 to your computer via USB via `picocom` or another
+   serial terminal program. The GRiSP 2 shows up as two serial ports. Connect to
+   second one. On MacOS, it's `/dev/tty.usbserial-0<GRiSP Serial Number>1`.
+4. Press a key on the serial console to break into Barebox. If you missed your
+   chance, press the reset button and try again.
+5. At the Barebox prompt, run:
     ```
     uncompress /mnt/mmc/nerves_livebook_grisp2.img.gz /dev/mmc1
     reset
     ```
-5. The GRiSP 2 will reboot into the Nerves Livebook firmware. The first boot
+6. The GRiSP 2 will reboot into the Nerves Livebook firmware. The first boot
    takes a little longer due to it initializing the application data partition.
+
+Once it boots, you can use the IEx prompt over the USB cable or connect over
+Ethernet. There's a sticker on the back of the GRiSP with the serial number. The
+device will be at `nerves-<serial number>.local` on the network.
+
+To configure WiFi, run:
+
+```elixir
+VintageNetWiFi.quick_configure("ssid", "password")
+```
+
+`VintageNet.info` will show the current state of the network connections.
 
 The normal Nerves firmware update methods will work. Since the GRiSP 2 port
 is so new, it may be required to perform a fresh install using the above
@@ -214,7 +230,7 @@ NERVES_WIFI_SSID     | wifi_ssid             | A WiFi SSID to use if WiFi hasn't
 
 ## License
 
-Copyright (C) 2021 Frank Hunleth
+Copyright (C) 2021-22 Frank Hunleth
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
