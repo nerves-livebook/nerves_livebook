@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.5.6 - 2022-03-03
+
+* Updates
+  * Various small improvements for the GRiSP 2
+  * Add support for the Beaglebone Green Gateway (bbb target)
+  * Update to Erlang 24.2.2
+
 ## v0.5.5 - 2022-02-28
 
 * Updates
