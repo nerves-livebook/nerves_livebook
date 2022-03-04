@@ -35,7 +35,9 @@ than the others.
 
 ## Downloading the Firmware
 
-Next, find the appropriate firmware or zip'd image file for your hardware in the
+If you're using a GRiSP 2, skip to the installation instructions below for it.
+
+First, find the appropriate firmware or zip'd image file for your hardware in the
 [releases](https://github.com/livebook-dev/nerves_livebook/releases). This is a
 one time step. There's a Livebook notebook for upgrading the firmware for when
 we make releases!
@@ -108,23 +110,37 @@ setting credentials), then check out the `fwup` instructions above.
 
 ## GRiSP 2 installation
 
-GRiSP 2 support is VERY new. While it should be safe, you should make sure
-you're comfortable with the GRiSP instructions for using Barebox to flash the
-original GRiSP demo image.
+GRiSP 2 support is VERY new. While it should be safe, it's probably a good idea
+to skim the
+[instructions](https://github.com/grisp/grisp_demo/tree/sylane/make-image) for
+re-installing the GRiSP demo app. If that doesn't look that hard, then let's
+continue:
 
-1. Find a FAT-formatted MicroSD card and copy
-   `nerves_livebook_grisp2.img.gz` to it.
-2. Insert the MicroSD card in the GRiSP 2's MicroSD slot
+Assuming you don't already have a Nerves firmware on your GRiSP 2, you'll need
+to do a first time install. Even if you do have Nerves on your GRiSP 2, you can
+still follow these instructions.
+
+First, download `nerves_livebook_grisp2.img.gz`from the latest
+[releases](https://github.com/livebook-dev/nerves_livebook/releases).
+
+1. Copy `nerves_livebook_grisp2.img.gz` to a FAT-formatted MicroSD card:
+
+        $ cp nerves_livebook_grisp2.img.gz /Volumes/...
+
+2. Unmount the MicroSD card and insert it into the GRiSP 2.
+
 3. Connect the GRiSP 2 to your computer via USB via `picocom` or another
    serial terminal program. The GRiSP 2 shows up as two serial ports. Connect to
    second one. On MacOS, it's `/dev/tty.usbserial-0<GRiSP Serial Number>1`.
-4. Press a key on the serial console to break into Barebox. If you missed your
-   chance, press the reset button and try again.
+
+4. Press the reset button on the GRiSP 2. Press a key on the serial console to
+   get a Barebox prompt.
+
 5. At the Barebox prompt, run:
-    ```
-    uncompress /mnt/mmc/nerves_livebook_grisp2.img.gz /dev/mmc1
-    reset
-    ```
+
+        :/ uncompress /mnt/mmc/nerves_livebook_grisp2.img.gz /dev/mmc1
+        :/ reset
+
 6. The GRiSP 2 will reboot into the Nerves Livebook firmware. The first boot
    takes a little longer due to it initializing the application data partition.
 
