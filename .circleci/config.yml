@@ -143,9 +143,6 @@ build_grisp2: &build_grisp2
             sleep 5
           done
     - run:
-        name: Build
-        command: mix compile
-    - run:
         name: Create firmware
         command: |
           mix firmware
@@ -154,11 +151,9 @@ build_grisp2: &build_grisp2
           name: Create artifacts dir
           command: mkdir -p /home/nerves/deploy/artifacts
     - run:
-        name: Copy firmware file
+        name: Create full and delta firmware images
         command: |
-          cp _build/*/nerves/images/*.fw /home/nerves/deploy/artifacts/nerves_livebook_${MIX_TARGET}.fw
-          gzip -k nerves_livebook.img
-          cp nerves_livebook.img.gz /home/nerves/deploy/artifacts/nerves_livebook_${MIX_TARGET}.img.gz
+          DEPLOY_PATH=/home/nerves/deploy/artifacts ./scripts/ci_create_firmware.sh
     - store_artifacts:
         path: /home/nerves/deploy
         destination: images
