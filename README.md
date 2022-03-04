@@ -160,6 +160,9 @@ The normal Nerves firmware update methods will work. Since the GRiSP 2 port
 is so new, it may be required to perform a fresh install using the above
 instructions in the future.
 
+To see the current progress of the GRiSP 2 port to Nerves, see
+[nerves_system_grisp2](https://github.com/fhunleth/nerves_system_grisp2).
+
 ## Running the Firmware
 
 Eject the SD card and insert it into the device that you're using. Power up the
