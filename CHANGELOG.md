@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.5.7 - 2022-03-18
+
+* Updates
+  * Update to Erlang 24.3.2
+  * Various modest boot time improvements in dependent libraries
+
 ## v0.5.6 - 2022-03-03
 
 * Updates
