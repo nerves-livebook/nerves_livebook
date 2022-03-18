@@ -154,6 +154,8 @@ build_grisp2: &build_grisp2
         name: Create full and delta firmware images
         command: |
           DEPLOY_PATH=/home/nerves/deploy/artifacts ./scripts/ci_create_firmware.sh
+          gzip -k nerves_livebook.img
+          cp nerves_livebook.img.gz /home/nerves/deploy/artifacts/nerves_livebook_${MIX_TARGET}.img.gz
     - store_artifacts:
         path: /home/nerves/deploy
         destination: images
