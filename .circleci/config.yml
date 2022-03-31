@@ -68,8 +68,24 @@ host_build: &host_build
         name: Test
         command: mix test
     - run:
+        name: Create SBOM
+        command: |
+          mix sbom.cyclonedx -f -o nerves_livebook_sbom.xml
+    - run:
+        name: Create artifacts dir
+        command: mkdir -p /home/nerves/deploy/artifacts
+    - run:
+        name: Copy changelog and SBOM
+        command: |
+          cp ./CHANGELOG.md /home/nerves/deploy/CHANGELOG.md
+          cp ./nerves_livebook_sbom.xml /home/nerves/deploy/nerves_livebook_sbom.xml
+    - run:
         name: Dialyzer
         command: mix dialyzer
+    - save_cache:
+        key: nerves/deploy/host-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
+        paths:
+          - /home/nerves/deploy
 
 build: &build
   steps:
@@ -112,10 +128,6 @@ build: &build
         name: Create full and delta firmware images
         command: |
           DEPLOY_PATH=/home/nerves/deploy/artifacts ./scripts/ci_create_firmware.sh
-    - run:
-        name: Copy changelog
-        command: |
-          cp ./CHANGELOG.md /home/nerves/deploy/CHANGELOG.md
     - store_artifacts:
         path: /home/nerves/deploy
         destination: images
@@ -258,6 +270,8 @@ jobs:
       - run:
           name: Create Artifacts Dir
           command: mkdir -p /home/nerves/deploy
+      - restore_cache:
+          key: nerves/deploy/host-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
       - run:
           name: osd32mp1
           command: echo "osd32mp1" > .target
@@ -378,6 +392,7 @@ workflows:
       #         only: /.*/
       - deploy:
           requires:
+            - build_host
             - build_osd32mp1
             - build_rpi4
             - build_rpi3a
