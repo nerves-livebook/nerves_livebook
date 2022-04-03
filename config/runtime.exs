@@ -45,3 +45,11 @@ config :livebook, LivebookWeb.Endpoint,
   ],
   code_reloader: false,
   server: true
+
+# Setup Erlang distribution
+with {_, 0} <- System.cmd("epmd", ["-daemon"]),
+     {:ok, hostname} <- :inet.gethostname(),
+     {:ok, _pid} <- Node.start(:"livebook@#{hostname}.local") do
+  # Livebook always sets the cookie, so let it set it. See the Livebook application config.
+  :ok
+end

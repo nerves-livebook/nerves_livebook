@@ -5,7 +5,7 @@ import Config
 # involved with firmware updates.
 
 config :shoehorn,
-  init: [:nerves_runtime, :nerves_pack, {NervesLivebook, :setup_distribution, []}],
+  init: [:nerves_runtime, :nerves_pack],
   app: Mix.Project.config()[:app]
 
 # Use Ringlogger as the logger backend and remove :console.
