@@ -63,7 +63,7 @@ defmodule NervesLivebook.MixProject do
       {:kino, "~> 0.3"},
       {:nerves_key, "~> 1.0", targets: @all_targets},
       {:nerves_time_zones, "~> 0.1.0", targets: @all_targets},
-      {:nx, "~> 0.1.0"},
+      {:nx, "~> 0.2.0"},
       {:phoenix_pubsub, "~> 2.0"},
       {:picam, "~> 0.4.0", targets: @rpi_mmal_targets},
       {:pigpiox, "~>0.1", targets: @rpi_targets},
