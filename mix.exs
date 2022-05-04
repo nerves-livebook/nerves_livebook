@@ -48,7 +48,7 @@ defmodule NervesLivebook.MixProject do
       {:jason, "~> 1.2"},
       {:nerves_runtime, "~> 0.11.10"},
       {:nerves_pack, "~> 0.7.0"},
-      {:livebook, "~> 0.5.0"},
+      {:livebook, "~> 0.6.0"},
       {:plug, "~> 1.12"},
 
       # Pull in commonly used libraries as a convenience to users.
@@ -60,7 +60,7 @@ defmodule NervesLivebook.MixProject do
       {:circuits_spi, "~> 1.0 or ~> 0.1", targets: @all_targets},
       {:circuits_uart, "~> 1.3", targets: @all_targets},
       {:input_event, "~> 1.0 or ~> 0.4", targets: @all_targets},
-      {:kino, "~> 0.3"},
+      {:kino, "~> 0.6"},
       {:nerves_key, "~> 1.0", targets: @all_targets},
       {:nerves_time_zones, "~> 0.1.0", targets: @all_targets},
       {:nx, "~> 0.2.0"},

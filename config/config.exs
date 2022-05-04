@@ -51,6 +51,21 @@ config :livebook, :explore_notebooks, [
   }
 ]
 
+# Enable the embedded runtime which isn't available by default
+config :livebook, :runtime_modules, [Livebook.Runtime.Embedded, Livebook.Runtime.Attached]
+
+# Forward the package search trough a custom handler to only show local ones.
+config :livebook, Livebook.Runtime.Embedded,
+  load_packages: {NervesLivebook.Dependencies, :packages, []}
+
+# Allow Livebook to reboot the device
+config :livebook, :shutdown_enabled, true
+
+# Defaults for required configurations
+config :livebook,
+  app_service_name: nil,
+  app_service_url: nil
+
 if Mix.target() == :host do
   import_config "host.exs"
 else

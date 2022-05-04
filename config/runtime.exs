@@ -18,7 +18,7 @@ config :livebook,
 
 # Use the embedded runtime to run notebooks in the same VM
 config :livebook,
-  default_runtime: {Livebook.Runtime.Embedded, []}
+  default_runtime: Livebook.Runtime.Embedded.new()
 
 # Configure plugs
 config :livebook,
@@ -45,6 +45,8 @@ config :livebook, LivebookWeb.Endpoint,
   ],
   code_reloader: false,
   server: true
+
+config :livebook, :iframe_port, 8081
 
 # Setup Erlang distribution
 with {_, 0} <- System.cmd("epmd", ["-daemon"]),
