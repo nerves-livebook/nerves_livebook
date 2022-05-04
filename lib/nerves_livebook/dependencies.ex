@@ -6,7 +6,7 @@ defmodule NervesLivebook.Dependencies do
 
   TODO: Compute this dynamically
   """
-  @spec packages() :: [map()]
+  @spec packages() :: [Livebook.Runtime.package()]
   def packages() do
     # Return dependencies in this format:
     [
