@@ -66,7 +66,7 @@ host_build: &host_build
           done
     - run:
         name: Test
-        command: mix test
+        command: mix test --include slow:true
     - run:
         name: Create SBOM
         command: |
