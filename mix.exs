@@ -48,7 +48,8 @@ defmodule NervesLivebook.MixProject do
       {:jason, "~> 1.2"},
       {:nerves_runtime, "~> 0.11.10"},
       {:nerves_pack, "~> 0.7.0"},
-      {:livebook, "~> 0.6.1"},
+      # livebook v0.6.1 + one fix. See PR #1178
+      {:livebook, github: "livebook-dev/livebook", hash: "9f24bda2c"},
       {:plug, "~> 1.12"},
 
       # Pull in commonly used libraries as a convenience to users.
