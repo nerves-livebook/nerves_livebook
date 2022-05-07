@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.6.0 - 2022-05-07
+
+* Updates
+  * Update Livebook to [v0.6.1](https://github.com/livebook-dev/livebook/blob/main/CHANGELOG.md#v061-2022-05-06)
+
 ## v0.5.7 - 2022-03-18
 
 * Updates
