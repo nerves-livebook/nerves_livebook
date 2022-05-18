@@ -62,6 +62,7 @@ defmodule NervesLivebook.MixProject do
       {:circuits_uart, "~> 1.3"},
       {:input_event, "~> 1.0 or ~> 0.4", targets: @all_targets},
       {:kino, "~> 0.6"},
+      {:kino_vega_lite, "~> 0.1.1"},
       {:nerves_key, "~> 1.0", targets: @all_targets},
       {:nerves_time_zones, "~> 0.1.0", targets: @all_targets},
       {:nx, "~> 0.2.0"},
