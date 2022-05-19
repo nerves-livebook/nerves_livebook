@@ -12,23 +12,35 @@ Step 1 is to see what WiFi networks are available.
 to get a list of SSIDs:
 
 ```elixir
-VintageNetWiFi.quick_scan()
-|> Enum.map(fn %{ssid: ssid} -> ssid end)
-|> Enum.sort()
-|> Enum.uniq()
+networks =
+  VintageNetWiFi.quick_scan()
+  |> Enum.map(fn %{ssid: ssid, signal_percent: signal_percent} ->
+    %{ssid: ssid, signal_percent: signal_percent}
+  end)
+  |> Enum.sort(&(&1.signal_percent >= &2.signal_percent))
+  |> Enum.uniq_by(& &1.ssid)
 ```
 
 ## Connect to a network
 
-Next, lets connect to one of the WiFi networks. Enter in its SSID and password
-and then evaluate the code block to set it.
-
-<!-- livebook:{"livebook_object":"cell_input","name":"SSID","type":"text","value":""} -->
-<!-- livebook:{"livebook_object":"cell_input","name":"PSK","type":"password","value":""} -->
+Next, lets connect to one of the WiFi networks. Select the SSID and enter the password.
 
 ```elixir
-ssid = IO.gets("SSID") |> String.trim()
-psk = IO.gets("PSK") |> String.trim()
+selectable_networks =
+  [{"", "SSIDs:"}] ++ Enum.map(networks, fn network -> {network.ssid, network.ssid} end)
+
+selected_network =
+  Kino.Input.select("Select WiFi Network", selectable_networks)
+  |> Kino.render()
+
+psk_input = Kino.Input.password("Enter WiFi password")
+```
+
+Verify that the information is correct and then evaluate the following code block to set it.
+
+```elixir
+ssid = Kino.Input.read(selected_network) |> String.trim()
+psk = Kino.Input.read(psk_input) |> String.trim()
 
 if ssid != "" do
   VintageNetWiFi.quick_configure(ssid, psk)
