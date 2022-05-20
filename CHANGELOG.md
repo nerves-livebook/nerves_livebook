@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.6.1 - 2022-05-20
+
+* Updates
+  * Include `:kino_vega_lite` so that graphs render again. (Thanks @petermm)
+  * Improve WiFi configuration book (Thanks @petermm)
+
 ## v0.6.0 - 2022-05-07
 
 * Updates
