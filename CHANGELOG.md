@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.6.2 - 2022-05-26
+
+* Updates
+  * Update to Erlang 25.0 - Enables JIT on Raspberry Pi 4!
+  * Update Nerves systems to `nerves_system_br` 1.19.0 versions to bring in
+    security and bug fixes
+
 ## v0.6.1 - 2022-05-20
 
 * Updates
