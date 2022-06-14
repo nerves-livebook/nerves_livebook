@@ -66,8 +66,14 @@ config :mdns_lite,
     }
   ]
 
+# Common VintageNet configuration
+#
+# See bbb.exs, rpi0.exs, etc. for device-specific configuration.
+#
+# regulatory_domain - 00 (global), change to "US", etc.
+# additional_name_servers - Set to try mdns_lite's DNS bridge first
 config :vintage_net,
-  regulatory_domain: "US",
+  regulatory_domain: "00",
   additional_name_servers: [{127, 0, 0, 53}]
 
 # Import target specific config. This must remain at the bottom
