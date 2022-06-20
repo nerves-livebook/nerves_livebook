@@ -13,9 +13,6 @@ defmodule NervesLivebook.UI do
   @typedoc false
   @type option() :: {:led, String.t()}
 
-  @not_connected_pattern PatternLED.blink(4)
-  @connected_pattern PatternLED.on()
-
   @doc """
   Start the UI GenServer
 
@@ -52,18 +49,17 @@ defmodule NervesLivebook.UI do
   end
 
   defp update_led(led, network_connection) do
-    pattern = network_connection_to_led(network_connection)
-
-    case PatternLED.set_led_pattern(led, pattern) do
-      :ok ->
-        :ok
-
+    with {:ok, brightness} <- PatternLED.get_max_brightness(led),
+         pattern = network_connection_to_led(brightness, network_connection),
+         :ok <- PatternLED.set_led_pattern(led, pattern) do
+      :ok
+    else
       {:error, reason} ->
         Logger.info("NervesLivebook failed to set LED '#{led}': #{inspect(reason)}")
     end
   end
 
-  defp network_connection_to_led(:lan), do: @connected_pattern
-  defp network_connection_to_led(:internet), do: @connected_pattern
-  defp network_connection_to_led(_other), do: @not_connected_pattern
+  defp network_connection_to_led(brightness, :lan), do: PatternLED.on(brightness)
+  defp network_connection_to_led(brightness, :internet), do: PatternLED.on(brightness)
+  defp network_connection_to_led(brightness, _other), do: PatternLED.blink(brightness, 4)
 end

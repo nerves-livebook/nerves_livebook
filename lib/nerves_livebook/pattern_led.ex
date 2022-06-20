@@ -58,11 +58,22 @@ defmodule NervesLivebook.PatternLED do
   end
 
   @doc """
+  Get the maximum brightness for an LED
+  """
+  @spec get_max_brightness(String.t()) :: {:ok, pos_integer()} | {:error, atom()}
+  def get_max_brightness(led) when is_binary(led) do
+    case File.read(["/sys/class/leds/", led, "/max_brightness"]) do
+      {:ok, str} -> {:ok, str |> String.trim() |> String.to_integer()}
+      error -> error
+    end
+  end
+
+  @doc """
   Turn the LED on
   """
-  @spec on() :: String.t()
-  def on() do
-    "1 3600000 1 3600000"
+  @spec on(pos_integer()) :: String.t()
+  def on(brightness) do
+    "#{brightness} 3600000 #{brightness} 3600000"
   end
 
   @doc """
@@ -82,8 +93,8 @@ defmodule NervesLivebook.PatternLED do
     LED is on (default is 0.5)
   * `:off_first` - set to `true` to start in the "off" state, then switch to "on"
   """
-  @spec blink(number(), [blink_option()]) :: String.t()
-  def blink(frequency, opts \\ []) when frequency > 0 do
+  @spec blink(pos_integer(), number(), [blink_option()]) :: String.t()
+  def blink(brightness, frequency, opts \\ []) when frequency > 0 do
     duty_cycle = bound(0, opts[:duty_cycle] || 0.5, 1)
     off_first = opts[:off_first]
 
@@ -91,7 +102,7 @@ defmodule NervesLivebook.PatternLED do
     on_time = round(period_ms * duty_cycle)
     off_time = period_ms - on_time
 
-    on_pattern = "1 #{on_time} 1 0"
+    on_pattern = "#{brightness} #{on_time} #{brightness} 0"
     off_pattern = "0 #{off_time} 0 0"
 
     if off_first do
