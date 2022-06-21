@@ -70,7 +70,7 @@ defmodule NervesLivebook.MixProject do
       {:picam, "~> 0.4.0", targets: @rpi_mmal_targets},
       {:pigpiox, "~>0.1", targets: @rpi_targets},
       {:ramoops_logger, "~> 0.1", targets: @all_targets},
-      {:req, "~> 0.2.1"},
+      {:req, "~> 0.3.0"},
       {:scroll_hat, "~> 0.1", targets: @rpi_targets},
       {:vega_lite, "~> 0.1"},
 
