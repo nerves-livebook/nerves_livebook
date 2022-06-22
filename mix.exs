@@ -41,7 +41,7 @@ defmodule NervesLivebook.MixProject do
   defp deps do
     [
       # Dependencies for host and target
-      {:nerves, "~> 1.7.13", runtime: false},
+      {:nerves, "~> 1.7.13 or ~> 1.8.0", runtime: false},
       {:shoehorn, "~> 0.9.0"},
       {:ring_logger, "~> 0.8.1"},
       {:toolshed, "~> 0.2.13"},
