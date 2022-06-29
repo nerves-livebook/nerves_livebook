@@ -31,33 +31,34 @@ if [[ -n "$FW_SIGNING_KEY" ]]; then
 fi
 
 # Download the previous firmware so that the delta firmware image can be made
-[[ -e "$PREVIOUS_FIRMWARE_FILENAME" ]] || wget -O "$PREVIOUS_FIRMWARE_FILENAME" $PREVIOUS_FIRMWARE_URL
+if [[ -e "$PREVIOUS_FIRMWARE_FILENAME" ]] || wget -O "$PREVIOUS_FIRMWARE_FILENAME" $PREVIOUS_FIRMWARE_URL; then
+    # Compute the name of the delta firmware (z${UUID}_${MIX_TARGET}.fw)
+    #  The UUID is what should be running on the device.
+    #  The initial z is so that the delta updates get sorted last on GitHub Releases
+    #  The MIX_TARGET is to help the humans looking at the .fw files to see if one didn't get built
 
-# Compute the name of the delta firmware (z${UUID}_${MIX_TARGET}.fw)
-#  The UUID is what should be running on the device.
-#  The initial z is so that the delta updates get sorted last on GitHub Releases
-#  The MIX_TARGET is to help the humans looking at the .fw files to see if one didn't get built
+    PREVIOUS_FIRMWARE_UUID=$(fwup -m -i "$PREVIOUS_FIRMWARE_FILENAME" | sed -rn 's/^meta-uuid="([a-f0-9\-]+)"$/\1/p')
 
-PREVIOUS_FIRMWARE_UUID=$(fwup -m -i "$PREVIOUS_FIRMWARE_FILENAME" | sed -rn 's/^meta-uuid="([a-f0-9\-]+)"$/\1/p')
+    DELTA_FIRMWARE_FILENAME="z${PREVIOUS_FIRMWARE_UUID}_${MIX_TARGET}.fw"
+    DELTA_FIRMWARE_PATH="$DEPLOY_PATH/$DELTA_FIRMWARE_FILENAME"
 
-DELTA_FIRMWARE_FILENAME="z${PREVIOUS_FIRMWARE_UUID}_${MIX_TARGET}.fw"
-DELTA_FIRMWARE_PATH="$DEPLOY_PATH/$DELTA_FIRMWARE_FILENAME"
+    "$SCRIPT_DIR/create_delta_fw.sh" "$PREVIOUS_FIRMWARE_FILENAME" "$FULL_FIRMWARE_PATH" "$DELTA_FIRMWARE_PATH"
 
-"$SCRIPT_DIR/create_delta_fw.sh" "$PREVIOUS_FIRMWARE_FILENAME" "$FULL_FIRMWARE_PATH" "$DELTA_FIRMWARE_PATH"
+    echo "Successfully created $DELTA_FIRMWARE_PATH"
 
-echo "Successfully created $DELTA_FIRMWARE_PATH"
+    # Create a delta firmware update that goes from the current firmware to itself for easier
+    # testing. No one would do this for real, but it's super convenient when showing off the
+    # capability and it makes it more obvious that there are some parts of the firmware that
+    # do not support deltas.
 
-# Create a delta firmware update that goes from the current firmware to itself for easier
-# testing. No one would do this for real, but it's super convenient when showing off the
-# capability and it makes it more obvious that there are some parts of the firmware that
-# do not support deltas.
+    CURRENT_FIRMWARE_UUID=$(fwup -m -i "$FULL_FIRMWARE_PATH" | sed -rn 's/^meta-uuid="([a-f0-9\-]+)"$/\1/p')
 
-CURRENT_FIRMWARE_UUID=$(fwup -m -i "$FULL_FIRMWARE_PATH" | sed -rn 's/^meta-uuid="([a-f0-9\-]+)"$/\1/p')
+    DELTA_FIRMWARE_FILENAME="z${CURRENT_FIRMWARE_UUID}_${MIX_TARGET}.fw"
+    DELTA_FIRMWARE_PATH="$DEPLOY_PATH/$DELTA_FIRMWARE_FILENAME"
 
-DELTA_FIRMWARE_FILENAME="z${CURRENT_FIRMWARE_UUID}_${MIX_TARGET}.fw"
-DELTA_FIRMWARE_PATH="$DEPLOY_PATH/$DELTA_FIRMWARE_FILENAME"
+    "$SCRIPT_DIR/create_delta_fw.sh" "$FULL_FIRMWARE_PATH" "$FULL_FIRMWARE_PATH" "$DELTA_FIRMWARE_PATH"
 
-"$SCRIPT_DIR/create_delta_fw.sh" "$FULL_FIRMWARE_PATH" "$FULL_FIRMWARE_PATH" "$DELTA_FIRMWARE_PATH"
-
-echo "Successfully created $DELTA_FIRMWARE_PATH"
-
+    echo "Successfully created $DELTA_FIRMWARE_PATH"
+else
+    echo "Previous firmware doesn't exist or can't be found, so skipping."
+fi
