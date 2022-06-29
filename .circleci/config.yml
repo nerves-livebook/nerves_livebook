@@ -248,6 +248,13 @@ jobs:
       MIX_TARGET: npi_imx6ull
     <<: *build
 
+  build_mangopi_mq_pro:
+    <<: *defaults
+    environment:
+      <<: *elixir_version
+      MIX_TARGET: mangopi_mq_pro
+    <<: *build
+
   build_grisp2:
     <<: *defaults
     environment:
@@ -318,6 +325,11 @@ jobs:
       - restore_cache:
           key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
       - run:
+          name: mangopi_mq_pro
+          command: echo "mangopi_mq_pro" > .target
+      - restore_cache:
+          key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
+      - run:
           name: grisp2
           command: echo "grisp2" > .target
       - restore_cache:
@@ -382,6 +394,10 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - build_mangopi_mq_pro:
+          filters:
+            tags:
+              only: /.*/
       - build_grisp2:
           filters:
             tags:
@@ -403,6 +419,7 @@ workflows:
             - build_bbb
             - build_npi_imx6ull
             - build_grisp2
+            - build_mangopi_mq_pro
             # - build_x86_64
           filters:
             branches:
