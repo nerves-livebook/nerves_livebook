@@ -27,6 +27,7 @@ devices:
 * `rpi4` - Raspberry Pi 4 Model B
 * `osd32mp1` - Octavo OSD32MP1-BRK
 * `npi_imx6ull` - Seeed Studio imx6ull (select the MicroSD boot mode switches)
+* `mangopi_mq_pro` - MangoPi MQ Pro (Allwinner D1 64-bit RISC-V)
 
 Some of these are easier than others to use. If you have a choice, the Raspberry
 Pi Zero, Raspberry Pi 4 and BeagleBones are good ones to try first. These boards
