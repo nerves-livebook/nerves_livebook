@@ -48,8 +48,7 @@ defmodule NervesLivebook.MixProject do
       {:jason, "~> 1.2"},
       {:nerves_runtime, "~> 0.12.0"},
       {:nerves_pack, "~> 0.7.0"},
-      # livebook v0.6.1 + one fix. See PR #1178
-      {:livebook, github: "livebook-dev/livebook", ref: "9f24bda2c"},
+      {:livebook, "~> 0.6.2"},
       {:plug, "~> 1.12"},
 
       # Pull in commonly used libraries as a convenience to users.
@@ -62,7 +61,9 @@ defmodule NervesLivebook.MixProject do
       {:circuits_uart, "~> 1.3"},
       {:input_event, "~> 1.0 or ~> 0.4", targets: @all_targets},
       {:kino, "~> 0.6"},
+      {:kino_maplibre, "~> 0.1.0"},
       {:kino_vega_lite, "~> 0.1.1"},
+      {:maplibre, "~> 0.1.0"},
       {:nerves_key, "~> 1.0", targets: @all_targets},
       {:nerves_time_zones, "~> 0.2.0", targets: @all_targets},
       {:nx, "~> 0.2.0"},
