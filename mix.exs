@@ -46,7 +46,7 @@ defmodule NervesLivebook.MixProject do
       {:ring_logger, "~> 0.8.1"},
       {:toolshed, "~> 0.2.13"},
       {:jason, "~> 1.2"},
-      {:nerves_runtime, "~> 0.12.0"},
+      {:nerves_runtime, "~> 0.13.0"},
       {:nerves_pack, "~> 0.7.0"},
       {:livebook, "~> 0.6.2"},
       {:plug, "~> 1.12"},
