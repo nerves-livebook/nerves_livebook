@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.6.3 - 2022-07-08
+
+* Updates
+  * Update Livebook to [v0.6.2](https://github.com/livebook-dev/livebook/blob/main/CHANGELOG.md#v062-2022-06-30)
+  * Support the 64-bit RISC-V MangoPi MQ Pro
+  * Change the WiFi regulatory domain default from `US` to the global region (`00`)
+  * Update Nerves systems to `nerves_system_br` 1.20.3 versions. This includes
+    Erlang/OTP 25.0.2, Buildroot 2022.05, and GCC 11.3.
+
 ## v0.6.2 - 2022-05-26
 
 * Updates
