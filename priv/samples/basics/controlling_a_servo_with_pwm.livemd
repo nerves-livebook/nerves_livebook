@@ -1,0 +1,44 @@
+# Controlling A Servo With PWM
+
+## Introduction
+
+in this notebook we will be controlling a servo on a raspberry pi with the `Pigpiox` library which uses the [pigpio](https://abyz.me.uk/rpi/pigpio/index.html) library under the hood. You will need an [SG90](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) servo motor or something similar.
+
+## Try it out
+
+Lets set a variable so that we don't have to choose the GPIO pin every time.
+
+First, refer to the GPIO ports for your Nerves device.
+In this example, we will be using pin 12 on the raspberry pi platform.
+
+![](https://raw.githubusercontent.com/livebook-dev/nerves_livebook/main/assets/gpio/rpi_pinout.png)
+
+Wire everything up like in the diagram below. Servos have 3 wires: ground, vcc and pwm. In this case the black is ground the red is vcc and the yellow is pwm. Hook it up to pin 12 of the raspberry pi.
+
+![](https://raw.githubusercontent.com/livebook-dev/nerves_livebook/main/assets/gpio/rpi_servo.png)
+
+Lets set the pin as a variable so we don't have to choose the GPIO pin every time.
+
+```elixir
+pin = 12
+```
+
+Now we can set the servo to neutral or 90 degrees with the following command.
+
+```elixir
+Pigpiox.Socket.command(:set_servo_pulsewidth, pin, 1500)
+```
+
+Here we can set it to 0 degrees.
+
+```elixir
+Pigpiox.Socket.command(:set_servo_pulsewidth, pin, 500)
+```
+
+And now 180 degrees.
+
+```elixir
+Pigpiox.Socket.command(:set_servo_pulsewidth, pin, 2500)
+```
+
+Refer to the data sheet for your servo. You may need to change the values.You can learn more about how servos work [here](https://www.jameco.com/Jameco/workshop/Howitworks/how-servo-motors-work.html).
