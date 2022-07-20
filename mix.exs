@@ -91,7 +91,7 @@ defmodule NervesLivebook.MixProject do
 
       # Compile-time only
       {:credo, "~> 1.6", only: :dev, runtime: false},
-      {:dialyxir, "~> 1.1.0", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.2.0", only: :dev, runtime: false},
       {:sbom, "~> 0.6", only: :dev, runtime: false}
     ]
   end
