@@ -5,7 +5,8 @@ defmodule NervesLivebook.MixProject do
   @version "0.6.3"
 
   @rpi_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4]
-  @all_targets @rpi_targets ++ [:bbb, :osd32mp1, :x86_64, :npi_imx6ull, :grisp2, :mangopi_mq_pro]
+  @all_targets @rpi_targets ++
+                 [:bbb, :osd32mp1, :x86_64, :npi_imx6ull, :grisp2, :mangopi_mq_pro, :srhub]
 
   # Libraries that use MMAL on the Raspberry Pi won't work with the Raspberry
   # Pi 4. The Raspberry Pi 4 uses DRM and libcamera.
@@ -88,6 +89,7 @@ defmodule NervesLivebook.MixProject do
       {:nerves_system_npi_imx6ull, "~> 0.5", runtime: false, targets: :npi_imx6ull},
       {:nerves_system_grisp2, "~> 0.2", runtime: false, targets: :grisp2},
       {:nerves_system_mangopi_mq_pro, "~> 0.1", runtime: false, targets: :mangopi_mq_pro},
+      {:nerves_system_srhub, "~> 0.25", runtime: false, targets: :srhub},
 
       # Compile-time only
       {:credo, "~> 1.6", only: :dev, runtime: false},
