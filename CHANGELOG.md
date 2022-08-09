@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.6.4 - 2022-08-08
+
+* Updates
+  * Update Livebook to [v0.6.3](https://github.com/livebook-dev/livebook/blob/main/CHANGELOG.md#v063-2022-07-13)
+  * Update Nerves systems to `nerves_system_br` 1.20.4 versions. This includes
+    Erlang/OTP 25.0.3, Buildroot 2022.05, and GCC 11.3.
+  * Fix warnings when building in host mode. (Thanks @axelson)
+  * Update depencies to latest versions
+  * Add preliminary support for srhub devices
+
 ## v0.6.3 - 2022-07-08
 
 * Updates
