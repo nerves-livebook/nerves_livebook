@@ -50,6 +50,7 @@ defmodule NervesLivebook.MixProject do
       {:nerves_runtime, "~> 0.13.0"},
       {:livebook, "~> 0.6.2"},
       {:plug, "~> 1.12"},
+      {:vintage_net, "~> 0.12"},
 
       # Pull in commonly used libraries as a convenience to users.
       {:blue_heron, "~> 0.3", override: true, targets: @ble_targets},
