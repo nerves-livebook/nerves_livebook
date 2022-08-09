@@ -17,10 +17,11 @@ defmodule NervesLivebook.Application do
 
     delux_options = Application.get_env(:nerves_livebook, :delux_config, [])
 
-    children = [
-      {Delux, [name: NervesLivebook.Delux] ++ delux_options},
-      NervesLivebook.UI
-    ]
+    children =
+      [
+        {Delux, [name: NervesLivebook.Delux] ++ delux_options},
+        NervesLivebook.UI
+      ] ++ target_children(Nerves.Runtime.mix_target())
 
     Supervisor.start_link(children, opts)
   end
@@ -94,4 +95,7 @@ defmodule NervesLivebook.Application do
       :ok
     end
   end
+
+  defp target_children(:srhub), do: [NervesLivebook.WiFiMonitor]
+  defp target_children(_), do: []
 end
