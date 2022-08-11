@@ -16,9 +16,7 @@ config :logger, backends: [RingLogger, RamoopsLogger]
 # https://github.com/nerves-project/erlinit/ for more information on
 # configuring erlinit.
 
-config :nerves, :erlinit,
-  hostname_pattern: "nerves-%s",
-  shutdown_report: "/data/last_shutdown.txt"
+config :nerves, :erlinit, shutdown_report: "/data/last_shutdown.txt"
 
 # Configure the device for SSH IEx prompt access and firmware updates
 #
