@@ -1,0 +1,59 @@
+# Default Nerves RPi 3 A+ config.txt
+#
+# It's possible to override this file by using a custom fwup.conf
+# configuration to pull in a replacement.
+#
+# Useful links:
+# https://www.raspberrypi.org/documentation/configuration/config-txt/README.md
+# https://www.raspberrypi.org/documentation/configuration/device-tree.md
+# https://github.com/raspberrypi/documentation/blob/master/configuration/device-tree.md
+# https://github.com/raspberrypi/firmware/blob/master/boot/overlays/README
+
+kernel=zImage
+
+# Disable the boot rainbow
+disable_splash=1
+
+# This, along with the Raspberry Pi "x" firmware is needed for the camera
+# to work. The Raspberry Pi "x" firmware is selected via the Buildroot
+# configuration. See Target packages->Hardware handling->Firmware.
+gpu_mem=192
+
+# Enable I2C, SPI, and audio
+dtparam=i2c_arm=on
+dtparam=spi=on
+dtparam=audio=on
+
+# Enable drivers for the Raspberry Pi 7" Touchscreen
+#
+# This makes it possible to run Scenic out of the box with the popular
+# Raspberry Pi 7" Touchscreen. It appears to be harmless for non-touchscreen
+# users, but if not, let us know!
+dtoverlay=rpi-ft5406
+dtoverlay=rpi-backlight
+
+# Comment this in or modify to enable OneWire
+# NOTE: check that the overlay that you specify is in the boot partition or
+#       this won't work.
+#dtoverlay=w1-gpio-pullup,gpiopin=4
+dtoverlay=dwc2
+
+# The ramoops overlay works with the pstore driver to preserve crash
+# information across reboots in DRAM
+dtoverlay=ramoops
+
+# Enable the UART (/dev/ttyAMA0) on the RPi3.
+enable_uart=1
+dtoverlay=miniuart-bt
+# Set the GPU frequency so that the MiniUART (/dev/ttyS0) can be used for
+# Bluetooth. This has a small performance impact. See
+# https://www.raspberrypi.org/documentation/computers/config_txt.html#overclocking.
+core_freq=250
+
+#
+# Nerves Livebook additions
+#
+
+# Blink the LED at 1 Hz while booting
+dtparam=act_led_trigger=timer
+

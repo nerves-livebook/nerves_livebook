@@ -9,3 +9,5 @@ config :vintage_net,
   ]
 
 config :nerves_livebook, :ui, led: "led0"
+
+config :nerves, :firmware, fwup_conf: "config/rpi3a/fwup.conf"
