@@ -8,10 +8,8 @@ defmodule NervesLivebook.Application do
   def start(_type, _args) do
     initialize_data_directory()
 
-    if target() != :host do
-      setup_wifi()
-      add_mix_install()
-    end
+    setup_wifi()
+    add_mix_install()
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
@@ -77,22 +75,23 @@ defmodule NervesLivebook.Application do
     defp empty?(_), do: false
   end
 
-  defp add_mix_install() do
-    # This needs to be done this way since redefining Mix at compile time
-    # doesn't make anyone happy.
-    _ =
-      Code.eval_string("""
-      defmodule Mix do
-        def install(deps, opts \\\\ []) when is_list(deps) and is_list(opts) do
-          NervesLivebook.MixInstall.install(deps, opts)
+  if Mix.target() == :host do
+    # Redefining Mix when running on the host causes warning, so just skip it.
+    defp add_mix_install(), do: :ok
+  else
+    defp add_mix_install() do
+      # This needs to be done this way since redefining Mix at compile time
+      # doesn't make anyone happy.
+      _ =
+        Code.eval_string("""
+        defmodule Mix do
+          def install(deps, opts \\\\ []) when is_list(deps) and is_list(opts) do
+            NervesLivebook.MixInstall.install(deps, opts)
+          end
         end
-      end
-      """)
+        """)
 
-    :ok
-  end
-
-  defp target() do
-    Application.get_env(:nerves_livebook, :target)
+      :ok
+    end
   end
 end

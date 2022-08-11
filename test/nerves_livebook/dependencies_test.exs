@@ -17,11 +17,7 @@ defmodule NervesLivebook.DependenciesTest do
     assert "circuits_i2c" in names
     assert "circuits_spi" in names
     assert "circuits_uart" in names
-
-    if Application.fetch_env!(:nerves_runtime, :target) != "host" do
-      assert "vintage_net" in names
-      assert "vintage_net_wifi" in names
-    end
+    assert "vintage_net" in names
   end
 
   test "packages are alphabetized" do

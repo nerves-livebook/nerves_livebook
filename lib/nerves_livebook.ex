@@ -6,17 +6,6 @@ defmodule NervesLivebook do
   require Logger
 
   @doc """
-  Return the mix target that was used to build this firmware
-
-  This is useful for locating firmware updates and checking if you're
-  running on non-Nerves device.
-  """
-  @spec target() :: atom()
-  def target() do
-    Application.get_env(:nerves_livebook, :target)
-  end
-
-  @doc """
   Return the Nerves Livebook version
 
   This returns the version as a string.
