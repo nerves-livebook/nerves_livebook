@@ -9,4 +9,4 @@ config :vintage_net,
   ]
 
 # TBD
-config :nerves_livebook, :ui, led: nil
+config :nerves_livebook, :delux_config, indicators: %{default: %{}}

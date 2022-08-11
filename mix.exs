@@ -60,6 +60,7 @@ defmodule NervesLivebook.MixProject do
       {:circuits_i2c, "~> 1.0"},
       {:circuits_spi, "~> 1.0 or ~> 0.1"},
       {:circuits_uart, "~> 1.3"},
+      {:delux, "~> 0.1"},
       {:input_event, "~> 1.0 or ~> 0.4", targets: @all_targets},
       {:kino, "~> 0.6"},
       {:kino_maplibre, "~> 0.1.0"},

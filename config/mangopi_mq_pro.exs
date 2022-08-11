@@ -8,4 +8,4 @@ config :vintage_net,
     {"wlan0", %{type: VintageNetWiFi}}
   ]
 
-config :nerves_livebook, :ui, led: "blue:indicator"
+config :nerves_livebook, :delux_config, indicators: %{default: %{blue: "blue:indicator"}}

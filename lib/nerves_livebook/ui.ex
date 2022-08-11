@@ -6,68 +6,39 @@ defmodule NervesLivebook.UI do
   since every supported device has one.
   """
   use GenServer
-  alias NervesLivebook.PatternLED
+  alias Delux.Effects
 
   require Logger
-
-  @typedoc false
-  @type option() :: {:led, String.t()}
 
   @doc """
   Start the UI GenServer
 
   Options:
-
-  * `:led` - the name of the LED to use (like "led0" for the Raspberry Pis)
+    * None
   """
-  @spec start_link([option]) :: GenServer.on_start()
+  @spec start_link(keyword()) :: GenServer.on_start()
   def start_link(opts) do
     GenServer.start_link(__MODULE__, opts, name: __MODULE__)
   end
 
   @impl GenServer
-  def init(opts) do
-    with {:ok, led} <- Keyword.fetch(opts, :led),
-         true <- is_binary(led),
-         :ok <- PatternLED.initialize_led(led) do
-      setup_led(led)
+  def init(_opts) do
+    VintageNet.subscribe(["connection"])
+    value = VintageNet.get(["connection"])
 
-      {:ok, led}
-    else
-      _ ->
-        # No LED configured, so just carry on and don't do anything.
-        Logger.info("NervesLivebook: No LED configured or error so not showing device status")
-        :ignore
-    end
+    Delux.render(NervesLivebook.Delux, led_program(value))
+    {:ok, :no_state}
   end
 
   @impl GenServer
-  def handle_info({VintageNet, ["connection"], _old, value, _meta}, led) do
-    update_led(led, value)
-    {:noreply, led}
+  def handle_info({VintageNet, ["connection"], _old, value, _meta}, state) do
+    Delux.render(NervesLivebook.Delux, led_program(value))
+    {:noreply, state}
   end
 
-  defp update_led(led, network_connection) do
-    with {:ok, brightness} <- PatternLED.get_max_brightness(led),
-         pattern = network_connection_to_led(brightness, network_connection),
-         :ok <- PatternLED.set_led_pattern(led, pattern) do
-      :ok
-    else
-      {:error, reason} ->
-        Logger.info("NervesLivebook failed to set LED '#{led}': #{inspect(reason)}")
-    end
-  end
+  def handle_info(_, state), do: {:noreply, state}
 
-  if Mix.target() == :host do
-    defp setup_led(_led), do: :ok
-  else
-    defp setup_led(led) do
-      VintageNet.subscribe(["connection"])
-      update_led(led, VintageNet.get(["connection"]))
-    end
-  end
-
-  defp network_connection_to_led(brightness, :lan), do: PatternLED.on(brightness)
-  defp network_connection_to_led(brightness, :internet), do: PatternLED.on(brightness)
-  defp network_connection_to_led(brightness, _other), do: PatternLED.blink(brightness, 4)
+  defp led_program(:internet), do: Effects.on(:on)
+  defp led_program(:lan), do: Effects.on(:on)
+  defp led_program(_disconnected), do: Effects.blink(:on, 4)
 end

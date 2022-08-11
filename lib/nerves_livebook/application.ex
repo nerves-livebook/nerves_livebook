@@ -17,10 +17,11 @@ defmodule NervesLivebook.Application do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: NervesLivebook.Supervisor]
 
-    ui_options = Application.get_env(:nerves_livebook, :ui, [])
+    delux_options = Application.get_env(:nerves_livebook, :delux_config, [])
 
     children = [
-      {NervesLivebook.UI, ui_options}
+      {Delux, [name: NervesLivebook.Delux] ++ delux_options},
+      NervesLivebook.UI
     ]
 
     Supervisor.start_link(children, opts)

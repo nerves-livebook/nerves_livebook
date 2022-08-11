@@ -10,4 +10,4 @@ config :vintage_net,
   ]
 
 # The device tree overlays that expose the LEDs aren't currently enabled.
-config :nerves_livebook, :ui, led: nil
+config :nerves_livebook, :delux_config, indicators: %{default: %{}}
