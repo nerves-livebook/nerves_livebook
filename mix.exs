@@ -15,6 +15,9 @@ defmodule NervesLivebook.MixProject do
   # See the BlueHeron repository for the boards that it supports.
   @ble_targets [:rpi0, :rpi3, :rpi3a]
 
+  # Targets supporting cellular modems
+  @cellular_targets [:srhub]
+
   def project do
     [
       app: @app,
@@ -77,6 +80,8 @@ defmodule NervesLivebook.MixProject do
       {:req, "~> 0.3.0"},
       {:scroll_hat, "~> 0.1", targets: @rpi_targets},
       {:vega_lite, "~> 0.1"},
+      {:vintage_net_mobile, "~> 0.11", targets: @cellular_targets},
+      {:vintage_net_qmi, "~> 0.3", targets: @cellular_targets},
 
       # Nerves system dependencies
       {:nerves_system_rpi, "~> 1.18", runtime: false, targets: :rpi},
