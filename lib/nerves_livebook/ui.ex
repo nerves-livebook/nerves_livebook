@@ -38,7 +38,7 @@ defmodule NervesLivebook.UI do
 
   def handle_info(_, state), do: {:noreply, state}
 
-  defp led_program(:internet), do: Effects.on(:on)
-  defp led_program(:lan), do: Effects.on(:on)
-  defp led_program(_disconnected), do: Effects.blink(:on, 4)
+  defp led_program(:internet), do: Effects.on(:cyan)
+  defp led_program(:lan), do: Effects.on(:cyan)
+  defp led_program(_disconnected), do: Effects.blink(:cyan, 4)
 end
