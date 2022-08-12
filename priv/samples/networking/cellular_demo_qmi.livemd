@@ -1,0 +1,92 @@
+# Cellular Modem Demo (QMI)
+
+```elixir
+Mix.install([
+  {:circuits_gpio, "~> 1.0"},
+  {:toolshed, "~> 0.2.26"},
+  {:vintage_net_qmi, "~> 0.3"}
+])
+```
+
+## Prerequisites
+
+Before you try this, you'll need the following:
+
+1. A device with a cellular modem that supports QMI. QMI only works over USB, so you can rule out any modems that only have UART interfaces.
+2. An activated SIM card or module
+3. The APN for your cellular provider
+4. Appropriate antennas for the cellular network that you're using. While this seems obvious, if you're using at CAT M1 modem, you may only have service on 600 or 700 MHz channels and those are not supported by many antennas
+5. A Nerves system that includes Linux kernel drivers for QMI. Official Nerves Livebook releases only bundle the `:vintage_net_qmi` library if the kernel drivers are available.
+
+> While consumer LTE USB dongles are cellular modems, they can be really hard to configure compared to the cellular modems intended for IoT devices. You may need to look into `usbswitch` and that's not covered here. An alternative is to buy a USB->MiniPCIe adapter and a MiniPCIe-based cellular modem.
+
+## Powering on the cellular modem
+
+The cellular modem needs to be turned on before it can be used. Some modems are always powered on. Some need a GPIO to be set to turn them on and others require both power to be enabled and an pin to be toggled. If you're using a USB->MiniPCIe adapter, your modem should be on.
+
+Currently, this notebook only supports the [SmartRent Hub](https://github.com/smartrent/nerves_system_srhub) hardware that was used at NervesConf. Run the following block to turn of the GPIO that enables the modem.
+
+```elixir
+{:ok, reset_n} = Circuits.GPIO.open(3 * 32 + 15, :output)
+Circuits.GPIO.write(reset_n, 1)
+```
+
+When the modem is on, it will show up on the USB bus. For whatever reason, many LTE modules show up as "Android". Rerun this if nothing shows up, since some modems take a few seconds to boot.
+
+```elixir
+use Toolshed
+lsusb()
+```
+
+## Configuring VintageNet
+
+Consult your service provider's documentation for their APN and update the following code block. Since service providers are assigned ICCID ranges (SIM Card identifiers), it's possible for VintageNetQMI to select the appropriate APN automatically. The following code block uses this feature for a few service providers so it may "just work".
+
+> Roaming is disallowed by default. Twilio specifies that you allow roaming for their Super SIMs and that's why it's enabled for their APN.
+
+```elixir
+VintageNet.configure("wwan0", %{
+  type: VintageNetQMI,
+  vintage_net_qmi: %{
+    service_providers: [
+      %{apn: "wireless.twilio.com", only_iccid_prefixes: ["8901260", "8901240"]},
+      %{apn: "hologram", only_iccid_prefixes: ["8944501"]},
+      %{apn: "super", roaming_allowed?: true}
+    ],
+    only_radio_technologies: [:lte]
+  }
+})
+```
+
+VintageNet will configure the modem to connect to the internet, but this sometimes takes a moment.
+
+In the meantime, let's see some of the important IDs stored on the modem and SIM card by getting the modem's properties.
+
+```elixir
+VintageNet.get_by_prefix(["interface", "wwan0", "mobile"])
+```
+
+Depending on whether your modem has connector or not, you'll see more or less information. The following entries should always be there if the VintageNetQMI can talk to the modem:
+
+* `"iccid"` - The SIM card's ICCID. If you're using plastic SIM cards, you should see this printed on the original card.
+* `"imei"` - The cellular modem's identifier
+* `"manufacturer"` - Either the hardware manufacturer of the modem or of a component inside the modem
+* `"model"` - More information on the modem
+
+[VintageNetQMI's hexdocs](https://hexdocs.pm/vintage_net_qmi/readme.html#vintagenet-properties) describe all of the properties that you may see.
+
+Once you're happy with viewing properties, try running `VintageNet.info` for a textual report on whether the modem has an internet connection.
+
+```elixir
+VintageNet.info()
+```
+
+## Using the cellular modem
+
+It's all set up, so let's try it out.
+
+The Toolshed `tping` command times how long it takes to get a response from a TCP connection attempt to an address. It can be forced to use a network interface even if another one would be cheaper or faster.
+
+```elixir
+tping("google.com", ifname: "wwan0")
+```
