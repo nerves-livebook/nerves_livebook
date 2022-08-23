@@ -1,0 +1,174 @@
+# LIS3DH Accelerometer
+
+```elixir
+Mix.install([{:circuits_i2c, "~> 1.0"}])
+```
+
+## Section
+
+[Datasheet](https://www.st.com/content/ccc/resource/technical/document/datasheet/3c/ae/50/85/d6/b1/46/fe/CD00274221.pdf/files/CD00274221.pdf/jcr:content/translations/en.CD00274221.pdf)
+
+```elixir
+defmodule Accelerometer do
+  @moduledoc false
+
+  use GenServer
+
+  require Logger
+
+  alias Circuits.{GPIO, I2C}
+
+  # address of the accelerometer on the I2C bus
+  @accelerometer_address 0x18
+
+  # The GPIO that is the ACCEL_INT is connected to
+  @accelerometer_interrupt_pin 113
+
+  # @ctrl_reg0 0x1e
+  @temp_cfg_reg 0x1F
+  @ctrl_reg1 0x20
+  # @ctrl_reg2 0x21
+  @ctrl_reg3 0x22
+  @ctrl_reg4 0x23
+  # @ctrl_reg5 0x24
+  # @ctrl_reg6 0x25
+
+  @spec start_link(keyword()) :: GenServer.on_start()
+  def start_link(args \\ []) do
+    GenServer.start_link(__MODULE__, args, name: __MODULE__)
+  end
+
+  @spec read_temperature() :: {:ok, number()} | {:error, any()}
+  def read_temperature() do
+    GenServer.call(__MODULE__, :read_temperature)
+  end
+
+  @impl GenServer
+  def init(_args) do
+    bus_name = "i2c-1"
+
+    if Enum.member?(I2C.detect_devices(bus_name), 0x18) do
+      {:ok, i2c} = I2C.open(bus_name)
+      {:ok, gpio} = GPIO.open(@accelerometer_interrupt_pin, :input)
+
+      # listen for interrupts on the ACCEL_INT pin rising edge
+      :ok = GPIO.set_interrupts(gpio, :rising)
+
+      :ok = setup_mode_data_rate_enable_axises(i2c)
+      # after turning power mode to normal wait a few milliseconds
+      Process.sleep(5)
+      :ok = enable_gpio_interrupt(i2c)
+      :ok = enable_temperature_measurements(i2c)
+      :ok = setup_resolution_and_data_update(i2c)
+      :ok = setup_6d_motion(i2c)
+      :ok = setup_interrupt_threshold(i2c)
+      :ok = setup_interrupt_duration(i2c)
+
+      {:ok, %{i2c: i2c, gpio: gpio}}
+    else
+      :ignore
+    end
+  end
+
+  @impl GenServer
+  def handle_call(:read_temperature, _from, state) do
+    {:reply, read_temperature(state.i2c), state}
+  end
+
+  @impl GenServer
+  def handle_info({:circuits_gpio, @accelerometer_interrupt_pin, _, _}, state) do
+    Logger.warn("Tamper detected")
+    {:noreply, state}
+  end
+
+  defp setup_mode_data_rate_enable_axises(i2c) do
+    # CTRL_REG1 = 0x20
+    # Output Date Rate = 400 Hz = 4
+    # Lower Power mode = 0
+    # Enable x, y, z = 7
+    # 0b011_0111 = 0x77
+
+    binary = <<@ctrl_reg1, 0x77>>
+
+    I2C.write(i2c, @accelerometer_address, binary)
+  end
+
+  defp enable_gpio_interrupt(i2c) do
+    # CTRL_REG3 = 0x22
+    # IA_1 bit = 1
+    # 0b0100_0000 = 0x40
+
+    binary = <<@ctrl_reg3, 0x40>>
+
+    I2C.write(i2c, @accelerometer_address, binary)
+  end
+
+  defp enable_temperature_measurements(i2c) do
+    # TEMP_CFG_REG = 0x1f
+    # TEMP_EN bit = 1
+    # 0b1100_0000 = 0xc0
+
+    binary = <<@temp_cfg_reg, 0xC0>>
+
+    I2C.write(i2c, @accelerometer_address, binary)
+  end
+
+  defp setup_resolution_and_data_update(i2c) do
+    # CTRL_REG4 = 0x23
+    # Block Data Update (BDU) bit = 1
+    # High Resolution mode bit = 1
+    # 0b1000_1000 = 0x88
+
+    binary = <<@ctrl_reg4, 0x88>>
+
+    I2C.write(i2c, @accelerometer_address, binary)
+  end
+
+  defp setup_6d_motion(i2c) do
+    # INT1_CFG = 0x30
+    # Enable 6D motion = 0x40 (64)
+    # Enable X = 0x03 (3)
+    # Enable Y = 0x0C (12)
+    # 0b0100_1111 = 0x4F
+
+    binary = <<0x30, 0x4F>>
+
+    I2C.write(i2c, @accelerometer_address, binary)
+  end
+
+  defp setup_interrupt_threshold(i2c) do
+    # INT1_THS = 0x32
+
+    binary = <<0x32, 0x21>>
+
+    I2C.write(i2c, @accelerometer_address, binary)
+  end
+
+  defp setup_interrupt_duration(i2c) do
+    # Current assumption is the ORD is 400 Hz
+    # the duration is measured in N/ORD where N is the value
+    # in the INT1_DURATION.
+
+    # INT1_DURATION = 0xFF
+
+    binary = <<0x33, 0xFF>>
+
+    I2C.write(i2c, @accelerometer_address, binary)
+  end
+
+  defp read_temperature(i2c) do
+    case I2C.write_read(i2c, @accelerometer_address, <<0x8C>>, 2) do
+      {:ok, <<temp_lsb::little-16>>} -> {:ok, temp_lsb / 256 + 25}
+      error -> error
+    end
+  end
+end
+```
+
+```elixir
+{:ok, accel} = Accelerometer.start_link()
+```
+
+```elixir
+Accelerometer.read_temperature()
+```
