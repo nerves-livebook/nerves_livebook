@@ -42,7 +42,7 @@ config :livebook, :explore_notebooks, [
     # Optional details for the notebook card. If omitted, the notebook
     # is hidden in the UI, but still accessible under /explore/notebooks/{slug}
     details: %{
-      cover_path: "#{File.cwd!()}/assets/nerves.png",
+      cover_path: "#{File.cwd!()}/assets/nerves.svg",
       description: "Get to know how Livebook works with Nerves."
     }
   },
