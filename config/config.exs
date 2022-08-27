@@ -43,8 +43,15 @@ config :livebook, :explore_notebooks, [
     # is hidden in the UI, but still accessible under /explore/notebooks/{slug}
     details: %{
       cover_path: "#{File.cwd!()}/assets/nerves.png",
-      description:
-        "Get to know how Livebook works with Nerves and try out Nerves-specific examples."
+      description: "Get to know how Livebook works with Nerves."
+    }
+  },
+  %{
+    path: "#{File.cwd!()}/priv/samples/networking/configure_wifi.livemd",
+    slug: "wifi",
+    details: %{
+      cover_path: "#{File.cwd!()}/assets/wifi-setup.svg",
+      description: "Connect Nerves Livebook to a wireless network."
     }
   }
 ]
