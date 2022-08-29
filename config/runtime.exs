@@ -14,6 +14,7 @@ notebook_path =
   end
 
 config :livebook,
+  home: notebook_path,
   file_systems: [Livebook.FileSystem.Local.new(default_path: notebook_path)]
 
 # Use the embedded runtime to run notebooks in the same VM
