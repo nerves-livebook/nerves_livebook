@@ -8,7 +8,7 @@ Mix.install([{:hts221, "~> 1.0"}])
 
 `HTS221` is a humidity and temperature sensor that uses an I2C interface.
 
-When controlling the HTS221 there are few setup steps and other checks you may want to do.Also, to keep the transport layer working often times this will call for a GenServer. The `HTS221.Server` module is meant to provide common functionality around setup and an expose a higher level API for application use
+When controlling the HTS221 there are few setup steps and other checks you may want to do. Also, to keep the transport layer working often times this will call for a GenServer. The `HTS221.Server` module is meant to provide common functionality around setup and an expose a higher level API for application use:
 
 ```elixir
 opts = [transport: {HTS221.Transport.I2C, bus_name: "i2c-1"}]
@@ -17,7 +17,7 @@ opts = [transport: {HTS221.Transport.I2C, bus_name: "i2c-1"}]
 
 You can then use the server to read the temperature and humidity on demand.
 
-Temperature is in Celcius by default (`ºC`).
+Temperature is in Celsius by default (`ºC`).
 
 ```elixir
 {:ok, temp} = HTS221.Server.temperature(hts_server)
