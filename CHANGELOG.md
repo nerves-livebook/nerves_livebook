@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.6.5 - 2022-08-29
+
+* Updates
+  * Add WiFi configuration to explore section to make it easier to find
+  * Use the new `Delux` library to control the LED. This will enable better
+    feedback for what Livebook is doing when you can't see the webpage
+  * Blink LED to show that the RPi0 is booting since it takes so long to start.
+  * Add the `Pinout` library as a convenience for getting board pinouts.
+  * Add libraries for devices that support cellular modems (only `srhub` now)
+
 ## v0.6.4 - 2022-08-08
 
 * Updates
