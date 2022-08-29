@@ -19,7 +19,7 @@ defmodule NervesLivebook.Application do
 
     children =
       [
-        {Delux, [name: NervesLivebook.Delux] ++ delux_options},
+        {Delux, delux_options},
         NervesLivebook.UI
       ] ++ target_children(Nerves.Runtime.mix_target())
 
