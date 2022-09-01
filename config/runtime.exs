@@ -1,6 +1,6 @@
 import Config
 
-mix_target = Application.get_env(:nerves_livebook, :target)
+mix_target = Nerves.Runtime.mix_target()
 
 # Start with Livebook defaults
 Livebook.config_runtime()
