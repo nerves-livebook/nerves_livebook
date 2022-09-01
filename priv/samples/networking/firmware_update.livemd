@@ -17,7 +17,7 @@ IO.write("""
 You're running Nerves Livebook #{NervesLivebook.version()}.
 
 More details:
-Target: #{NervesLivebook.target()}
+Target: #{Nerves.Runtime.mix_target()}
 Firmware UUID: #{Nerves.Runtime.KV.get_active("nerves_fw_uuid")}
 Firmware partition: #{Nerves.Runtime.KV.get("nerves_fw_active")}
 """)
