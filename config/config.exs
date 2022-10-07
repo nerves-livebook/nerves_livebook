@@ -26,12 +26,12 @@ config :mime, :types, %{
 # Sets the default storage backend
 config :livebook, :storage, Livebook.Storage.Ets
 
-# Livebook's explore section is built at compile-time
-config :livebook, :explore_notebooks, [
+# Livebook's learn section is built at compile-time
+config :livebook, :learn_notebooks, [
   %{
     # Required notebook path
     path: "#{File.cwd!()}/priv/welcome.livemd",
-    # Optional notebook identifier for URLs, as in /explore/notebooks/{slug}
+    # Optional notebook identifier for URLs, as in /learn/notebooks/{slug}
     # By default the slug is inferred from file name, so there is no need to set it
     slug: "nerves",
     # Optional list of images
@@ -40,7 +40,7 @@ config :livebook, :explore_notebooks, [
     #  "/path/to/myimage.jpg"
     # ],
     # Optional details for the notebook card. If omitted, the notebook
-    # is hidden in the UI, but still accessible under /explore/notebooks/{slug}
+    # is hidden in the UI, but still accessible under /learn/notebooks/{slug}
     details: %{
       cover_path: "#{File.cwd!()}/assets/nerves.svg",
       description: "Get to know how Livebook works with Nerves."
