@@ -65,7 +65,7 @@ defmodule NervesLivebook.MixProject do
       {:delux, "~> 0.2"},
       {:hts221, "~> 1.0", targets: @all_targets},
       {:input_event, "~> 1.0 or ~> 0.4", targets: @all_targets},
-      {:kino, "~> 0.6"},
+      {:kino, "~> 0.7"},
       {:kino_maplibre, "~> 0.1.0"},
       {:kino_vega_lite, "~> 0.1.1"},
       {:maplibre, "~> 0.1.0"},
