@@ -62,4 +62,4 @@ VintageNet.info()
 
 ## Next up...
 
-See [VintageNet](vintage_net.livemd) to learn more about networking in Nerves.
+See [VintageNet](/learn/notebooks/vintage-net) to learn more about networking in Nerves.
