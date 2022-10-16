@@ -21,10 +21,10 @@ all read-only so you'll need to *fork* them just like you did to open this
 file. Livebook and Nerves Livebook are rapidly evolving so some notebooks are a
 work-in-progress. We recommend starting with the following:
 
-* [Configure WiFi](samples/networking/configure_wifi.livemd) - connect to a WiFi access point
-* [LEDs](samples/basics/sys_class_leds.livemd) - learn about the built-in LEDs on your device
-* [VintageNet](samples/networking/vintage_net.livemd) - learn about networking on Nerves devices
-* [Firmware Update](samples/networking/firmware_update.livemd) - download the latest Nerves Livebook firmware
+* [Configure WiFi](/learn/notebooks/wifi) - connect to a WiFi access point
+* [LEDs](/learn/notebooks/sys-class-leds) - learn about the built-in LEDs on your device
+* [VintageNet](/learn/notebooks/vintage-net) - learn about networking on Nerves devices
+* [Firmware Update](/learn/notebooks/firmware-update) - download the latest Nerves Livebook firmware
 
 ## Saving and copying files
 
