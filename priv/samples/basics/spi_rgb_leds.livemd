@@ -17,29 +17,29 @@
 * A Raspberry Pi, BeagleBone, or other board with a SPI bus
 * SK9822 or APA102 RGB LED strip
 * (Recommended) A 5 volt 3 amp external power supply
-* (Recommended) A general understanding of the [SPI bus][sparkfun.SPI]
+* (Recommended) A general understanding of the [SPI bus](https://learn.sparkfun.com/tutorials/serial-peripheral-interface-SPI/all)
 
 ## Introduction
 
-In this exercise, we will be lighting up an RGB LED strip using the `circuits.SPI` library. 
+In this exercise, we will be lighting up an RGB LED strip using the `circuits.SPI` library.
 
-If you are unfamiliar with the SPI bus, please take a moment to review the [circuits.SPI][circuits.SPI] 
-online documentation and the [Open Source Hardware Association's resolution.][A Resolution to Redefine SPI Signal Names].
+If you are unfamiliar with the SPI bus, please take a moment to review the [circuits.SPI](https://hexdocs.pm/circuits_SPI/readme.html)
+online documentation and the [Open Source Hardware Association's resolution](https://www.oshwa.org/a-resolution-to-redefine-SPI-signal-names/).
 It should help you build a general understanding of naming convention, and how data is transferred between a controller and peripheral.
 
 ## Wiring and discovering your SPI bus
 
-First and foremost, we need to wire up the board and LED strip. 
-Using your boards documentation find the pins for `SCLK`, `GND`, and `COPI`. 
+First and foremost, we need to wire up the board and LED strip.
+Using your boards documentation find the pins for `SCLK`, `GND`, and `COPI`.
 
 <pre>
 Example SPI Diagram:
- ___________________       ____________________ 
+ ___________________       ____________________
 |              SCLK |---->| SCLK               |
 |    SPI       COPI |---->| COPI       SPI     |
 | Controller   CIPO |<----| CIPO    Peripheral |
 |              CS   |---->| CS                 |
- -------------------       -------------------- 
+ -------------------       --------------------
 </pre>
 
 ###### Single controller to single peripheral: basic SPI bus example
@@ -53,13 +53,13 @@ Using the Raspberry Pi's SPI0.
 
 <pre>
     Raspberry Pi                SK9822
- __________________       __________________ 
+ __________________       __________________
 |  Ground      GND |<----| GND              |
 |  GPIO 11    SCLK |---->|  CI              |
 |  GPIO 10    COPI |---->|  DI              |
  ------------------      |                  |
 External Power 5v ------>|  5v              |
-                          ------------------ 
+                          ------------------
 </pre>
 
 <h5>If using an external power supply, ensure it shares a common Ground with your board.</h5>
@@ -75,13 +75,13 @@ Using the BeagleBone's SPI0.
 
 <pre>
  BeagleBone GateWay             SK9822
- __________________       __________________ 
+ __________________       __________________
 |  Ground      GND |<----|  GND             |
 |  GPIO 22    SCLK |---->|   CI             |
 |  GPIO 21    COPI |---->|   DI             |
  ------------------      |                  |
 External Power 5v ------>|   5v             |
-                          ------------------ 
+                          ------------------
 </pre>
 
 <h5>If using an external power supply, ensure it shares a common Ground with your board.</h5>
@@ -112,9 +112,9 @@ alias Circuits.SPI
 
 Now that we have our LED strip wired up to our device, let's send some data!
 
-The SK9822 and APA102 leverage the same series data structure. 
-A thorough write up on a unified protocol is available [here][SK9822-a-clone-of-the-apa102] 
-and this is the same logic leveraged by the popular Arduino [FastLED library][fastLED].
+The SK9822 and APA102 leverage the same series data structure.
+A thorough write up on a unified protocol is available [here](https://cpldcpu.wordpress.com/2016/12/13/SK9822-a-clone-of-the-apa102/)
+and this is the same logic leveraged by the popular Arduino [FastLED library](https://github.com/FastLED/FastLED).
 
 We will need to send a few frames from the controller to the peripheral.
 
@@ -157,7 +157,7 @@ Start frame is static, and can be reused.
 
 We will only have one LED frame, to blink the first LED on the strip.
 
-However, our end frame depends on the number of LEDs we have, 
+However, our end frame depends on the number of LEDs we have,
 so lets calculate the number of bytes we will end with.
 
 The `Kernel.<>/2` operator concatenates our binaries.
@@ -244,10 +244,10 @@ Enum.map(1..scans, fn _ ->
   # Write from left to right
   Enum.map(0..(led_count - 1), fn x ->
     map = Map.replace(map, x, <<7::3, 15::5, 0x00, 0x00, 0x0f>>)
-    bytes = 
-      map 
-      |> Enum.sort 
-      |> Enum.map(fn {_, v} -> v end) 
+    bytes =
+      map
+      |> Enum.sort
+      |> Enum.map(fn {_, v} -> v end)
       |> Enum.join
     SPI.transfer(ref, start_frame <> bytes <> end_frame)
     Process.sleep(delay)
@@ -256,10 +256,10 @@ Enum.map(1..scans, fn _ ->
   # Write from right to left
   Enum.map((led_count - 1)..0, fn x ->
     map = Map.replace(map, x, <<7::3, 15::5, 0x00, 0x00, 0x0f>>)
-    bytes = 
-      map 
-      |> Enum.sort 
-      |> Enum.map(fn {_, v} -> v end) 
+    bytes =
+      map
+      |> Enum.sort
+      |> Enum.map(fn {_, v} -> v end)
       |> Enum.join
     SPI.transfer(ref, start_frame <> bytes <> end_frame)
     Process.sleep(delay)
@@ -330,10 +330,10 @@ Enum.map(1..scans, fn _ ->
       rainbow
       |> Enum.with_index()
       |> Enum.reduce(%{}, fn {x, i}, acc -> Map.put(acc, i, from_hsv.(x, 100, 50)) end)
-    bytes = 
-      map 
-      |> Enum.sort 
-      |> Enum.map(fn {_, v} -> v end) 
+    bytes =
+      map
+      |> Enum.sort
+      |> Enum.map(fn {_, v} -> v end)
       |> Enum.join
     SPI.transfer(ref, start_frame <> bytes <> end_frame)
     Process.sleep(delay)
@@ -371,9 +371,3 @@ Want to keep going with these exercises? Here is a list of suggestions!
 | SDIO    | Serial Data In/Out. A bi-directional serial signal |
 
 [return to top](#table-of-contents)
-
-[sparkfun.SPI]: https://learn.sparkfun.com/tutorials/serial-peripheral-interface-SPI/all
-[circuits.SPI]: https://hexdocs.pm/circuits_SPI/readme.html
-[SK9822-a-clone-of-the-apa102]: https://cpldcpu.wordpress.com/2016/12/13/SK9822-a-clone-of-the-apa102/
-[fastLED]: https://github.com/FastLED/FastLED
-[A Resolution to Redefine SPI Signal Names]: https://www.oshwa.org/a-resolution-to-redefine-SPI-signal-names/
