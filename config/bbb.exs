@@ -15,4 +15,4 @@ config :vintage_net,
 # beaglebone:green:usr1 is mmc0 activity
 # beaglebone:green:usr2 is unset
 # beaglebone:green:usr3 is mmc1 activity
-config :nerves_livebook, :delux_config, indicators: %{default: %{green: "beaglebone:green:usr2"}}
+config :delux, indicators: %{default: %{green: "beaglebone:green:usr2"}}

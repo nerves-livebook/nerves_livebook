@@ -8,6 +8,6 @@ config :vintage_net,
     {"wlan0", %{type: VintageNetWiFi}}
   ]
 
-config :nerves_livebook, :delux_config, indicators: %{default: %{green: "led0"}}
+config :delux, indicators: %{default: %{green: "led0"}}
 
 config :nerves, :firmware, fwup_conf: "config/rpi0/fwup.conf"

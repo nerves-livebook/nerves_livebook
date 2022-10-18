@@ -15,7 +15,7 @@ config :vintage_net,
 # RGB2: grisp-rgb2-red, grisp-rgb2-green, grisp-rgb2-blue
 # phycore-green - defaults to heartbeat on boot
 
-config :nerves_livebook, :delux_config,
+config :delux,
   indicators: %{
     default: %{red: "grisp-rgb1-red", green: "grips-rgb1-green", blue: "grisp-rgb1-blue"}
   }

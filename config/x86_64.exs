@@ -8,4 +8,4 @@ config :vintage_net,
   ]
 
 # No LEDs since we can't depend on one being available on x86
-config :nerves_livebook, :delux_config, indicators: %{default: %{}}
+config :delux, indicators: %{default: %{}}

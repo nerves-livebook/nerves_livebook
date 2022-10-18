@@ -56,3 +56,6 @@ with {_, 0} <- System.cmd("epmd", ["-daemon"]),
   # Livebook always sets the cookie, so let it set it. See the Livebook application config.
   :ok
 end
+
+# Blink the LED to show that we're booting
+config :delux, initial: Delux.Effects.blink(:cyan, 2)

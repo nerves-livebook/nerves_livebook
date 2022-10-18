@@ -15,11 +15,8 @@ defmodule NervesLivebook.Application do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: NervesLivebook.Supervisor]
 
-    delux_options = Application.get_env(:nerves_livebook, :delux_config, [])
-
     children =
       [
-        {Delux, delux_options},
         NervesLivebook.UI
       ] ++ target_children(Nerves.Runtime.mix_target())
 
