@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this exercise, we will use the [circuits_gpio] library to control
+In this exercise, we will use the [circuits_gpio](https://github.com/elixir-circuits/circuits_gpio) library to control
 a GPIO as an input and output, turning an LED on and off with a button press.
 
 ## Try it out
@@ -71,5 +71,3 @@ Button.listen_forever(led_output)
 ```
 
 For a fun exercise, see if you can update the `Button.listen_forever` function to only change the `led_output` state on `:rising` only.
-
-[circuits_gpio]: https://github.com/elixir-circuits/circuits_gpio

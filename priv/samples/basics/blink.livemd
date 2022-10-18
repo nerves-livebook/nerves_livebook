@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this exercise, we will use the [circuits_gpio] library to control
+In this exercise, we will use the [circuits_gpio](https://github.com/elixir-circuits/circuits_gpio) library to control
 a GPIO as an output, and blink an LED.
 
 ## Try it out
@@ -96,5 +96,3 @@ Blink.forever(led_output)
 ```
 
 For a fun exercise, see if you can change the `Blink.forever` function to blink at 100ms instead of 1000ms.
-
-[circuits_gpio]: https://github.com/elixir-circuits/circuits_gpio

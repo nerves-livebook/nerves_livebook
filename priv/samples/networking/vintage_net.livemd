@@ -47,7 +47,7 @@ VintageNet.get(["connection"])
 
 This notebook only shows a fraction of properties. For a more complete
 reference, see
-[VintageNet#Properties](https://hexdocs.pm/vintage_net/readme.html#properties)).
+[VintageNet#Properties](https://hexdocs.pm/vintage_net/readme.html#properties).
 
 Network interface-specific keys are scoped by interface name. I.e.,
 `["interface", interface_name, ..]`.  This shows the IP addresses on an
