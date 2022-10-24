@@ -96,7 +96,7 @@ defmodule NervesLivebook.MixProject do
       {:nerves_system_x86_64, "~> 1.18", runtime: false, targets: :x86_64},
       {:nerves_system_npi_imx6ull, "~> 0.5", runtime: false, targets: :npi_imx6ull},
       {:nerves_system_grisp2, "~> 0.2", runtime: false, targets: :grisp2},
-      {:nerves_system_mangopi_mq_pro, "~> 0.2.4", runtime: false, targets: :mangopi_mq_pro},
+      {:nerves_system_mangopi_mq_pro, "~> 0.3", runtime: false, targets: :mangopi_mq_pro},
       {:nerves_system_srhub, "~> 0.25", runtime: false, targets: :srhub},
 
       # Compile-time only
