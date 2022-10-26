@@ -40,5 +40,5 @@ defmodule NervesLivebook.UI do
 
   defp led_program(:internet), do: Effects.on(:cyan)
   defp led_program(:lan), do: Effects.on(:cyan)
-  defp led_program(_disconnected), do: Effects.blink(:cyan, 4)
+  defp led_program(_disconnected), do: Effects.blink(:cyan, 0.5)
 end
