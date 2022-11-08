@@ -22,10 +22,10 @@ defmodule NervesLivebook.Fwup do
       {_, 0} ->
         IO.write("Going to reboot in 5")
 
-        for i <- 4..1 do
+        Enum.each(4..1, fn i ->
           Process.sleep(1000)
           IO.write(", #{i}")
-        end
+        end)
 
         _ =
           spawn(fn ->
