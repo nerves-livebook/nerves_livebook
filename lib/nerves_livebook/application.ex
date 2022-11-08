@@ -76,6 +76,7 @@ defmodule NervesLivebook.Application do
   if Mix.target() == :host do
     # Redefining Mix when running on the host causes warning, so just skip it.
     defp add_mix_install(), do: :ok
+    defp target_children(_), do: []
   else
     defp add_mix_install() do
       # This needs to be done this way since redefining Mix at compile time
@@ -91,8 +92,8 @@ defmodule NervesLivebook.Application do
 
       :ok
     end
-  end
 
-  defp target_children(:srhub), do: [NervesLivebook.WiFiMonitor]
-  defp target_children(_), do: []
+    defp target_children(:srhub), do: [NervesLivebook.WiFiMonitor]
+    defp target_children(_), do: []
+  end
 end
