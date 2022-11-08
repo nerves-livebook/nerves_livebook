@@ -1,10 +1,17 @@
 # Changelog
 
+## v0.7.2 - 2022-11-07
+
+* Updates
+  * Update Livebook to [v0.7.2](https://github.com/livebook-dev/livebook/blob/main/CHANGELOG.md#v072-2022-10-26)
+  * Update Nerves systems to `nerves_system_br` 1.21.2 versions
+  * Fix hyperlinks and move more pages to learn sections (Thanks @mnishiguchi)
+
 ## v0.7.0 - 2022-10-09
 
 * Updates
   * Update Livebook to [v0.7.1](https://github.com/livebook-dev/livebook/blob/main/CHANGELOG.md#v071-2022-10-09)
-  * Update Nerves systems to `nerves_system_br` 1.20.6 versions 
+  * Update Nerves systems to `nerves_system_br` 1.20.6 versions
   * Update Nerves to v1.9.1
 
 ## v0.6.5 - 2022-08-29
