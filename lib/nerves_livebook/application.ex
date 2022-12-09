@@ -73,26 +73,26 @@ defmodule NervesLivebook.Application do
     defp empty?(_), do: false
   end
 
+  # Redefining Mix when running on the host causes warning, but lets us try
+  # the custom NervesLivebook Mix.install workaround more easily.
+  defp add_mix_install() do
+    # This needs to be done this way since redefining Mix at compile time
+    # doesn't make anyone happy.
+    _ =
+      Code.eval_string("""
+      defmodule Mix do
+        def install(deps, opts \\\\ []) when is_list(deps) and is_list(opts) do
+          NervesLivebook.MixInstall.install(deps, opts)
+        end
+      end
+      """)
+
+    :ok
+  end
+
   if Mix.target() == :host do
-    # Redefining Mix when running on the host causes warning, so just skip it.
-    defp add_mix_install(), do: :ok
     defp target_children(_), do: []
   else
-    defp add_mix_install() do
-      # This needs to be done this way since redefining Mix at compile time
-      # doesn't make anyone happy.
-      _ =
-        Code.eval_string("""
-        defmodule Mix do
-          def install(deps, opts \\\\ []) when is_list(deps) and is_list(opts) do
-            NervesLivebook.MixInstall.install(deps, opts)
-          end
-        end
-        """)
-
-      :ok
-    end
-
     defp target_children(:srhub), do: [NervesLivebook.WiFiMonitor]
     defp target_children(_), do: []
   end
