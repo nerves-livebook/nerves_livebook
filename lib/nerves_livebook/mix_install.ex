@@ -2,7 +2,7 @@ defmodule NervesLivebook.MixInstall do
   @moduledoc """
   Simulate Mix.install for Nerves Livebook
 
-  Nerves Livebook currently doesn't support `Mix.install/1`, but hopefully it
+  Nerves Livebook currently doesn't support `Mix.install/2`, but hopefully it
   will in the future. As a workaround, check whether dependencies that the user
   specifies are available and give them a help message if not.
   """
@@ -49,7 +49,7 @@ defmodule NervesLivebook.MixInstall do
     case Application.spec(app, :vsn) do
       nil ->
         raise RuntimeError, """
-        Mix.install is not supported on Nerves Livebook (yet!).
+        Mix.install/2 is not supported on Nerves Livebook (yet!).
 
         All is not lost, but you will have to rebuild the Nerves Livebook firmware.
         Go to https://github.com/livebook-dev/nerves_livebook and clone the repository.
