@@ -45,7 +45,7 @@ defmodule NervesLivebook.Dependencies do
     for {app, description, version} <- Application.loaded_applications(),
         app not in @extra_applications do
       %{
-        dependency: {app, "~> #{version}"},
+        dependency: %{dep: {app, "~> #{version}"}, config: []},
         description: to_string(description),
         name: to_string(app),
         url: "https://hex.pm/packages/#{app}",

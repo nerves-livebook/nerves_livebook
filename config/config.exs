@@ -70,12 +70,16 @@ config :livebook, Livebook.Runtime.Embedded,
   load_packages: {NervesLivebook.Dependencies, :packages, []}
 
 # Disable shutdown button for now since it doesn't work
-config :livebook, :shutdown_enabled, false
+config :livebook, :shutdown_callback, nil
 
 # Defaults for required configurations
 config :livebook,
   app_service_name: nil,
-  app_service_url: nil
+  app_service_url: nil,
+  feature_flags: [],
+  force_ssl_host: nil,
+  within_iframe: false,
+  update_instructions_url: nil
 
 if Mix.target() == :host do
   import_config "host.exs"

@@ -37,6 +37,8 @@ config :livebook,
 # Endpoint configuration
 port = if mix_target == :host, do: 8080, else: 80
 
+{:ok, hostname} = :inet.gethostname()
+
 config :livebook, LivebookWeb.Endpoint,
   pubsub_server: Livebook.PubSub,
   live_view: [signing_salt: "livebook"],
@@ -44,6 +46,7 @@ config :livebook, LivebookWeb.Endpoint,
     port: port,
     transport_options: [socket_opts: [:inet6]]
   ],
+  url: [host: "#{hostname}.local", path: "/"],
   code_reloader: false,
   server: true
 
@@ -51,7 +54,6 @@ config :livebook, :iframe_port, 8081
 
 # Setup Erlang distribution
 with {_, 0} <- System.cmd("epmd", ["-daemon"]),
-     {:ok, hostname} <- :inet.gethostname(),
      {:ok, _pid} <- Node.start(:"livebook@#{hostname}.local") do
   # Livebook always sets the cookie, so let it set it. See the Livebook application config.
   :ok
