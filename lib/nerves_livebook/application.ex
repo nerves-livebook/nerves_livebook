@@ -73,21 +73,23 @@ defmodule NervesLivebook.Application do
     defp empty?(_), do: false
   end
 
-  # Redefining Mix when running on the host causes warning, but lets us try
-  # the custom NervesLivebook Mix.install workaround more easily.
-  defp add_mix_install() do
-    # This needs to be done this way since redefining Mix at compile time
-    # doesn't make anyone happy.
-    _ =
-      Code.eval_string("""
-      defmodule Mix do
-        def install(deps, opts \\\\ []) when is_list(deps) and is_list(opts) do
-          NervesLivebook.MixInstall.install(deps, opts)
+  if Mix.env() != :test do
+    defp add_mix_install() do
+      # This needs to be done this way since redefining Mix at compile time
+      # doesn't make anyone happy.
+      _ =
+        Code.eval_string("""
+        defmodule Mix do
+          def install(deps, opts \\\\ []) when is_list(deps) and is_list(opts) do
+            NervesLivebook.MixInstall.install(deps, opts)
+          end
         end
-      end
-      """)
+        """)
 
-    :ok
+      :ok
+    end
+  else
+    defp add_mix_install(), do: :ok
   end
 
   if Mix.target() == :host do
