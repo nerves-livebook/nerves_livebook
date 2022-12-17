@@ -16,7 +16,12 @@ config :logger, backends: [RingLogger, RamoopsLogger]
 # https://github.com/nerves-project/erlinit/ for more information on
 # configuring erlinit.
 
+# Save a short report on shutdowns just in case it wasn't intentional
 config :nerves, :erlinit, shutdown_report: "/data/last_shutdown.txt"
+
+# Advance the timestamp as soon as possible to get the date closer
+# to the real one especially on RTC-less devices.
+config :nerves, :erlinit, update_clock: true
 
 # Configure the device for SSH IEx prompt access and firmware updates
 #
