@@ -69,8 +69,8 @@ config :livebook, :runtime_modules, [Livebook.Runtime.Embedded, Livebook.Runtime
 config :livebook, Livebook.Runtime.Embedded,
   load_packages: {NervesLivebook.Dependencies, :packages, []}
 
-# Disable shutdown button for now since it doesn't work
-config :livebook, :shutdown_callback, nil
+# Allow Livebook to power off  the device
+config :livebook, :shutdown_callback, {Process, :spawn, [Nerves.Runtime, :poweroff, [], []]}
 
 # Defaults for required configurations
 config :livebook,
