@@ -1,5 +1,11 @@
 # Configure WiFi
 
+```elixir
+Mix.install([
+  {:vintage_net_wifi, "~> 0.11"}
+])
+```
+
 ## Finding access points
 
 Nerves uses [vintage_net_wifi](https://hexdocs.pm/vintage_net_wifi/) to
@@ -9,7 +15,7 @@ this may not work for you.
 
 Step 1 is to see what WiFi networks are available.
 `VintageNetWiFi.quick_scan/0` returns a lot of information, so lets filter it
-to get a list of SSIDs:
+to get a list of SSIDs (rerun if your network doesn't should up in time):
 
 ```elixir
 networks =
