@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.8.0 - 2022-12-19
+
+* Updates
+  * Update Livebook to [v0.8.0](https://github.com/livebook-dev/livebook/blob/main/CHANGELOG.md#v080-2022-12-08)
+  * Reduced logger level to warning to reduce clutter when evaluating cells.
+    This is a the same default level as regular Livebook.
+  * Support the shutdown button. This will gracefully power off your device.
+    Note that Nerves Livebook syncs notebooks to minimizing losing notebook
+    changes already, but this is an additional way to make sure everything has been
+    flushed to storage when you're done.
+  * Update Nerves systems to `nerves_system_br` 1.21.6 versions (Erlang/OTP 25.2)
+  * Update all provided mix libraries to their latest.
+
 ## v0.7.2 - 2022-11-07
 
 * Updates
