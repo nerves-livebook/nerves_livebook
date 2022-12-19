@@ -39,7 +39,7 @@ defmodule NervesLivebook.GithubRelease do
     req("#{@github_api_url}/repos/#{repository}/releases")
   end
 
-  @spec req(String.t()) :: {:error, any} | {:ok, any()}
+  @spec req(String.t()) :: {:error, any()} | {:ok, any()}
   def req(url) do
     headers = [{'user-agent', user_agent()}, {'Accept', 'application/vnd.github.v3+json'}]
     request = {String.to_charlist(url), headers}
@@ -50,8 +50,11 @@ defmodule NervesLivebook.GithubRelease do
       {:ok, {{_, 200, _}, _headers, body}} ->
         {:ok, Jason.decode!(body)}
 
-      other ->
-        {:error, other}
+      {:ok, _other} ->
+        {:error, :unexpected_response}
+
+      {:error, _} = error ->
+        error
     end
   end
 
