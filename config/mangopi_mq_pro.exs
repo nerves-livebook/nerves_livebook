@@ -8,4 +8,4 @@ config :vintage_net,
     {"wlan0", %{type: VintageNetWiFi}}
   ]
 
-config :delux, indicators: %{default: %{blue: ":status"}}
+config :delux, indicators: %{default: %{blue: "blue:status"}}
