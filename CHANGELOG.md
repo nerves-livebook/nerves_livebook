@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.8.1 - 2023-01-17
+
+IMPORTANT: The MangoPi MQ Pro has a major update that makes it non-backwards
+compatible despite this release's version number. This is due to hacks to
+support it being removed that unfortunately caused the MicroSD card contents to
+be changed. Please move your work off your current MicroSD cards and re-flash
+it. Upgrading is not supported.
+
+
+* Updates
+  * Update Nerves systems to `nerves_system_br` 1.22.1 versions (Buildroot 2022.11)
+  * Update MangoPi MQ Pro to Linux 6.1
+  * Switch MangoPi MQ Pro from Musl Libc to Glibc (better Rust support)
+  * Update all toolchains to use GCC 12.2
+  * Update all provided mix libraries to their latest
+
 ## v0.8.0 - 2022-12-19
 
 * Updates
