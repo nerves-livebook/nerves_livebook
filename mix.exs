@@ -18,6 +18,11 @@ defmodule NervesLivebook.MixProject do
   # Targets supporting cellular modems
   @cellular_targets [:srhub]
 
+  # Instruct the compiler to create deterministic builds to minimize
+  # differences between firmware versions. This helps delta firmware update
+  # compression.
+  System.put_env("ERL_COMPILER_OPTIONS", "deterministic")
+
   def project do
     [
       app: @app,
