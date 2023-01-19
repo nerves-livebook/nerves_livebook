@@ -29,7 +29,7 @@ defmodule NervesLivebook.MixProject do
       description: "Develop on embedded devices with Livebook and Nerves",
       author: "https://github.com/livebook-dev/nerves_livebook/graphs/contributors",
       version: @version,
-      elixir: "~> 1.13",
+      elixir: "~> 1.14",
       archives: [nerves_bootstrap: "~> 1.10"],
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -55,9 +55,7 @@ defmodule NervesLivebook.MixProject do
       {:toolshed, "~> 0.2.13"},
       {:jason, "~> 1.2"},
       {:nerves_runtime, "~> 0.13.0"},
-      # Livebook v0.8.0 with the learn notebooks fix
-      {:livebook, "~> 0.8.0",
-       github: "livebook-dev/livebook", ref: "3131610ad8d08f3be259b8c3135ddfe80e52a8c9"},
+      {:livebook, "~> 0.8.1"},
       {:plug, "~> 1.12"},
       {:vintage_net, "~> 0.12"},
 
