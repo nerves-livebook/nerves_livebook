@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.8.2 - 2023-02-11
+
+* Updates
+  * Update Livebook to [v0.8.1](https://github.com/livebook-dev/livebook/blob/main/CHANGELOG.md#v081-2023-01-18)
+  * Update all dependencies to latest (Nx 0.5.0, RingLogger 0.9.0, Toolshed
+    0.3.0, VintageNet 0.13.0)
+  * Configure the Erlang compiler for deterministic builds
+
 ## v0.8.1 - 2023-01-17
 
 IMPORTANT: The MangoPi MQ Pro has a major update that makes it non-backwards
