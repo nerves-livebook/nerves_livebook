@@ -51,7 +51,7 @@ defmodule NervesLivebook.MixProject do
       # Dependencies for host and target
       {:nerves, "~> 1.9.3", runtime: false},
       {:shoehorn, "~> 0.9.0"},
-      {:ring_logger, "~> 0.8.1"},
+      {:ring_logger, "~> 0.9"},
       {:toolshed, "~> 0.3.0"},
       {:jason, "~> 1.2"},
       {:nerves_runtime, "~> 0.13.0"},
@@ -77,7 +77,7 @@ defmodule NervesLivebook.MixProject do
       {:nerves_key, "~> 1.0", targets: @all_targets},
       {:nerves_pack, "~> 0.7.0", targets: @all_targets},
       {:nerves_time_zones, "~> 0.3.0", targets: @all_targets},
-      {:nx, "~> 0.4.0"},
+      {:nx, "~> 0.5.0"},
       {:phoenix_pubsub, "~> 2.0"},
       {:picam, "~> 0.4.0", targets: @rpi_mmal_targets},
       {:pigpiox, "~> 0.1", targets: @rpi_targets},
