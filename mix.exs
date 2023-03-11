@@ -60,7 +60,7 @@ defmodule NervesLivebook.MixProject do
       {:vintage_net, "~> 0.13"},
 
       # Pull in commonly used libraries as a convenience to users.
-      {:blue_heron, "~> 0.3", override: true, targets: @ble_targets},
+      {:blue_heron, "~> 0.3", targets: @ble_targets},
       {:blue_heron_transport_uart, "~> 0.1.2", targets: @ble_targets},
       {:bmp280, "~> 0.2", targets: @all_targets},
       {:circuits_gpio, "~> 1.0"},
