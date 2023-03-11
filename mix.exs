@@ -3,6 +3,7 @@ defmodule NervesLivebook.MixProject do
 
   @app :nerves_livebook
   @version "0.8.2"
+  @source_url "https://github.com/livebook-dev/nerves_livebook"
 
   @rpi_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4]
   @all_targets @rpi_targets ++
@@ -29,13 +30,20 @@ defmodule NervesLivebook.MixProject do
       description: "Develop on embedded devices with Livebook and Nerves",
       author: "https://github.com/livebook-dev/nerves_livebook/graphs/contributors",
       version: @version,
+      package: package(),
       elixir: "~> 1.14",
       archives: [nerves_bootstrap: "~> 1.10"],
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       releases: [{@app, release()}],
       preferred_cli_target: [run: :host, test: :host, "phx.server": :host],
-      dialyzer: dialyzer()
+      dialyzer: dialyzer(),
+      docs: docs(),
+      preferred_cli_env: %{
+        docs: :docs,
+        "hex.publish": :docs,
+        "hex.build": :docs
+      }
     ]
   end
 
@@ -44,6 +52,22 @@ defmodule NervesLivebook.MixProject do
       mod: {NervesLivebook.Application, []},
       extra_applications: [:logger, :runtime_tools, :inets, :ex_unit]
     ]
+  end
+
+  defp package do
+    %{
+      files: [
+        "CHANGELOG.md",
+        "lib",
+        "mix.exs",
+        "README.md",
+        "LICENSE",
+        "assets",
+        "priv"
+      ],
+      licenses: ["Apache-2.0"],
+      links: %{"GitHub" => @source_url}
+    }
   end
 
   defp deps do
@@ -108,7 +132,18 @@ defmodule NervesLivebook.MixProject do
       # Compile-time only
       {:credo, "~> 1.6", only: :dev, runtime: false},
       {:dialyxir, "~> 1.2.0", only: :dev, runtime: false},
+      {:ex_doc, "~> 0.22", only: :docs, runtime: false},
       {:sbom, "~> 0.6", only: :dev, runtime: false}
+    ]
+  end
+
+  defp docs do
+    [
+      assets: "assets",
+      extras: ["README.md", "CHANGELOG.md"],
+      main: "readme",
+      source_ref: "v#{@version}",
+      source_url: @source_url
     ]
   end
 

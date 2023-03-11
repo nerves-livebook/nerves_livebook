@@ -68,6 +68,11 @@ host_build: &host_build
         name: Test
         command: mix test --include slow:true
     - run:
+        name: Docs and hex package
+        command: |
+          mix docs
+          mix hex.build
+    - run:
         name: Create SBOM
         command: |
           mix sbom.cyclonedx -f -o nerves_livebook_sbom.xml
