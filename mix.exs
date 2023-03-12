@@ -54,6 +54,8 @@ defmodule NervesLivebook.MixProject do
     ]
   end
 
+  # The nice part about posting to hex is that documentation links work when you're
+  # calling NervesLivebook functions.
   defp package do
     %{
       files: [
