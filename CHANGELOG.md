@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.8.3 - 2023-03-12
+
+* Updates
+  * Generate and post docs to hex.pm so that hyperlinks work when calling
+    NervesLivebook functions
+  * Update Nerves systems to nerves_system_br 1.22.3 versions. This includes
+    Erlang 25.2.3 and an update for Rust support. Libraries using Rust aren't
+    included yet due to an issue on 32-bit platforms, but will likely be
+    included in the next release.
+  * Update all dependencies to their latest versions.
+
 ## v0.8.2 - 2023-02-11
 
 * Updates
