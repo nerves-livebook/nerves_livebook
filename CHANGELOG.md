@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.9.0 - 2023-04-05
+
+* Updates
+  * Update Livebook to [v0.9.1](https://github.com/livebook-dev/livebook/blob/main/CHANGELOG.md#v091-2023-04-06)
+  * Update Nerves systems to nerves_system_br 1.22.5 versions. This includes
+    Erlang 25.3 and fixes to the Raspberry Pi 3 to support TensorFlow Lite.
+    (TFLite isn't built into Nerves Livebook yet)
+  * Update all dependencies to their latest versions.
+
+Fixes
+  * Fixed LEDs on SRHub images (Thanks to Eric Oestrich)
+
 ## v0.8.3 - 2023-03-12
 
 * Updates
