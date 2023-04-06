@@ -109,6 +109,7 @@ defmodule NervesLivebook.MixProject do
       {:pigpiox, "~> 0.1", targets: @rpi_targets},
       {:pinout, "~> 0.1"},
       {:ramoops_logger, "~> 0.1", targets: @all_targets},
+      {:recon, "~> 2.5"},
       {:req, "~> 0.3.0"},
       {:scroll_hat, "~> 0.1", targets: @rpi_targets},
       {:vega_lite, "~> 0.1"},
