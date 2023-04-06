@@ -82,7 +82,8 @@ config :livebook,
   feature_flags: [],
   force_ssl_host: nil,
   within_iframe: false,
-  update_instructions_url: nil
+  update_instructions_url: nil,
+  allowed_uri_schemes: []
 
 if Mix.target() == :host do
   import_config "host.exs"
