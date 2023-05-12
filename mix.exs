@@ -122,6 +122,7 @@ defmodule NervesLivebook.MixProject do
       # Larger ML-related libraries for a limited set of platforms
       {:tflite_elixir, "~> 0.3.0", targets: @ml_targets},
       {:evision, "~> 0.1.31", targets: @ml_targets},
+      {:stb_image, "~> 0.6.0", targets: @ml_targets},
 
       # Nerves system dependencies
       {:nerves_system_rpi, "~> 1.21", runtime: false, targets: :rpi},
