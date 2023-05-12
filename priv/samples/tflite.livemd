@@ -1,0 +1,143 @@
+# Use TensorFlow Lite on Nerves Livebook
+
+```elixir
+Mix.install([
+  {:tflite_elixir, "~> 0.3.0"},
+  {:req, "~> 0.3.0"},
+  {:kino, "~> 0.9.0"}
+])
+```
+
+## Introduction
+
+TensorFlow Lite is a stripped-down version of
+[TensorFlow](https://en.wikipedia.org/wiki/TensorFlow), a free and open-source
+software library for machine learning and artificial intelligence.
+
+In Elixir, we can use TensorFlow Lite through the package
+[`tflite_elixir`](https://github.com/cocoa-xu/tflite_elixir), which does the
+TensorFlow Lite Elixir bindings with optional [Edge
+TPU](https://en.wikipedia.org/wiki/Tensor_Processing_Unit#Edge_TPU) support.
+
+In this notebook, we will perform image classification with pre-trained model.
+The example code below is based on the instructions in the [tflite_elixir
+README](https://github.com/cocoa-xu/tflite_elixir/blob/main/README.md). For
+more information, check out the [tflite_elixir
+documentation](https://hexdocs.pm/tflite_elixir/api-reference.html).
+
+When working with TensorFlow Lite, we make extensive use of the functions from
+TFLiteElixir, so it's useful to alias the module as something shorter.
+
+```elixir
+alias TFLiteElixir, as: TFLite
+alias TFLiteElixir.Interpreter
+```
+
+## Download model and labels
+
+```elixir
+tmp_dir = "/data/tmp"
+File.mkdir_p!(tmp_dir)
+
+download = fn url ->
+  save_as = Path.join(tmp_dir, URI.encode_www_form(url))
+  if not File.exists?(save_as), do: Req.get!(url, output: save_as)
+  save_as
+end
+```
+
+```elixir
+inat_bird_quant_tflite =
+  "https://raw.githubusercontent.com/google-coral/test_data/master/mobilenet_v2_1.0_224_inat_bird_quant.tflite"
+  |> download.()
+
+inat_bird_label_list =
+  "https://raw.githubusercontent.com/google-coral/test_data/master/inat_bird_labels.txt"
+  |> download.()
+  |> File.stream!()
+  |> Enum.to_list()
+
+inat_bird_label_list
+|> Enum.map(&String.trim/1)
+|> Enum.with_index(&%{name: &1, id: &2})
+|> Kino.DataTable.new()
+```
+
+## Download image to be classified
+
+```elixir
+default_input_image_url =
+  "https://raw.githubusercontent.com/google-coral/test_data/master/parrot.jpg"
+
+input_image_url_input = Kino.Input.text("Input image URL", default: default_input_image_url)
+Kino.render(input_image_url_input)
+input_image_url = Kino.Input.read(input_image_url_input) || default_input_image_url
+input_image_stb = download.(input_image_url) |> StbImage.read_file!()
+```
+
+## Classify image
+
+```elixir
+defmodule BasicImageClassification do
+  def run(args) do
+    model = Keyword.fetch!(args, :model)
+    input_stb = Keyword.fetch!(args, :input_stb)
+    input_nx = input_stb |> StbImage.resize(224, 224) |> StbImage.to_nx()
+    input_nx = input_nx[[.., .., 0..2]]
+    how_many_results = args[:top_k] || 3
+
+    interpreter = Interpreter.new!(model)
+
+    [output_tensor_0] = Interpreter.predict(interpreter, input_nx)
+    indices_nx = Nx.flatten(output_tensor_0)
+
+    indices_nx
+    |> Nx.argsort(direction: :desc)
+    |> Nx.take(Nx.iota({how_many_results}))
+    |> Nx.to_flat_list()
+  end
+end
+```
+
+```elixir
+labels = List.to_tuple(inat_bird_label_list)
+
+class_ids =
+  BasicImageClassification.run(
+    model: inat_bird_quant_tflite,
+    input_stb: input_image_stb
+  )
+
+class_ids
+|> Enum.map(fn class_id -> %{class_id: class_id, class_name: elem(labels, class_id)} end)
+|> Kino.DataTable.new()
+```
+
+Once you are done with this notebook, you may want to delete all the downloaded files.
+
+```elixir
+delete_button = Kino.Control.button("Delete #{tmp_dir}")
+
+Kino.listen(button, fn _event ->
+  File.rm_rf!(tmp_dir)
+  IO.puts("deleted #{tmp_dir}")
+end)
+
+delete_button
+```
+
+## Next steps
+
+### Run other models
+
+You can find a variety of pre-trained open-source models in [TensorFlow
+Hub](https://tfhub.dev). For Elixir code, check out [example
+notebooks](https://github.com/cocoa-xu/tflite_elixir/blob/bda47628e143c860e8cc796f491edd49260b787b/notebooks/README.md)
+in `tflite_elixir` repository.
+
+### Run inference on Edge TPU
+
+You can speed up model inference time, running a TensorFlow Lite model on the
+Edge TPU. Check out `tflite_elixir`'s ["Inference on TPU"
+example](https://github.com/cocoa-xu/tflite_elixir/blob/main/notebooks/tpu.livemd).
+
