@@ -19,6 +19,9 @@ defmodule NervesLivebook.MixProject do
   # Targets supporting cellular modems
   @cellular_targets [:srhub]
 
+  # Faster targets for using machine learning libraries
+  @ml_targets [:rpi4]
+
   # Instruct the compiler to create deterministic builds to minimize
   # differences between firmware versions. This helps delta firmware update
   # compression.
@@ -115,6 +118,10 @@ defmodule NervesLivebook.MixProject do
       {:vega_lite, "~> 0.1"},
       {:vintage_net_mobile, "~> 0.11", targets: @cellular_targets},
       {:vintage_net_qmi, "~> 0.3", targets: @cellular_targets},
+
+      # Larger ML-related libraries for a limited set of platforms
+      {:tflite_elixir, "~> 0.3.0", targets: @ml_targets},
+      {:evision, "~> 0.1.31", targets: @ml_targets},
 
       # Nerves system dependencies
       {:nerves_system_rpi, "~> 1.21", runtime: false, targets: :rpi},
