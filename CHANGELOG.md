@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.9.1 - 2023-05-14
+
+* Updates
+  * Update Livebook to [v0.9.2](https://github.com/livebook-dev/livebook/blob/main/CHANGELOG.md#v092-2023-04-14)
+  * Include TFLite (`:tflite_elixir`) for all devices that support TensorFlow
+    Lite (all but Raspberry Pi 1 and Raspberry Pi Zero). See the `tflite.livemd`
+    sample to a quick intro. Thanks to Masatoshi Nishiguchi for this.
+  * Update all dependencies to their latest versions.
+
 ## v0.9.0 - 2023-04-05
 
 * Updates
