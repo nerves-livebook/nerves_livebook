@@ -27,13 +27,6 @@ alias TFLiteElixir.Interpreter
 
 ## Download model and labels
 
-It is worth mentioning that the only writable partition on a Nerves device, by
-default, is the `/root` partition, which is also symlinked as `/data`.
-
-```elixir
-use Toolshed
-cmd("ls -al /root")
-```
 
 ```elixir
 tmp_dir = "/data/tmp"
