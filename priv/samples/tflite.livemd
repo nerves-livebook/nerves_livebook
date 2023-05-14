@@ -2,10 +2,10 @@
 
 ```elixir
 Mix.install([
-    {:tflite_elixir, "~> 0.3.0"},
-    {:req, "~> 0.3.0"},
-    {:kino, "~> 0.9.0"}
-  ])
+  {:tflite_elixir, "~> 0.3.0"},
+  {:req, "~> 0.3.0"},
+  {:kino, "~> 0.9.0"}
+])
 ```
 
 ## Introduction
@@ -20,6 +20,10 @@ TensorFlow Lite Elixir bindings with optional [Edge
 TPU](https://en.wikipedia.org/wiki/Tensor_Processing_Unit#Edge_TPU) support.
 
 In this notebook, we will perform image classification with pre-trained model.
+The example code below is based on the instructions in the [tflite_elixir
+README](https://github.com/cocoa-xu/tflite_elixir/blob/main/README.md). For
+more information, check out the [tflite_elixir
+documentation](https://hexdocs.pm/tflite_elixir/api-reference.html).
 
 When working with TensorFlow Lite, we make extensive use of the functions from
 TFLiteElixir, so it's useful to alias the module as something shorter.
@@ -30,7 +34,6 @@ alias TFLiteElixir.Interpreter
 ```
 
 ## Download model and labels
-
 
 ```elixir
 tmp_dir = "/data/tmp"
