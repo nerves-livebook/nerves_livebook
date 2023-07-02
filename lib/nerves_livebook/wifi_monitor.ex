@@ -80,7 +80,7 @@ defmodule NervesLivebook.WiFiMonitor do
   def handle_info({VintageNet, @presence_prop, true, _new, _meta}, state) do
     # wlan0 is gone for some reason. Matching here stops any GenServer timer so
     # we can continue waiting for wlan0 to come back
-    Logger.warn("[WiFiMonitor] wlan0 interface gone")
+    Logger.warning("[WiFiMonitor] wlan0 interface gone")
     _ = if state.test_fn, do: state.test_fn.(:continue)
     {:noreply, state}
   end
@@ -92,7 +92,7 @@ defmodule NervesLivebook.WiFiMonitor do
   end
 
   def handle_info({VintageNet, @connection_prop, _old, new, _meta}, state) do
-    Logger.warn("[WiFiMonitor] wlan0 connection: #{new}")
+    Logger.warning("[WiFiMonitor] wlan0 connection: #{new}")
     {:noreply, state, {:continue, :check_connection}}
   end
 
