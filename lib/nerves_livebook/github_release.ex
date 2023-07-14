@@ -41,7 +41,7 @@ defmodule NervesLivebook.GithubRelease do
 
   @spec req(String.t()) :: {:error, any()} | {:ok, any()}
   def req(url) do
-    headers = [{'user-agent', user_agent()}, {'Accept', 'application/vnd.github.v3+json'}]
+    headers = [{~c"user-agent", user_agent()}, {~c"Accept", ~c"application/vnd.github.v3+json"}]
     request = {String.to_charlist(url), headers}
     http_options = []
     options = [body_format: :binary]
@@ -86,6 +86,6 @@ defmodule NervesLivebook.GithubRelease do
   end
 
   defp user_agent() do
-    'NervesLivebook/#{NervesLivebook.version()}'
+    ~c"NervesLivebook/#{NervesLivebook.version()}"
   end
 end
