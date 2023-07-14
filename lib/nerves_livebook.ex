@@ -44,6 +44,6 @@ defmodule NervesLivebook do
     ssh #{Node.self()} # Use password "nerves"
     """
 
-    {'Nerves Livebook', to_charlist(msg), 'Password: ', false}
+    {~c"Nerves Livebook", to_charlist(msg), ~c"Password: ", false}
   end
 end
