@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.10.0 - 2023-07-14
+
+* Updates
+  * Update Livebook to [v0.10.0](https://github.com/livebook-dev/livebook/blob/v0.10/CHANGELOG.md#v0100-2023-07-14)
+  * Update Nerves systems to nerves_system_br 1.23.1 versions. This includes:
+    * Erlang 26.0.2
+    * Support for all Raspberry Pi Cameras via libcamera on the RPi4
+    * Buildroot 2023.02.2
+    * Linux updates on various systems
+  * Update Elixir to 1.15.2
+  * Update all dependencies to their latest versions
+
+NOTE: `:tflite_elixir` is temporily removed due to build errors.
+
 ## v0.9.1 - 2023-05-14
 
 * Updates
@@ -18,7 +32,7 @@
     (TFLite isn't built into Nerves Livebook yet)
   * Update all dependencies to their latest versions.
 
-Fixes
+* Fixes
   * Fixed LEDs on SRHub images (Thanks to Eric Oestrich)
 
 ## v0.8.3 - 2023-03-12
