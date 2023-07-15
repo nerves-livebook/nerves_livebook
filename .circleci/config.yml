@@ -7,7 +7,7 @@ defaults: &defaults
     MIX_ENV: prod
 
 elixir_version: &elixir_version
-  ELIXIR_VERSION: 1.15.2-otp-26
+  ELIXIR_VERSION: 1.15.3-otp-26
 
 install_elixir: &install_elixir
   run:
