@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.10.1 - 2023-07-29
+
+* Updates
+  * Add `:tflite_elixir` back since it works again
+  * Update Nerves systems to nerves_system_br 1.23.2 versions to get CTRL+R fix
+    for ssh sessions (and more).
+  * Improve PMOD support on GRiSP 2
+  * Update Elixir to 1.15.4
+
 ## v0.10.0 - 2023-07-14
 
 * Updates
