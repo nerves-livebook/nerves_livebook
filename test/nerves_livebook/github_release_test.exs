@@ -709,12 +709,14 @@ defmodule NervesLivebook.GithubReleaseTest do
       "prerelease" => false,
       "published_at" => "2021-04-23T20:19:57Z",
       "tag_name" => "v0.1.1",
-      "tarball_url" => "https://api.github.com/repos/nerves-livebook/nerves_livebook/tarball/v0.1.1",
+      "tarball_url" =>
+        "https://api.github.com/repos/nerves-livebook/nerves_livebook/tarball/v0.1.1",
       "target_commitish" => "main",
       "upload_url" =>
         "https://uploads.github.com/repos/nerves-livebook/nerves_livebook/releases/41924363/assets{?name,label}",
       "url" => "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/41924363",
-      "zipball_url" => "https://api.github.com/repos/nerves-livebook/nerves_livebook/zipball/v0.1.1"
+      "zipball_url" =>
+        "https://api.github.com/repos/nerves-livebook/nerves_livebook/zipball/v0.1.1"
     }
   end
 end
