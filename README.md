@@ -1,6 +1,6 @@
 # Nerves Livebook Firmware
 
-[![CircleCI](https://circleci.com/gh/livebook-dev/nerves_livebook.svg?style=svg)](https://circleci.com/gh/livebook-dev/nerves_livebook)
+[![CircleCI](https://circleci.com/gh/nerves-livebook/nerves_livebook.svg?style=svg)](https://circleci.com/gh/nerves-livebook/nerves_livebook)
 
 The Nerves Livebook firmware lets you try out the Nerves projects on real
 hardware without needing to build anything. Within minutes, you'll have a
@@ -39,7 +39,7 @@ than the others.
 If you're using a GRiSP 2, skip to the installation instructions below for it.
 
 First, find the appropriate firmware or zip'd image file for your hardware in the
-[releases](https://github.com/livebook-dev/nerves_livebook/releases). This is a
+[releases](https://github.com/nerves-livebook/nerves_livebook/releases). This is a
 one time step. There's a Livebook notebook for upgrading the firmware for when
 we make releases!
 
@@ -122,7 +122,7 @@ to do a first time install. Even if you do have Nerves on your GRiSP 2, you can
 still follow these instructions.
 
 First, download `nerves_livebook_grisp2.img.gz`from the latest
-[releases](https://github.com/livebook-dev/nerves_livebook/releases).
+[releases](https://github.com/nerves-livebook/nerves_livebook/releases).
 
 1. Copy `nerves_livebook_grisp2.img.gz` to a FAT-formatted MicroSD card:
 
@@ -210,7 +210,7 @@ To build the Nerves Livebook firmware, make sure that you have run through the
 Nerves installation steps. Then open a terminal window and run the following:
 
 ```sh
-$ git clone https://github.com/livebook-dev/nerves_livebook.git
+$ git clone https://github.com/nerves-livebook/nerves_livebook.git
 $ cd nerves_livebook
 
 # Set the MIX_TARGET to the desired platform (rpi0, bbb, rpi3, etc.)

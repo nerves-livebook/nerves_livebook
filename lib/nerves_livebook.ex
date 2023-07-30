@@ -39,7 +39,7 @@ defmodule NervesLivebook do
 
   def ssh_show_prompt(_peer, _username, _service) do
     msg = """
-    https://github.com/livebook-dev/nerves_livebook
+    https://github.com/nerves-livebook/nerves_livebook
 
     ssh #{Node.self()} # Use password "nerves"
     """

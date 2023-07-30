@@ -11,11 +11,11 @@ Lets set a variable so that we don't have to choose the GPIO pin every time.
 First, refer to the GPIO ports for your Nerves device.
 In this example, we will be using pin 12 on the raspberry pi platform.
 
-![](https://raw.githubusercontent.com/livebook-dev/nerves_livebook/main/assets/gpio/rpi_pinout.png)
+![](https://raw.githubusercontent.com/nerves-livebook/nerves_livebook/main/assets/gpio/rpi_pinout.png)
 
 Wire everything up like in the diagram below. Servos have 3 wires: ground, vcc and pwm. In this case the black is ground the red is vcc and the yellow is pwm. Hook it up to pin 12 of the raspberry pi.
 
-![](https://raw.githubusercontent.com/livebook-dev/nerves_livebook/main/assets/gpio/rpi_servo.png)
+![](https://raw.githubusercontent.com/nerves-livebook/nerves_livebook/main/assets/gpio/rpi_servo.png)
 
 Lets set the pin as a variable so we don't have to choose the GPIO pin every time.
 

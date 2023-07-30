@@ -57,7 +57,7 @@ differences:
 Since you cannot install libraries through hex, we include the libraries listed below.
 
 If there is a dependency you want to see included in the `nerves_livebook` distribution,
-please file an [issue](https://github.com/livebook-dev/nerves_livebook/issues)
+please file an [issue](https://github.com/nerves-livebook/nerves_livebook/issues)
 or make a PR to include new libraries in the main image.
 
 - **[`Kino`](https://hex.pm/packages/kino)**, interactive widgets for Livebook

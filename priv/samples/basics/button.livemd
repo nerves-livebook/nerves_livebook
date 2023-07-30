@@ -11,7 +11,7 @@ Lets set a variable for the LED and button so that we dont have to choose the GP
 
 First, refer to the GPIO ports for your Nerves device.
 
-![](https://raw.githubusercontent.com/livebook-dev/nerves_livebook/main/assets/gpio/rpi_pinout.png)
+![](https://raw.githubusercontent.com/nerves-livebook/nerves_livebook/main/assets/gpio/rpi_pinout.png)
 
 ```elixir
 led_pin = 20
@@ -25,7 +25,7 @@ the shorter leg to a 220Ω resistor, then to our ground.
 
 Connect one of the legs of the button to a 10kΩ resistor to 5v, and the diagonal leg to your `button_pin`.
 
-![Fritzing Diagram](https://raw.githubusercontent.com/livebook-dev/nerves_livebook/main/assets/gpio/button_and_led_rpi4_rpi0.svg)
+![Fritzing Diagram](https://raw.githubusercontent.com/nerves-livebook/nerves_livebook/main/assets/gpio/button_and_led_rpi4_rpi0.svg)
 
 The following code will configure the `led_pin` as an `:output` and the `button_pin` as an `input`.
 

@@ -3,7 +3,7 @@ defmodule NervesLivebook.MixProject do
 
   @app :nerves_livebook
   @version "0.10.1"
-  @source_url "https://github.com/livebook-dev/nerves_livebook"
+  @source_url "https://github.com/nerves-livebook/nerves_livebook"
 
   @rpi_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4]
   @all_targets @rpi_targets ++
@@ -31,7 +31,7 @@ defmodule NervesLivebook.MixProject do
     [
       app: @app,
       description: "Develop on embedded devices with Livebook and Nerves",
-      author: "https://github.com/livebook-dev/nerves_livebook/graphs/contributors",
+      author: "https://github.com/nerves-livebook/nerves_livebook/graphs/contributors",
       version: @version,
       package: package(),
       elixir: "~> 1.14",

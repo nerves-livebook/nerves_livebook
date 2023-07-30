@@ -28,7 +28,7 @@ NervesLivebook.check_internet!()
 
 # Setup for below
 alias NervesLivebook.GithubRelease
-repo = "livebook-dev/nerves_livebook"
+repo = "nerves-livebook/nerves_livebook"
 firmware_path = "/data/update.fw"
 firmware_public_key = "IyCnjyE1rrV+W5HFrovC+ZyxrBh9fF7Na4S+7dcGAPw="
 

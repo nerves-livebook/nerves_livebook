@@ -6,7 +6,7 @@ Nerves comes with a tool for handling firmware updates called
 [fwup](https://github.com/livebook-dev/fwup). It allows for archival and
 application of firmware updates, however it does not handle distribution of
 updates.  This Livebook comes with a module that can fetch a firmware update
-from [Github releases](https://github.com/livebook-dev/nerves_livebook/releases).
+from [Github releases](https://github.com/nerves-livebook/nerves_livebook/releases).
 
 ## Walk through
 
@@ -24,7 +24,7 @@ Firmware partition: #{Nerves.Runtime.KV.get("nerves_fw_active")}
 ```
 
 Nerves Livebook firmware images are hosted on GitHub under the [releases
-tab](https://github.com/livebook-dev/nerves_livebook/releases). Let's query GitHub
+tab](https://github.com/nerves-livebook/nerves_livebook/releases). Let's query GitHub
 to see what the latest release is:
 
 ```elixir
@@ -32,7 +32,7 @@ NervesLivebook.check_internet!()
 
 # Setup for below
 alias NervesLivebook.GithubRelease
-repo = "livebook-dev/nerves_livebook"
+repo = "nerves-livebook/nerves_livebook"
 firmware_path = "/data/update.fw"
 firmware_public_key = "IyCnjyE1rrV+W5HFrovC+ZyxrBh9fF7Na4S+7dcGAPw="
 
@@ -114,7 +114,7 @@ To replicate this, do the following:
 ### SSH firmware updates
 
 If you've cloned the
-[`nerves_livebook`](https://github.com/livebook-dev/nerves_livebook/) repository
+[`nerves_livebook`](https://github.com/nerves-livebook/nerves_livebook/) repository
 and are building your own version of it, it's going to be easier to update your
 device via SSH. The firmware signatures aren't checked on SSH updates, so you
 can do what you want. 🚀
@@ -136,7 +136,7 @@ Platform: rpi0
 Uploading to livebook@nerves.local...
 Warning: Permanently added 'nerves.local,172.31.112.97' (RSA) to the list of known hosts.
 Nerves Livebook
-https://github.com/livebook-dev/nerves_livebook
+https://github.com/nerves-livebook/nerves_livebook
 
 ssh livebook@nerves.local # Use password "nerves"
 
