@@ -3,7 +3,7 @@
 ## Introduction
 
 Nerves comes with a tool for handling firmware updates called
-[fwup](https://github.com/livebook-dev/fwup). It allows for archival and
+[fwup](https://github.com/fwup-home/fwup). It allows for archival and
 application of firmware updates, however it does not handle distribution of
 updates.  This Livebook comes with a module that can fetch a firmware update
 from [Github releases](https://github.com/nerves-livebook/nerves_livebook/releases).
