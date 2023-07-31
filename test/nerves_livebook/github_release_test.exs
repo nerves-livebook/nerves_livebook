@@ -43,23 +43,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:44Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708235"
@@ -79,23 +82,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:44Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708230"
@@ -115,23 +121,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:44Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708226"
@@ -151,23 +160,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:44Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708231"
@@ -187,23 +199,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708221"
@@ -223,23 +238,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:44Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708223"
@@ -259,23 +277,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708224"
@@ -295,23 +316,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708219"
@@ -331,23 +355,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708227"
@@ -367,23 +394,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708222"
@@ -403,23 +433,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:44Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708232"
@@ -439,23 +472,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:44Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708229"
@@ -475,23 +511,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708228"
@@ -511,23 +550,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708225"
@@ -547,23 +589,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708233"
@@ -583,23 +628,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708220"
@@ -619,23 +667,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708218"
@@ -655,23 +706,26 @@ defmodule NervesLivebook.GithubReleaseTest do
           "updated_at" => "2021-04-23T20:18:45Z",
           "uploader" => %{
             "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-            "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-            "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-            "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-            "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+            "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+            "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+            "following_url" =>
+              "https://api.github.com/users/nerves-livebook/following{/other_user}",
+            "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
             "gravatar_id" => "",
-            "html_url" => "https://github.com/livebook-dev",
+            "html_url" => "https://github.com/nerves-livebook",
             "id" => 64669,
-            "login" => "livebook-dev",
+            "login" => "nerves-livebook",
             "node_id" => "MDQ6VXNlcjY0NjY5",
-            "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-            "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-            "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+            "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+            "received_events_url" =>
+              "https://api.github.com/users/nerves-livebook/received_events",
+            "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
             "site_admin" => false,
-            "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-            "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+            "starred_url" =>
+              "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+            "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
             "type" => "User",
-            "url" => "https://api.github.com/users/livebook-dev"
+            "url" => "https://api.github.com/users/nerves-livebook"
           },
           "url" =>
             "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/assets/35708234"
@@ -681,23 +735,23 @@ defmodule NervesLivebook.GithubReleaseTest do
         "https://api.github.com/repos/nerves-livebook/nerves_livebook/releases/41924363/assets",
       "author" => %{
         "avatar_url" => "https://avatars.githubusercontent.com/u/64669?v=4",
-        "events_url" => "https://api.github.com/users/livebook-dev/events{/privacy}",
-        "followers_url" => "https://api.github.com/users/livebook-dev/followers",
-        "following_url" => "https://api.github.com/users/livebook-dev/following{/other_user}",
-        "gists_url" => "https://api.github.com/users/livebook-dev/gists{/gist_id}",
+        "events_url" => "https://api.github.com/users/nerves-livebook/events{/privacy}",
+        "followers_url" => "https://api.github.com/users/nerves-livebook/followers",
+        "following_url" => "https://api.github.com/users/nerves-livebook/following{/other_user}",
+        "gists_url" => "https://api.github.com/users/nerves-livebook/gists{/gist_id}",
         "gravatar_id" => "",
-        "html_url" => "https://github.com/livebook-dev",
+        "html_url" => "https://github.com/nerves-livebook",
         "id" => 64669,
-        "login" => "livebook-dev",
+        "login" => "nerves-livebook",
         "node_id" => "MDQ6VXNlcjY0NjY5",
-        "organizations_url" => "https://api.github.com/users/livebook-dev/orgs",
-        "received_events_url" => "https://api.github.com/users/livebook-dev/received_events",
-        "repos_url" => "https://api.github.com/users/livebook-dev/repos",
+        "organizations_url" => "https://api.github.com/users/nerves-livebook/orgs",
+        "received_events_url" => "https://api.github.com/users/nerves-livebook/received_events",
+        "repos_url" => "https://api.github.com/users/nerves-livebook/repos",
         "site_admin" => false,
-        "starred_url" => "https://api.github.com/users/livebook-dev/starred{/owner}{/repo}",
-        "subscriptions_url" => "https://api.github.com/users/livebook-dev/subscriptions",
+        "starred_url" => "https://api.github.com/users/nerves-livebook/starred{/owner}{/repo}",
+        "subscriptions_url" => "https://api.github.com/users/nerves-livebook/subscriptions",
         "type" => "User",
-        "url" => "https://api.github.com/users/livebook-dev"
+        "url" => "https://api.github.com/users/nerves-livebook"
       },
       "body" => "Initial CI-built release",
       "created_at" => "2021-04-23T18:36:35Z",

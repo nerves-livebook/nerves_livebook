@@ -41,7 +41,7 @@ You can run Livebook on your laptop and connect to the device! This is useful
 if you want to save your code notebooks locally. To do this,
 
 1. Follow the [Livebook usage
-   instructions](https://github.com/livebook-dev/livebook) and start Livebook running
+   instructions](https://github.com/nerves-livebook/nerves_livebook) and start Livebook running
    on your laptop.
 2. Open or create a new Livebook
 3. Go to **Settings -> Runtime** and select **Attached Node**
