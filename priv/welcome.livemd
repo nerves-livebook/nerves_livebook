@@ -4,7 +4,7 @@
 
 Thanks for trying out Nerves Livebook!
 
-With this [Livebook](https://github.com/livebook-dev/livebook) image, you can
+With this [Livebook](https://github.com/nerves-livebook/nerves_livebook) image, you can
 work through tutorials, create your own code notebooks and save them on device,
 and import notebooks from others. We're just getting started and are super
 excited with what Livebook can already do. We hope that you'll enjoy learning

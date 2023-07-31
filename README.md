@@ -5,7 +5,7 @@
 The Nerves Livebook firmware lets you try out the Nerves projects on real
 hardware without needing to build anything. Within minutes, you'll have a
 Raspberry Pi or Beaglebone running Nerves. You'll be able to run code in
-[Livebook](https://github.com/livebook-dev/livebook) and work through Nerves
+[Livebook](https://github.com/nerves-livebook/nerves_livebook) and work through Nerves
 tutorials from the comfort of your browser.
 
 Looking for a quick demo first? Click below for [Underjord's](https://underjord.io/) Nerves Quickstart video.
