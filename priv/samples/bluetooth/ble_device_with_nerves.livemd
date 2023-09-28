@@ -276,7 +276,7 @@ There's a few steps to this:
    * `<<0x02, 0x01, 0b00000110>>`: This is an advertising bitmask that conveys connection information.
      In this case, the two high bits mean that our device only supports BLE (and not BR/EDR),
      and that our device is "General Connectable", meaning any device can connect to it at any time.
-   * `<<0x09, 0x09, "MyApp-XY">>` This is the "Complete Local Name".
+   * `<<byte_size(short_name) + 1, 0x08, short_name::binary-size(short_name)>>` This is the "Short Name".
      When you scan for BLE devices, you will see this name on the list.
    * `<<0x11, 0x06, <<0x42A31ABD030C4D5CA8DF09686DD16CC0::little-128>>::binary>>`:
      An incomplete list of 128 bit service UUIDs.
@@ -287,20 +287,37 @@ There's a few steps to this:
      It will just have to scan for advertising packets that advertise the service UUID of the service
      that we are interested in.
 
-3. Start advertising.
+3. Setting the scan response data.
+   This is the data that will be sent in respones to a scan from the Central. This is an additional frame on top
+   of the advertising data that allows an additional 31 bytes of advertising data to be sent to the scanning device.
+   All scan responses have the same format as advertising data. In this case, we will only include:
+
+   * `<<byte_size(long_name) + 1, 0x09, long_name::binary-size(byte_size(long_name))>>` this is the "Complete Local Name". 
+     When you scan for BLE devices, you will see this name on the list.
+
+4. Start advertising.
 
 ```elixir
+short_name = "nerves"
+long_name = "nerves-" <> Nerves.Runtime.serial_number()
+
 BlueHeron.Peripheral.set_advertising_parameters(peripheral, %{})
 
 # Advertising Data Flags: BR/EDR not supported, GeneralConnectable
-# Complete Local Name
+# Short Name
 # Incomplete List of 128-bit Servive UUIDs
 advertising_data =
   <<0x02, 0x01, 0b00000110>> <>
-    <<0x09, 0x09, "MyApp-XY">> <>
+    <<byte_size(short_name) + 1, 0x08, short_name::binary-size(byte_size(short_name))>> <>
     <<0x11, 0x06, <<0x42A31ABD030C4D5CA8DF09686DD16CC0::little-128>>::binary>>
 
 BlueHeron.Peripheral.set_advertising_data(peripheral, advertising_data)
+
+# Complete Name
+scan_response_data =
+  <<byte_size(long_name) + 1, 0x09, long_name::binary-size(byte_size(long_name))>>
+
+BlueHeron.Peripheral.set_scan_response_data(peripheral, scan_response_data)
 
 BlueHeron.Peripheral.start_advertising(peripheral)
 ```
