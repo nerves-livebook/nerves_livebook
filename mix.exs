@@ -84,7 +84,7 @@ defmodule NervesLivebook.MixProject do
       {:toolshed, "~> 0.3.0"},
       {:jason, "~> 1.2"},
       {:nerves_runtime, "~> 0.13.0"},
-      {:livebook, "~> 0.10.0"},
+      {:livebook, "~> 0.11.0"},
       {:plug, "~> 1.12"},
       {:vintage_net, "~> 0.13"},
 
@@ -114,7 +114,7 @@ defmodule NervesLivebook.MixProject do
       {:progress_bar, "~> 3.0"},
       {:ramoops_logger, "~> 0.1", targets: @all_targets},
       {:recon, "~> 2.5"},
-      {:req, "~> 0.3.0"},
+      {:req, "~> 0.4.4", override: true},
       {:scroll_hat, "~> 0.1", targets: @rpi_targets},
       {:stb_image, "~> 0.6.0"},
       {:tflite_elixir, "~> 0.3.4", targets: @tflite_targets},
