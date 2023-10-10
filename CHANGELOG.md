@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.11.0 - 2023-10-09
+
+* Updates
+  * Update Livebook to [v0.11.0](https://github.com/livebook-dev/livebook/releases/tag/v0.11.0)
+  * Update Nerves systems to nerves_system_br 1.24.1 versions
+    * Erlang 26.1.1
+    * Buildroot 2023.05.3
+  * Update Elixir to 1.15.6
+  * Update all dependencies to their latest versions
+
 ## v0.10.1 - 2023-07-29
 
 * Updates
@@ -12,7 +22,7 @@
 ## v0.10.0 - 2023-07-14
 
 * Updates
-  * Update Livebook to [v0.10.0](https://github.com/nerves-livebook/nerves_livebook/blob/v0.10/CHANGELOG.md#v0100-2023-07-14)
+  * Update Livebook to [v0.10.0](https://github.com/livebook-dev/livebook/releases/tag/v0.10.0)
   * Update Nerves systems to nerves_system_br 1.23.1 versions. This includes:
     * Erlang 26.0.2
     * Support for all Raspberry Pi Cameras via libcamera on the RPi4
@@ -26,7 +36,7 @@ NOTE: `:tflite_elixir` is temporily removed due to build errors.
 ## v0.9.1 - 2023-05-14
 
 * Updates
-  * Update Livebook to [v0.9.2](https://github.com/nerves-livebook/nerves_livebook/blob/main/CHANGELOG.md#v092-2023-04-14)
+  * Update Livebook to [v0.9.2](https://github.com/livebook-dev/livebook/releases/tag/v0.9.2)
   * Include TFLite (`:tflite_elixir`) for all devices that support TensorFlow
     Lite (all but Raspberry Pi 1 and Raspberry Pi Zero). See the `tflite.livemd`
     sample to a quick intro. Thanks to Masatoshi Nishiguchi for this.
@@ -35,7 +45,7 @@ NOTE: `:tflite_elixir` is temporily removed due to build errors.
 ## v0.9.0 - 2023-04-05
 
 * Updates
-  * Update Livebook to [v0.9.1](https://github.com/nerves-livebook/nerves_livebook/blob/main/CHANGELOG.md#v091-2023-04-06)
+  * Update Livebook to [v0.9.1](https://github.com/livebook-dev/livebook/releases/tag/v0.9.1)
   * Update Nerves systems to nerves_system_br 1.22.5 versions. This includes
     Erlang 25.3 and fixes to the Raspberry Pi 3 to support TensorFlow Lite.
     (TFLite isn't built into Nerves Livebook yet)
@@ -58,7 +68,7 @@ NOTE: `:tflite_elixir` is temporily removed due to build errors.
 ## v0.8.2 - 2023-02-11
 
 * Updates
-  * Update Livebook to [v0.8.1](https://github.com/nerves-livebook/nerves_livebook/blob/main/CHANGELOG.md#v081-2023-01-18)
+  * Update Livebook to [v0.8.1](https://github.com/livebook-dev/livebook/releases/tag/v0.8.2)
   * Update all dependencies to latest (Nx 0.5.0, RingLogger 0.9.0, Toolshed
     0.3.0, VintageNet 0.13.0)
   * Configure the Erlang compiler for deterministic builds
@@ -82,7 +92,7 @@ it. Upgrading is not supported.
 ## v0.8.0 - 2022-12-19
 
 * Updates
-  * Update Livebook to [v0.8.0](https://github.com/nerves-livebook/nerves_livebook/blob/main/CHANGELOG.md#v080-2022-12-08)
+  * Update Livebook to [v0.8.0](https://github.com/livebook-dev/livebook/releases/tag/v0.8.0)
   * Reduced logger level to warning to reduce clutter when evaluating cells.
     This is a the same default level as regular Livebook.
   * Support the shutdown button. This will gracefully power off your device.
@@ -95,14 +105,14 @@ it. Upgrading is not supported.
 ## v0.7.2 - 2022-11-07
 
 * Updates
-  * Update Livebook to [v0.7.2](https://github.com/nerves-livebook/nerves_livebook/blob/main/CHANGELOG.md#v072-2022-10-26)
+  * Update Livebook to [v0.7.2](https://github.com/livebook-dev/livebook/releases/tag/v0.7.2)
   * Update Nerves systems to `nerves_system_br` 1.21.2 versions
   * Fix hyperlinks and move more pages to learn sections (Thanks @mnishiguchi)
 
 ## v0.7.0 - 2022-10-09
 
 * Updates
-  * Update Livebook to [v0.7.1](https://github.com/nerves-livebook/nerves_livebook/blob/main/CHANGELOG.md#v071-2022-10-09)
+  * Update Livebook to [v0.7.1](https://github.com/livebook-dev/livebook/releases/tag/v0.7.1)
   * Update Nerves systems to `nerves_system_br` 1.20.6 versions
   * Update Nerves to v1.9.1
 
@@ -119,7 +129,7 @@ it. Upgrading is not supported.
 ## v0.6.4 - 2022-08-08
 
 * Updates
-  * Update Livebook to [v0.6.3](https://github.com/nerves-livebook/nerves_livebook/blob/main/CHANGELOG.md#v063-2022-07-13)
+  * Update Livebook to [v0.6.3](https://github.com/livebook-dev/livebook/releases/tag/v0.6.3)
   * Update Nerves systems to `nerves_system_br` 1.20.4 versions. This includes
     Erlang/OTP 25.0.3, Buildroot 2022.05, and GCC 11.3.
   * Fix warnings when building in host mode. (Thanks @axelson)
@@ -129,7 +139,7 @@ it. Upgrading is not supported.
 ## v0.6.3 - 2022-07-08
 
 * Updates
-  * Update Livebook to [v0.6.2](https://github.com/nerves-livebook/nerves_livebook/blob/main/CHANGELOG.md#v062-2022-06-30)
+  * Update Livebook to [v0.6.2](https://github.com/livebook-dev/livebook/releases/tag/v0.6.2)
   * Support the 64-bit RISC-V MangoPi MQ Pro
   * Change the WiFi regulatory domain default from `US` to the global region (`00`)
   * Update Nerves systems to `nerves_system_br` 1.20.3 versions. This includes
@@ -151,7 +161,7 @@ it. Upgrading is not supported.
 ## v0.6.0 - 2022-05-07
 
 * Updates
-  * Update Livebook to [v0.6.1](https://github.com/nerves-livebook/nerves_livebook/blob/main/CHANGELOG.md#v061-2022-05-06)
+  * Update Livebook to [v0.6.1](https://github.com/livebook-dev/livebook/releases/tag/v0.6.1)
 
 ## v0.5.7 - 2022-03-18
 
@@ -190,7 +200,7 @@ it. Upgrading is not supported.
 ## v0.5.2 - 2022-01-31
 
 * Updates
-  * Update Livebook to [v0.5.2](https://github.com/nerves-livebook/nerves_livebook/blob/main/CHANGELOG.md#v052-2022-01-27)
+  * Update Livebook to [v0.5.2](https://github.com/livebook-dev/livebook/releases/tag/v0.5.2)
   * Turn on an LED when networking on the device is ready. This isn't perfect
     for showing status, but aims to be more helpful than the current lack of
     feedback.
@@ -204,7 +214,7 @@ it. Upgrading is not supported.
 ## v0.5.0 - 2022-01-20
 
 * Updates
-  * Update Livebook to [v0.5.1](https://github.com/nerves-livebook/nerves_livebook/blob/main/CHANGELOG.md#v051-2022-01-20)
+  * Update Livebook to [v0.5.1](https://github.com/livebook-dev/livebook/releases/tag/v0.5.1)
 
 ## v0.4.2 - 2022-01-16
 
@@ -217,8 +227,7 @@ it. Upgrading is not supported.
 ## v0.4.1 - 2021-12-31
 
 * Updates
-  * Update Livebook to
-    [v0.4.1](https://github.com/nerves-livebook/nerves_livebook/blob/main/CHANGELOG.md#v041-2021-12-09)
+  * Update Livebook to [v0.4.1](https://github.com/livebook-dev/livebook/releases/tag/v0.4.1)
   * Update Elixir to 1.13.1
   * Update Nerves Systems to use Erlang 24.2, Buildroot 2021.11 and
     miscellaneous platform-specific bug fixes and improvements.
@@ -227,8 +236,7 @@ it. Upgrading is not supported.
 ## v0.4.0 - 2021-12-05
 
 * Updates
-  * Update Livebook to
-    [v0.4.0](https://github.com/nerves-livebook/nerves_livebook/blob/main/CHANGELOG.md#v040-2021-12-05)
+  * Update Livebook to [v0.4.0](https://github.com/livebook-dev/livebook/releases/tag/v0.4.0)
   * Update Elixir to 1.13.0
   * Update Nerves Systems to use Erlang 24.1.7, Buildroot 2021.08.2 and
     miscellaneous platform-specific bug fixes and improvements.
@@ -284,8 +292,7 @@ this release, the old directory will be kept in case any modifications were made
 to notebooks there.
 
 * Updates
-  * Update Livebook from `v0.2.3` to
-    [`main@d8a7af62`](https://github.com/nerves-livebook/nerves_livebook/blob/d8a7af62e78c664b667cb30c8430a1b56e412500/CHANGELOG.md).
+  * Update Livebook from `v0.2.3` to [`main@d8a7af62`](https://github.com/livebook-dev/livebook/blob/d8a7af62e78c664b667cb30c8430a1b56e412500/CHANGELOG.md).
     See the unreleased items in the link for Livebook changes.
   * Redirect to the device's specific hostname when using `nerves.local` to
     connect. This makes it more obvious which device you're connected to when
