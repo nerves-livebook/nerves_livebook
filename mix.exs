@@ -93,7 +93,7 @@ defmodule NervesLivebook.MixProject do
       {:blue_heron_transport_uart, "~> 0.1.4", targets: @ble_targets},
       {:bmp280, "~> 0.2", targets: @all_targets},
       {:circuits_gpio, "~> 1.0"},
-      {:circuits_i2c, "~> 2.0 or ~> 1.0"},
+      {:circuits_i2c, "~> 2.0 or ~> 1.0", override: true},
       {:circuits_spi, "~> 2.0 or ~> 1.0"},
       {:circuits_uart, "~> 1.3"},
       {:delux, "~> 0.2"},
