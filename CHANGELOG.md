@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.11.1 - 2023-12-19
+
+* Updates
+  * Add 64-bit RPi Zero 2W (`rpi0_2`). 32-bit mode was supported before via
+    `rpi3a`, but this enables the JIT
+  * Add RPi 5 (`rpi5`). This port is current experimental
+  * Update Nerves systems to nerves_system_br 1.25.2 versions
+    * Erlang 26.1.2
+    * Buildroot 2023.08.4
+    * Linux 6.1 on all Raspberry Pi and BBB ports
+  * Update Elixir to 1.15.7
+  * Update all dependencies to their latest versions
+
 ## v0.11.0 - 2023-10-09
 
 * Updates
