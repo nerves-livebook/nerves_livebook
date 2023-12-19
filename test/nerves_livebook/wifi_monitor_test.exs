@@ -68,8 +68,13 @@ defmodule NervesLivebook.WiFiMonitorTest do
     configure_wlan()
     monitor = start_supervised!({WiFiMonitor, [test_fn: test_fn()]})
     assert Process.alive?(monitor)
-    output = capture_log(fn -> PropertyTable.put(VintageNet, @presence_prop, true) end)
-    assert_receive :stopped
+
+    output =
+      capture_log(fn ->
+        PropertyTable.put(VintageNet, @presence_prop, true)
+        assert_receive :stopped
+      end)
+
     refute_receive :start_ap
     assert output =~ "wlan0 interface present"
   end
@@ -80,8 +85,13 @@ defmodule NervesLivebook.WiFiMonitorTest do
     configure_wlan()
     monitor = start_supervised!({WiFiMonitor, [test_fn: test_fn()]})
     assert Process.alive?(monitor)
-    output = capture_log(fn -> PropertyTable.put(VintageNet, @connection_prop, :internet) end)
-    assert_receive :stopped
+
+    output =
+      capture_log(fn ->
+        PropertyTable.put(VintageNet, @connection_prop, :internet)
+        assert_receive :stopped
+      end)
+
     refute_receive :start_ap
     assert output =~ ~r/wlan0.*connected/
   end
@@ -91,8 +101,13 @@ defmodule NervesLivebook.WiFiMonitorTest do
     PropertyTable.put(VintageNet, @connection_prop, :disconnected)
     configure_wlan()
     monitor = start_supervised!({WiFiMonitor, [test_fn: test_fn()]})
-    output = capture_log(fn -> PropertyTable.put(VintageNet, @presence_prop, false) end)
-    assert_receive :continue
+
+    output =
+      capture_log(fn ->
+        PropertyTable.put(VintageNet, @presence_prop, false)
+        assert_receive :continue
+      end)
+
     refute_receive :stopped
     assert output =~ "wlan0 interface gone"
     assert Process.alive?(monitor)
