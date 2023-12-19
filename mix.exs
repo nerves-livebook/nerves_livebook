@@ -5,7 +5,7 @@ defmodule NervesLivebook.MixProject do
   @version "0.11.0"
   @source_url "https://github.com/nerves-livebook/nerves_livebook"
 
-  @rpi_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4]
+  @rpi_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4, :rpi0_2, :rpi5]
   @all_targets @rpi_targets ++
                  [:bbb, :osd32mp1, :x86_64, :npi_imx6ull, :grisp2, :mangopi_mq_pro, :srhub]
 
@@ -134,6 +134,8 @@ defmodule NervesLivebook.MixProject do
       {:nerves_system_grisp2, "~> 0.9", runtime: false, targets: :grisp2},
       {:nerves_system_mangopi_mq_pro, "~> 0.7", runtime: false, targets: :mangopi_mq_pro},
       {:nerves_system_srhub, "~> 0.27", runtime: false, targets: :srhub},
+      {:nerves_system_rpi0_2, "~> 1.25", runtime: false, targets: :rpi0_2},
+      {:nerves_system_rpi5, "~> 0.0.1", runtime: false, targets: :rpi5},
 
       # Compile-time only
       {:credo, "~> 1.6", only: :dev, runtime: false},
