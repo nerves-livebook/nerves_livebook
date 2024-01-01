@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.12.0 - 2024-1-1
+
+Happy New Year!
+
+* Updates
+  * Update Livebook to [v0.12.1](https://github.com/livebook-dev/livebook/releases/tag/v0.12.1)
+  * Fix Raspberry Pi 3 regression in v0.11.1
+  * Update Elixir to 1.16.0
+  * SBOM generation is temporarily off pending a PR getting merged
+
 ## v0.11.1 - 2023-12-19
 
 * Updates
