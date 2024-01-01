@@ -109,7 +109,7 @@ defmodule NervesLivebook.MixProject do
       {:nx, "~> 0.6.2"},
       {:phoenix_pubsub, "~> 2.0"},
       {:picam, "~> 0.4.0", targets: @rpi_mmal_targets},
-      {:pigpiox, "~> 0.1", targets: @rpi_targets},
+      {:pigpiox, "~> 0.1", targets: @rpi_mmal_targets},
       {:pinout, "~> 0.1"},
       {:progress_bar, "~> 3.0"},
       {:ramoops_logger, "~> 0.1", targets: @all_targets},
