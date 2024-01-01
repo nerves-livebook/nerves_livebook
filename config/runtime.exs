@@ -41,13 +41,15 @@ port = if mix_target == :host, do: 8080, else: 80
 {:ok, hostname} = :inet.gethostname()
 
 config :livebook, LivebookWeb.Endpoint,
+  adapter: Bandit.PhoenixAdapter,
+  url: [host: "#{hostname}.local", path: "/"],
   pubsub_server: Livebook.PubSub,
   live_view: [signing_salt: "livebook"],
   http: [
     port: port,
-    transport_options: [socket_opts: [:inet6]]
+    http_1_options: [max_header_length: 32768],
+    http_2_options: [max_header_value_length: 32768]
   ],
-  url: [host: "#{hostname}.local", path: "/"],
   code_reloader: false,
   server: true
 

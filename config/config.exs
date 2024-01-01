@@ -77,13 +77,15 @@ config :livebook, :shutdown_callback, {Process, :spawn, [Nerves.Runtime, :powero
 
 # Defaults for required configurations
 config :livebook,
+  teams_url: "https://teams.livebook.dev",
   app_service_name: nil,
   app_service_url: nil,
   feature_flags: [],
   force_ssl_host: nil,
-  within_iframe: false,
   update_instructions_url: nil,
-  allowed_uri_schemes: []
+  within_iframe: false,
+  allowed_uri_schemes: [],
+  aws_credentials: false
 
 if Mix.target() == :host do
   import_config "host.exs"
