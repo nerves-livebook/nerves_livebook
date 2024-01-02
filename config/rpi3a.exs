@@ -8,6 +8,6 @@ config :vintage_net,
     {"wlan0", %{type: VintageNetWiFi}}
   ]
 
-config :delux, indicators: %{default: %{green: "led0"}}
+config :delux, indicators: %{default: %{green: "ACT"}}
 
 config :nerves, :firmware, fwup_conf: "config/rpi3a/fwup.conf"

@@ -8,4 +8,4 @@ config :vintage_net,
     {"wlan0", %{type: VintageNetWiFi}}
   ]
 
-config :delux, indicators: %{default: %{green: "led0"}}
+config :delux, indicators: %{default: %{green: "ACT"}}
