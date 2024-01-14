@@ -25,18 +25,21 @@ runtime_info()
 kv = Nerves.Runtime.KV.get_all()
 active = kv["nerves_fw_active"]
 
-data = Enum.group_by(kv, fn
+data =
+  Enum.group_by(kv, fn
     {<<^active::binary-1, ".", _::binary>>, _} -> :active
     {<<_::8, ".", _::binary>>, _} -> :inactive
     _ -> :global
   end)
+  |> Enum.map(fn {group_name, group_members} ->
+    {group_name, Enum.map(group_members, fn {k, v} -> %{key: k, value: v} end)}
+  end)
 
-Kino.DataTable.new(data.global)
-|> Kino.render
+Kino.DataTable.new(data[:global])
+|> Kino.render()
 
-Kino.DataTable.new(data.active)
-|> Kino.render
+Kino.DataTable.new(data[:active])
+|> Kino.render()
 
-Kino.DataTable.new(data.inactive)
-|> Kino.render
+Kino.DataTable.new(data[:inactive])
 ```
