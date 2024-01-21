@@ -97,7 +97,8 @@ defmodule NervesLivebook.MixProject do
       {:circuits_spi, "~> 2.0 or ~> 1.0"},
       {:circuits_uart, "~> 1.3"},
       {:delux, "~> 0.2"},
-      {:hts221, "~> 1.0", targets: @all_targets},
+      # hts221 needs circuits_i2c dependency bumped
+      # {:hts221, "~> 1.0", targets: @all_targets},
       {:input_event, "~> 1.0 or ~> 0.4", targets: @all_targets},
       {:kino, "~> 0.7"},
       {:kino_maplibre, "~> 0.1.0"},
