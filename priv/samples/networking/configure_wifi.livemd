@@ -2,7 +2,8 @@
 
 ```elixir
 Mix.install([
-  {:vintage_net_wifi, "~> 0.11"}
+  {:vintage_net_wifi, "~> 0.11"},
+  {:kino, "~> 0.12"}
 ])
 ```
 
@@ -14,22 +15,30 @@ simplify common tasks. If you're trying to connect to an enterprise network,
 this may not work for you.
 
 Step 1 is to see what WiFi networks are available.
-`VintageNetWiFi.quick_scan/0` returns a lot of information, so lets filter it
-to get a list of SSIDs (rerun if your network doesn't should up in time):
+`VintageNetWiFi.quick_scan/0` returns a lot of information, so lets just show a
+few columns in a table. Rerun this if you don't see your network.
 
 ```elixir
-networks =
-  VintageNetWiFi.quick_scan()
-  |> Enum.map(fn %{ssid: ssid, signal_percent: signal_percent} ->
-    %{ssid: ssid, signal_percent: signal_percent}
-  end)
-  |> Enum.sort(&(&1.signal_percent >= &2.signal_percent))
-  |> Enum.uniq_by(& &1.ssid)
+networks = VintageNetWiFi.quick_scan()
+
+networks
+|> Kino.DataTable.new(
+  name: "WiFi Networks",
+  keys: [:ssid, :signal_percent, :frequency, :flags],
+  sorting_enabled: false
+)
 ```
 
-## Connect to a network
+#### WPA3 support
 
-Next, lets connect to one of the WiFi networks. Select the SSID and enter the password.
+A WiFi network that uses WPA3 shows up with `:sae` in the flags. Support for
+WPA3 networks depends on hardware and device driver support. Raspberry Pi's
+currently do not support WPA3
+
+## Connect
+
+Next, lets connect to one of the WiFi networks. Select the SSID and enter the
+password.
 
 ```elixir
 selectable_networks =
