@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.12.1 - 2024-1-21
+
+* Updates
+  * Fix LED naming changes from Linux kernel update that ended up breaking RPi
+    Zero, 2, and 3.
+  * Update Nerves systems to nerves_system_br 1.24.1 versions (Erlang 26.2.1)
+  * Add WPA3 support for devices with WiFi modules that support it (currently
+    only BeagleBone's with WiLink modules)
+  * Update all dependencies to latest versions
+  * Fix diagnostics notebook (@mnisiguchi)
+  * Fix firmware update notebook (@5avage)
+
 ## v0.12.0 - 2024-1-1
 
 Happy New Year!
