@@ -25,6 +25,7 @@ devices:
 * `rpi3` - Raspberry Pi 3 Model B and Model B+
 * `rpi3a` - Raspberry Pi 3 Model A+ and Raspberry Pi Zero 2 W
 * `rpi4` - Raspberry Pi 4 Model B
+* `rpi5` - Raspberry Pi 5 Model B
 * `osd32mp1` - Octavo OSD32MP1-BRK
 * `npi_imx6ull` - Seeed Studio imx6ull (select the MicroSD boot mode switches)
 * `mangopi_mq_pro` - MangoPi MQ Pro (Allwinner D1 64-bit RISC-V)
