@@ -19,9 +19,6 @@ defmodule NervesLivebook.MixProject do
   # Targets supporting cellular modems
   @cellular_targets [:srhub]
 
-  # TFLite isn't building on the RPi and RPi0 (armv6), so just don't include it there.
-  @tflite_targets @all_targets -- [:rpi, :rpi0]
-
   # Instruct the compiler to create deterministic builds to minimize
   # differences between firmware versions. This helps delta firmware update
   # compression.
@@ -118,7 +115,7 @@ defmodule NervesLivebook.MixProject do
       {:req, "~> 0.4.4"},
       {:scroll_hat, "~> 0.1", targets: @rpi_targets},
       {:stb_image, "~> 0.6.0"},
-      {:tflite_elixir, "~> 0.3.4", targets: @tflite_targets},
+      {:tflite_elixir, "~> 0.3.6", targets: @all_targets},
       {:vega_lite, "~> 0.1"},
       {:vintage_net_mobile, "~> 0.11", targets: @cellular_targets},
       {:vintage_net_qmi, "~> 0.3", targets: @cellular_targets},
