@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.12.2 - 2024-2-18
+
+* Updates
+  * Update `vintage_net_wifi` to fix an issue connecting to some WPA2 networks
+    using `VintageNetWiFi.quick_configure/2`
+  * Enable TFLite support on Raspberry Pi Model B and Raspberry Pi Zeros now
+    that it has ARMv6 support. (@cocoa-xu)
+  * Update Nerves systems to `nerves_system_br` 1.25.1 versions (Erlang 26.2.2)
+  * Update all dependencies to latest versions
+
 ## v0.12.1 - 2024-1-21
 
 * Updates
