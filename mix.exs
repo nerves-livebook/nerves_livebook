@@ -119,6 +119,7 @@ defmodule NervesLivebook.MixProject do
       {:vega_lite, "~> 0.1"},
       {:vintage_net_mobile, "~> 0.11", targets: @cellular_targets},
       {:vintage_net_qmi, "~> 0.3", targets: @cellular_targets},
+      {:vintage_net_wifi, "~> 0.12.4", targets: @all_targets},
 
       # Nerves system dependencies
       {:nerves_system_rpi, "~> 1.26", runtime: false, targets: :rpi},

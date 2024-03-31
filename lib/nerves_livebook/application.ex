@@ -58,9 +58,7 @@ defmodule NervesLivebook.Application do
     end
 
     defp wlan0_unconfigured?() do
-      config = VintageNet.get_configuration("wlan0")
-
-      config == %{type: VintageNetWiFi} or match?(%{vintage_net_wifi: %{networks: []}}, config)
+      VintageNet.get_configuration("wlan0") |> VintageNetWiFi.network_configured?()
     catch
       _, _ -> false
     end
