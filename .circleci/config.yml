@@ -282,13 +282,6 @@ jobs:
       MIX_TARGET: grisp2
     <<: *build_grisp2
 
-  build_srhub:
-    <<: *defaults
-    environment:
-      <<: *elixir_version
-      MIX_TARGET: srhub
-    <<: *build
-
   build_x86_64:
     <<: *defaults
     environment:
@@ -372,11 +365,6 @@ jobs:
       - restore_cache:
           key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
       - run:
-          name: srhub
-          command: echo "srhub" > .target
-      - restore_cache:
-          key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
-      - run:
           name: x86_64
           command: echo "x86_64" > .target
       - restore_cache:
@@ -452,10 +440,6 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - build_srhub:
-          filters:
-            tags:
-              only: /.*/
       # - build_x86_64:
       #     filters:
       #       tags:
@@ -476,7 +460,6 @@ workflows:
             - build_npi_imx6ull
             - build_grisp2
             - build_mangopi_mq_pro
-            - build_srhub
             # - build_x86_64
           filters:
             branches:
