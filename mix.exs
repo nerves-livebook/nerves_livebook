@@ -7,7 +7,7 @@ defmodule NervesLivebook.MixProject do
 
   @rpi_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4, :rpi0_2, :rpi5]
   @all_targets @rpi_targets ++
-                 [:bbb, :osd32mp1, :x86_64, :npi_imx6ull, :grisp2, :mangopi_mq_pro, :srhub]
+                 [:bbb, :osd32mp1, :x86_64, :npi_imx6ull, :grisp2, :mangopi_mq_pro]
 
   # Libraries that use MMAL on the Raspberry Pi won't work with the Raspberry
   # Pi 4. The Raspberry Pi 4 uses DRM and libcamera.
@@ -15,9 +15,6 @@ defmodule NervesLivebook.MixProject do
 
   # See the BlueHeron repository for the boards that it supports.
   @ble_targets [:rpi0, :rpi3, :rpi3a]
-
-  # Targets supporting cellular modems
-  @cellular_targets [:srhub]
 
   # Instruct the compiler to create deterministic builds to minimize
   # differences between firmware versions. This helps delta firmware update
@@ -117,8 +114,6 @@ defmodule NervesLivebook.MixProject do
       {:stb_image, "~> 0.6.0"},
       {:tflite_elixir, "~> 0.3.6", targets: @all_targets},
       {:vega_lite, "~> 0.1"},
-      {:vintage_net_mobile, "~> 0.11", targets: @cellular_targets},
-      {:vintage_net_qmi, "~> 0.3", targets: @cellular_targets},
       {:vintage_net_wifi, "~> 0.12.4", targets: @all_targets},
 
       # Nerves system dependencies
@@ -136,7 +131,6 @@ defmodule NervesLivebook.MixProject do
       {:nerves_system_npi_imx6ull, "~> 0.14", runtime: false, targets: :npi_imx6ull},
       {:nerves_system_grisp2, "~> 0.10", runtime: false, targets: :grisp2},
       {:nerves_system_mangopi_mq_pro, "~> 0.8", runtime: false, targets: :mangopi_mq_pro},
-      {:nerves_system_srhub, "~> 0.31", runtime: false, targets: :srhub},
 
       # Compile-time only
       {:credo, "~> 1.6", only: :dev, runtime: false},
