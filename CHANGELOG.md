@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.12.3 - 2024-4-7
+
+* Updates
+  * Update Nerves systems to `nerves_system_br v1.27.0` (Erlang/OTP 26.2.3,
+    Buildroot 2024.02)
+  * Switch back to WPA2-only WiFi support with
+    `VintageNetWiFi.quick_configure/2` to fix issues on BBB and GRiSP2
+  * Fix regression that prevented WiFi networks from being provisioned on the
+    MicroSD card
+  * Removed `srhub` target due to perceived lack of use. If this is not true,
+    please open an issue and we'll include it again.
+  * Update all dependencies to latest versions
+
 ## v0.12.2 - 2024-2-18
 
 * Updates
