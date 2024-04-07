@@ -114,7 +114,7 @@ defmodule NervesLivebook.MixProject do
       {:stb_image, "~> 0.6.0"},
       {:tflite_elixir, "~> 0.3.6", targets: @all_targets},
       {:vega_lite, "~> 0.1"},
-      {:vintage_net_wifi, "~> 0.12.4", targets: @all_targets},
+      {:vintage_net_wifi, "~> 0.12.5", targets: @all_targets},
 
       # Nerves system dependencies
       {:nerves_system_rpi, "~> 1.27", runtime: false, targets: :rpi},
