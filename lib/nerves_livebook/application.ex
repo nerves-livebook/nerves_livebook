@@ -46,7 +46,7 @@ defmodule NervesLivebook.Application do
     defp setup_wifi() do
       kv = Nerves.Runtime.KV.get_all()
 
-      if true?(kv["wifi_force"]) or wlan0_unconfigured?() do
+      if true?(kv["wifi_force"]) or not wlan0_configured?() do
         ssid = kv["wifi_ssid"]
         passphrase = kv["wifi_passphrase"]
 
@@ -57,7 +57,7 @@ defmodule NervesLivebook.Application do
       end
     end
 
-    defp wlan0_unconfigured?() do
+    defp wlan0_configured?() do
       VintageNet.get_configuration("wlan0") |> VintageNetWiFi.network_configured?()
     catch
       _, _ -> false
