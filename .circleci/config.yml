@@ -1,13 +1,13 @@
 defaults: &defaults
   working_directory: /nerves/build
   docker:
-    - image: ghcr.io/nerves-project/nerves_system_br:1.27.0
+    - image: ghcr.io/nerves-project/nerves_system_br:1.27.1
   resource_class: large
   environment:
     MIX_ENV: prod
 
 elixir_version: &elixir_version
-  ELIXIR_VERSION: 1.16.2-otp-26
+  ELIXIR_VERSION: 1.16.3-otp-26
 
 install_elixir: &install_elixir
   run:
