@@ -17,7 +17,7 @@ install_system_deps: &install_system_deps
     name: Install system dependencies
     command: |
       apt update
-      apt install -y libmnl-dev libnl-genl-3-dev build-essential automake autoconf git squashfs-tools pkg-config curl wget file zip jq
+      apt install -y libmnl-dev libnl-genl-3-dev build-essential automake autoconf git squashfs-tools pkg-config curl wget file zip jq xdelta3
 
 install_hex_rebar: &install_hex_rebar
   run:
