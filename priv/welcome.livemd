@@ -68,7 +68,6 @@ or make a PR to include new libraries in the main image.
 - **[`Circuits.I2C`](https://hexdocs.pm/circuits_i2c)**, letting you communicate with hardware devices using the I2C protocol
 - **[`Circuits.Spi`](https://hexdocs.pm/circuits_spi)**, providing high level abstractions for interfacing to SPI busses
 - **[`NervesKey`](https://hexdocs.pm/nerves_key)**, tools for interacting with Nerves hardware security modules (HSMs)
-- **[`Pigpiox`](https://hexdocs.pm/pigpiox)**, a wrapper around the the [pigpio](https://abyz.me.uk/rpi/pigpio/) library for driving `GPIO` pins
 - **[`RamoopsLogger`](https://hexdocs.pm/ramoops_logger)**, a `Logger` backend for forwarding to a [ramoops](https://www.kernel.org/doc/html/v4.19/admin-guide/ramoops.html) in the event of a system crash
 - **[`BMP280`](https://hexdocs.pm/bmp280)**, support for the Bosch BMP180, BMP280, BME280, and BME680 temperature/pressure sensors
 - **[`ScrollHat`](https://hexdocs.pm/scroll_hat)**, a driver for Pimoroni Scroll Hat LED boards
