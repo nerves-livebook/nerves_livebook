@@ -2,8 +2,6 @@ defaults: &defaults
   docker:
     - image: hexpm/elixir:1.17.2-erlang-27.0-ubuntu-jammy-20240530
   resource_class: large
-  environment:
-    MIX_ENV: prod
 
 install_fwup: &install_fwup
   run:
@@ -107,11 +105,11 @@ build: &build
         command: mix format --check-formatted
     - run:
         name: Build
-        command: mix compile
+        command: MIX_ENV=prod mix compile
     - run:
         name: Create firmware
         command: |
-          mix firmware.image
+          MIX_ENV=prod mix firmware.image
     - run:
         name: Create artifacts dir
         command: mkdir -p ~/deploy/artifacts
@@ -152,7 +150,7 @@ build_grisp2: &build_grisp2
     - run:
         name: Create firmware
         command: |
-          mix firmware.image
+          MIX_ENV=prod mix firmware.image
     - run:
           name: Create artifacts dir
           command: mkdir -p ~/deploy/artifacts

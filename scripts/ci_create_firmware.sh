@@ -14,7 +14,7 @@ set -e
 
 [[ -n "$MIX_TARGET" ]] || (echo "MIX_TARGET unset"; exit 1)
 [[ -d "$DEPLOY_PATH" ]] || (echo "DEPLOY_PATH unset or directory doesn't exist"; exit 1)
-[[ -n "$MIX_ENV" ]] || MIX_ENV=dev
+[[ -n "$MIX_ENV" ]] || MIX_ENV=prod
 
 FULL_FIRMWARE_FILENAME="nerves_livebook_${MIX_TARGET}.fw"
 FULL_FIRMWARE_PATH="$DEPLOY_PATH/$FULL_FIRMWARE_FILENAME"
