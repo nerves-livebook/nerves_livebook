@@ -1,57 +1,49 @@
 defaults: &defaults
-  working_directory: /nerves/build
   docker:
-    - image: ghcr.io/nerves-project/nerves_system_br:1.27.1
+    - image: hexpm/elixir:1.17.2-erlang-27.0-ubuntu-jammy-20240530
   resource_class: large
   environment:
     MIX_ENV: prod
 
-elixir_version: &elixir_version
-  ELIXIR_VERSION: 1.16.3-otp-26
-
-install_elixir: &install_elixir
+install_fwup: &install_fwup
   run:
-    name: Install Elixir
+    name: Install fwup
     command: |
-      wget https://repo.hex.pm/builds/elixir/v$ELIXIR_VERSION.zip
-      unzip -d /usr/local/elixir v$ELIXIR_VERSION.zip
-      echo 'export PATH=/usr/local/elixir/bin:$PATH' >> $BASH_ENV
-
-install_hex_rebar: &install_hex_rebar
-  run:
-    name: Install hex and rebar
-    command: |
-      mix local.hex --force
-      mix local.rebar --force
-
-install_nerves_bootstrap: &install_nerves_bootstrap
-  run:
-    name: Install nerves_bootstrap
-    command: |
-      mix archive.install hex nerves_bootstrap --force
-
-install_ghr: &install_ghr
-  run:
-    name: Install ghr (Github Releases)
-    command: |
-      wget https://github.com/tcnksm/ghr/releases/download/v0.9.0/ghr_v0.9.0_linux_amd64.tar.gz
-      tar xf ghr_v0.9.0_linux_amd64.tar.gz
-      ln -sf ghr_v0.9.0_linux_amd64/ghr .
+      wget https://github.com/fwup-home/fwup/releases/download/v1.10.1/fwup_1.10.1_amd64.deb
+      dpkg -i fwup_1.10.1_amd64.deb
 
 install_system_deps: &install_system_deps
   run:
     name: Install system dependencies
     command: |
       apt update
-      apt install -y zip xdelta3
+      apt install -y libmnl-dev libnl-genl-3-dev build-essential automake autoconf git squashfs-tools pkg-config curl wget file zip jq
+
+install_hex_rebar: &install_hex_rebar
+  run:
+    name: Install Hex, Rebar, nerves_bootstrap
+    command: |
+      mix local.hex --force
+      mix local.rebar --force
+      mix archive.install hex nerves_bootstrap --force
+
+install_gh_cli: &install_gh_cli
+  run:
+    name: Install github CLI tools
+    command: |
+      apt update
+      apt install -y curl
+      curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+      chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+      echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+      apt update
+      apt install -y gh
 
 host_build: &host_build
   steps:
     - checkout
     - <<: *install_system_deps
-    - <<: *install_elixir
     - <<: *install_hex_rebar
-    - <<: *install_nerves_bootstrap
     - run:
         name: Install vintage_net deps
         command: apt install -y libmnl-dev libnl-3-dev libnl-genl-3-dev
@@ -79,27 +71,26 @@ host_build: &host_build
 #          mix sbom.cyclonedx -f -o nerves_livebook_sbom.xml
     - run:
         name: Create artifacts dir
-        command: mkdir -p /home/nerves/deploy/artifacts
+        command: mkdir -p ~/deploy/artifacts
     - run:
         name: Copy changelog and SBOM
         command: |
-          cp ./CHANGELOG.md /home/nerves/deploy/CHANGELOG.md
-          # cp ./nerves_livebook_sbom.xml /home/nerves/deploy/nerves_livebook_sbom.xml
+          cp ./CHANGELOG.md ~/deploy/CHANGELOG.md
+          # cp ./nerves_livebook_sbom.xml ~/deploy/nerves_livebook_sbom.xml
     - run:
         name: Dialyzer
         command: mix dialyzer
     - save_cache:
         key: nerves/deploy/host-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
         paths:
-          - /home/nerves/deploy
+          - ~/deploy
 
 build: &build
   steps:
     - checkout
     - <<: *install_system_deps
-    - <<: *install_elixir
+    - <<: *install_fwup
     - <<: *install_hex_rebar
-    - <<: *install_nerves_bootstrap
     - run: echo "$MIX_TARGET" > .target
     - run:
         name: Fetch Deps
@@ -120,35 +111,33 @@ build: &build
     - run:
         name: Create firmware
         command: |
-          mix firmware
           mix firmware.image
     - run:
         name: Create artifacts dir
-        command: mkdir -p /home/nerves/deploy/artifacts
+        command: mkdir -p ~/deploy/artifacts
     - run:
         name: Compress and copy over the raw image
         command: |
           zip nerves_livebook_${MIX_TARGET}.zip nerves_livebook.img
-          cp nerves_livebook_${MIX_TARGET}.zip /home/nerves/deploy/artifacts
+          cp nerves_livebook_${MIX_TARGET}.zip ~/deploy/artifacts
     - run:
         name: Create full and delta firmware images
         command: |
-          DEPLOY_PATH=/home/nerves/deploy/artifacts ./scripts/ci_create_firmware.sh
+          DEPLOY_PATH=~/deploy/artifacts ./scripts/ci_create_firmware.sh
     - store_artifacts:
-        path: /home/nerves/deploy
+        path: ~/deploy
         destination: images
     - save_cache:
         key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
         paths:
-          - /home/nerves/deploy
+          - ~/deploy
 
 build_grisp2: &build_grisp2
   steps:
     - checkout
     - <<: *install_system_deps
-    - <<: *install_elixir
+    - <<: *install_fwup
     - <<: *install_hex_rebar
-    - <<: *install_nerves_bootstrap
     - run: echo "$MIX_TARGET" > .target
     - run:
         name: Fetch Deps
@@ -163,129 +152,112 @@ build_grisp2: &build_grisp2
     - run:
         name: Create firmware
         command: |
-          mix firmware
           mix firmware.image
     - run:
           name: Create artifacts dir
-          command: mkdir -p /home/nerves/deploy/artifacts
+          command: mkdir -p ~/deploy/artifacts
     - run:
         name: Create full and delta firmware images
         command: |
-          DEPLOY_PATH=/home/nerves/deploy/artifacts ./scripts/ci_create_firmware.sh
+          DEPLOY_PATH=~/deploy/artifacts ./scripts/ci_create_firmware.sh
           gzip -k nerves_livebook.img
-          cp nerves_livebook.img.gz /home/nerves/deploy/artifacts/nerves_livebook_${MIX_TARGET}.img.gz
+          cp nerves_livebook.img.gz ~/deploy/artifacts/nerves_livebook_${MIX_TARGET}.img.gz
     - store_artifacts:
-        path: /home/nerves/deploy
+        path: ~/deploy
         destination: images
     - save_cache:
         key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
         paths:
-          - /home/nerves/deploy
+          - ~/deploy
 
 version: 2.0
 
 jobs:
   build_host:
     <<: *defaults
-    environment:
-      <<: *elixir_version
     <<: *host_build
 
   build_osd32mp1:
     <<: *defaults
     environment:
-      <<: *elixir_version
       MIX_TARGET: osd32mp1
     <<: *build
 
   build_rpi5:
     <<: *defaults
     environment:
-      <<: *elixir_version
       MIX_TARGET: rpi5
     <<: *build
 
   build_rpi0_2:
     <<: *defaults
     environment:
-      <<: *elixir_version
       MIX_TARGET: rpi0_2
     <<: *build
 
   build_rpi4:
     <<: *defaults
     environment:
-      <<: *elixir_version
       MIX_TARGET: rpi4
     <<: *build
 
   build_rpi3a:
     <<: *defaults
     environment:
-      <<: *elixir_version
       MIX_TARGET: rpi3a
     <<: *build
 
   build_rpi3:
     <<: *defaults
     environment:
-      <<: *elixir_version
       MIX_TARGET: rpi3
     <<: *build
 
   build_rpi2:
     <<: *defaults
     environment:
-      <<: *elixir_version
       MIX_TARGET: rpi2
     <<: *build
 
   build_rpi:
     <<: *defaults
     environment:
-      <<: *elixir_version
       MIX_TARGET: rpi
     <<: *build
 
   build_rpi0:
     <<: *defaults
     environment:
-      <<: *elixir_version
       MIX_TARGET: rpi0
     <<: *build
 
   build_bbb:
     <<: *defaults
     environment:
-      <<: *elixir_version
       MIX_TARGET: bbb
     <<: *build
 
   build_npi_imx6ull:
     <<: *defaults
     environment:
-      <<: *elixir_version
       MIX_TARGET: npi_imx6ull
     <<: *build
 
   build_mangopi_mq_pro:
     <<: *defaults
     environment:
-      <<: *elixir_version
       MIX_TARGET: mangopi_mq_pro
     <<: *build
 
   build_grisp2:
     <<: *defaults
     environment:
-      <<: *elixir_version
       MIX_TARGET: grisp2
     <<: *build_grisp2
 
   build_x86_64:
     <<: *defaults
     environment:
-      <<: *elixir_version
       MIX_TARGET: x86_64
     <<: *build
 
@@ -293,10 +265,10 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - <<: *install_ghr
+      - <<: *install_gh_cli
       - run:
           name: Create Artifacts Dir
-          command: mkdir -p /home/nerves/deploy
+          command: mkdir -p ~/deploy
       - restore_cache:
           key: nerves/deploy/host-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
       - run:
@@ -370,15 +342,20 @@ jobs:
       - restore_cache:
           key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
       - run:
-          name: Create release notes
-          command: grep -Pazo "(?s)(?<=## ${CIRCLE_TAG})[^#]+" /home/nerves/deploy/CHANGELOG.md | sed '/./,$!d' > /home/nerves/deploy/RELEASE_NOTES
+          name: Create release notes - FAILS if tag isn't in CHANGELOG.md
+          command: grep -Pazo "(?s)(?<=## ${CIRCLE_TAG})[^#]+" ~/deploy/CHANGELOG.md | sed '/./,$!d' > ~/deploy/RELEASE_NOTES
       - store_artifacts:
-          path: /home/nerves/deploy
+          path: ~/deploy
           destination: images
       - run:
-          name: Deploy artifacts to Github
-          command: ./ghr -draft -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME -b "$(cat /home/nerves/deploy/RELEASE_NOTES)" -replace $CIRCLE_TAG /home/nerves/deploy/artifacts
-
+          name: Create a draft release on Github
+          command: gh release create $CIRCLE_TAG -F ~/deploy/RELEASE_NOTES --repo $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME --draft --verify-tag
+      - run:
+          name: Upload artifacts to Github
+          command: gh release upload $CIRCLE_TAG ~/deploy/artifacts/* --repo $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+      - run:
+          name: Make it official
+          command: gh release edit $CIRCLE_TAG --repo $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME --draft=false
 
 workflows:
   version: 2
