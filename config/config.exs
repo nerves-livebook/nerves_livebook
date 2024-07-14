@@ -24,8 +24,9 @@ config :nerves, source_date_epoch: "1603310828"
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-# Add mime type to upload notebooks with `Phoenix.LiveView.Upload`
+# Additional mime types
 config :mime, :types, %{
+  "audio/m4a" => ["m4a"],
   "text/plain" => ["livemd"]
 }
 
@@ -77,15 +78,23 @@ config :livebook, :shutdown_callback, {Process, :spawn, [Nerves.Runtime, :powero
 
 # Defaults for required configurations
 config :livebook,
-  teams_url: "https://teams.livebook.dev",
+  agent_name: "default",
+  allowed_uri_schemes: [],
   app_service_name: nil,
   app_service_url: nil,
+  authentication: {:password, "nerves"},
+  aws_credentials: false,
+  epmdless: false,
   feature_flags: [],
   force_ssl_host: nil,
+  plugs: [],
+  rewrite_on: [],
+  teams_auth?: false,
+  teams_url: "https://teams.livebook.dev",
   update_instructions_url: nil,
-  within_iframe: false,
-  allowed_uri_schemes: [],
-  aws_credentials: false
+  within_iframe: false
+
+config :livebook, Livebook.Apps.Manager, retry_backoff_base_ms: 5_000
 
 if Mix.target() == :host do
   import_config "host.exs"

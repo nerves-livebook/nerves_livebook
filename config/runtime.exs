@@ -26,10 +26,9 @@ config :livebook,
 config :livebook,
   plugs: [{NervesLivebook.RedirectNervesLocal, []}]
 
-# Set the password to "nerves".
-config :livebook,
-  authentication_mode: :password,
-  password: "nerves"
+# Modify to update the password on device
+# config :livebook,
+#   authentication: {:password, "nerves"}
 
 # Set the Erlang distribution cookie
 config :livebook,
@@ -45,10 +44,11 @@ config :livebook, LivebookWeb.Endpoint,
   url: [host: "#{hostname}.local", path: "/"],
   pubsub_server: Livebook.PubSub,
   live_view: [signing_salt: "livebook"],
+  drainer: [shutdown: 1000],
+  render_errors: [formats: [html: LivebookWeb.ErrorHTML], layout: false],
   http: [
     port: port,
-    http_1_options: [max_header_length: 32768],
-    http_2_options: [max_header_value_length: 32768]
+    http_1_options: [max_header_length: 32768]
   ],
   code_reloader: false,
   server: true
