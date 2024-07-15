@@ -123,7 +123,7 @@ Here's the script:
 
 ```sh
 cd nerves_livebook
-export MIX_ENV=rpi0
+export MIX_TARGET=rpi0
 mix deps.get
 mix firmware
 mix firmware.gen.script
