@@ -112,12 +112,19 @@ This module must define the device profile (services and characteristics),
 as well as functions for reading and writing to these characteristics.
 We will name the module `MyApp.FirmwareConfig.BLE`.
 
-The profile will include two serivces: The `:gap` service, which is mandatory for all Peripherals.
-The other, `:nerves_firmware_config` is our custom service.
+The profile will include three serivces: The `:gap` service, which is mandatory for all Peripherals.
+The second service is the `:gatt` service, which is a service defined by the BLE spec and 
+indicates to clients that the service definition should not be cached, which is useful during development.
+Lastly, `:nerves_firmware_config` is our custom service.
 
 The `:gap` service has two characteristics, both of which are mandatory: `{:gap, :device_name}`
 and `{:gap, :appearance}`.
 Both are read only, as can be seen from the `properties` bitmask `0b0000010`.
+
+The `:gatt` service has one characteristics: `{:gatt, :service_changed}`.  As with the `:gap` service,
+the `type` uuids are defined by the BLE spec.  The `:service_changed` characteristic indicates 
+the service definition has changed, causing clients to clear any caches of the service definition.
+As discussed above, this ensures clients are using the latest service definition during development.
 
 The `:nerves_firmware_config` has 4 properties:
 One for each of the firmware variables `wifi_force`, `wifi_ssid` and `wifi_passphrase`.
@@ -146,6 +153,17 @@ defmodule MyApp.FirmwareConfig.BLE do
             id: {:gap, :appearance},
             type: 0x2A01,
             properties: 0b0000010
+          })
+        ]
+      }),
+      Service.new(%{
+        id: :gatt,
+        type: 0x1801,
+        characteristics: [
+          Characteristic.new(%{
+            id: {:gatt, :service_changed}, 
+            type: 0x2A05,
+            properties: 0b100000
           })
         ]
       }),
@@ -190,6 +208,8 @@ defmodule MyApp.FirmwareConfig.BLE do
     # This is the standard apperance value for "IoT Gateway"
     <<0x008D::little-16>>
   end
+
+  def read({:gatt, :service_changed}), do: 0x00
 
   def read({:nerves_firmware_config, key}) when key in ["wifi_force", "wifi_ssid"] do
     Nerves.Runtime.KV.get(key)
