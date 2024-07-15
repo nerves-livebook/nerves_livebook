@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.13.0 - 2024-7-14
+
+* Updates
+  * Update to [Livebook v0.13.3](https://github.com/livebook-dev/livebook/releases/tag/v0.13.3). Also see the [v0.13.0 changes](https://github.com/livebook-dev/livebook/releases/tag/v0.13.0)
+  * Update to Elixir 1.17.2 and Erlang/OTP 27.0
+  * Update Nerves systems to [nerves_system_br v1.28.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.28.1)
+  * Update all dependencies to latest versions
+  * Remove `picam` from 32-bit Raspberry Pi releases due to the switch from MMAL to `libcamera`
+
 ## v0.12.3 - 2024-4-7
 
 * Updates
