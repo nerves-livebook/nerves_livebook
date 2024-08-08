@@ -148,7 +148,7 @@ defmodule NervesLivebook.MixProject do
     [
       overwrite: true,
       include_erts: &Nerves.Release.erts/0,
-      steps: [&Nerves.Release.init/1, :assemble],
+      steps: [&Nerves.Release.init/1, :assemble, &deterministic_apps/1],
       strip_beams: [keep: ["Docs"]]
     ]
   end
@@ -158,5 +158,23 @@ defmodule NervesLivebook.MixProject do
       flags: [:missing_return, :extra_return, :unmatched_returns, :error_handling, :underspecs],
       ignore_warnings: ".dialyzer_ignore.exs"
     ]
+  end
+
+  # TODO: Remove when Elixir 1.18 is released
+  defp deterministic_apps(release_config) do
+    pattern = Path.join([release_config.path, "**", "ebin", "*.app"])
+
+    Path.wildcard(pattern)
+    |> Enum.each(&make_app_deterministic/1)
+
+    release_config
+  end
+
+  defp make_app_deterministic(path) do
+    # Force the config_mtime so that it's not a random timestamp
+    {:ok, [{:application, app, info}]} = :file.consult(path)
+    new_info = Keyword.delete(info, :config_mtime)
+
+    File.write!(path, :io_lib.format("~tp.~n", [{:application, app, new_info}]))
   end
 end
