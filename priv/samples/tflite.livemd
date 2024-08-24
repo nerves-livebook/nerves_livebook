@@ -3,9 +3,9 @@
 ```elixir
 Mix.install([
   {:tflite_elixir, "~> 0.3.0"},
-  {:req, "~> 0.3.0"},
-  {:progress_bar, "~> 2.0.0"},
-  {:kino, "~> 0.9.0"}
+  {:req, "~> 0.4"},
+  {:progress_bar, "~> 3.0"},
+  {:kino, "~> 0.13"}
 ])
 ```
 
@@ -39,23 +39,24 @@ defmodule Utils do
   defp finch_request(req_request, finch_request, finch_name, finch_options) do
     acc = Req.Response.new()
 
-    case Finch.stream(finch_request, finch_name, acc, &handle_message/2, finch_options) do
+    case Finch.stream(finch_request, finch_name, acc, &handle_finch_stream/2, finch_options) do
       {:ok, response} -> {req_request, response}
       {:error, exception} -> {req_request, exception}
     end
   end
 
-  defp handle_message({:status, status}, response), do: %{response | status: status}
+  defp handle_finch_stream({:status, status}, response), do: %{response | status: status}
 
-  defp handle_message({:headers, headers}, response) do
-    {_, total_size} = Enum.find(headers, &match?({"content-length", _}, &1))
+  defp handle_finch_stream({:headers, headers}, response) do
+    req_headers = headers |> Enum.map(fn {k, v} -> {k, List.wrap(v)} end) |> Map.new()
+    total_size = req_headers |> Map.fetch!("content-length") |> List.first() |> String.to_integer
 
     response
-    |> Map.put(:headers, headers)
-    |> Map.put(:private, %{total_size: String.to_integer(total_size), downloaded_size: 0})
+    |> Map.put(:headers, req_headers)
+    |> Map.put(:private, %{total_size: total_size, downloaded_size: 0})
   end
 
-  defp handle_message({:data, data}, response) do
+  defp handle_finch_stream({:data, data}, response) do
     new_downloaded_size = response.private.downloaded_size + byte_size(data)
     ProgressBar.render(new_downloaded_size, response.private.total_size, suffix: :bytes)
 
@@ -80,7 +81,7 @@ model_source =
   "https://raw.githubusercontent.com/google-coral/test_data/master/mobilenet_v2_1.0_224_inat_bird_quant.tflite"
 
 model_file = Path.join(downloads_dir, "mobilenet_v2_1.0_224_inat_bird_quant.tflite")
-Utils.download!(model_source, output: model_file)
+Utils.download!(model_source, into: File.stream!(model_file))
 IO.puts("Model saved to #{model_file}")
 ```
 
