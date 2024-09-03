@@ -74,7 +74,7 @@ defmodule NervesLivebook.MixProject do
       {:toolshed, "~> 0.4.0"},
       {:jason, "~> 1.2"},
       {:nerves_runtime, "~> 0.13.0"},
-      {:livebook, "~> 0.13.2"},
+      {:livebook, "~> 0.14.0"},
       {:plug, "~> 1.12"},
       {:vintage_net, "~> 0.13"},
 
@@ -90,7 +90,7 @@ defmodule NervesLivebook.MixProject do
       # hts221 needs circuits_i2c dependency bumped
       # {:hts221, "~> 1.0", targets: @all_targets},
       {:input_event, "~> 1.0 or ~> 0.4", targets: @all_targets},
-      {:kino, "~> 0.7"},
+      {:kino, "~> 0.14"},
       {:kino_maplibre, "~> 0.1.0"},
       {:kino_vega_lite, "~> 0.1.1"},
       {:maplibre, "~> 0.1.7"},
@@ -103,7 +103,7 @@ defmodule NervesLivebook.MixProject do
       {:progress_bar, "~> 3.0"},
       {:ramoops_logger, "~> 0.1", targets: @all_targets},
       {:recon, "~> 2.5"},
-      {:req, "~> 0.4.4"},
+      {:req, "~> 0.5"},
       {:scroll_hat, "~> 0.1", targets: @rpi_targets},
       {:stb_image, "~> 0.6.0"},
       {:tflite_elixir, "~> 0.3.6", targets: @all_targets},

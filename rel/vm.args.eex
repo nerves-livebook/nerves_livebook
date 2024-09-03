@@ -28,6 +28,12 @@
 +sbwtdcpu none
 +sbwtdio none
 
+## Limit max number of ports to avoid wasting resources
++Q 65536
+
+## Use the Livebook custom EPMD module
+-epmd_module Elixir.Livebook.EPMD
+
 ## Save the shell history between reboots
 ## See http://erlang.org/doc/man/kernel_app.html for additional options
 -kernel shell_history enabled

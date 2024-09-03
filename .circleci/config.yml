@@ -173,6 +173,8 @@ version: 2.0
 jobs:
   build_host:
     <<: *defaults
+    environment:
+      ELIXIR_ERL_OPTIONS: "-epmd_module Elixir.Livebook.EPMD"
     <<: *host_build
 
   build_osd32mp1:
