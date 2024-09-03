@@ -120,7 +120,7 @@ defmodule NervesLivebook.MixProject do
       {:nerves_system_rpi3a, "~> 1.28", runtime: false, targets: :rpi3a},
       {:nerves_system_rpi4, "~> 1.28", runtime: false, targets: :rpi4},
       {:nerves_system_rpi5, "~> 0.3", runtime: false, targets: :rpi5},
-      {:nerves_system_bbb, "~> 2.23", runtime: false, targets: :bbb},
+      {:nerves_system_bbb, "~> 2.24", runtime: false, targets: :bbb},
       {:nerves_system_osd32mp1, "~> 0.19", runtime: false, targets: :osd32mp1},
       {:nerves_system_x86_64, "~> 1.28", runtime: false, targets: :x86_64},
       {:nerves_system_npi_imx6ull, "~> 0.16", runtime: false, targets: :npi_imx6ull},
