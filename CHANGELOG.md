@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.14.0 - 2024-9-04
+
+* Updates
+  * Update to [Livebook v0.14.0](https://github.com/livebook-dev/livebook/releases/tag/v0.14.0)
+  * Update Nerves systems to [nerves_system_br v1.28.3](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.28.3)
+  * Add `vintage_net_qmi` to dependencies to use some cellular modems on Raspberry Pis and Beaglebones with USB host ports. These boards include QMI device drivers in this release.
+  * Update all dependencies
+  * Fix tflite sample notebook (Thanks @mnishiguchi)
+
 ## v0.13.0 - 2024-7-14
 
 * Updates
