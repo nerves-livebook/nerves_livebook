@@ -17,5 +17,5 @@ config :vintage_net,
 
 config :delux,
   indicators: %{
-    default: %{red: "grisp-rgb1-red", green: "grips-rgb1-green", blue: "grisp-rgb1-blue"}
+    default: %{red: "grisp-rgb1-red", green: "grisp-rgb1-green", blue: "grisp-rgb1-blue"}
   }
