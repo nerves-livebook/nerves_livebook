@@ -94,6 +94,7 @@ defmodule NervesLivebook.MixProject do
       {:kino_maplibre, "~> 0.1.0"},
       {:kino_vega_lite, "~> 0.1.1"},
       {:maplibre, "~> 0.1.7"},
+      {:nerves_hub_link, "~> 2.5"},
       {:nerves_key, "~> 1.0", targets: @all_targets},
       {:nerves_pack, "~> 0.7.0", targets: @all_targets},
       {:nerves_time_zones, "~> 0.3.0", targets: @all_targets},

@@ -95,6 +95,11 @@ config :livebook,
 
 config :livebook, Livebook.Apps.Manager, retry_backoff_base_ms: 5_000
 
+config :nerves_hub_link,
+  connect: false,
+  host: "https://your-nerves-hub-server.com",
+  configurator: NervesHubLink.Configurator.SharedSecret
+
 if Mix.target() == :host do
   import_config "host.exs"
 else
