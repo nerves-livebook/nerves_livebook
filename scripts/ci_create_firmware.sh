@@ -16,6 +16,8 @@ set -e
 [[ -d "$DEPLOY_PATH" ]] || (echo "DEPLOY_PATH unset or directory doesn't exist"; exit 1)
 [[ -n "$MIX_ENV" ]] || MIX_ENV=prod
 
+# For the firmwares that use XLA
+XLA_TARGET_PLATFORM="aarch64-linux-gnu"
 FULL_FIRMWARE_FILENAME="nerves_livebook_${MIX_TARGET}.fw"
 FULL_FIRMWARE_PATH="$DEPLOY_PATH/$FULL_FIRMWARE_FILENAME"
 PREVIOUS_FIRMWARE_FILENAME="previous_${MIX_TARGET}.fw"

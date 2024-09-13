@@ -11,6 +11,7 @@ defmodule NervesLivebook.MixProject do
 
   # See the BlueHeron repository for the boards that it supports.
   @ble_targets [:rpi0, :rpi3, :rpi3a]
+  @xla_targets [:rpi4, :rpi5]
 
   # Instruct the compiler to create deterministic builds to minimize
   # differences between firmware versions. This helps delta firmware update
@@ -97,7 +98,7 @@ defmodule NervesLivebook.MixProject do
       {:nerves_key, "~> 1.0", targets: @all_targets},
       {:nerves_pack, "~> 0.7.0", targets: @all_targets},
       {:nerves_time_zones, "~> 0.3.0", targets: @all_targets},
-      {:nx, "~> 0.8.0"},
+      {:nx, "~> 0.8.0", override: true},
       {:phoenix_pubsub, "~> 2.0"},
       {:pinout, "~> 0.1"},
       {:progress_bar, "~> 3.0"},
@@ -110,6 +111,9 @@ defmodule NervesLivebook.MixProject do
       {:vega_lite, "~> 0.1"},
       {:vintage_net_wifi, "~> 0.12.5", targets: @all_targets},
       {:vintage_net_qmi, "~> 0.4.1", targets: @all_targets},
+      {:axon, github: "elixir-nx/axon", override: true, targets: @xla_targets},
+      {:bumblebee, github: "elixir-nx/bumblebee", override: true, targets: @xla_targets},
+      {:exla, "~> 0.8", targets: @xla_targets},
 
       # Nerves system dependencies
       {:nerves_system_rpi, "~> 1.28", runtime: false, targets: :rpi},
