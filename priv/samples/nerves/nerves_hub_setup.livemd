@@ -1,0 +1,72 @@
+# NervesHub setup
+
+```elixir
+Mix.install([
+        {:nerves_hub_link, "~> 2.5.1"},
+        {:kino, "~> 0.12"}
+    ],
+    config: [
+        nerves_hub_link: [ connect: false ]
+    ])
+```
+
+## Set up with Shared Secret
+
+Before you begin, consider using the WiFi configuration Livebook to ensure you
+have an Internet connection because NervesHub lives on the Internet.
+
+To get started with NervesHub the easiest way is to go into *Settings* for
+your Product in NervesHub and generate a Shared Secret. This can then be used
+to connect a device to your Product and from then on you can ship firmware in
+luxury.
+
+```elixir
+[%{status: NervesHubLink.status(), connected: NervesHubLink.connected?()}]
+|> Kino.DataTable.new(
+  name: "NervesHubLink status",
+  keys: [:key, :value],
+  sorting_enabled: false
+)
+```
+
+## Connect to instance
+
+```elixir
+host_input = Kino.Input.text("Host") |> Kino.render()
+key_input = Kino.Input.text("Product key") |> Kino.render()
+secret_input = Kino.Input.password("Product secret")
+```
+
+```elixir
+Application.stop(:nerves_hub_link)
+host = Kino.Input.read(host_input) |> String.trim()
+key = Kino.Input.read(key_input) |> String.trim()
+secret = Kino.Input.read(secret_input) |> String.trim()
+
+if host && key && secret do
+  Application.put_env(:nerves_hub_link, :connect, true)
+  Application.put_env(:nerves_hub_link, :configurator, NervesHubLink.Configurator.SharedSecret)
+  Application.put_env(:nerves_hub_link, :host, host)
+  Application.put_env(:nerves_hub_link, :shared_secret, [
+    product_key: key,
+    product_secret: secret
+  ])
+
+  Application.get_all_env(:nerves_hub_link)
+  |> IO.inspect(label: "config")
+  Application.ensure_all_started(:nerves_hub_link)
+else
+  IO.puts("Need to enter host, key and secret.")
+end
+```
+
+## Check the connection
+
+```elixir
+[%{status: NervesHubLink.status(), connected: NervesHubLink.connected?()}]
+|> Kino.DataTable.new(
+  name: "NervesHubLink status",
+  keys: [:status, :connected],
+  sorting_enabled: false
+)
+```
