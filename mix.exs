@@ -113,7 +113,7 @@ defmodule NervesLivebook.MixProject do
       {:vintage_net_qmi, "~> 0.4.1", targets: @all_targets},
       {:axon, github: "elixir-nx/axon", override: true, targets: @xla_targets},
       {:bumblebee, github: "elixir-nx/bumblebee", override: true, targets: @xla_targets},
-      {:exla, "~> 0.8", targets: @xla_targets},
+      {:exla, "~> 0.7.3", targets: @xla_targets},
 
       # Nerves system dependencies
       {:nerves_system_rpi, "~> 1.28", runtime: false, targets: :rpi},
