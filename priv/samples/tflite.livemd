@@ -4,7 +4,6 @@
 Mix.install([
   {:tflite_elixir, "~> 0.3.0"},
   {:req, "~> 0.4"},
-  {:progress_bar, "~> 3.0"},
   {:kino, "~> 0.13"}
 ])
 ```
@@ -28,45 +27,6 @@ README](https://github.com/cocoa-xu/tflite_elixir/blob/main/README.md). For
 more information, check out the [tflite_elixir API
 reference](https://hexdocs.pm/tflite_elixir/api-reference.html).
 
-## Prepare helper functions
-
-```elixir
-defmodule Utils do
-  def download!(source_url, req_options \\ []) do
-    Req.get!(source_url, [finch_request: &finch_request/4] ++ req_options).body
-  end
-
-  defp finch_request(req_request, finch_request, finch_name, finch_options) do
-    acc = Req.Response.new()
-
-    case Finch.stream(finch_request, finch_name, acc, &handle_finch_stream/2, finch_options) do
-      {:ok, response} -> {req_request, response}
-      {:error, exception} -> {req_request, exception}
-    end
-  end
-
-  defp handle_finch_stream({:status, status}, response), do: %{response | status: status}
-
-  defp handle_finch_stream({:headers, headers}, response) do
-    req_headers = headers |> Enum.map(fn {k, v} -> {k, List.wrap(v)} end) |> Map.new()
-    total_size = req_headers |> Map.fetch!("content-length") |> List.first() |> String.to_integer
-
-    response
-    |> Map.put(:headers, req_headers)
-    |> Map.put(:private, %{total_size: total_size, downloaded_size: 0})
-  end
-
-  defp handle_finch_stream({:data, data}, response) do
-    new_downloaded_size = response.private.downloaded_size + byte_size(data)
-    ProgressBar.render(new_downloaded_size, response.private.total_size, suffix: :bytes)
-
-    response
-    |> Map.update!(:body, &(&1 <> data))
-    |> Map.update!(:private, &%{&1 | downloaded_size: new_downloaded_size})
-  end
-end
-```
-
 ## Decide on where downloaded files are saved
 
 ```elixir
@@ -81,7 +41,7 @@ model_source =
   "https://raw.githubusercontent.com/google-coral/test_data/master/mobilenet_v2_1.0_224_inat_bird_quant.tflite"
 
 model_file = Path.join(downloads_dir, "mobilenet_v2_1.0_224_inat_bird_quant.tflite")
-Utils.download!(model_source, into: File.stream!(model_file))
+Req.get!(model_source, into: File.stream!(model_file))
 IO.puts("Model saved to #{model_file}")
 ```
 
@@ -91,7 +51,7 @@ IO.puts("Model saved to #{model_file}")
 label_source =
   "https://raw.githubusercontent.com/google-coral/test_data/master/inat_bird_labels.txt"
 
-labels = String.split(Utils.download!(label_source), "\n", trim: true)
+labels = Req.get!(label_source).body |> String.split("\n", trim: true)
 Kino.DataTable.new(Enum.with_index(labels, &%{class_name: &1, class_id: &2}), name: "Labels")
 ```
 
@@ -118,7 +78,7 @@ input_image =
   else
     IO.puts("Loading default image from #{default_input_image_url}")
 
-    Utils.download!(default_input_image_url)
+    Req.get!(default_input_image_url).body
     |> StbImage.read_binary!()
     |> StbImage.to_nx()
   end
