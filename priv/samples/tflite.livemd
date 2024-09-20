@@ -72,7 +72,9 @@ default_input_image_url =
 input_image =
   if uploaded_image do
     # Build a tensor from the raw pixel data
-    uploaded_image.data
+    uploaded_image.file_ref
+    |> Kino.Input.file_path()
+    |> File.read!()
     |> Nx.from_binary(:u8)
     |> Nx.reshape({uploaded_image.height, uploaded_image.width, 3})
   else
