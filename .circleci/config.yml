@@ -63,10 +63,10 @@ host_build: &host_build
         command: |
           mix docs
           mix hex.build
-#    - run:
-#        name: Create SBOM
-#        command: |
-#          mix sbom.cyclonedx -f -o nerves_livebook_sbom.xml
+    - run:
+        name: Create SBOM
+        command: |
+          mix sbom.cyclonedx -f -o nerves_livebook_sbom.xml
     - run:
         name: Create artifacts dir
         command: mkdir -p ~/deploy/artifacts
@@ -74,7 +74,7 @@ host_build: &host_build
         name: Copy changelog and SBOM
         command: |
           cp ./CHANGELOG.md ~/deploy/CHANGELOG.md
-          # cp ./nerves_livebook_sbom.xml ~/deploy/nerves_livebook_sbom.xml
+          cp ./nerves_livebook_sbom.xml ~/deploy/nerves_livebook_sbom.xml
     - run:
         name: Dialyzer
         command: mix dialyzer
