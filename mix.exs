@@ -97,7 +97,7 @@ defmodule NervesLivebook.MixProject do
       {:nerves_key, "~> 1.0", targets: @all_targets},
       {:nerves_pack, "~> 0.7.0", targets: @all_targets},
       {:nerves_time_zones, "~> 0.3.0", targets: @all_targets},
-      {:nx, "~> 0.8.0"},
+      {:nx, "~> 0.9.0"},
       {:phoenix_pubsub, "~> 2.0"},
       {:pinout, "~> 0.1"},
       {:progress_bar, "~> 3.0"},
