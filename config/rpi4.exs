@@ -10,3 +10,5 @@ config :vintage_net,
   ]
 
 config :delux, indicators: %{default: %{green: "ACT"}}
+
+config :nx, default_backend: EXLA.Backend
