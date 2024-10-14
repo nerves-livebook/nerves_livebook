@@ -112,6 +112,11 @@ defmodule NervesLivebook.MixProject do
       {:vintage_net_wifi, "~> 0.12.5", targets: @all_targets},
       {:vintage_net_qmi, "~> 0.4.1", targets: @all_targets},
 
+      # Pull in libraries that start applications, but don't automatically
+      # start the applications. See the release definition below.
+      {:mndp, "~> 0.1.0", runtime: false, targets: @all_targets},
+      {:owl, "~> 0.12", runtime: false, targets: @all_targets},
+
       # Nerves system dependencies
       {:nerves_system_rpi, "~> 1.28", runtime: false, targets: :rpi},
       {:nerves_system_rpi0, "~> 1.28", runtime: false, targets: :rpi0},
@@ -148,6 +153,14 @@ defmodule NervesLivebook.MixProject do
 
   def release do
     [
+      # In order to get libraries that start code that may not be used, just
+      # have the release load them.  These libraries are specified as `runtime:
+      # false` above, but the release will contain them since they're marked to
+      # be loaded below.
+      applications: [
+        mndp: :load,
+        owl: :load
+      ],
       overwrite: true,
       include_erts: &Nerves.Release.erts/0,
       steps: [&Nerves.Release.init/1, :assemble, &deterministic_apps/1],
