@@ -90,7 +90,10 @@ config :livebook,
   rewrite_on: [],
   teams_auth?: false,
   teams_url: "https://teams.livebook.dev",
-  github_release_info: %{repo: "nerves-livebook/nerves_livebook", version: Mix.Project.config()[:version]},
+  github_release_info: %{
+    repo: "nerves-livebook/nerves_livebook",
+    version: Mix.Project.config()[:version]
+  },
   update_instructions_url: nil,
   within_iframe: false
 
