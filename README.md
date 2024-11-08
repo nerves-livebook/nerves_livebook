@@ -20,10 +20,11 @@ devices:
 * `bbb` - BeagleBone Black, BeagleBone Green, PocketBeagle, etc.
 * `grisp2` - [GRiSP2](https://www.grisp.org/) (Experimental)
 * `rpi0` - Raspberry Pi Zero or Zero W
+* `rpi0_2` - Raspberry Pi Zero 2 W or Zero 2 W
 * `rpi` - The original Raspberry Pi Model B
 * `rpi2` Raspberry Pi 2 Model B
 * `rpi3` - Raspberry Pi 3 Model B and Model B+
-* `rpi3a` - Raspberry Pi 3 Model A+ and Raspberry Pi Zero 2 W
+* `rpi3a` - Raspberry Pi 3 Model A+ and Raspberry Pi Zero 2 W (32-bit mode)
 * `rpi4` - Raspberry Pi 4 Model B
 * `rpi5` - Raspberry Pi 5 Model B
 * `osd32mp1` - Octavo OSD32MP1-BRK
