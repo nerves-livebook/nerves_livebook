@@ -14,3 +14,5 @@ config :delux, indicators: %{default: %{green: "ACT"}}
 # The RPi5 doesn't support WPA3 yet, but it also doesn't fail with the generic
 # configuration. This will enable WPA3 support when it's available.
 config :vintage_net_wifi, :quick_configure, &VintageNetWiFi.Cookbook.generic/2
+
+config :nx, default_backend: EXLA.Backend
