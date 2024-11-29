@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.14.1 - 2024-11-28
+
+* Updates
+  * Update to [Livebook v0.14.5](https://github.com/livebook-dev/livebook/releases/tag/v0.14.5)
+  * Update Nerves systems to [nerves_system_br v1.29.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.29.1)
+  * Update all dependencies
+  * Added notebook for connecting to NervesHub (Thanks @lawik)
+
 ## v0.14.0 - 2024-9-04
 
 * Updates
