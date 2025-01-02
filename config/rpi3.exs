@@ -9,3 +9,9 @@ config :vintage_net,
   ]
 
 config :delux, indicators: %{default: %{green: "ACT"}}
+
+config :blue_heron,
+  transport: [
+    device: "/dev/ttyS0",
+    speed: 115_200
+  ]

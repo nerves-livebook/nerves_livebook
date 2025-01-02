@@ -11,3 +11,9 @@ config :vintage_net,
 config :delux, indicators: %{default: %{green: "ACT"}}
 
 config :nerves, :firmware, fwup_conf: "config/rpi3a/fwup.conf"
+
+config :blue_heron,
+  transport: [
+    device: "/dev/ttyS0",
+    speed: 115_200
+  ]
