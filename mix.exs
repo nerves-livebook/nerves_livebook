@@ -10,7 +10,7 @@ defmodule NervesLivebook.MixProject do
                  [:bbb, :osd32mp1, :x86_64, :npi_imx6ull, :grisp2, :mangopi_mq_pro]
 
   # See the BlueHeron repository for the boards that it supports.
-  @ble_targets [:rpi0, :rpi3, :rpi3a]
+  @ble_targets [:rpi0, :rpi0_2, :rpi3, :rpi3a]
 
   # Instruct the compiler to create deterministic builds to minimize
   # differences between firmware versions. This helps delta firmware update
@@ -79,8 +79,7 @@ defmodule NervesLivebook.MixProject do
       {:vintage_net, "~> 0.13"},
 
       # Pull in commonly used libraries as a convenience to users.
-      {:blue_heron, "~> 0.4", targets: @ble_targets},
-      {:blue_heron_transport_uart, "~> 0.1.4", targets: @ble_targets},
+      {:blue_heron, "~> 0.5", targets: @ble_targets},
       {:bmp280, "~> 0.2", targets: @all_targets},
       {:circuits_gpio, "~> 2.0 or ~> 1.0"},
       {:circuits_i2c, "~> 2.0 or ~> 1.0"},
