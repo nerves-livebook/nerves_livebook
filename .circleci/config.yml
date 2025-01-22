@@ -1,14 +1,14 @@
 defaults: &defaults
   docker:
-    - image: hexpm/elixir:1.17.3-erlang-27.1.2-ubuntu-jammy-20240808
+    - image: hexpm/elixir:1.18.1-erlang-27.2-ubuntu-jammy-20240808
   resource_class: large
 
 install_fwup: &install_fwup
   run:
     name: Install fwup
     command: |
-      wget https://github.com/fwup-home/fwup/releases/download/v1.11.0/fwup_1.11.0_amd64.deb
-      dpkg -i fwup_1.11.0_amd64.deb
+      wget https://github.com/fwup-home/fwup/releases/download/v1.12.0/fwup_1.12.0_amd64.deb
+      dpkg -i fwup_1.12.0_amd64.deb
 
 install_system_deps: &install_system_deps
   run:
