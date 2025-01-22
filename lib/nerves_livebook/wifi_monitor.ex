@@ -55,7 +55,7 @@ defmodule NervesLivebook.WiFiMonitor do
         stop(state)
 
       unconfigured?() ->
-        start_ap(state)
+        _ = start_ap(state)
         stop(state)
 
       true ->
