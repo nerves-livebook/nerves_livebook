@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.14.2 - 2025-01-22
+
+* Updates
+  * Update Nerves systems to [nerves_system_br v1.29.3](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.29.3)
+  * Add support for the RPi CM5 and other BCM2712 D0 silicon RPi5's
+  * Update to Elixir 1.18.2 and Erlang/OTP 27.2
+  * Update all dependencies
+
 ## v0.14.1 - 2024-11-28
 
 * Updates
