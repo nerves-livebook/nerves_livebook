@@ -32,8 +32,8 @@ networks
 #### WPA3 support
 
 A WiFi network that uses WPA3 shows up with `:sae` in the flags. Support for
-WPA3 networks depends on hardware and device driver support. Raspberry Pi's
-currently do not support WPA3
+WPA3 networks depends on hardware and device driver support. Raspberry Pi 4 and
+5 support WPA3.
 
 ## Connect
 
