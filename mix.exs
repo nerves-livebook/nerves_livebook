@@ -36,7 +36,10 @@ defmodule NervesLivebook.MixProject do
         docs: :docs,
         "hex.publish": :docs,
         "hex.build": :docs
-      }
+      },
+      aliases: [
+        compile: [&copy_livebook_priv/1, "compile"]
+      ]
     ]
   end
 
@@ -74,7 +77,7 @@ defmodule NervesLivebook.MixProject do
       {:toolshed, "~> 0.4.0"},
       {:jason, "~> 1.2"},
       {:nerves_runtime, "~> 0.13.0"},
-      {:livebook, "~> 0.14.0"},
+      {:livebook, "~> 0.15.0"},
       {:plug, "~> 1.12"},
       {:vintage_net, "~> 0.13"},
 
@@ -190,5 +193,35 @@ defmodule NervesLivebook.MixProject do
     new_info = Keyword.delete(info, :config_mtime)
 
     File.write!(path, :io_lib.format("~tp.~n", [{:application, app, new_info}]))
+  end
+
+  @gzippable_exts ~w(.js .css .txt .text .html .json .svg .eot .ttf)
+  defp copy_livebook_priv(_) do
+    livebook_dep = Mix.Project.deps_paths()[:livebook]
+    compress_and_copy(livebook_dep, "static", "priv/static")
+    compress_and_copy(livebook_dep, "iframe/priv/static/iframe", "priv/iframe_static")
+  end
+
+  defp compress_and_copy(base_path, source_dir, target_dir) do
+    source_dir = Path.join(base_path, source_dir)
+    target_dir = Path.join(base_path, target_dir)
+
+    File.rm_rf!(target_dir)
+
+    source_paths = Path.wildcard(Path.join(source_dir, "**/*"))
+
+    for source_path <- source_paths, File.regular?(source_path) do
+      target_path = Path.join(target_dir, Path.relative_to(source_path, source_dir))
+      File.mkdir_p!(Path.dirname(target_path))
+
+      if Path.extname(source_path) in @gzippable_exts do
+        content = source_path |> File.read!() |> :zlib.gzip()
+        File.write!(target_path <> ".gz", content)
+      else
+        File.cp!(source_path, target_path)
+      end
+    end
+
+    Mix.shell().info("Generated #{target_dir} with compressed files from #{source_dir}")
   end
 end
