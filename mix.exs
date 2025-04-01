@@ -113,8 +113,8 @@ defmodule NervesLivebook.MixProject do
 
       # Pull in libraries that start applications, but don't automatically
       # start the applications. See the release definition below.
-      {:mndp, "~> 0.1.0", runtime: false, targets: @all_targets},
-      {:owl, "~> 0.12", runtime: false, targets: @all_targets},
+      {:mndp, "~> 0.1.0", runtime: false},
+      {:owl, "~> 0.12", runtime: false},
 
       # Nerves system dependencies
       {:nerves_system_rpi, "~> 1.29", runtime: false, targets: :rpi},
