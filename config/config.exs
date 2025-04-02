@@ -88,7 +88,7 @@ config :livebook,
   force_ssl_host: nil,
   plugs: [],
   rewrite_on: [],
-  teams_auth?: false,
+  teams_auth: nil,
   teams_url: "https://teams.livebook.dev",
   github_release_info: %{
     repo: "nerves-livebook/nerves_livebook",
@@ -98,6 +98,7 @@ config :livebook,
   within_iframe: false
 
 config :livebook, Livebook.Apps.Manager, retry_backoff_base_ms: 5_000
+config :livebook, LivebookWeb.Endpoint, code_reloader: false
 
 config :nerves_hub_link,
   connect: false,
