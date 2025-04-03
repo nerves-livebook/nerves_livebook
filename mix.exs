@@ -36,10 +36,7 @@ defmodule NervesLivebook.MixProject do
         docs: :docs,
         "hex.publish": :docs,
         "hex.build": :docs
-      },
-      aliases: [
-        compile: ["livebook.gen_priv", "compile"]
-      ]
+      }
     ]
   end
 
@@ -77,8 +74,7 @@ defmodule NervesLivebook.MixProject do
       {:toolshed, "~> 0.4.0"},
       {:jason, "~> 1.2"},
       {:nerves_runtime, "~> 0.13.0"},
-      # Temporarily use main for livebook.gen_priv path fix
-      {:livebook, github: "livebook-dev/livebook", ref: "28bbca9"},
+      {:livebook, "~> 0.15.5"},
       {:plug, "~> 1.12"},
       {:vintage_net, "~> 0.13"},
 
