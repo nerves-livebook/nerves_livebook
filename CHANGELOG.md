@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.15.6 - 2025-04-04
+
+* Fixes
+  * Fix regression causing an UndefinedFunctionError for `Mix.install_project_dir/0`. Thanks to @gworkman for quickly reporting
+
 ## v0.15.5 - 2025-04-03
 
 * Updates
