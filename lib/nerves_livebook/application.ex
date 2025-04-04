@@ -84,6 +84,10 @@ defmodule NervesLivebook.Application do
           def install(deps, opts \\\\ []) when is_list(deps) and is_list(opts) do
             NervesLivebook.MixInstall.install(deps, opts)
           end
+
+          def install_project_dir() do
+            NervesLivebook.MixInstall.install_project_dir()
+          end
         end
         """)
 

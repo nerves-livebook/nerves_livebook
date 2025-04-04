@@ -14,6 +14,11 @@ defmodule NervesLivebook.MixInstall do
     |> Enum.each(&check_dep/1)
   end
 
+  @spec install_project_dir() :: Path.t()
+  def install_project_dir() do
+    "/data/.mix"
+  end
+
   defp normalize(app) when is_atom(app), do: {app, ">= 0.0.0"}
 
   defp normalize({app, opts}) when is_atom(app) and is_list(opts) do
