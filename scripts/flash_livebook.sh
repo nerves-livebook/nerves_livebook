@@ -66,7 +66,6 @@ select_mix_target() {
     local targets=(
       rpi rpi0 rpi2 rpi3a rpi3 rpi4 rpi5
       bbb x86_64 osd32mp1 grisp2 mangopi_mq_pro
-      custom
     )
     PS3="Enter number: "
     select tgt in "${targets[@]}"; do
@@ -75,10 +74,6 @@ select_mix_target() {
         break
       fi
     done
-
-    if [ "$MIX_TARGET" = custom ]; then
-      read -rp "Custom MIX_TARGET: " MIX_TARGET
-    fi
 
     echo_success "→ MIX_TARGET=${MIX_TARGET}"
   fi
