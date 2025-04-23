@@ -6,6 +6,28 @@ device and be ready to explore tutorials in your browser.
 
 ---
 
+## Evaluate in seconds
+
+Run this single command to download, provision, and flash the latest firmware:
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/nerves-livebook/nerves_livebook/main/scripts/flash_livebook.sh)
+```
+
+You’ll be prompted to:
+
+- Select your `MIX_TARGET` (e.g. `rpi0`, `rpi4`, `bbb`)
+- Enter WiFi SSID & passphrase
+- Optionally set a custom serial number
+- Insert your SD card when asked
+
+This one-liner installer fetches and runs the flashing helper, cleans up after
+itself, and leaves you with a ready-to-go Livebook card. If you’d like to review
+or customize the script first, continue by cloning the repository in the next
+section.
+
+---
+
 ## Prerequisites
 
 1. A supported board (Raspberry Pi Zero/Zero W, Pi 4, BeagleBone Black, etc.)
@@ -19,10 +41,16 @@ device and be ready to explore tutorials in your browser.
 
 ## Clone the repository
 
+If you want to inspect or tweak the flashing script before running it, clone
+the repo:
+
 ```bash
 git clone https://github.com/nerves-livebook/nerves_livebook.git
 cd nerves_livebook
 ```
+
+By cloning, you can open `scripts/flash_livebook.sh` in your editor, make any
+adjustments or integrations, and then execute it locally.
 
 ---
 
@@ -49,14 +77,6 @@ You will be prompted to:
 
 The script will download the latest `.fw`, provision it, wait for your card,
 and invoke `sudo fwup …` for you.
-
-> #### Single‑command installer
->
-> You can also run it directly from your shell in one step:
->
-> ```bash
-> bash <(curl -fsSL https://raw.githubusercontent.com/nerves-livebook/nerves_livebook/main/scripts/flash_livebook.sh)
-> ```
 
 ---
 
