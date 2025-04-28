@@ -6,6 +6,17 @@ device and be ready to explore tutorials in your browser.
 
 ---
 
+## Prerequisites
+
+1. A supported board (Raspberry Pi Zero/Zero W, Pi 4, BeagleBone Black, etc.)
+2. A micro‑SD card and an SD‑card reader (built‑in slot or USB adapter)
+3. On your host machine:
+  - bash (4+)
+  - curl
+  - fwup (requires `sudo`; see https://github.com/fwup-home/fwup)
+
+---
+
 ## Evaluate in seconds
 
 Run this single command to download, provision, and flash the latest firmware:
@@ -25,17 +36,6 @@ This one-liner installer fetches and runs the flashing helper, cleans up after
 itself, and leaves you with a ready-to-go Livebook card. If you’d like to review
 or customize the script first, continue by cloning the repository in the next
 section.
-
----
-
-## Prerequisites
-
-1. A supported board (Raspberry Pi Zero/Zero W, Pi 4, BeagleBone Black, etc.)
-2. A micro‑SD card and an SD‑card reader (built‑in slot or USB adapter)
-3. On your host machine:
-   - bash (4+)
-   - curl
-   - fwup (requires `sudo`; see https://github.com/fwup-home/fwup)
 
 ---
 
