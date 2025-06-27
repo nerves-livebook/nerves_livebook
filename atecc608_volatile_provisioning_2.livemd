@@ -1,0 +1,141 @@
+# ATECC608 - volatile provisioning 2
+
+## Section
+
+```elixir
+{:ok, i2c} = ATECC508A.Transport.I2C.init([])
+```
+
+```elixir
+aes_key = <<188, 228, 81, 56, 17, 114, 177, 69, 77, 53, 26, 107, 18, 55, 118, 91>>
+
+cert = """
+-----BEGIN CERTIFICATE-----
+MIIBpzCCAU2gAwIBAgIQc3p50MJrn1hkMJ20b6c6cjAKBggqhkjOPQQDAjARMQ8w
+DQYDVQQDDAZTaWduZXIwHhcNMjQwNDE5MTEwMDAwWhcNMjUwNDE5MTEwMDAwWjAR
+MQ8wDQYDVQQDDAZTaWduZXIwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARyJw8a
+eyEXB4jxcsTCgyh8vCa5IV7IaOkGIWunkoTmFh16UkAdAJG3dpQRhiooBxl5+ADe
+vcMFkPeIPScLGZx3o4GGMIGDMBIGA1UdEwEB/wQIMAYBAf8CAQAwDgYDVR0PAQH/
+BAQDAgGGMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAdBgNVHQ4EFgQU
+32moIyTaiQOONSkBK3EUTXXn9kEwHwYDVR0jBBgwFoAU32moIyTaiQOONSkBK3EU
+TXXn9kEwCgYIKoZIzj0EAwIDSAAwRQIgCQ/QP5EJrabRoPs9F6iJR3bEzl20gqGB
+dCVsdeA9dKUCIQDftgLAbaQujGuq3riTcb0T8VsA1ayweAh9PsRZveVSiQ==
+-----END CERTIFICATE-----
+"""
+
+key = """
+-----BEGIN EC PRIVATE KEY-----
+MHcCAQEEID9UV6zO4sVnA+yeCL7SF36dcU841YPmXZfRQ6htENkyoAoGCCqGSM49
+AwEHoUQDQgAEcicPGnshFweI8XLEwoMofLwmuSFeyGjpBiFrp5KE5hYdelJAHQCR
+t3aUEYYqKAcZefgA3r3DBZD3iD0nCxmcdw==
+-----END EC PRIVATE KEY-----
+"""
+
+signer_cert = X509.Certificate.from_pem!(cert)
+signer_key = X509.PrivateKey.from_pem!(key)
+
+cert_name="ploop"
+manufacturer_sn = "U005"
+board_name = "test"
+```
+
+```elixir
+ATECC508A.Configuration.read(i2c)
+```
+
+```elixir
+provision_info = %NervesKey.ProvisioningInfo{manufacturer_sn: manufacturer_sn, board_name: board_name}
+
+IO.inspect(NervesKey.provisioned?(i2c), label: "provisioned")
+# Double-check what you typed above before running this
+if not NervesKey.provisioned?(i2c) do
+  NervesKey.volatile_provision(i2c, provision_info, signer_cert, signer_key, aes_key)
+end
+```
+
+```elixir
+NervesKey.Config.unpack_config(i2c, [0, 1])
+```
+
+```elixir
+{:ok, bin} = ATECC508A.Configuration.read_all_raw(i2c)
+<<_::binary-size(69), vol::8, _::binary>> = bin
+IO.inspect(vol, as: :binary, base: :hex)
+IO.inspect(vol, as: :binary, base: :binary)
+nil
+```
+
+```elixir
+digest = :crypto.hash(:sha256, "foo")
+{:ok, signature} = NervesKey.sign_digest(i2c, digest)
+byte_size(signature)
+```
+
+```elixir
+size = 8 * 32
+dig = for _ <- 1..32, into: <<>>, do: "a"
+IO.inspect(byte_size(dig))
+NervesKey.sign_digest(i2c, dig)
+
+```
+
+```elixir
+ATECC508A.Request.random(i2c)
+```
+
+```elixir
+# Encrypt / Decrypt
+block = 3
+payload = "deadbeefdeadbeef"
+#payload = <<1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1>>
+#payload = <<1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1>>
+IO.puts("encrypting: #{inspect(payload <> <<0>>, as: :binary)}")
+{:ok, encrypted} = ATECC508A.Request.aes_encrypt(i2c, 1, block, payload)
+IO.inspect(encrypted, label: "encrypted")
+IO.puts("decrypting...")
+result = ATECC508A.Request.aes_decrypt(i2c, 1, block, encrypted)
+
+case result do
+  {:ok, plain} ->
+    {plain == payload, plain}
+  {:error, _} ->
+    :err
+end
+|> IO.inspect()
+```
+
+```elixir
+# Encrypt / Decrypt
+block = 3
+payload = "deadbeefdeadbeef"
+#payload = <<1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1>>
+#payload = <<1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1>>
+IO.puts("encrypting: #{inspect(payload <> <<0>>, as: :binary)}")
+{:ok, encrypted} = ATECC508A.Request.aes_encrypt(i2c, 1, block, payload)
+IO.inspect(encrypted, label: "encrypted")
+IO.puts("decrypting...")
+result = ATECC508A.Request.aes_decrypt(i2c, 1, block, encrypted)
+
+case result do
+  {:ok, plain} ->
+    {plain == payload, plain}
+  {:error, _} ->
+    :err
+end
+|> IO.inspect()
+```
+
+```elixir
+# Auth volatitle key
+{:ok, i2c} = ATECC508A.Transport.I2C.init([])
+#key = :crypto.strong_rand_bytes(32)
+ATECC508A.Request.check_mac(i2c, 1, aes_key)
+```
+
+```elixir
+
+```
+
+```elixir
+
+```
