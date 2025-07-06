@@ -1,14 +1,16 @@
+version: 2.1
+
 defaults: &defaults
   docker:
-    - image: hexpm/elixir:1.18.3-erlang-27.3.3-ubuntu-jammy-20250404
+    - image: hexpm/elixir:1.18.4-erlang-27.3.4.1-ubuntu-jammy-20250619
   resource_class: large
 
 install_fwup: &install_fwup
   run:
     name: Install fwup
     command: |
-      wget https://github.com/fwup-home/fwup/releases/download/v1.12.0/fwup_1.12.0_amd64.deb
-      dpkg -i fwup_1.12.0_amd64.deb
+      wget https://github.com/fwup-home/fwup/releases/download/v1.13.0/fwup_1.13.0_amd64.deb
+      dpkg -i fwup_1.13.0_amd64.deb
 
 install_system_deps: &install_system_deps
   run:
@@ -167,8 +169,6 @@ build_grisp2: &build_grisp2
         key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
         paths:
           - ~/deploy
-
-version: 2.0
 
 jobs:
   build_host:
@@ -358,7 +358,6 @@ jobs:
           command: gh release edit $CIRCLE_TAG --repo $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME --draft=false
 
 workflows:
-  version: 2
   build_deploy:
     jobs:
       - build_host:
