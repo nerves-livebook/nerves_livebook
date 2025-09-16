@@ -88,15 +88,16 @@ config :livebook,
   force_ssl_host: nil,
   plugs: [],
   rewrite_on: [],
-  # Livebook 0.16: teams_auth: nil,
-  teams_auth?: false,
+  shutdown_callback: nil,
+  teams_auth: nil,
   teams_url: "https://teams.livebook.dev",
   github_release_info: %{
     repo: "nerves-livebook/nerves_livebook",
     version: Mix.Project.config()[:version]
   },
   update_instructions_url: nil,
-  within_iframe: false
+  within_iframe: false,
+  k8s_kubeconfig_pipeline: Kubereq.Kubeconfig.Default
 
 config :livebook, Livebook.Apps.Manager, retry_backoff_base_ms: 5_000
 config :livebook, LivebookWeb.Endpoint, code_reloader: false
