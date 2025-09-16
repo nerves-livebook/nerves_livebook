@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.17.0 - 2025-09-16
+
+* Updates
+  * Update to [Livebook v0.17.2](https://github.com/livebook-dev/livebook/releases/tag/v0.17.2)
+  * Update Nerves systems to [nerves_system_br v1.31.7](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.31.7)
+  * Update all dependencies
+
 ## v0.15.6 - 2025-04-04
 
 * Fixes
