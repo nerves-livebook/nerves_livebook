@@ -342,6 +342,11 @@ jobs:
       - restore_cache:
           key: nerves/deploy/{{ checksum ".target" }}-{{ .Revision }}-{{ .Environment.CIRCLE_TAG }}
       - run:
+          name: Generate SHA256 checksums for all artifacts
+          command: |
+            cd ~/deploy/artifacts
+            sha256sum * > SHA256SUMS
+      - run:
           name: Create release notes - FAILS if tag isn't in CHANGELOG.md
           command: awk -v tag="## ${CIRCLE_TAG}" 'BEGIN {found=0} $0 ~ tag {found=1; next} found && /^##/ {found=0} found {print}' ~/deploy/CHANGELOG.md | sed '/./,$!d' > ~/deploy/RELEASE_NOTES
       - store_artifacts:
