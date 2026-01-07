@@ -1,3 +1,7 @@
+<!--
+  SPDX-FileCopyrightText: None
+  SPDX-License-Identifier: CC0-1.0
+-->
 # Changelog
 
 ## v0.17.0 - 2025-09-16

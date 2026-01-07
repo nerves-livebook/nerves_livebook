@@ -1,3 +1,7 @@
+<!--
+  SPDX-FileCopyrightText: None
+  SPDX-License-Identifier: CC0-1.0
+-->
 # Nerves Livebook Firmware
 
 [![CircleCI](https://circleci.com/gh/nerves-livebook/nerves_livebook.svg?style=svg)](https://circleci.com/gh/nerves-livebook/nerves_livebook)
