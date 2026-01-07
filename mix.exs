@@ -24,19 +24,20 @@ defmodule NervesLivebook.MixProject do
       author: "https://github.com/nerves-livebook/nerves_livebook/graphs/contributors",
       version: @version,
       package: package(),
-      elixir: "~> 1.17",
+      elixir: "~> 1.18",
       archives: [nerves_bootstrap: "~> 1.10"],
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       releases: [{@app, release()}],
-      preferred_cli_target: [run: :host, test: :host, "phx.server": :host],
       dialyzer: dialyzer(),
-      docs: docs(),
-      preferred_cli_env: %{
-        docs: :docs,
-        "hex.publish": :docs,
-        "hex.build": :docs
-      }
+      docs: docs()
+    ]
+  end
+
+  def cli do
+    [
+      preferred_envs: %{docs: :docs, "hex.publish": :docs, "hex.build": :docs},
+      preferred_targets: %{run: :host, test: :host, "phx.server": :host}
     ]
   end
 
@@ -68,7 +69,7 @@ defmodule NervesLivebook.MixProject do
   defp deps do
     [
       # Dependencies for host and target
-      {:nerves, "~> 1.10", runtime: false},
+      {:nerves, "~> 1.11", runtime: false},
       {:shoehorn, "~> 0.9.0"},
       {:ring_logger, "~> 0.9"},
       {:toolshed, "~> 0.4.0"},
@@ -117,20 +118,20 @@ defmodule NervesLivebook.MixProject do
       {:owl, "~> 0.12", runtime: false},
 
       # Nerves system dependencies
-      {:nerves_system_rpi, "~> 1.31", runtime: false, targets: :rpi},
-      {:nerves_system_rpi0, "~> 1.31", runtime: false, targets: :rpi0},
-      {:nerves_system_rpi0_2, "~> 1.31", runtime: false, targets: :rpi0_2},
-      {:nerves_system_rpi2, "~> 1.31", runtime: false, targets: :rpi2},
-      {:nerves_system_rpi3, "~> 1.31", runtime: false, targets: :rpi3},
-      {:nerves_system_rpi3a, "~> 1.31", runtime: false, targets: :rpi3a},
-      {:nerves_system_rpi4, "~> 1.31", runtime: false, targets: :rpi4},
-      {:nerves_system_rpi5, "~> 0.6", runtime: false, targets: :rpi5},
-      {:nerves_system_bbb, "~> 2.27", runtime: false, targets: :bbb},
-      {:nerves_system_osd32mp1, "~> 0.22", runtime: false, targets: :osd32mp1},
-      {:nerves_system_x86_64, "~> 1.31", runtime: false, targets: :x86_64},
-      {:nerves_system_npi_imx6ull, "~> 0.19", runtime: false, targets: :npi_imx6ull},
-      {:nerves_system_grisp2, "~> 0.15", runtime: false, targets: :grisp2},
-      {:nerves_system_mangopi_mq_pro, "~> 0.13", runtime: false, targets: :mangopi_mq_pro},
+      {:nerves_system_rpi, "~> 1.33", runtime: false, targets: :rpi},
+      {:nerves_system_rpi0, "~> 1.33", runtime: false, targets: :rpi0},
+      {:nerves_system_rpi0_2, "~> 1.33", runtime: false, targets: :rpi0_2},
+      {:nerves_system_rpi2, "~> 1.33", runtime: false, targets: :rpi2},
+      {:nerves_system_rpi3, "~> 1.33", runtime: false, targets: :rpi3},
+      {:nerves_system_rpi3a, "~> 1.33", runtime: false, targets: :rpi3a},
+      {:nerves_system_rpi4, "~> 1.33", runtime: false, targets: :rpi4},
+      {:nerves_system_rpi5, "~> 0.8", runtime: false, targets: :rpi5},
+      {:nerves_system_bbb, "~> 2.29", runtime: false, targets: :bbb},
+      {:nerves_system_osd32mp1, "~> 0.24", runtime: false, targets: :osd32mp1},
+      {:nerves_system_x86_64, "~> 1.33", runtime: false, targets: :x86_64},
+      {:nerves_system_npi_imx6ull, "~> 0.21", runtime: false, targets: :npi_imx6ull},
+      {:nerves_system_grisp2, "~> 0.17", runtime: false, targets: :grisp2},
+      {:nerves_system_mangopi_mq_pro, "~> 0.15", runtime: false, targets: :mangopi_mq_pro},
 
       # Compile-time only
       {:credo, "~> 1.6", only: :dev, runtime: false},

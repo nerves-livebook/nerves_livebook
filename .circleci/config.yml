@@ -1,16 +1,18 @@
+# SPDX-FileCopyrightText: None
+# SPDX-License-Identifier: CC0-1.0
 version: 2.1
 
 defaults: &defaults
   docker:
-    - image: hexpm/elixir:1.18.4-erlang-27.3.4.3-ubuntu-jammy-20250819
+    - image: hexpm/elixir:1.19.4-erlang-28.3-ubuntu-noble-20251013
   resource_class: large
 
 install_fwup: &install_fwup
   run:
     name: Install fwup
     command: |
-      wget https://github.com/fwup-home/fwup/releases/download/v1.13.2/fwup_1.13.2_amd64.deb
-      dpkg -i fwup_1.13.2_amd64.deb
+      wget https://github.com/fwup-home/fwup/releases/download/v1.15.0/fwup_1.15.0_amd64.deb
+      dpkg -i fwup_1.15.0_amd64.deb
 
 install_system_deps: &install_system_deps
   run:
