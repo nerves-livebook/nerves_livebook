@@ -24,7 +24,7 @@ defmodule NervesLivebook do
     def check_internet!(), do: :ok
   else
     def check_internet!() do
-      unless VintageNet.get(["connection"]) == :internet,
+      if VintageNet.get(["connection"]) != :internet,
         do: raise("Please check that at least one network interface can reach the internet")
 
       :ok

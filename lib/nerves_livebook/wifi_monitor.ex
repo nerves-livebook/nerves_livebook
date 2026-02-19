@@ -66,7 +66,7 @@ defmodule NervesLivebook.WiFiMonitor do
   @impl GenServer
   def handle_info(:timeout, state) do
     _ = if state.test_fn, do: state.test_fn.(:timeout)
-    _ = unless connected?(), do: start_ap(state)
+    _ = if !connected?(), do: start_ap(state)
 
     stop(state)
   end
