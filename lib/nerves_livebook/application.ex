@@ -75,26 +75,6 @@ defmodule NervesLivebook.Application do
     defp empty?(_), do: false
   end
 
-  defp advertise_device() do
-    # See https://hexdocs.pm/nerves_discovery/
-    MdnsLite.add_mdns_service(%{
-      id: :nerves_device,
-      protocol: "nerves-device",
-      transport: "tcp",
-      port: 0,
-      txt_payload: %{
-        "serial" => Nerves.Runtime.serial_number(),
-        "product" => Nerves.Runtime.KV.get_active("nerves_fw_product"),
-        "description" => Nerves.Runtime.KV.get_active("nerves_fw_description"),
-        "version" => Nerves.Runtime.KV.get_active("nerves_fw_version"),
-        "platform" => Nerves.Runtime.KV.get_active("nerves_fw_platform"),
-        "architecture" => Nerves.Runtime.KV.get_active("nerves_fw_architecture"),
-        "author" => Nerves.Runtime.KV.get_active("nerves_fw_author"),
-        "uuid" => Nerves.Runtime.KV.get_active("nerves_fw_uuid")
-      }
-    })
-  end
-
   if Mix.env() != :test do
     defp add_mix_install() do
       # This needs to be done this way since redefining Mix at compile time
@@ -120,8 +100,29 @@ defmodule NervesLivebook.Application do
 
   if Mix.target() == :host do
     defp target_children(_), do: []
+    defp advertise_device(), do: :ok
   else
     defp target_children(:srhub), do: [NervesLivebook.WiFiMonitor]
     defp target_children(_), do: []
+
+    defp advertise_device() do
+      # See https://hexdocs.pm/nerves_discovery/
+      MdnsLite.add_mdns_service(%{
+        id: :nerves_device,
+        protocol: "nerves-device",
+        transport: "tcp",
+        port: 0,
+        txt_payload: %{
+          "serial" => Nerves.Runtime.serial_number(),
+          "product" => Nerves.Runtime.KV.get_active("nerves_fw_product"),
+          "description" => Nerves.Runtime.KV.get_active("nerves_fw_description"),
+          "version" => Nerves.Runtime.KV.get_active("nerves_fw_version"),
+          "platform" => Nerves.Runtime.KV.get_active("nerves_fw_platform"),
+          "architecture" => Nerves.Runtime.KV.get_active("nerves_fw_architecture"),
+          "author" => Nerves.Runtime.KV.get_active("nerves_fw_author"),
+          "uuid" => Nerves.Runtime.KV.get_active("nerves_fw_uuid")
+        }
+      })
+    end
   end
 end
