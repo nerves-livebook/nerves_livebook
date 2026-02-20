@@ -6,6 +6,11 @@ import Config
 
 config :shoehorn, init: [:nerves_runtime, :nerves_pack]
 
+# Enable the system startup guard to check that all OTP applications
+# started. If they didn't and you're on a Nerves system that supports
+# test runs of new firmware, the firmware will automatically roll
+# back to the previous version. Delete this if implementing your own
+# way of validating that firmware is good.
 config :nerves_runtime, startup_guard_enabled: true
 
 # Use Ringlogger as the logger backend and remove :console.
