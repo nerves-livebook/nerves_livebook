@@ -18,8 +18,9 @@
 # OS system time.
 +C multi_time_warp
 
-## Load code at system startup
-## See http://erlang.org/doc/system_principles/system_principles.html#code-loading-strategy
+## Choose whether to load all code at system startup
+## See https://www.erlang.org/doc/system/system_principles.html#code-loading-strategy
+## Slow devices sometimes benefit from choosing embedded mode
 -mode embedded
 
 # Load code as per the boot script since not using archives
@@ -27,7 +28,7 @@
 -code_path_choice strict
 
 ## Disable scheduler busy wait to reduce idle CPU usage and avoid delaying
-## other OS processes. See http://erlang.org/doc/man/erl.html#+sbwt
+## other OS processes. See https://www.erlang.org/doc/apps/erts/erl_cmd.html#+sbwt
 +sbwt none
 +sbwtdcpu none
 +sbwtdio none
@@ -39,7 +40,7 @@
 -epmd_module Elixir.Livebook.EPMD
 
 ## Save the shell history between reboots
-## See http://erlang.org/doc/man/kernel_app.html for additional options
+## See https://www.erlang.org/doc/apps/kernel/kernel_app for additional options
 -kernel shell_history enabled
 
 ## Enable heartbeat monitoring of the Erlang runtime system
