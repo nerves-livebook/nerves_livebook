@@ -4,6 +4,18 @@
 -->
 # Changelog
 
+## v0.18.1 - 2026-02-20
+
+This is a major update for Raspberry Pis that switches to the new "tryboot"
+image layout to support automatic recovery when upgrading to broken firmware. If
+you're using official images, this should hopefully not be a feature you need.
+However, it is a one way update and over-the-air downgrades to v0.18.0 won't
+work. You'll have to reflash the MicroSD card.
+
+* Updates
+  * Update to [Livebook v0.18.6](https://github.com/livebook-dev/livebook/releases/tag/v0.18.6)
+  * Improve mDNS advertisements to show more information when using `mix nerves.discover` to find devices
+
 ## v0.18.0 - 2026-01-07
 
 * Updates
