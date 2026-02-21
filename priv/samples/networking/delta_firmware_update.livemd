@@ -64,7 +64,7 @@ update was not made for the firmware that you're running. Watch the evaluating
 circle pulse to know that it's working.
 
 ```elixir
-firmware_name = "z#{Nerves.Runtime.KV.get_active("nerves_fw_uuid")}_#{NervesLivebook.target()}.fw"
+firmware_name = "z#{Nerves.Runtime.KV.get_active("nerves_fw_uuid")}_#{Nerves.Runtime.mix_target()}.fw"
 {:ok, firmware_url} = GithubRelease.firmware_url(latest, firmware_name)
 
 IO.puts("Downloading #{firmware_url} to #{firmware_path}...")

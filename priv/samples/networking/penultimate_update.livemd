@@ -43,7 +43,7 @@ working.
 
 ```elixir
 {:ok, firmware_url} =
-  GithubRelease.firmware_url(release, "nerves_livebook_#{NervesLivebook.target()}.fw")
+  GithubRelease.firmware_url(release, "nerves_livebook_#{Nerves.Runtime.mix_target()}.fw")
 
 IO.puts("Downloading #{firmware_url} to #{firmware_path}...")
 
