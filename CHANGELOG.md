@@ -4,6 +4,14 @@
 -->
 # Changelog
 
+## v0.19.0 - 2026-03-18
+
+This updates Livebook to v0.19.4 and brings in security and bug fix updates in
+many dependencies.
+
+* Updates
+  * Update to [Livebook v0.19.4](https://github.com/livebook-dev/livebook/releases/tag/v0.18.4)
+
 ## v0.18.1 - 2026-02-20
 
 This is a major update for Raspberry Pis that switches to the new "tryboot"
