@@ -13,3 +13,5 @@ config :delux, indicators: %{default: %{green: "ACT"}}
 
 # Apply generic WiFi configurations supporting both WPA2 and WPA3.
 config :vintage_net_wifi, :quick_configure, &VintageNetWiFi.Cookbook.generic/2
+
+config :nx, default_backend: NxEigen.Backend

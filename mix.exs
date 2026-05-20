@@ -14,6 +14,9 @@ defmodule NervesLivebook.MixProject do
   # See the BlueHeron repository for the boards that it supports.
   @ble_targets [:rpi0, :rpi0_2, :rpi3, :rpi3a]
 
+  # Targets where Nx ML deps (NxEigen backend, Axon, Bumblebee) are pulled in.
+  @ml_targets [:rpi4, :rpi5]
+
   # Instruct the compiler to create deterministic builds to minimize
   # differences between firmware versions. This helps delta firmware update
   # compression.
@@ -100,7 +103,12 @@ defmodule NervesLivebook.MixProject do
       {:nerves_key, "~> 1.0", targets: @all_targets},
       {:nerves_pack, "~> 0.7.0", targets: @all_targets},
       {:nerves_time_zones, "~> 0.3.0", targets: @all_targets},
-      {:nx, "~> 0.9.0"},
+      {:nx, "~> 0.12.0"},
+      {:axon, "~> 0.8", targets: @ml_targets},
+      {:bumblebee, "~> 0.7", targets: @ml_targets},
+      {:nx_eigen, "~> 0.1", targets: @ml_targets},
+      {:nx_signal, "~> 0.2", targets: @ml_targets},
+      {:scholar, "~> 0.4", targets: @ml_targets},
       {:phoenix_pubsub, "~> 2.0"},
       {:pinout, "~> 0.1"},
       {:progress_bar, "~> 3.0"},
