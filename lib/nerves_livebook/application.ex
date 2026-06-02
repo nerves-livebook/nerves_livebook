@@ -1,5 +1,5 @@
 defmodule NervesLivebook.Application do
-  # See https://hexdocs.pm/elixir/Application.html
+  # See https://elixir.hexdocs.pm/Application.html
   # for more information on OTP Applications
   @moduledoc false
 
@@ -12,7 +12,7 @@ defmodule NervesLivebook.Application do
     setup_wifi()
     add_mix_install()
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
+    # See https://elixir.hexdocs.pm/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: NervesLivebook.Supervisor]
 
@@ -106,7 +106,7 @@ defmodule NervesLivebook.Application do
     defp target_children(_), do: []
 
     defp advertise_device() do
-      # See https://hexdocs.pm/nerves_discovery/
+      # See https://nerves-discovery.hexdocs.pm/
       MdnsLite.add_mdns_service(%{
         id: :nerves_device,
         protocol: "nerves-device",
