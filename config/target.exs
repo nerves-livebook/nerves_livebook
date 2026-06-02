@@ -14,7 +14,7 @@ config :shoehorn, init: [:nerves_runtime, :nerves_pack]
 config :nerves_runtime, startup_guard_enabled: true
 
 # Use Ringlogger as the logger backend and remove :console.
-# See https://hexdocs.pm/ring_logger/readme.html for more information on
+# See https://ring-logger.hexdocs.pm/readme.html for more information on
 # configuring ring_logger.
 
 config :logger, backends: [RingLogger, RamoopsLogger]
@@ -32,8 +32,8 @@ config :nerves, :erlinit, update_clock: true
 
 # Configure the device for SSH IEx prompt access and firmware updates
 #
-# * See https://hexdocs.pm/nerves_ssh/readme.html for general SSH configuration
-# * See https://hexdocs.pm/ssh_subsystem_fwup/readme.html for firmware updates
+# * See https://nerves-ssh.hexdocs.pm/readme.html for general SSH configuration
+# * See https://ssh-subsystem-fwup.hexdocs.pm/readme.html for firmware updates
 
 config :nerves_ssh,
   daemon_option_overrides: [

@@ -214,8 +214,8 @@ over a USB cable:
 ## Going further
 
 At some point you may want to customize Nerves Livebook. See the [Nerves
-Installation](https://hexdocs.pm/nerves/installation.html) and [Getting
-Started](https://hexdocs.pm/nerves/getting-started.html) guides for details.
+Installation](https://nerves.hexdocs.pm/installation.html) and [Getting
+Started](https://nerves.hexdocs.pm/getting-started.html) guides for details.
 
 To build the Nerves Livebook firmware, make sure that you have run through the
 Nerves installation steps. Then open a terminal window and run the following:
