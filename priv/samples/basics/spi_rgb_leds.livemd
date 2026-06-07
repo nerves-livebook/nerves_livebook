@@ -23,7 +23,7 @@
 
 In this exercise, we will be lighting up an RGB LED strip using the `circuits.SPI` library.
 
-If you are unfamiliar with the SPI bus, please take a moment to review the [circuits.SPI](https://hexdocs.pm/circuits_SPI/readme.html)
+If you are unfamiliar with the SPI bus, please take a moment to review the [circuits.SPI](https://circuits-SPI.hexdocs.pm/readme.html)
 online documentation and the [Open Source Hardware Association's resolution](https://www.oshwa.org/a-resolution-to-redefine-SPI-signal-names/).
 It should help you build a general understanding of naming convention, and how data is transferred between a controller and peripheral.
 

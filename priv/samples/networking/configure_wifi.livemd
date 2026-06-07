@@ -9,7 +9,7 @@ Mix.install([
 
 ## Finding access points
 
-Nerves uses [vintage_net_wifi](https://hexdocs.pm/vintage_net_wifi/) to
+Nerves uses [vintage_net_wifi](https://vintage-net-wifi.hexdocs.pm/) to
 configure WiFi networking. This notebook uses the `quick_` functions to
 simplify common tasks. If you're trying to connect to an enterprise network,
 this may not work for you.

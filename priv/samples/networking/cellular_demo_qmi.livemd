@@ -73,7 +73,7 @@ Depending on whether your modem has connector or not, you'll see more or less in
 * `"manufacturer"` - Either the hardware manufacturer of the modem or of a component inside the modem
 * `"model"` - More information on the modem
 
-[VintageNetQMI's hexdocs](https://hexdocs.pm/vintage_net_qmi/readme.html#vintagenet-properties) describe all of the properties that you may see.
+[VintageNetQMI's hexdocs](https://vintage-net-qmi.hexdocs.pm/readme.html#vintagenet-properties) describe all of the properties that you may see.
 
 Once you're happy with viewing properties, try running `VintageNet.info` for a textual report on whether the modem has an internet connection.
 

@@ -11,7 +11,7 @@
 +Bc
 
 ## Require an initialization handshake within 10 minutes from the startup guard
-## See https://hexdocs.pm/nerves_runtime/readme.html#assisted-firmware-validation-and-automatic-revert
+## See https://nerves-runtime.hexdocs.pm/readme.html#assisted-firmware-validation-and-automatic-revert
 -env HEART_INIT_TIMEOUT 600
 
 # Allow time warps so that the Erlang system time can more closely match the

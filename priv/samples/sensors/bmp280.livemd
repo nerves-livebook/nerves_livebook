@@ -6,7 +6,7 @@ This sample demonstrates how to read temperature data from the BMP280 temperatur
 
 ## Nerves target
 
-The explanation below assumes a [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) as a target device but other [Nerves targets](https://hexdocs.pm/nerves/targets.html) should work as well.
+The explanation below assumes a [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) as a target device but other [Nerves targets](https://nerves.hexdocs.pm/targets.html) should work as well.
 
 ![](https://raw.githubusercontent.com/nerves-livebook/nerves_livebook/main/assets/bmp280/rpi0.jpg)
 

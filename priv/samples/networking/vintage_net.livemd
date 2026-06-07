@@ -2,7 +2,7 @@
 
 ## Overview
 
-Nerves uses [VintageNet](https://hexdocs.pm/vintage_net) to manage network
+Nerves uses [VintageNet](https://vintage-net.hexdocs.pm) to manage network
 interfaces. VintageNet takes human-readable network configuration descriptions
 and transforms them into instructions for the Linux kernel, network daemons and
 other IP networking code whether it's in Elixir, Erlang, or C.
@@ -21,10 +21,10 @@ in your project alongside `:vintage_net`
 There are many officially supported technologies, or you can implement your own
 with the `VintageNet.Technology` behavior:
 
-* [VintageNetWiFi](https://hexdocs.pm/vintage_net_wifi)
-* [VintageNetEthernet](https://hexdocs.pm/vintage_net_ethernet)
-* [VintageNetDirect](https://hexdocs.pm/vintage_net_direct) (most typically USB)
-* [VintageNetQMI](https://hexdocs.pm/vintage_net_qmi) (cellular)
+* [VintageNetWiFi](https://vintage-net-wifi.hexdocs.pm)
+* [VintageNetEthernet](https://vintage-net-ethernet.hexdocs.pm)
+* [VintageNetDirect](https://vintage-net-direct.hexdocs.pm) (most typically USB)
+* [VintageNetQMI](https://vintage-net-qmi.hexdocs.pm) (cellular)
 
 ## Connecting WiFi
 
@@ -47,7 +47,7 @@ VintageNet.get(["connection"])
 
 This notebook only shows a fraction of properties. For a more complete
 reference, see
-[VintageNet#Properties](https://hexdocs.pm/vintage_net/readme.html#properties).
+[VintageNet#Properties](https://vintage-net.hexdocs.pm/readme.html#properties).
 
 Network interface-specific keys are scoped by interface name. I.e.,
 `["interface", interface_name, ..]`.  This shows the IP addresses on an
@@ -62,7 +62,7 @@ VintageNet.get(["interface", "wlan0", "addresses"])
 Each VintageNet technology has its own set of properties and these are
 documented in the corresponding library. For Wifi, see [VintageNetWiFi's
 property
-documentation](https://hexdocs.pm/vintage_net_wifi/readme.html#properties).
+documentation](https://vintage-net-wifi.hexdocs.pm/readme.html#properties).
 
 Sometimes it's helpful to browse all keys using `VintageNet.get_by_prefix/1`:
 

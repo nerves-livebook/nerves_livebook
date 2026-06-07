@@ -62,24 +62,24 @@ or make a PR to include new libraries in the main image.
 
 - **[`Kino`](https://hex.pm/packages/kino)**, interactive widgets for Livebook
 - **[`VegaLite`](https://hex.pm/packages/vega_lite)**, Elixir bindings for the interactive graphic library [Vega-Lite](https://vega.github.io/vega-lite) (supported by `Kino`)
-- **[`Phoenix.PubSub`](https://hexdocs.pm/phoenix_pubsub)**, a realtime publisher/subscriber service
-- **[`Circuits.UART`](https://hexdocs.pm/circuits_uart)**, allowing you to use UARTs, serial ports, Bluetooth virtual serial port connections and more
-- **[`Circuits.GPIO`](https://hexdocs.pm/circuits_gpio)**, letting you control or read from GPIOs
-- **[`Circuits.I2C`](https://hexdocs.pm/circuits_i2c)**, letting you communicate with hardware devices using the I2C protocol
-- **[`Circuits.Spi`](https://hexdocs.pm/circuits_spi)**, providing high level abstractions for interfacing to SPI busses
-- **[`NervesKey`](https://hexdocs.pm/nerves_key)**, tools for interacting with Nerves hardware security modules (HSMs)
-- **[`RamoopsLogger`](https://hexdocs.pm/ramoops_logger)**, a `Logger` backend for forwarding to a [ramoops](https://www.kernel.org/doc/html/v4.19/admin-guide/ramoops.html) in the event of a system crash
-- **[`BMP280`](https://hexdocs.pm/bmp280)**, support for the Bosch BMP180, BMP280, BME280, and BME680 temperature/pressure sensors
-- **[`ScrollHat`](https://hexdocs.pm/scroll_hat)**, a driver for Pimoroni Scroll Hat LED boards
-- **[`InputEvent`](https://hexdocs.pm/input_event)**, an interface to Linux input event devices such as keyboards, joysticks, mice, touchscreens, etc
+- **[`Phoenix.PubSub`](https://phoenix-pubsub.hexdocs.pm)**, a realtime publisher/subscriber service
+- **[`Circuits.UART`](https://circuits-uart.hexdocs.pm)**, allowing you to use UARTs, serial ports, Bluetooth virtual serial port connections and more
+- **[`Circuits.GPIO`](https://circuits-gpio.hexdocs.pm)**, letting you control or read from GPIOs
+- **[`Circuits.I2C`](https://circuits-i2c.hexdocs.pm)**, letting you communicate with hardware devices using the I2C protocol
+- **[`Circuits.Spi`](https://circuits-spi.hexdocs.pm)**, providing high level abstractions for interfacing to SPI busses
+- **[`NervesKey`](https://nerves-key.hexdocs.pm)**, tools for interacting with Nerves hardware security modules (HSMs)
+- **[`RamoopsLogger`](https://ramoops-logger.hexdocs.pm)**, a `Logger` backend for forwarding to a [ramoops](https://www.kernel.org/doc/html/v4.19/admin-guide/ramoops.html) in the event of a system crash
+- **[`BMP280`](https://bmp280.hexdocs.pm)**, support for the Bosch BMP180, BMP280, BME280, and BME680 temperature/pressure sensors
+- **[`ScrollHat`](https://scroll-hat.hexdocs.pm)**, a driver for Pimoroni Scroll Hat LED boards
+- **[`InputEvent`](https://input-event.hexdocs.pm)**, an interface to Linux input event devices such as keyboards, joysticks, mice, touchscreens, etc
 - **[`Nx`](https://github.com/elixir-nx/nx/tree/main/nx#readme)**, a multi-dimensional tensors library with CPU/GPU support
-- **[`BlueHeron`](https://hexdocs.pm/blue_heron)**, for communicating with Bluetooth LE modules via HCI
-- **[`BlueHeron.HCI.Transport.UART`](https://hexdocs.pm/blue_heron_transport_uart)**, UART support for `BlueHeron`
-- **[`NervesTimeZones`](https://hexdocs.pm/nerves_time_zones)**, local time and time zone support for Nerves devices
+- **[`BlueHeron`](https://blue-heron.hexdocs.pm)**, for communicating with Bluetooth LE modules via HCI
+- **[`BlueHeron.HCI.Transport.UART`](https://blue-heron-transport-uart.hexdocs.pm)**, UART support for `BlueHeron`
+- **[`NervesTimeZones`](https://nerves-time-zones.hexdocs.pm)**, local time and time zone support for Nerves devices
 
 ## Learn more
 
-* Official docs: https://hexdocs.pm/nerves/getting-started.html
+* Official docs: https://nerves.hexdocs.pm/getting-started.html
 * Official website: https://nerves-project.org/
 * Forum: https://elixirforum.com/c/nerves-forum
 * Discussion Slack elixir-lang #nerves ([Invite](https://elixir-slackin.herokuapp.com/))

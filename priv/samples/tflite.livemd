@@ -25,7 +25,7 @@ model. The example code below is based on the instructions in the
 [tflite_elixir
 README](https://github.com/cocoa-xu/tflite_elixir/blob/main/README.md). For
 more information, check out the [tflite_elixir API
-reference](https://hexdocs.pm/tflite_elixir/api-reference.html).
+reference](https://tflite-elixir.hexdocs.pm/api-reference.html).
 
 ## Decide on where downloaded files are saved
 
