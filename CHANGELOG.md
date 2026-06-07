@@ -4,6 +4,17 @@
 -->
 # Changelog
 
+## v0.19.1 - 2026-06-07
+
+This updates Livebook to v0.19.8 and brings in security and bug fix updates in
+many dependencies.
+
+* Updates
+  * Update to [Livebook v0.19.8](https://github.com/livebook-dev/livebook/releases/tag/v0.19.8)
+  * Update Nerves systems to [nerves_system_br v1.33.9](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.33.9)
+  * Add Axon, Bumblebee, NxEigen, NxSignal, and Scholar for RPi4 and RPi5
+  * Update all dependencies
+
 ## v0.19.0 - 2026-03-18
 
 This updates Livebook to v0.19.4 and brings in security and bug fix updates in
