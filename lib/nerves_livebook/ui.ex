@@ -8,8 +8,6 @@ defmodule NervesLivebook.UI do
   use GenServer
   alias Delux.Effects
 
-  require Logger
-
   @doc """
   Start the UI GenServer
 

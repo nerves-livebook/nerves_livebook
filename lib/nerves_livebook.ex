@@ -3,8 +3,6 @@ defmodule NervesLivebook do
   Nerves Livebook firmware
   """
 
-  require Logger
-
   @doc """
   Return the Nerves Livebook version
 
