@@ -107,9 +107,6 @@ config :nerves_hub_link,
   host: "https://your-nerves-hub-server.com",
   configurator: NervesHubLink.Configurator.SharedSecret
 
-config :nerves_motd,
-  logo: File.read!(Path.expand("livebook-logo.txt", __DIR__))
-
 if Mix.target() == :host do
   import_config "host.exs"
 else

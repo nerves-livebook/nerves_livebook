@@ -84,6 +84,9 @@ config :vintage_net,
   regulatory_domain: "00",
   additional_name_servers: [{127, 0, 0, 53}]
 
+config :nerves_motd,
+  logo: File.read!(Path.expand("livebook-logo.txt", __DIR__))
+
 # Import target specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 
