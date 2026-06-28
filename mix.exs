@@ -8,8 +8,7 @@ defmodule NervesLivebook.MixProject do
   @source_url "https://github.com/nerves-livebook/nerves_livebook"
 
   @rpi_targets [:rpi, :rpi0, :rpi2, :rpi3, :rpi3a, :rpi4, :rpi0_2, :rpi5]
-  @all_targets @rpi_targets ++
-                 [:bbb, :osd32mp1, :x86_64, :npi_imx6ull, :grisp2, :mangopi_mq_pro]
+  @all_targets @rpi_targets ++ [:bbb, :trellis, :x86_64, :mangopi_mq_pro]
 
   # See the BlueHeron repository for the boards that it supports.
   @ble_targets [:rpi0, :rpi0_2, :rpi3, :rpi3a]
@@ -136,10 +135,8 @@ defmodule NervesLivebook.MixProject do
       {:nerves_system_rpi4, "~> 2.0", runtime: false, targets: :rpi4},
       {:nerves_system_rpi5, "~> 2.0", runtime: false, targets: :rpi5},
       {:nerves_system_bbb, "~> 2.29", runtime: false, targets: :bbb},
-      {:nerves_system_osd32mp1, "~> 0.24", runtime: false, targets: :osd32mp1},
+      {:nerves_system_trellis, "~> 0.4", runtime: false, targets: :trellis},
       {:nerves_system_x86_64, "~> 1.33", runtime: false, targets: :x86_64},
-      {:nerves_system_npi_imx6ull, "~> 0.21", runtime: false, targets: :npi_imx6ull},
-      {:nerves_system_grisp2, "~> 0.17", runtime: false, targets: :grisp2},
       {:nerves_system_mangopi_mq_pro, "~> 0.15", runtime: false, targets: :mangopi_mq_pro},
 
       # Compile-time only
