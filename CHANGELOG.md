@@ -4,6 +4,17 @@
 -->
 # Changelog
 
+## v0.19.2 - 2026-06-29
+
+This updates many dependencies especially in the Nerves systems. It also adds
+support for the Nerves starter kit (trellis).
+
+* Updates
+  * Update Nerves systems to [nerves_system_br v1.34.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.34.0)
+  * Temporarily remove Nx packages added in v0.19.1 due to a new runtime crash on boot
+  * Temporarily remove GRiSP2, OSD32MP1, and NPI IMX6ULL until their Linux kernels can be updated
+  * Update all dependencies
+
 ## v0.19.1 - 2026-06-07
 
 This updates Livebook to v0.19.8 and brings in security and bug fix updates in
