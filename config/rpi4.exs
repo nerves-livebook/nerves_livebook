@@ -9,7 +9,8 @@ config :vintage_net,
     {"wlan0", %{type: VintageNetWiFi}}
   ]
 
-config :delux, indicators: %{default: %{green: "ACT"}}
+# The ACT LED is not available on RP400
+config :delux, indicators: %{default: %{}}
 
 # Apply generic WiFi configurations supporting both WPA2 and WPA3.
 config :vintage_net_wifi, :quick_configure, &VintageNetWiFi.Cookbook.generic/2
