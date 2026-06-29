@@ -14,7 +14,8 @@ defmodule NervesLivebook.MixProject do
   @ble_targets [:rpi0, :rpi0_2, :rpi3, :rpi3a]
 
   # Targets where Nx ML deps (NxEigen backend, Axon, Bumblebee) are pulled in.
-  @ml_targets [:rpi4, :rpi5]
+  # Disable for now due to https://github.com/polvalente/nx_eigen/issues/6
+  @ml_targets []
 
   # Instruct the compiler to create deterministic builds to minimize
   # differences between firmware versions. This helps delta firmware update
