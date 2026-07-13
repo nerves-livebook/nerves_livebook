@@ -4,6 +4,12 @@
 -->
 # Changelog
 
+## v0.19.3 - 2026-07-13
+
+* Updates
+  * Update `nerves_system_trellis` to support the Nerves Starter Kit expansion port
+  * Update Circuits.GPIO to 2.3.0 to bring in multi-GPIO support
+
 ## v0.19.2 - 2026-06-29
 
 This updates many dependencies especially in the Nerves systems. It also adds
