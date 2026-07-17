@@ -30,7 +30,7 @@ defmodule NervesLivebook.MixProject do
       version: @version,
       package: package(),
       elixir: "~> 1.18",
-      archives: [nerves_bootstrap: "~> 1.10"],
+      archives: [nerves_bootstrap: "~> 1.10 or ~> 2.0-dev"],
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       releases: [{@app, release()}],
