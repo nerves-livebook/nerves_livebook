@@ -17,6 +17,11 @@ defmodule NervesLivebook.MixProject do
   # Disable for now due to https://github.com/polvalente/nx_eigen/issues/6
   @ml_targets []
 
+  # Targets with EInk displays that work out-of-the-box. At the moment, this
+  # only includes Trellis boards like the Nerves Starter Kit and Goatmire
+  # Badge, but there could be Raspberry Pi hats that could work.
+  @eink_targets [:trellis]
+
   # Instruct the compiler to create deterministic builds to minimize
   # differences between firmware versions. This helps delta firmware update
   # compression.
@@ -94,6 +99,8 @@ defmodule NervesLivebook.MixProject do
       {:delux, "~> 0.2"},
       # hts221 needs circuits_i2c dependency bumped
       # {:hts221, "~> 1.0", targets: @all_targets},
+      {:egd_text_panel, "~> 0.1.0", targets: @eink_targets},
+      {:eink, "~> 0.1.0", targets: @eink_targets},
       {:input_event, "~> 1.0 or ~> 0.4", targets: @all_targets},
       {:kino, "~> 0.14"},
       {:kino_maplibre, "~> 0.1.0"},
