@@ -4,6 +4,17 @@
 -->
 # Changelog
 
+## v0.19.4 - 2026-07-20
+
+* Updates
+  * Update `nerves_system_mangopi_mq_pro` to use mainline Linux rather than the
+    original custom fork
+  * Integrate Raspberry Pi 5 WPA3 SAE fix. Not all access points rejected
+    clients with the issue, but those that did rejected use of WPA3 every time.
+  * Add E-Ink related libraries to support basic use of the display on the Nerves
+    Starter Kit. These libraries are only included for the Trellis target
+    currently.
+
 ## v0.19.3 - 2026-07-13
 
 * Updates
