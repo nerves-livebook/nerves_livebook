@@ -1,5 +1,5 @@
 # SPDX-FileCopyrightText: None
 # SPDX-License-Identifier: CC0-1.0
 
-erlang 29.0.2
-elixir 1.20.2-otp-29
+erlang 29.0.4
+elixir 1.20.3-otp-29
