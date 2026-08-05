@@ -4,6 +4,16 @@
 -->
 # Changelog
 
+## v0.19.5 - 2026-08-05
+
+This is mostly a security and bug fix release.
+
+* Updates
+  * Update to [Livebook v0.19.9](https://github.com/livebook-dev/livebook/releases/tag/v0.19.9)
+  * Update Nerves systems to [nerves_system_br v1.34.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.34.0)
+  * Include the HTS221 temperature/humidity sensor library again. It had been
+    commented out due to a dependency issue that's now been fixed.
+
 ## v0.19.4 - 2026-07-20
 
 * Updates
