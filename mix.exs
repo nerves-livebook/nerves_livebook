@@ -109,7 +109,7 @@ defmodule NervesLivebook.MixProject do
       {:nerves_key, "~> 1.0", targets: @all_targets},
       {:nerves_pack, "~> 0.7.0", targets: @all_targets},
       {:nerves_time_zones, "~> 0.3.0", targets: @all_targets},
-      {:nx, "~> 0.12.0"},
+      {:nx, "~> 0.13.0"},
       {:axon, "~> 0.8", targets: @ml_targets},
       {:bumblebee, "~> 0.7", targets: @ml_targets},
       {:nx_eigen, "~> 0.1", targets: @ml_targets},
