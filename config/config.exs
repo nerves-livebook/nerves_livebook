@@ -8,7 +8,8 @@ Application.start(:nerves_bootstrap)
 
 config :nerves, :firmware,
   rootfs_overlay: "rootfs_overlay",
-  provisioning: "config/provisioning.conf"
+  provisioning: "config/provisioning.conf",
+  fwup_compression: if(Mix.env() == :dev, do: :fast, else: :best)
 
 if Mix.env() != :test do
   # Set log level to warning by default to reduce output except for testing
