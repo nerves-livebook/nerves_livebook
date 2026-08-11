@@ -1,10 +1,6 @@
 import Config
 
-# Use shoehorn to start the main application. See the shoehorn
-# docs for separating out critical OTP applications such as those
-# involved with firmware updates.
-
-config :shoehorn, init: [:nerves_runtime, :nerves_pack]
+config :nerves, application_sort: [init: [:nerves_runtime, :nerves_pack]]
 
 # Enable the system startup guard to check that all OTP applications
 # started. If they didn't and you're on a Nerves system that supports

@@ -79,8 +79,7 @@ defmodule NervesLivebook.MixProject do
   defp deps do
     [
       # Dependencies for host and target
-      {:nerves, "~> 1.13", runtime: false},
-      {:shoehorn, "~> 0.9.0"},
+      {:nerves, "~> 2.0.0-pre.1", runtime: false},
       {:ring_logger, "~> 0.9"},
       {:toolshed, "~> 0.5"},
       {:jason, "~> 1.2"},
@@ -174,8 +173,8 @@ defmodule NervesLivebook.MixProject do
         mndp: :load
       ],
       overwrite: true,
-      include_erts: &Nerves.Release.erts/0,
-      steps: [&Nerves.Release.init/1, :assemble],
+      include_erts: &Nerves.erts/0,
+      steps: [&Nerves.init_release/1, :assemble],
       strip_beams: [keep: ["Docs"]]
     ]
   end
