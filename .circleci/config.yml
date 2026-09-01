@@ -4,7 +4,7 @@ version: 2.1
 
 defaults: &defaults
   docker:
-    - image: hexpm/elixir:1.20.2-erlang-29.0.2-ubuntu-resolute-20260610
+    - image: hexpm/elixir:1.20.4-erlang-29.0.5-ubuntu-resolute-20260811.1
   resource_class: large
 
 install_fwup: &install_fwup
