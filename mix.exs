@@ -123,7 +123,7 @@ defmodule NervesLivebook.MixProject do
       {:req, "~> 0.5"},
       {:scroll_hat, "~> 0.1", targets: @rpi_targets},
       {:stb_image, "~> 0.6.0"},
-      {:tflite_elixir, "~> 0.3.6", targets: @all_targets},
+      {:tflite_elixir, "~> 1.0.0", targets: @all_targets},
       {:vega_lite, "~> 0.1"},
       {:vintage_net_wifi, "~> 0.12.5", targets: @all_targets},
       {:vintage_net_qmi, "~> 0.4.1", targets: @all_targets},
