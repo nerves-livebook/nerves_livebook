@@ -4,7 +4,7 @@ import Config
 # docs for separating out critical OTP applications such as those
 # involved with firmware updates.
 
-config :shoehorn, init: [:nerves_runtime, :nerves_pack]
+config :shoehorn, init: [:logger_backends, :nerves_runtime, :nerves_pack]
 
 # Enable the system startup guard to check that all OTP applications
 # started. If they didn't and you're on a Nerves system that supports
@@ -13,11 +13,10 @@ config :shoehorn, init: [:nerves_runtime, :nerves_pack]
 # way of validating that firmware is good.
 config :nerves_runtime, startup_guard_enabled: true
 
-# Use Ringlogger as the logger backend and remove :console.
-# See https://ring-logger.hexdocs.pm/readme.html for more information on
-# configuring ring_logger.
+# Default to not starting so that the console logger isn't started. See
+# runtime.exs for logger configuration.
 
-config :logger, backends: [RingLogger]
+config :logger, :default_handler, false
 
 # Erlinit can be configured without a rootfs_overlay. See
 # https://github.com/nerves-project/erlinit/ for more information on
