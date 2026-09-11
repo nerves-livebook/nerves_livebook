@@ -1,5 +1,9 @@
 import Config
 
+# Start logging first in case any of the below fails
+Application.ensure_all_started(:logger_backends)
+LoggerBackends.add(RingLogger)
+
 mix_target = Nerves.Runtime.mix_target()
 {:ok, hostname} = :inet.gethostname()
 
