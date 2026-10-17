@@ -21,7 +21,7 @@
 ## Choose whether to load all code at system startup
 ## See https://www.erlang.org/doc/system/system_principles.html#code-loading-strategy
 ## Slow devices sometimes benefit from choosing embedded mode
--mode embedded
+#-mode embedded
 
 # Load code as per the boot script since not using archives
 # See https://www.erlang.org/doc/man/init.html#command-line-flags
