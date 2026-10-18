@@ -4,15 +4,15 @@ version: 2.1
 
 defaults: &defaults
   docker:
-    - image: hexpm/elixir:1.20.4-erlang-29.0.6-ubuntu-resolute-20260811.1
+    - image: hexpm/elixir:1.20.4-erlang-29.1.2-ubuntu-resolute-20260927
   resource_class: large
 
 install_fwup: &install_fwup
   run:
     name: Install fwup
     command: |
-      wget https://github.com/fwup-home/fwup/releases/download/v1.16.0/fwup_1.16.0_amd64.deb
-      dpkg -i fwup_1.16.0_amd64.deb
+      wget https://github.com/fwup-home/fwup/releases/download/v1.17.1/fwup_1.17.1_amd64.deb
+      dpkg -i fwup_1.17.1_amd64.deb
 
 install_system_deps: &install_system_deps
   run:
