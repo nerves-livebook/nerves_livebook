@@ -4,6 +4,16 @@
 -->
 # Changelog
 
+## v0.19.7 - 2026-10-20
+
+This updates a lot of dependencies to the latest including Nerves systems and
+Erlang.
+
+* Updates
+  * Change app start to interactive rather than embedded since that's currently
+    benchmarking better almost everywhere.
+  * Update to [Livebook v0.19.10](https://github.com/livebook-dev/livebook/releases/tag/v0.19.10)
+
 ## v0.19.6 - 2026-09-04
 
 This is a security/bug fix bump for all platforms except the Nerves Starter Kit.
